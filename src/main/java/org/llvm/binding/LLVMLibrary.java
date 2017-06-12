@@ -5762,6 +5762,72 @@ public class LLVMLibrary {
 	@Ptr 
 	protected native static long LLVMWriteBitcodeToMemoryBuffer(@Ptr long M);
 	/**
+	 * Builds a module from the bitcode in the specified memory buffer, returning a<br>
+	 * reference to the module via the OutModule parameter. Returns 0 on success.<br>
+	 * Optionally returns a human-readable error message via OutMessage.<br>
+	 * This is deprecated. Use LLVMParseBitcode2.<br>
+	 * Original signature : <code>LLVMBool LLVMParseBitcode(LLVMMemoryBufferRef, LLVMModuleRef*, char**)</code>
+	 */
+	public static int LLVMParseBitcode(LLVMLibrary.LLVMMemoryBufferRef MemBuf, Pointer<LLVMLibrary.LLVMModuleRef > OutModule, Pointer<Pointer<Byte > > OutMessage) {
+		return LLVMParseBitcode(Pointer.getPeer(MemBuf), Pointer.getPeer(OutModule), Pointer.getPeer(OutMessage));
+	}
+	protected native static int LLVMParseBitcode(@Ptr long MemBuf, @Ptr long OutModule, @Ptr long OutMessage);
+	/**
+	 * Builds a module from the bitcode in the specified memory buffer, returning a<br>
+	 * reference to the module via the OutModule parameter. Returns 0 on success.<br>
+	 * Original signature : <code>LLVMBool LLVMParseBitcode2(LLVMMemoryBufferRef, LLVMModuleRef*)</code>
+	 */
+	public static int LLVMParseBitcode2(LLVMLibrary.LLVMMemoryBufferRef MemBuf, Pointer<LLVMLibrary.LLVMModuleRef > OutModule) {
+		return LLVMParseBitcode2(Pointer.getPeer(MemBuf), Pointer.getPeer(OutModule));
+	}
+	protected native static int LLVMParseBitcode2(@Ptr long MemBuf, @Ptr long OutModule);
+	/**
+	 * This is deprecated. Use LLVMParseBitcodeInContext2.<br>
+	 * Original signature : <code>LLVMBool LLVMParseBitcodeInContext(LLVMContextRef, LLVMMemoryBufferRef, LLVMModuleRef*, char**)</code>
+	 */
+	public static int LLVMParseBitcodeInContext(LLVMLibrary.LLVMContextRef ContextRef, LLVMLibrary.LLVMMemoryBufferRef MemBuf, Pointer<LLVMLibrary.LLVMModuleRef > OutModule, Pointer<Pointer<Byte > > OutMessage) {
+		return LLVMParseBitcodeInContext(Pointer.getPeer(ContextRef), Pointer.getPeer(MemBuf), Pointer.getPeer(OutModule), Pointer.getPeer(OutMessage));
+	}
+	protected native static int LLVMParseBitcodeInContext(@Ptr long ContextRef, @Ptr long MemBuf, @Ptr long OutModule, @Ptr long OutMessage);
+	/** Original signature : <code>LLVMBool LLVMParseBitcodeInContext2(LLVMContextRef, LLVMMemoryBufferRef, LLVMModuleRef*)</code> */
+	public static int LLVMParseBitcodeInContext2(LLVMLibrary.LLVMContextRef ContextRef, LLVMLibrary.LLVMMemoryBufferRef MemBuf, Pointer<LLVMLibrary.LLVMModuleRef > OutModule) {
+		return LLVMParseBitcodeInContext2(Pointer.getPeer(ContextRef), Pointer.getPeer(MemBuf), Pointer.getPeer(OutModule));
+	}
+	protected native static int LLVMParseBitcodeInContext2(@Ptr long ContextRef, @Ptr long MemBuf, @Ptr long OutModule);
+	/**
+	 * Reads a module from the specified path, returning via the OutMP parameter<br>
+	 * a module provider which performs lazy deserialization. Returns 0 on success.<br>
+	 * Optionally returns a human-readable error message via OutMessage.<br>
+	 * This is deprecated. Use LLVMGetBitcodeModuleInContext2.<br>
+	 * Original signature : <code>LLVMBool LLVMGetBitcodeModuleInContext(LLVMContextRef, LLVMMemoryBufferRef, LLVMModuleRef*, char**)</code>
+	 */
+	public static int LLVMGetBitcodeModuleInContext(LLVMLibrary.LLVMContextRef ContextRef, LLVMLibrary.LLVMMemoryBufferRef MemBuf, Pointer<LLVMLibrary.LLVMModuleRef > OutM, Pointer<Pointer<Byte > > OutMessage) {
+		return LLVMGetBitcodeModuleInContext(Pointer.getPeer(ContextRef), Pointer.getPeer(MemBuf), Pointer.getPeer(OutM), Pointer.getPeer(OutMessage));
+	}
+	protected native static int LLVMGetBitcodeModuleInContext(@Ptr long ContextRef, @Ptr long MemBuf, @Ptr long OutM, @Ptr long OutMessage);
+	/**
+	 * Reads a module from the specified path, returning via the OutMP parameter a<br>
+	 * module provider which performs lazy deserialization. Returns 0 on success.<br>
+	 * Original signature : <code>LLVMBool LLVMGetBitcodeModuleInContext2(LLVMContextRef, LLVMMemoryBufferRef, LLVMModuleRef*)</code>
+	 */
+	public static int LLVMGetBitcodeModuleInContext2(LLVMLibrary.LLVMContextRef ContextRef, LLVMLibrary.LLVMMemoryBufferRef MemBuf, Pointer<LLVMLibrary.LLVMModuleRef > OutM) {
+		return LLVMGetBitcodeModuleInContext2(Pointer.getPeer(ContextRef), Pointer.getPeer(MemBuf), Pointer.getPeer(OutM));
+	}
+	protected native static int LLVMGetBitcodeModuleInContext2(@Ptr long ContextRef, @Ptr long MemBuf, @Ptr long OutM);
+	/**
+	 * This is deprecated. Use LLVMGetBitcodeModule2.<br>
+	 * Original signature : <code>LLVMBool LLVMGetBitcodeModule(LLVMMemoryBufferRef, LLVMModuleRef*, char**)</code>
+	 */
+	public static int LLVMGetBitcodeModule(LLVMLibrary.LLVMMemoryBufferRef MemBuf, Pointer<LLVMLibrary.LLVMModuleRef > OutM, Pointer<Pointer<Byte > > OutMessage) {
+		return LLVMGetBitcodeModule(Pointer.getPeer(MemBuf), Pointer.getPeer(OutM), Pointer.getPeer(OutMessage));
+	}
+	protected native static int LLVMGetBitcodeModule(@Ptr long MemBuf, @Ptr long OutM, @Ptr long OutMessage);
+	/** Original signature : <code>LLVMBool LLVMGetBitcodeModule2(LLVMMemoryBufferRef, LLVMModuleRef*)</code> */
+	public static int LLVMGetBitcodeModule2(LLVMLibrary.LLVMMemoryBufferRef MemBuf, Pointer<LLVMLibrary.LLVMModuleRef > OutM) {
+		return LLVMGetBitcodeModule2(Pointer.getPeer(MemBuf), Pointer.getPeer(OutM));
+	}
+	protected native static int LLVMGetBitcodeModule2(@Ptr long MemBuf, @Ptr long OutM);
+	/**
 	 * @defgroup LLVMCInitialization Initialization Routines<br>
 	 * @ingroup LLVMC<br>
 	 * This module contains routines used to initialize the LLVM system.<br>
