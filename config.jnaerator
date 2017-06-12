@@ -10,13 +10,8 @@
 $(LLVM_HOME)/include/llvm-c/Transforms/*.h
 $(LLVM_HOME)/include/llvm-c/Core.h
 $(LLVM_HOME)/include/llvm-c/Analysis.h
-// $(LLVM_HOME)/include/llvm-c/BitReader.h
 $(LLVM_HOME)/include/llvm-c/BitWriter.h
-// $(LLVM_HOME)/include/llvm-c/Disassembler.h
-// $(LLVM_HOME)/include/llvm-c/EnhancedDisassembly.h
 $(LLVM_HOME)/include/llvm-c/ExecutionEngine.h
 $(LLVM_HOME)/include/llvm-c/Initialization.h
-// $(LLVM_HOME)/include/llvm-c/LinkTimeOptimizer.h
-// $(LLVM_HOME)/include/llvm-c/lto.h
 $(LLVM_HOME)/include/llvm-c/Object.h
 $(LLVM_HOME)/include/llvm-c/Target.h
