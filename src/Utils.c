@@ -5,9 +5,11 @@
 
 char *readFileToBuffer(const char *path) {
 	char *buff;
-	FILE *f = fopen(path, "RB");
-	if (!f)
+	FILE *f = fopen(path, "rb");
+	if (!f) {
+		fprintf(stderr, "%s: Opening file %s failed\n", __func__, path);
 		return NULL;
+	}
 
 	buff = malloc(sizeof(char)*INIT_SIZE);
 	if (!buff) {
