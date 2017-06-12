@@ -3,10 +3,15 @@ package org.llvm;
 import java.text.ParseException;
 import java.util.concurrent.atomic.AtomicReference;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.bridj.IntValuedEnum;
 import org.bridj.Pointer;
 
 import static org.llvm.binding.LLVMLibrary.*;
+import static org.llvm.binding.UtilsLibrary.*;
 
 /**
  * The main container class for the LLVM Intermediate Representation.
@@ -21,6 +26,28 @@ public class Module {
 
     Module(LLVMModuleRef module) {
         this.module = module;
+    }
+
+    /**
+     * Parse a module from file
+     */
+    public static Module parseIR(String path) {
+        /* read the module into a buffer */
+        Pointer<Byte> cstr = Pointer.pointerToCString(path);
+        Pointer<Byte> buff = readFileToBuffer(cstr);
+        if (buff == null) {
+            System.err.println("readFileToBuffer failed\n");
+            return null;
+        }
+
+        LLVMModuleRef mod = null;
+        Pointer<LLVMModuleRef> pmod = mod;
+        if (LLVMParseBitcode2(new LLVMMemoryBufferRef(buff), pmod) != 0) {
+            System.err.println("LLVMParseBitcode2 failed\n");
+            return null;
+        }
+
+        return new Module(mod);
     }
 
     /**
