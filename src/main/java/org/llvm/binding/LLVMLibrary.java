@@ -26,6 +26,48 @@ public class LLVMLibrary {
 		BridJ.register();
 	}
 	/** enum values */
+	public enum LLVMAttribute implements IntValuedEnum<LLVMAttribute > {
+		LLVMZExtAttribute(1 << 0),
+		LLVMSExtAttribute(1 << 1),
+		LLVMNoReturnAttribute(1 << 2),
+		LLVMInRegAttribute(1 << 3),
+		LLVMStructRetAttribute(1 << 4),
+		LLVMNoUnwindAttribute(1 << 5),
+		LLVMNoAliasAttribute(1 << 6),
+		LLVMByValAttribute(1 << 7),
+		LLVMNestAttribute(1 << 8),
+		LLVMReadNoneAttribute(1 << 9),
+		LLVMReadOnlyAttribute(1 << 10),
+		LLVMNoInlineAttribute(1 << 11),
+		LLVMAlwaysInlineAttribute(1 << 12),
+		LLVMOptimizeForSizeAttribute(1 << 13),
+		LLVMStackProtectAttribute(1 << 14),
+		LLVMStackProtectReqAttribute(1 << 15),
+		LLVMAlignment(31 << 16),
+		LLVMNoCaptureAttribute(1 << 21),
+		LLVMNoRedZoneAttribute(1 << 22),
+		LLVMNoImplicitFloatAttribute(1 << 23),
+		LLVMNakedAttribute(1 << 24),
+		LLVMInlineHintAttribute(1 << 25),
+		LLVMStackAlignment(7 << 26),
+		LLVMReturnsTwice(1 << 29),
+		LLVMUWTable(1 << 30),
+		LLVMNonLazyBind(1 << 31);
+		LLVMAttribute(long value) {
+			this.value = value;
+		}
+		public final long value;
+		public long value() {
+			return this.value;
+		}
+		public Iterator<LLVMAttribute > iterator() {
+			return Collections.singleton(this).iterator();
+		}
+		public static IntValuedEnum<LLVMAttribute > fromValue(int value) {
+			return FlagSet.fromValue(value, values());
+		}
+	};
+	/** enum values */
 	public enum LLVMOpcode implements IntValuedEnum<LLVMOpcode > {
 		LLVMRet(1),
 		LLVMBr(2),
@@ -642,6 +684,115 @@ public class LLVMLibrary {
 		}
 	};
 	/**
+	 * See llvm::createArgumentPromotionPass function.<br>
+	 * Original signature : <code>void LLVMAddArgumentPromotionPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddArgumentPromotionPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddArgumentPromotionPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddArgumentPromotionPass(@Ptr long PM);
+	/**
+	 * See llvm::createConstantMergePass function.<br>
+	 * Original signature : <code>void LLVMAddConstantMergePass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddConstantMergePass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddConstantMergePass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddConstantMergePass(@Ptr long PM);
+	/**
+	 * See llvm::createDeadArgEliminationPass function.<br>
+	 * Original signature : <code>void LLVMAddDeadArgEliminationPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddDeadArgEliminationPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddDeadArgEliminationPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddDeadArgEliminationPass(@Ptr long PM);
+	/**
+	 * See llvm::createFunctionAttrsPass function.<br>
+	 * Original signature : <code>void LLVMAddFunctionAttrsPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddFunctionAttrsPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddFunctionAttrsPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddFunctionAttrsPass(@Ptr long PM);
+	/**
+	 * See llvm::createFunctionInliningPass function.<br>
+	 * Original signature : <code>void LLVMAddFunctionInliningPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddFunctionInliningPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddFunctionInliningPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddFunctionInliningPass(@Ptr long PM);
+	/**
+	 * See llvm::createAlwaysInlinerPass function.<br>
+	 * Original signature : <code>void LLVMAddAlwaysInlinerPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddAlwaysInlinerPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddAlwaysInlinerPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddAlwaysInlinerPass(@Ptr long PM);
+	/**
+	 * See llvm::createGlobalDCEPass function.<br>
+	 * Original signature : <code>void LLVMAddGlobalDCEPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddGlobalDCEPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddGlobalDCEPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddGlobalDCEPass(@Ptr long PM);
+	/**
+	 * See llvm::createGlobalOptimizerPass function.<br>
+	 * Original signature : <code>void LLVMAddGlobalOptimizerPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddGlobalOptimizerPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddGlobalOptimizerPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddGlobalOptimizerPass(@Ptr long PM);
+	/**
+	 * See llvm::createIPConstantPropagationPass function.<br>
+	 * Original signature : <code>void LLVMAddIPConstantPropagationPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddIPConstantPropagationPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddIPConstantPropagationPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddIPConstantPropagationPass(@Ptr long PM);
+	/**
+	 * See llvm::createPruneEHPass function.<br>
+	 * Original signature : <code>void LLVMAddPruneEHPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddPruneEHPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddPruneEHPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddPruneEHPass(@Ptr long PM);
+	/**
+	 * See llvm::createIPSCCPPass function.<br>
+	 * Original signature : <code>void LLVMAddIPSCCPPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddIPSCCPPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddIPSCCPPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddIPSCCPPass(@Ptr long PM);
+	/**
+	 * See llvm::createInternalizePass function.<br>
+	 * Original signature : <code>void LLVMAddInternalizePass(unsigned)</code>
+	 */
+	public static native void LLVMAddInternalizePass(int AllButMain);
+	/**
+	 * See llvm::createStripDeadPrototypesPass function.<br>
+	 * Original signature : <code>void LLVMAddStripDeadPrototypesPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddStripDeadPrototypesPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddStripDeadPrototypesPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddStripDeadPrototypesPass(@Ptr long PM);
+	/**
+	 * See llvm::createStripSymbolsPass function.<br>
+	 * Original signature : <code>void LLVMAddStripSymbolsPass(LLVMPassManagerRef)</code>
+	 */
+	public static void LLVMAddStripSymbolsPass(LLVMLibrary.LLVMPassManagerRef PM) {
+		LLVMAddStripSymbolsPass(Pointer.getPeer(PM));
+	}
+	protected native static void LLVMAddStripSymbolsPass(@Ptr long PM);
+	/**
 	 * See llvm::createAggressiveDCEPass function.<br>
 	 * Original signature : <code>void LLVMAddAggressiveDCEPass(LLVMPassManagerRef)</code>
 	 */
@@ -705,14 +856,6 @@ public class LLVMLibrary {
 		LLVMAddGVNPass(Pointer.getPeer(PM));
 	}
 	protected native static void LLVMAddGVNPass(@Ptr long PM);
-	/**
-	 * See llvm::createGVNPass function.<br>
-	 * Original signature : <code>void LLVMAddNewGVNPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddNewGVNPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddNewGVNPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddNewGVNPass(@Ptr long PM);
 	/**
 	 * See llvm::createIndVarSimplifyPass function.<br>
 	 * Original signature : <code>void LLVMAddIndVarSimplifyPass(LLVMPassManagerRef)</code>
@@ -922,14 +1065,6 @@ public class LLVMLibrary {
 	}
 	protected native static void LLVMAddEarlyCSEPass(@Ptr long PM);
 	/**
-	 * See llvm::createEarlyCSEPass function<br>
-	 * Original signature : <code>void LLVMAddEarlyCSEMemSSAPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddEarlyCSEMemSSAPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddEarlyCSEMemSSAPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddEarlyCSEMemSSAPass(@Ptr long PM);
-	/**
 	 * See llvm::createLowerExpectIntrinsicPass function<br>
 	 * Original signature : <code>void LLVMAddLowerExpectIntrinsicPass(LLVMPassManagerRef)</code>
 	 */
@@ -1072,115 +1207,6 @@ public class LLVMLibrary {
 		LLVMAddSLPVectorizePass(Pointer.getPeer(PM));
 	}
 	protected native static void LLVMAddSLPVectorizePass(@Ptr long PM);
-	/**
-	 * See llvm::createArgumentPromotionPass function.<br>
-	 * Original signature : <code>void LLVMAddArgumentPromotionPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddArgumentPromotionPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddArgumentPromotionPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddArgumentPromotionPass(@Ptr long PM);
-	/**
-	 * See llvm::createConstantMergePass function.<br>
-	 * Original signature : <code>void LLVMAddConstantMergePass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddConstantMergePass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddConstantMergePass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddConstantMergePass(@Ptr long PM);
-	/**
-	 * See llvm::createDeadArgEliminationPass function.<br>
-	 * Original signature : <code>void LLVMAddDeadArgEliminationPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddDeadArgEliminationPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddDeadArgEliminationPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddDeadArgEliminationPass(@Ptr long PM);
-	/**
-	 * See llvm::createFunctionAttrsPass function.<br>
-	 * Original signature : <code>void LLVMAddFunctionAttrsPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddFunctionAttrsPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddFunctionAttrsPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddFunctionAttrsPass(@Ptr long PM);
-	/**
-	 * See llvm::createFunctionInliningPass function.<br>
-	 * Original signature : <code>void LLVMAddFunctionInliningPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddFunctionInliningPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddFunctionInliningPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddFunctionInliningPass(@Ptr long PM);
-	/**
-	 * See llvm::createAlwaysInlinerPass function.<br>
-	 * Original signature : <code>void LLVMAddAlwaysInlinerPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddAlwaysInlinerPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddAlwaysInlinerPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddAlwaysInlinerPass(@Ptr long PM);
-	/**
-	 * See llvm::createGlobalDCEPass function.<br>
-	 * Original signature : <code>void LLVMAddGlobalDCEPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddGlobalDCEPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddGlobalDCEPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddGlobalDCEPass(@Ptr long PM);
-	/**
-	 * See llvm::createGlobalOptimizerPass function.<br>
-	 * Original signature : <code>void LLVMAddGlobalOptimizerPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddGlobalOptimizerPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddGlobalOptimizerPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddGlobalOptimizerPass(@Ptr long PM);
-	/**
-	 * See llvm::createIPConstantPropagationPass function.<br>
-	 * Original signature : <code>void LLVMAddIPConstantPropagationPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddIPConstantPropagationPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddIPConstantPropagationPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddIPConstantPropagationPass(@Ptr long PM);
-	/**
-	 * See llvm::createPruneEHPass function.<br>
-	 * Original signature : <code>void LLVMAddPruneEHPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddPruneEHPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddPruneEHPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddPruneEHPass(@Ptr long PM);
-	/**
-	 * See llvm::createIPSCCPPass function.<br>
-	 * Original signature : <code>void LLVMAddIPSCCPPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddIPSCCPPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddIPSCCPPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddIPSCCPPass(@Ptr long PM);
-	/**
-	 * See llvm::createInternalizePass function.<br>
-	 * Original signature : <code>void LLVMAddInternalizePass(unsigned)</code>
-	 */
-	public static native void LLVMAddInternalizePass(int AllButMain);
-	/**
-	 * See llvm::createStripDeadPrototypesPass function.<br>
-	 * Original signature : <code>void LLVMAddStripDeadPrototypesPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddStripDeadPrototypesPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddStripDeadPrototypesPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddStripDeadPrototypesPass(@Ptr long PM);
-	/**
-	 * See llvm::createStripSymbolsPass function.<br>
-	 * Original signature : <code>void LLVMAddStripSymbolsPass(LLVMPassManagerRef)</code>
-	 */
-	public static void LLVMAddStripSymbolsPass(LLVMLibrary.LLVMPassManagerRef PM) {
-		LLVMAddStripSymbolsPass(Pointer.getPeer(PM));
-	}
-	protected native static void LLVMAddStripSymbolsPass(@Ptr long PM);
 	/**
 	 * @}<br>
 	 * Original signature : <code>void LLVMInitializeCore(LLVMPassRegistryRef)</code>
@@ -3240,12 +3266,6 @@ public class LLVMLibrary {
 	}
 	@Ptr 
 	protected native static long LLVMConstUDiv(@Ptr long LHSConstant, @Ptr long RHSConstant);
-	/** Original signature : <code>LLVMValueRef LLVMConstExactUDiv(LLVMValueRef, LLVMValueRef)</code> */
-	public static LLVMLibrary.LLVMValueRef LLVMConstExactUDiv(LLVMLibrary.LLVMValueRef LHSConstant, LLVMLibrary.LLVMValueRef RHSConstant) {
-		return new LLVMLibrary.LLVMValueRef(LLVMConstExactUDiv(Pointer.getPeer(LHSConstant), Pointer.getPeer(RHSConstant)));
-	}
-	@Ptr 
-	protected native static long LLVMConstExactUDiv(@Ptr long LHSConstant, @Ptr long RHSConstant);
 	/** Original signature : <code>LLVMValueRef LLVMConstSDiv(LLVMValueRef, LLVMValueRef)</code> */
 	public static LLVMLibrary.LLVMValueRef LLVMConstSDiv(LLVMLibrary.LLVMValueRef LHSConstant, LLVMLibrary.LLVMValueRef RHSConstant) {
 		return new LLVMLibrary.LLVMValueRef(LLVMConstSDiv(Pointer.getPeer(LHSConstant), Pointer.getPeer(RHSConstant)));
@@ -3803,8 +3823,13 @@ public class LLVMLibrary {
 	/**
 	 * Add an attribute to a function.<br>
 	 * @see llvm::Function::addAttribute()<br>
-	 * Original signature : <code>void LLVMAddAttributeAtIndex(LLVMValueRef, LLVMAttributeIndex, LLVMAttributeRef)</code>
+	 * Original signature : <code>void LLVMAddFunctionAttr(LLVMValueRef, LLVMAttribute)</code>
 	 */
+	public static void LLVMAddFunctionAttr(LLVMLibrary.LLVMValueRef Fn, IntValuedEnum<LLVMLibrary.LLVMAttribute > PA) {
+		LLVMAddFunctionAttr(Pointer.getPeer(Fn), (int)PA.value());
+	}
+	protected native static void LLVMAddFunctionAttr(@Ptr long Fn, int PA);
+	/** Original signature : <code>void LLVMAddAttributeAtIndex(LLVMValueRef, LLVMAttributeIndex, LLVMAttributeRef)</code> */
 	public static void LLVMAddAttributeAtIndex(LLVMLibrary.LLVMValueRef F, int Idx, LLVMLibrary.LLVMAttributeRef A) {
 		LLVMAddAttributeAtIndex(Pointer.getPeer(F), Idx, Pointer.getPeer(A));
 	}
@@ -3850,6 +3875,23 @@ public class LLVMLibrary {
 		LLVMAddTargetDependentFunctionAttr(Pointer.getPeer(Fn), Pointer.getPeer(A), Pointer.getPeer(V));
 	}
 	protected native static void LLVMAddTargetDependentFunctionAttr(@Ptr long Fn, @Ptr long A, @Ptr long V);
+	/**
+	 * Obtain an attribute from a function.<br>
+	 * @see llvm::Function::getAttributes()<br>
+	 * Original signature : <code>LLVMAttribute LLVMGetFunctionAttr(LLVMValueRef)</code>
+	 */
+	public static IntValuedEnum<LLVMLibrary.LLVMAttribute > LLVMGetFunctionAttr(LLVMLibrary.LLVMValueRef Fn) {
+		return FlagSet.fromValue(LLVMGetFunctionAttr(Pointer.getPeer(Fn)), LLVMLibrary.LLVMAttribute.class);
+	}
+	protected native static int LLVMGetFunctionAttr(@Ptr long Fn);
+	/**
+	 * Remove an attribute from a function.<br>
+	 * Original signature : <code>void LLVMRemoveFunctionAttr(LLVMValueRef, LLVMAttribute)</code>
+	 */
+	public static void LLVMRemoveFunctionAttr(LLVMLibrary.LLVMValueRef Fn, IntValuedEnum<LLVMLibrary.LLVMAttribute > PA) {
+		LLVMRemoveFunctionAttr(Pointer.getPeer(Fn), (int)PA.value());
+	}
+	protected native static void LLVMRemoveFunctionAttr(@Ptr long Fn, int PA);
 	/**
 	 * Obtain the number of parameters in a function.<br>
 	 * @see llvm::Function::arg_size()<br>
@@ -3939,6 +3981,32 @@ public class LLVMLibrary {
 	}
 	@Ptr 
 	protected native static long LLVMGetPreviousParam(@Ptr long Arg);
+	/**
+	 * Add an attribute to a function argument.<br>
+	 * @see llvm::Argument::addAttr()<br>
+	 * Original signature : <code>void LLVMAddAttribute(LLVMValueRef, LLVMAttribute)</code>
+	 */
+	public static void LLVMAddAttribute(LLVMLibrary.LLVMValueRef Arg, IntValuedEnum<LLVMLibrary.LLVMAttribute > PA) {
+		LLVMAddAttribute(Pointer.getPeer(Arg), (int)PA.value());
+	}
+	protected native static void LLVMAddAttribute(@Ptr long Arg, int PA);
+	/**
+	 * Remove an attribute from a function argument.<br>
+	 * @see llvm::Argument::removeAttr()<br>
+	 * Original signature : <code>void LLVMRemoveAttribute(LLVMValueRef, LLVMAttribute)</code>
+	 */
+	public static void LLVMRemoveAttribute(LLVMLibrary.LLVMValueRef Arg, IntValuedEnum<LLVMLibrary.LLVMAttribute > PA) {
+		LLVMRemoveAttribute(Pointer.getPeer(Arg), (int)PA.value());
+	}
+	protected native static void LLVMRemoveAttribute(@Ptr long Arg, int PA);
+	/**
+	 * Get an attribute from a function argument.<br>
+	 * Original signature : <code>LLVMAttribute LLVMGetAttribute(LLVMValueRef)</code>
+	 */
+	public static IntValuedEnum<LLVMLibrary.LLVMAttribute > LLVMGetAttribute(LLVMLibrary.LLVMValueRef Arg) {
+		return FlagSet.fromValue(LLVMGetAttribute(Pointer.getPeer(Arg)), LLVMLibrary.LLVMAttribute.class);
+	}
+	protected native static int LLVMGetAttribute(@Ptr long Arg);
 	/**
 	 * Set the alignment for a function parameter.<br>
 	 * @see llvm::Argument::addAttr()<br>
@@ -4419,6 +4487,16 @@ public class LLVMLibrary {
 		return LLVMGetInstructionCallConv(Pointer.getPeer(Instr));
 	}
 	protected native static int LLVMGetInstructionCallConv(@Ptr long Instr);
+	/** Original signature : <code>void LLVMAddInstrAttribute(LLVMValueRef, unsigned, LLVMAttribute)</code> */
+	public static void LLVMAddInstrAttribute(LLVMLibrary.LLVMValueRef Instr, int index, IntValuedEnum<LLVMLibrary.LLVMAttribute > LLVMAttribute1) {
+		LLVMAddInstrAttribute(Pointer.getPeer(Instr), index, (int)LLVMAttribute1.value());
+	}
+	protected native static void LLVMAddInstrAttribute(@Ptr long Instr, int index, int LLVMAttribute1);
+	/** Original signature : <code>void LLVMRemoveInstrAttribute(LLVMValueRef, unsigned, LLVMAttribute)</code> */
+	public static void LLVMRemoveInstrAttribute(LLVMLibrary.LLVMValueRef Instr, int index, IntValuedEnum<LLVMLibrary.LLVMAttribute > LLVMAttribute1) {
+		LLVMRemoveInstrAttribute(Pointer.getPeer(Instr), index, (int)LLVMAttribute1.value());
+	}
+	protected native static void LLVMRemoveInstrAttribute(@Ptr long Instr, int index, int LLVMAttribute1);
 	/** Original signature : <code>void LLVMSetInstrParamAlignment(LLVMValueRef, unsigned, unsigned)</code> */
 	public static void LLVMSetInstrParamAlignment(LLVMLibrary.LLVMValueRef Instr, int index, int Align) {
 		LLVMSetInstrParamAlignment(Pointer.getPeer(Instr), index, Align);
@@ -4971,12 +5049,6 @@ public class LLVMLibrary {
 	}
 	@Ptr 
 	protected native static long LLVMBuildUDiv(@Ptr long LHS, @Ptr long RHS, @Ptr long Name);
-	/** Original signature : <code>LLVMValueRef LLVMBuildExactUDiv(LLVMValueRef, LLVMValueRef, const char*)</code> */
-	public static LLVMLibrary.LLVMValueRef LLVMBuildExactUDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer<Byte > Name) {
-		return new LLVMLibrary.LLVMValueRef(LLVMBuildExactUDiv(Pointer.getPeer(LHS), Pointer.getPeer(RHS), Pointer.getPeer(Name)));
-	}
-	@Ptr 
-	protected native static long LLVMBuildExactUDiv(@Ptr long LHS, @Ptr long RHS, @Ptr long Name);
 	/** Original signature : <code>LLVMValueRef LLVMBuildSDiv(LLVMValueRef, LLVMValueRef, const char*)</code> */
 	public static LLVMLibrary.LLVMValueRef LLVMBuildSDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer<Byte > Name) {
 		return new LLVMLibrary.LLVMValueRef(LLVMBuildSDiv(Pointer.getPeer(LHS), Pointer.getPeer(RHS), Pointer.getPeer(Name)));
