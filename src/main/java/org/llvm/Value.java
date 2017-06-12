@@ -986,29 +986,13 @@ public class Value {
     }
 
     /**
-     * Add an attribute to a function.<br>
-     *
-     * @see llvm::Function::addAttribute()
-     */
-    public void addFunctionAttr(IntValuedEnum<LLVMAttribute> pa) {
-        LLVMAddFunctionAttr(value, pa);
-    }
-
-    /**
      * Obtain an attribute from a function.<br>
      *
      * @see llvm::Function::getAttributes()
-     */
     public IntValuedEnum<LLVMAttribute> getFunctionAttr() {
         return LLVMGetFunctionAttr(value);
     }
-
-    /**
-     * Remove an attribute from a function.
      */
-    public void removeFunctionAttr(IntValuedEnum<LLVMAttribute> pa) {
-        LLVMRemoveFunctionAttr(value, pa);
-    }
 
     /**
      * Obtain the number of parameters in a function.<br>
@@ -1091,29 +1075,11 @@ public class Value {
     }
 
     /**
-     * Add an attribute to a function argument.<br>
-     *
-     * @see llvm::Argument::addAttr()
-     */
-    public void addAttribute(IntValuedEnum<LLVMAttribute> pa) {
-        LLVMAddAttribute(value, pa);
-    }
-
-    /**
-     * Remove an attribute from a function argument.<br>
-     *
-     * @see llvm::Argument::removeAttr()
-     */
-    public void removeAttribute(IntValuedEnum<LLVMAttribute> pa) {
-        LLVMRemoveAttribute(value, pa);
-    }
-
-    /**
      * Get an attribute from a function argument.
-     */
     public IntValuedEnum<LLVMAttribute> getAttribute() {
         return LLVMGetAttribute(value);
     }
+     */
 
     /**
      * Set the alignment for a function parameter.<br>
@@ -1263,17 +1229,6 @@ public class Value {
     public int getInstructionCallConv() {
         return LLVMGetInstructionCallConv(value);
     }
-
-    public void addInstrAttribute(int index,
-            IntValuedEnum<LLVMAttribute> attribute) {
-        LLVMAddInstrAttribute(value, index, attribute);
-    }
-
-    public void removeInstrAttribute(int index,
-            IntValuedEnum<LLVMAttribute> attribute) {
-        LLVMRemoveInstrAttribute(value, index, attribute);
-    }
-
     public void setInstrParamAlignment(int index, int align) {
         LLVMSetInstrParamAlignment(value, index, align);
     }

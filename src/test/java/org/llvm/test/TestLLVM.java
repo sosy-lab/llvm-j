@@ -11,13 +11,12 @@ import org.bridj.BridJ;
 import org.bridj.NativeLibrary;
 import org.bridj.demangling.Demangler.Symbol;
 import org.llvm.Context;
-import org.llvm.ExecutionEngine;
 import org.llvm.Module;
 import org.llvm.PassManager;
 
 public class TestLLVM extends TestCase {
 
-	private static final double LLVM_VERSION = 3.1;
+	private static final double LLVM_VERSION = 4.0;
 
 	public void testLLVMSymbols() {
 		NativeLibrary lib = null;
@@ -45,9 +44,6 @@ public class TestLLVM extends TestCase {
 
 		Module module = Module.createWithNameInContext("test_module", ctx);
 		assertNotNull(module);
-
-		ExecutionEngine execEngine = ExecutionEngine.createForModule(module);
-		assertNotNull(execEngine);
 
 		PassManager fpm = PassManager.createForModule(module);
 		assertNotNull(fpm);
