@@ -90,258 +90,258 @@ public class Value {
      * Conversion functions. Return the input value if it is an instance of the
      * specified class, otherwise NULL. See llvm::dyn_cast_or_null<>.
      */
-    public Value isArgument() {
-        return new Value(LLVMIsAArgument(value));
+    public boolean isArgument() {
+        return LLVMIsAArgument(value) == null;
     }
 
-    public Value isABasicBlock() {
-        return new Value(LLVMIsABasicBlock(value));
+    public boolean isABasicBlock() {
+        return LLVMIsABasicBlock(value) == null;
     }
 
-    public Value isInlineAsm() {
-        return new Value(LLVMIsAInlineAsm(value));
+    public boolean isInlineAsm() {
+        return LLVMIsAInlineAsm(value) == null;
     }
 
-    public Value isUser() {
-        return new Value(LLVMIsAUser(value));
+    public boolean isUser() {
+        return LLVMIsAUser(value) == null;
     }
 
-    public Value isAConstant() {
-        return new Value(LLVMIsAConstant(value));
+    public boolean isAConstant() {
+        return LLVMIsAConstant(value) == null;
     }
 
-    public Value isConstantAggregateZero() {
-        return new Value(LLVMIsAConstantAggregateZero(value));
+    public boolean isConstantAggregateZero() {
+        return LLVMIsAConstantAggregateZero(value) == null;
     }
 
-    public Value isConstantArray() {
-        return new Value(LLVMIsAConstantArray(value));
+    public boolean isConstantArray() {
+        return LLVMIsAConstantArray(value) == null;
     }
 
-    public Value isConstantExpr() {
-        return new Value(LLVMIsAConstantExpr(value));
+    public boolean isConstantExpr() {
+        return LLVMIsAConstantExpr(value) == null;
     }
 
-    public Value isConstantFP() {
-        return new Value(LLVMIsAConstantFP(value));
+    public boolean isConstantFP() {
+        return LLVMIsAConstantFP(value) == null;
     }
 
-    public Value isConstantInt() {
-        return new Value(LLVMIsAConstantInt(value));
+    public boolean isConstantInt() {
+        return LLVMIsAConstantInt(value) == null;
     }
 
-    public Value isConstantPointerNull() {
-        return new Value(LLVMIsAConstantPointerNull(value));
+    public boolean isConstantPointerNull() {
+        return LLVMIsAConstantPointerNull(value) == null;
     }
 
-    public Value isConstantStruct() {
-        return new Value(LLVMIsAConstantStruct(value));
+    public boolean isConstantStruct() {
+        return LLVMIsAConstantStruct(value) == null;
     }
 
-    public Value isConstantVector() {
-        return new Value(LLVMIsAConstantVector(value));
+    public boolean isConstantVector() {
+        return LLVMIsAConstantVector(value) == null;
     }
 
-    public Value isGlobalValue() {
-        return new Value(LLVMIsAGlobalValue(value));
+    public boolean isGlobalValue() {
+        return LLVMIsAGlobalValue(value) == null;
     }
 
-    public Value isFunction() {
-        return new Value(LLVMIsAFunction(value));
+    public boolean isFunction() {
+        return LLVMIsAFunction(value) == null;
     }
 
-    public Value isGlobalAlias() {
-        return new Value(LLVMIsAGlobalAlias(value));
+    public boolean isGlobalAlias() {
+        return LLVMIsAGlobalAlias(value) == null;
     }
 
-    public Value isGlobalVariable() {
-        return new Value(LLVMIsAGlobalVariable(value));
+    public boolean isGlobalVariable() {
+        return LLVMIsAGlobalVariable(value) == null;
     }
 
-    public Value isUndefValue() {
-        return new Value(LLVMIsAUndefValue(value));
+    public boolean isUndefValue() {
+        return LLVMIsAUndefValue(value) == null;
     }
 
-    public Value isInstruction() {
-        return new Value(LLVMIsAInstruction(value));
+    public boolean isInstruction() {
+        return LLVMIsAInstruction(value) == null;
     }
 
-    public Value isBinaryOperator() {
-        return new Value(LLVMIsABinaryOperator(value));
+    public boolean isBinaryOperator() {
+        return LLVMIsABinaryOperator(value) == null;
     }
 
-    public Value isCallInst() {
-        return new Value(LLVMIsACallInst(value));
+    public boolean isCallInst() {
+        return LLVMIsACallInst(value) == null;
     }
 
-    public Value isIntrinsicInst() {
-        return new Value(LLVMIsAIntrinsicInst(value));
+    public boolean isIntrinsicInst() {
+        return LLVMIsAIntrinsicInst(value) == null;
     }
 
-    public Value isDbgInfoIntrinsic() {
-        return new Value(LLVMIsADbgInfoIntrinsic(value));
+    public boolean isDbgInfoIntrinsic() {
+        return LLVMIsADbgInfoIntrinsic(value) == null;
     }
 
-    public Value isDbgDeclareInst() {
-        return new Value(LLVMIsADbgDeclareInst(value));
+    public boolean isDbgDeclareInst() {
+        return LLVMIsADbgDeclareInst(value) == null;
     }
 
-    //	public Value isEHSelectorInst() { return new Value(LLVMIsAEHSelectorInst(value)); }
-    public Value isMemIntrinsic() {
-        return new Value(LLVMIsAMemIntrinsic(value));
+    //	public boolean isEHSelectorInst() { return LLVMIsAEHSelectorInst(value) == null; }
+    public boolean isMemIntrinsic() {
+        return LLVMIsAMemIntrinsic(value) == null;
     }
 
-    public Value isMemCpyInst() {
-        return new Value(LLVMIsAMemCpyInst(value));
+    public boolean isMemCpyInst() {
+        return LLVMIsAMemCpyInst(value) == null;
     }
 
-    public Value isMemMoveInst() {
-        return new Value(LLVMIsAMemMoveInst(value));
+    public boolean isMemMoveInst() {
+        return LLVMIsAMemMoveInst(value) == null;
     }
 
-    public Value isMemSetInst() {
-        return new Value(LLVMIsAMemSetInst(value));
+    public boolean isMemSetInst() {
+        return LLVMIsAMemSetInst(value) == null;
     }
 
-    public Value isCmpInst() {
-        return new Value(LLVMIsACmpInst(value));
+    public boolean isCmpInst() {
+        return LLVMIsACmpInst(value) == null;
     }
 
-    public Value isFCmpInst() {
-        return new Value(LLVMIsAFCmpInst(value));
+    public boolean isFCmpInst() {
+        return LLVMIsAFCmpInst(value) == null;
     }
 
-    public Value isICmpInst() {
-        return new Value(LLVMIsAICmpInst(value));
+    public boolean isICmpInst() {
+        return LLVMIsAICmpInst(value) == null;
     }
 
-    public Value isExtractElementInst() {
-        return new Value(LLVMIsAExtractElementInst(value));
+    public boolean isExtractElementInst() {
+        return LLVMIsAExtractElementInst(value) == null;
     }
 
-    public Value isGetElementPtrInst() {
-        return new Value(LLVMIsAGetElementPtrInst(value));
+    public boolean isGetElementPtrInst() {
+        return LLVMIsAGetElementPtrInst(value) == null;
     }
 
-    public Value isInsertElementInst() {
-        return new Value(LLVMIsAInsertElementInst(value));
+    public boolean isInsertElementInst() {
+        return LLVMIsAInsertElementInst(value) == null;
     }
 
-    public Value isInsertValueInst() {
-        return new Value(LLVMIsAInsertValueInst(value));
+    public boolean isInsertValueInst() {
+        return LLVMIsAInsertValueInst(value) == null;
     }
 
-    public Value isPHINode() {
-        return new Value(LLVMIsAPHINode(value));
+    public boolean isPHINode() {
+        return LLVMIsAPHINode(value) == null;
     }
 
-    public Value isSelectInst() {
-        return new Value(LLVMIsASelectInst(value));
+    public boolean isSelectInst() {
+        return LLVMIsASelectInst(value) == null;
     }
 
-    public Value isShuffleVectorInst() {
-        return new Value(LLVMIsAShuffleVectorInst(value));
+    public boolean isShuffleVectorInst() {
+        return LLVMIsAShuffleVectorInst(value) == null;
     }
 
-    public Value isStoreInst() {
-        return new Value(LLVMIsAStoreInst(value));
+    public boolean isStoreInst() {
+        return LLVMIsAStoreInst(value) == null;
     }
 
-    public Value isTerminatorInst() {
-        return new Value(LLVMIsATerminatorInst(value));
+    public boolean isTerminatorInst() {
+        return LLVMIsATerminatorInst(value) == null;
     }
 
-    public Value isBranchInst() {
-        return new Value(LLVMIsABranchInst(value));
+    public boolean isBranchInst() {
+        return LLVMIsABranchInst(value) == null;
     }
 
-    public Value isInvokeInst() {
-        return new Value(LLVMIsAInvokeInst(value));
+    public boolean isInvokeInst() {
+        return LLVMIsAInvokeInst(value) == null;
     }
 
-    public Value isReturnInst() {
-        return new Value(LLVMIsAReturnInst(value));
+    public boolean isReturnInst() {
+        return LLVMIsAReturnInst(value) == null;
     }
 
-    public Value isSwitchInst() {
-        return new Value(LLVMIsASwitchInst(value));
+    public boolean isSwitchInst() {
+        return LLVMIsASwitchInst(value) == null;
     }
 
-    public Value isUnreachableInst() {
-        return new Value(LLVMIsAUnreachableInst(value));
+    public boolean isUnreachableInst() {
+        return LLVMIsAUnreachableInst(value) == null;
     }
 
-    //	public Value isUnwindInst() { return new Value(LLVMIsAUnwindInst(value)); }
-    public Value isUnaryInstruction() {
-        return new Value(LLVMIsAUnaryInstruction(value));
+    //	public boolean isUnwindInst() { return LLVMIsAUnwindInst(value) == null; }
+    public boolean isUnaryInstruction() {
+        return LLVMIsAUnaryInstruction(value) == null;
     }
 
-    public Value isAllocaInst() {
-        return new Value(LLVMIsAAllocaInst(value));
+    public boolean isAllocaInst() {
+        return LLVMIsAAllocaInst(value) == null;
     }
 
-    public Value isCastInst() {
-        return new Value(LLVMIsACastInst(value));
+    public boolean isCastInst() {
+        return LLVMIsACastInst(value) == null;
     }
 
-    public Value isBitCastInst() {
-        return new Value(LLVMIsABitCastInst(value));
+    public boolean isBitCastInst() {
+        return LLVMIsABitCastInst(value) == null;
     }
 
-    public Value isFPExtInst() {
-        return new Value(LLVMIsAFPExtInst(value));
+    public boolean isFPExtInst() {
+        return LLVMIsAFPExtInst(value) == null;
     }
 
-    public Value isFPToSIInst() {
-        return new Value(LLVMIsAFPToSIInst(value));
+    public boolean isFPToSIInst() {
+        return LLVMIsAFPToSIInst(value) == null;
     }
 
-    public Value isFPToUIInst() {
-        return new Value(LLVMIsAFPToUIInst(value));
+    public boolean isFPToUIInst() {
+        return LLVMIsAFPToUIInst(value) == null;
     }
 
-    public Value isFPTruncInst() {
-        return new Value(LLVMIsAFPTruncInst(value));
+    public boolean isFPTruncInst() {
+        return LLVMIsAFPTruncInst(value) == null;
     }
 
-    public Value isIntToPtrInst() {
-        return new Value(LLVMIsAIntToPtrInst(value));
+    public boolean isIntToPtrInst() {
+        return LLVMIsAIntToPtrInst(value) == null;
     }
 
-    public Value isPtrToIntInst() {
-        return new Value(LLVMIsAPtrToIntInst(value));
+    public boolean isPtrToIntInst() {
+        return LLVMIsAPtrToIntInst(value) == null;
     }
 
-    public Value isSExtInst() {
-        return new Value(LLVMIsASExtInst(value));
+    public boolean isSExtInst() {
+        return LLVMIsASExtInst(value) == null;
     }
 
-    public Value isSIToFPInst() {
-        return new Value(LLVMIsASIToFPInst(value));
+    public boolean isSIToFPInst() {
+        return LLVMIsASIToFPInst(value) == null;
     }
 
-    public Value isTruncInst() {
-        return new Value(LLVMIsATruncInst(value));
+    public boolean isTruncInst() {
+        return LLVMIsATruncInst(value) == null;
     }
 
-    public Value isUIToFPInst() {
-        return new Value(LLVMIsAUIToFPInst(value));
+    public boolean isUIToFPInst() {
+        return LLVMIsAUIToFPInst(value) == null;
     }
 
-    public Value isZExtInst() {
-        return new Value(LLVMIsAZExtInst(value));
+    public boolean isZExtInst() {
+        return LLVMIsAZExtInst(value) == null;
     }
 
-    public Value isExtractValueInst() {
-        return new Value(LLVMIsAExtractValueInst(value));
+    public boolean isExtractValueInst() {
+        return LLVMIsAExtractValueInst(value) == null;
     }
 
-    public Value isLoadInst() {
-        return new Value(LLVMIsALoadInst(value));
+    public boolean isLoadInst() {
+        return LLVMIsALoadInst(value) == null;
     }
 
-    public Value isVAArgInst() {
-        return new Value(LLVMIsAVAArgInst(value));
+    public boolean isVAArgInst() {
+        return LLVMIsAVAArgInst(value) == null;
     }
 
     /**
