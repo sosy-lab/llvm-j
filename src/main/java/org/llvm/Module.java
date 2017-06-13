@@ -34,20 +34,22 @@ public class Module {
     public static Module parseIR(String path) {
         /* read the module into a buffer */
         Pointer<Byte> cstr = Pointer.pointerToCString(path);
-        Pointer<Byte> buff = readFileToBuffer(cstr);
-        if (buff == null) {
-            System.err.println("readFileToBuffer failed\n");
+        Pointer<LLVMMemoryBufferRef> buff = Pointer.allocate(LLVMMemoryBufferRef.class);
+        if (LLVMCreateMemoryBufferWithContentsOfFile(cstr, buff, null) == 1) {
+            System.err.println("Reading bitcode failed\n");
             return null;
         }
 
-        LLVMModuleRef mod = null;
-        Pointer<LLVMModuleRef> pmod = mod;
-        if (LLVMParseBitcode2(new LLVMMemoryBufferRef(buff), pmod) != 0) {
-            System.err.println("LLVMParseBitcode2 failed\n");
+        /* create a module from the memory buffer */
+        Pointer<LLVMModuleRef> pmod = Pointer.allocate(LLVMModuleRef.class);
+        if (LLVMParseBitcode2(buff.get(), pmod) != 0) {
             return null;
         }
 
-        return new Module(mod);
+        /* free the buffer allocated by readFileToBuffer */
+        LLVMDisposeMemoryBuffer(buff.get());
+
+        return new Module(pmod.get());
     }
 
     /**
