@@ -87,261 +87,262 @@ public class Value {
     }
 
     /**
-     * Conversion functions. Return the input value if it is an instance of the
-     * specified class, otherwise NULL. See llvm::dyn_cast_or_null<>.
+     * Check the type of value.
+     * C Conversion functions return the input value if it is an instance of the
+     * specified class, otherwise NULL. (@see llvm::dyn_cast_or_null).
      */
     public boolean isArgument() {
-        return LLVMIsAArgument(value) == null;
+        return LLVMIsAArgument(value) != null;
     }
 
     public boolean isABasicBlock() {
-        return LLVMIsABasicBlock(value) == null;
+        return LLVMIsABasicBlock(value) != null;
     }
 
     public boolean isInlineAsm() {
-        return LLVMIsAInlineAsm(value) == null;
+        return LLVMIsAInlineAsm(value) != null;
     }
 
     public boolean isUser() {
-        return LLVMIsAUser(value) == null;
+        return LLVMIsAUser(value) != null;
     }
 
     public boolean isAConstant() {
-        return LLVMIsAConstant(value) == null;
+        return LLVMIsAConstant(value) != null;
     }
 
     public boolean isConstantAggregateZero() {
-        return LLVMIsAConstantAggregateZero(value) == null;
+        return LLVMIsAConstantAggregateZero(value) != null;
     }
 
     public boolean isConstantArray() {
-        return LLVMIsAConstantArray(value) == null;
+        return LLVMIsAConstantArray(value) != null;
     }
 
     public boolean isConstantExpr() {
-        return LLVMIsAConstantExpr(value) == null;
+        return LLVMIsAConstantExpr(value) != null;
     }
 
     public boolean isConstantFP() {
-        return LLVMIsAConstantFP(value) == null;
+        return LLVMIsAConstantFP(value) != null;
     }
 
     public boolean isConstantInt() {
-        return LLVMIsAConstantInt(value) == null;
+        return LLVMIsAConstantInt(value) != null;
     }
 
     public boolean isConstantPointerNull() {
-        return LLVMIsAConstantPointerNull(value) == null;
+        return LLVMIsAConstantPointerNull(value) != null;
     }
 
     public boolean isConstantStruct() {
-        return LLVMIsAConstantStruct(value) == null;
+        return LLVMIsAConstantStruct(value) != null;
     }
 
     public boolean isConstantVector() {
-        return LLVMIsAConstantVector(value) == null;
+        return LLVMIsAConstantVector(value) != null;
     }
 
     public boolean isGlobalValue() {
-        return LLVMIsAGlobalValue(value) == null;
+        return LLVMIsAGlobalValue(value) != null;
     }
 
     public boolean isFunction() {
-        return LLVMIsAFunction(value) == null;
+        return LLVMIsAFunction(value) != null;
     }
 
     public boolean isGlobalAlias() {
-        return LLVMIsAGlobalAlias(value) == null;
+        return LLVMIsAGlobalAlias(value) != null;
     }
 
     public boolean isGlobalVariable() {
-        return LLVMIsAGlobalVariable(value) == null;
+        return LLVMIsAGlobalVariable(value) != null;
     }
 
     public boolean isUndefValue() {
-        return LLVMIsAUndefValue(value) == null;
+        return LLVMIsAUndefValue(value) != null;
     }
 
     public boolean isInstruction() {
-        return LLVMIsAInstruction(value) == null;
+        return LLVMIsAInstruction(value) != null;
     }
 
     public boolean isBinaryOperator() {
-        return LLVMIsABinaryOperator(value) == null;
+        return LLVMIsABinaryOperator(value) != null;
     }
 
     public boolean isCallInst() {
-        return LLVMIsACallInst(value) == null;
+        return LLVMIsACallInst(value) != null;
     }
 
     public boolean isIntrinsicInst() {
-        return LLVMIsAIntrinsicInst(value) == null;
+        return LLVMIsAIntrinsicInst(value) != null;
     }
 
     public boolean isDbgInfoIntrinsic() {
-        return LLVMIsADbgInfoIntrinsic(value) == null;
+        return LLVMIsADbgInfoIntrinsic(value) != null;
     }
 
     public boolean isDbgDeclareInst() {
-        return LLVMIsADbgDeclareInst(value) == null;
+        return LLVMIsADbgDeclareInst(value) != null;
     }
 
-    //	public boolean isEHSelectorInst() { return LLVMIsAEHSelectorInst(value) == null; }
+    //	public boolean isEHSelectorInst() { return LLVMIsAEHSelectorInst(value) != null; }
     public boolean isMemIntrinsic() {
-        return LLVMIsAMemIntrinsic(value) == null;
+        return LLVMIsAMemIntrinsic(value) != null;
     }
 
     public boolean isMemCpyInst() {
-        return LLVMIsAMemCpyInst(value) == null;
+        return LLVMIsAMemCpyInst(value) != null;
     }
 
     public boolean isMemMoveInst() {
-        return LLVMIsAMemMoveInst(value) == null;
+        return LLVMIsAMemMoveInst(value) != null;
     }
 
     public boolean isMemSetInst() {
-        return LLVMIsAMemSetInst(value) == null;
+        return LLVMIsAMemSetInst(value) != null;
     }
 
     public boolean isCmpInst() {
-        return LLVMIsACmpInst(value) == null;
+        return LLVMIsACmpInst(value) != null;
     }
 
     public boolean isFCmpInst() {
-        return LLVMIsAFCmpInst(value) == null;
+        return LLVMIsAFCmpInst(value) != null;
     }
 
     public boolean isICmpInst() {
-        return LLVMIsAICmpInst(value) == null;
+        return LLVMIsAICmpInst(value) != null;
     }
 
     public boolean isExtractElementInst() {
-        return LLVMIsAExtractElementInst(value) == null;
+        return LLVMIsAExtractElementInst(value) != null;
     }
 
     public boolean isGetElementPtrInst() {
-        return LLVMIsAGetElementPtrInst(value) == null;
+        return LLVMIsAGetElementPtrInst(value) != null;
     }
 
     public boolean isInsertElementInst() {
-        return LLVMIsAInsertElementInst(value) == null;
+        return LLVMIsAInsertElementInst(value) != null;
     }
 
     public boolean isInsertValueInst() {
-        return LLVMIsAInsertValueInst(value) == null;
+        return LLVMIsAInsertValueInst(value) != null;
     }
 
     public boolean isPHINode() {
-        return LLVMIsAPHINode(value) == null;
+        return LLVMIsAPHINode(value) != null;
     }
 
     public boolean isSelectInst() {
-        return LLVMIsASelectInst(value) == null;
+        return LLVMIsASelectInst(value) != null;
     }
 
     public boolean isShuffleVectorInst() {
-        return LLVMIsAShuffleVectorInst(value) == null;
+        return LLVMIsAShuffleVectorInst(value) != null;
     }
 
     public boolean isStoreInst() {
-        return LLVMIsAStoreInst(value) == null;
+        return LLVMIsAStoreInst(value) != null;
     }
 
     public boolean isTerminatorInst() {
-        return LLVMIsATerminatorInst(value) == null;
+        return LLVMIsATerminatorInst(value) != null;
     }
 
     public boolean isBranchInst() {
-        return LLVMIsABranchInst(value) == null;
+        return LLVMIsABranchInst(value) != null;
     }
 
     public boolean isInvokeInst() {
-        return LLVMIsAInvokeInst(value) == null;
+        return LLVMIsAInvokeInst(value) != null;
     }
 
     public boolean isReturnInst() {
-        return LLVMIsAReturnInst(value) == null;
+        return LLVMIsAReturnInst(value) != null;
     }
 
     public boolean isSwitchInst() {
-        return LLVMIsASwitchInst(value) == null;
+        return LLVMIsASwitchInst(value) != null;
     }
 
     public boolean isUnreachableInst() {
-        return LLVMIsAUnreachableInst(value) == null;
+        return LLVMIsAUnreachableInst(value) != null;
     }
 
-    //	public boolean isUnwindInst() { return LLVMIsAUnwindInst(value) == null; }
+    //	public boolean isUnwindInst() { return LLVMIsAUnwindInst(value) != null; }
     public boolean isUnaryInstruction() {
-        return LLVMIsAUnaryInstruction(value) == null;
+        return LLVMIsAUnaryInstruction(value) != null;
     }
 
     public boolean isAllocaInst() {
-        return LLVMIsAAllocaInst(value) == null;
+        return LLVMIsAAllocaInst(value) != null;
     }
 
     public boolean isCastInst() {
-        return LLVMIsACastInst(value) == null;
+        return LLVMIsACastInst(value) != null;
     }
 
     public boolean isBitCastInst() {
-        return LLVMIsABitCastInst(value) == null;
+        return LLVMIsABitCastInst(value) != null;
     }
 
     public boolean isFPExtInst() {
-        return LLVMIsAFPExtInst(value) == null;
+        return LLVMIsAFPExtInst(value) != null;
     }
 
     public boolean isFPToSIInst() {
-        return LLVMIsAFPToSIInst(value) == null;
+        return LLVMIsAFPToSIInst(value) != null;
     }
 
     public boolean isFPToUIInst() {
-        return LLVMIsAFPToUIInst(value) == null;
+        return LLVMIsAFPToUIInst(value) != null;
     }
 
     public boolean isFPTruncInst() {
-        return LLVMIsAFPTruncInst(value) == null;
+        return LLVMIsAFPTruncInst(value) != null;
     }
 
     public boolean isIntToPtrInst() {
-        return LLVMIsAIntToPtrInst(value) == null;
+        return LLVMIsAIntToPtrInst(value) != null;
     }
 
     public boolean isPtrToIntInst() {
-        return LLVMIsAPtrToIntInst(value) == null;
+        return LLVMIsAPtrToIntInst(value) != null;
     }
 
     public boolean isSExtInst() {
-        return LLVMIsASExtInst(value) == null;
+        return LLVMIsASExtInst(value) != null;
     }
 
     public boolean isSIToFPInst() {
-        return LLVMIsASIToFPInst(value) == null;
+        return LLVMIsASIToFPInst(value) != null;
     }
 
     public boolean isTruncInst() {
-        return LLVMIsATruncInst(value) == null;
+        return LLVMIsATruncInst(value) != null;
     }
 
     public boolean isUIToFPInst() {
-        return LLVMIsAUIToFPInst(value) == null;
+        return LLVMIsAUIToFPInst(value) != null;
     }
 
     public boolean isZExtInst() {
-        return LLVMIsAZExtInst(value) == null;
+        return LLVMIsAZExtInst(value) != null;
     }
 
     public boolean isExtractValueInst() {
-        return LLVMIsAExtractValueInst(value) == null;
+        return LLVMIsAExtractValueInst(value) != null;
     }
 
     public boolean isLoadInst() {
-        return LLVMIsALoadInst(value) == null;
+        return LLVMIsALoadInst(value) != null;
     }
 
     public boolean isVAArgInst() {
-        return LLVMIsAVAArgInst(value) == null;
+        return LLVMIsAVAArgInst(value) != null;
     }
 
     /**
