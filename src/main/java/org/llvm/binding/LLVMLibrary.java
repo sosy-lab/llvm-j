@@ -19,7 +19,7 @@ import org.bridj.ann.Runtime;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> or <a href="http://bridj.googlecode.com/">BridJ</a> .
  */
-@Library("LLVM-4.0") 
+@Library("LLVM-3.9.1") 
 @Runtime(CRuntime.class) 
 public class LLVMLibrary {
 	static {
