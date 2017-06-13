@@ -219,11 +219,19 @@ public class Module {
     }
 
     public Value getFirstGlobal() {
-        return new Value(LLVMGetFirstGlobal(module()));
+        try {
+            return new Value(LLVMGetFirstGlobal(module()));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     public Value getLastGlobal() {
-        return new Value(LLVMGetLastGlobal(module()));
+        try {
+            return new Value(LLVMGetLastGlobal(module()));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     public Value addAlias(TypeRef ty, Value aliasee, String name) {
@@ -263,7 +271,11 @@ public class Module {
      * @see llvm::Module::begin()
      */
     public Value getFirstFunction() {
-        return new Value(LLVMGetFirstFunction(module));
+        try {
+            return new Value(LLVMGetFirstFunction(module));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
@@ -272,7 +284,11 @@ public class Module {
      * @see llvm::Module::end()
      */
     public Value getLastFunction() {
-        return new Value(LLVMGetLastFunction(module));
+        try {
+            return new Value(LLVMGetLastFunction(module));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
 }

@@ -108,7 +108,11 @@ public class BasicBlock {
      * instance.
      */
     public Value getFirstInstruction() {
-        return new Value(LLVMGetFirstInstruction(bb));
+        try {
+            return new Value(LLVMGetFirstInstruction(bb));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
@@ -116,7 +120,11 @@ public class BasicBlock {
      * The returned LLVMValueRef corresponds to a LLVM:Instruction.
      */
     public Value getLastInstruction() {
-        return new Value(LLVMGetLastInstruction(bb));
+        try {
+            return new Value(LLVMGetLastInstruction(bb));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
 }

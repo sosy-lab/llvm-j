@@ -1064,7 +1064,11 @@ public class Value {
      * @see llvm::Function::arg_begin()
      */
     public Value getFirstParam() {
-        return new Value(LLVMGetFirstParam(value));
+        try {
+            return new Value(LLVMGetFirstParam(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
@@ -1073,7 +1077,11 @@ public class Value {
      * @see llvm::Function::arg_end()
      */
     public Value getLastParam() {
-        return new Value(LLVMGetLastParam(value));
+        try {
+            return new Value(LLVMGetLastParam(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
@@ -1162,7 +1170,11 @@ public class Value {
      * @see llvm::Function::begin()
      */
     public BasicBlock getFirstBasicBlock() {
-        return new BasicBlock(LLVMGetFirstBasicBlock(value));
+        try {
+            return new BasicBlock(LLVMGetFirstBasicBlock(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
@@ -1171,7 +1183,11 @@ public class Value {
      * @see llvm::Function::end()
      */
     public BasicBlock getLastBasicBlock() {
-        return new BasicBlock(LLVMGetLastBasicBlock(value));
+        try {
+            return new BasicBlock(LLVMGetLastBasicBlock(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
@@ -1181,7 +1197,11 @@ public class Value {
      * @see llvm::Function::getEntryBlock()
      */
     public BasicBlock getEntryBasicBlock() {
-        return new BasicBlock(LLVMGetEntryBasicBlock(value));
+        try {
+            return new BasicBlock(LLVMGetEntryBasicBlock(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
