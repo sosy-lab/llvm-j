@@ -81,7 +81,7 @@ public class TypeRef {
         return type;
     }
 
-    TypeRef(LLVMTypeRef type) {
+    public TypeRef(LLVMTypeRef type) {
         this.type = type;
     }
 
