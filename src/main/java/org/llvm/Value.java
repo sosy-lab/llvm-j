@@ -1215,7 +1215,7 @@ public class Value {
      * If this is the last instruction in a basic block, NULL will be<br>
      * returned.
      */
-    public Value getNextInstruction(Value inst) {
+    public Value getNextInstruction() {
         return new Value(LLVMGetNextInstruction(value));
     }
 
@@ -1224,7 +1224,7 @@ public class Value {
      * If the instruction is the first instruction in a basic block, NULL<br>
      * will be returned.
      */
-    public Value getPreviousInstruction(Value inst) {
+    public Value getPreviousInstruction() {
         return new Value(LLVMGetPreviousInstruction(value));
     }
 
