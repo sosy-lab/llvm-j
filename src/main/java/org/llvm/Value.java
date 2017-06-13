@@ -874,11 +874,19 @@ public class Value {
 
     // this.value is GlobalVar
     public Value getNextGlobal() {
-        return new Value(LLVMGetNextGlobal(value));
+        try {
+            return new Value(LLVMGetNextGlobal(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     public Value getPreviousGlobal() {
-        return new Value(LLVMGetPreviousGlobal(value));
+        try {
+            return new Value(LLVMGetPreviousGlobal(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     // this.value is GlobalVar
@@ -916,7 +924,14 @@ public class Value {
      * functions.
      */
     public Value getNextFunction() {
-        return new Value(LLVMGetNextFunction(value));
+        try {
+            return new Value(LLVMGetNextFunction(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            /* There's no better way than to catch this exception
+             * if we do not want to touch the BridJ or the generated
+             * sources (maybe just some automatic replacement using sed?) */
+            return null;
+        }
     }
 
     /**
@@ -925,7 +940,11 @@ public class Value {
      * no previous functions.
      */
     public Value getPreviousFunction() {
-        return new Value(LLVMGetPreviousFunction(value));
+        try {
+            return new Value(LLVMGetPreviousFunction(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
@@ -1064,7 +1083,11 @@ public class Value {
      * underlying iterator.
      */
     public Value getNextParam() {
-        return new Value(LLVMGetNextParam(value));
+        try {
+            return new Value(LLVMGetNextParam(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
@@ -1072,7 +1095,11 @@ public class Value {
      * This is the opposite of LLVMGetNextParam().
      */
     public Value getPreviousParam() {
-        return new Value(LLVMGetPreviousParam(value));
+        try {
+            return new Value(LLVMGetPreviousParam(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
@@ -1195,8 +1222,12 @@ public class Value {
      * If this is the last instruction in a basic block, NULL will be<br>
      * returned.
      */
-    public Value getNextInstruction(Value inst) {
-        return new Value(LLVMGetNextInstruction(value));
+    public Value getNextInstruction() {
+        try {
+            return new Value(LLVMGetNextInstruction(value));
+        } catch (java.lang.IllegalArgumentException e) {
+            return null;
+        }
     }
 
     /**
