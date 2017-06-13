@@ -26,10 +26,7 @@ clean:
 
 llvm: clean src/main/java/org/llvm/binding/LLVMLibrary.java
 
-utils: src/Utils.c src/Utils.so
-	$(CC) -fPIC -shared src/Utils.c -o src/Utils.so
-
-src/main/java/org/llvm/binding/LLVMLibrary.java: jnaerator.jar config.jnaerator utils
+src/main/java/org/llvm/binding/LLVMLibrary.java: jnaerator.jar config.jnaerator
 	$(JAVA) -jar $<
 	sed -i 's/@Library("LLVM")/@Library("LLVM-$(LLVM_VERSION)")/' $@
 

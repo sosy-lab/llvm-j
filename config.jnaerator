@@ -16,6 +16,3 @@ $(LLVM_HOME)/include/llvm-c/Initialization.h
 $(LLVM_HOME)/include/llvm-c/Object.h
 $(LLVM_HOME)/include/llvm-c/Target.h
 
--library Utils
-$(DIR)/src/Utils.so
-$(DIR)/src/Utils.h
