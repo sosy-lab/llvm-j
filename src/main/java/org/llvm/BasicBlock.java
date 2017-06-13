@@ -39,22 +39,14 @@ public class BasicBlock {
      * Advance a basic block iterator.
      */
     public BasicBlock getNextBasicBlock() {
-        try {
-            return new BasicBlock(LLVMGetNextBasicBlock(bb));
-        } catch (java.lang.IllegalArgumentException e) {
-            return null;
-        }
+        return new BasicBlock(LLVMGetNextBasicBlock(bb));
     }
 
     /**
      * Go backwards in a basic block iterator.
      */
     public BasicBlock getPreviousBasicBlock() {
-        try {
-            return new BasicBlock(LLVMGetPreviousBasicBlock(bb));
-        } catch (java.lang.IllegalArgumentException e) {
-            return null;
-        }
+        return new BasicBlock(LLVMGetPreviousBasicBlock(bb));
     }
 
     /**
