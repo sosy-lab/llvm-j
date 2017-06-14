@@ -34,6 +34,10 @@ public class TypeRef {
         return LLVMGetTypeKind(type);
     }
 
+    public void dump() {
+        LLVMDumpType(type);
+    }
+
     /**
      * Obtain the context to which this type instance is associated.<br>
      *
