@@ -5,6 +5,9 @@ import org.bridj.Pointer;
 import org.llvm.binding.LLVMLibrary.LLVMTypeKind;
 import org.llvm.binding.LLVMLibrary.LLVMTypeRef;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.llvm.binding.LLVMLibrary.*;
 
 /**
@@ -18,7 +21,7 @@ public class TypeRef {
         return type;
     }
 
-    public TypeRef(LLVMTypeRef type) {
+    TypeRef(LLVMTypeRef type) {
         this.type = type;
     }
 
@@ -206,11 +209,18 @@ public class TypeRef {
      * first LLVMCountParamTypes() entries in the array will be populated<br>
      * with LLVMTypeRef instances.<br>
      *
-     * @param dest
-     *            Memory address of an array to be filled with result.
      */
-    public void getParamTypes(Pointer<LLVMTypeRef> dest) {
-        LLVMGetParamTypes(type, dest);
+    public List<TypeRef> getParamTypes() {
+        int paramCount = countParamTypes();
+        Pointer<LLVMTypeRef> paramRef = Pointer.allocateArray(LLVMTypeRef.class, paramCount);
+        LLVMGetParamTypes(type, paramRef);
+
+        List<TypeRef> params = new ArrayList<TypeRef>(paramCount);
+        for (int i = 0; i < paramCount; i++) {
+            params.add(new TypeRef(paramRef.get(i)));
+        }
+
+        return params;
     }
 
     /**
@@ -279,8 +289,17 @@ public class TypeRef {
      * of the structure type itself, which is the lifetime of the context it<br>
      * is contained in.
      */
-    public void getStructElementTypes(Pointer<LLVMTypeRef> dest) {
-        LLVMGetStructElementTypes(type, dest);
+    public List<TypeRef> getStructElementTypes() {
+        int memberCount = countStructElementTypes();
+        Pointer<LLVMTypeRef> memberRef = Pointer.allocateArray(LLVMTypeRef.class, memberCount);
+        LLVMGetStructElementTypes(type, memberRef);
+
+        List<TypeRef> members = new ArrayList<TypeRef>(memberCount);
+        for (int i = 0; i < memberCount; i++) {
+            members.add(new TypeRef(memberRef.get(i)));
+        }
+
+        return members;
     }
 
     public boolean isStructNamed() {

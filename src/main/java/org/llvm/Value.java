@@ -3,6 +3,9 @@ package org.llvm;
 import org.bridj.IntValuedEnum;
 import org.bridj.Pointer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.llvm.binding.LLVMLibrary.*;
 
 /**
@@ -1009,17 +1012,21 @@ public class Value {
     }
 
     /**
-     * Obtain the parameters in a function.<br>
-     * The takes a pointer to a pre-allocated array of LLVMValueRef that is<br>
-     * at least LLVMCountParams() long. This array will be filled with<br>
-     * LLVMValueRef instances which correspond to the parameters the<br>
-     * function receives. Each LLVMValueRef corresponds to a llvm::Argument<br>
-     * instance.<br>
+     * Obtain the parameters in a function.
      *
      * @see llvm::Function::arg_begin()
      */
-    public void getParams(Pointer<LLVMValueRef> params) {
-        LLVMGetParams(value, params);
+    public List<Value> getParams() {
+        int paramCount = countParams();
+        Pointer<LLVMValueRef> paramRef = Pointer.allocateArray(LLVMValueRef.class, paramCount);
+        LLVMGetParams(value, paramRef);
+
+        List<Value> params = new ArrayList<Value>(paramCount);
+        for (int i = 0; i < paramCount; i++) {
+            params.add(new Value(paramRef.get(i)));
+        }
+
+        return params;
     }
 
     /**
