@@ -269,12 +269,26 @@ public class Value {
         return LLVMIsABranchInst(value) != null;
     }
 
+    public boolean isIndirectBranchInst() {
+        return LLVMIsAIndirectBrInst(value) != null;
+    }
+
     public boolean isInvokeInst() {
         return LLVMIsAInvokeInst(value) != null;
     }
 
     public boolean isReturnInst() {
         return LLVMIsAReturnInst(value) != null;
+    }
+
+    public Value getReturnValue() {
+        assert isReturnInst();
+
+        if (getNumOperands() > 0) {
+            return getOperand(0);
+        } else {
+            return null;
+        }
     }
 
     public boolean isSwitchInst() {
@@ -292,6 +306,10 @@ public class Value {
 
     public boolean isAllocaInst() {
         return LLVMIsAAllocaInst(value) != null;
+    }
+
+    public TypeRef getAllocatedType() {
+        return new TypeRef(LLVMGetAllocatedType(value));
     }
 
     public boolean isCastInst() {
@@ -545,6 +563,17 @@ public class Value {
     public static Value constVector(Pointer<LLVMValueRef> scalarConstantVals,
             int size) {
         return new Value(LLVMConstVector(scalarConstantVals, size));
+    }
+
+    public LLVMOpcode getOpCode() {
+        IntValuedEnum<LLVMOpcode> opcode = LLVMGetInstructionOpcode(value);
+
+        for (LLVMOpcode code : LLVMOpcode.values()) {
+            if (code.value() == opcode.value()) {
+                return code;
+            }
+        }
+        return null;
     }
 
     public static native IntValuedEnum<LLVMOpcode> GetConstOpcode(
