@@ -105,180 +105,356 @@ public class Value {
      * specified class, otherwise NULL. (@see llvm::dyn_cast_or_null).
      */
     public boolean isArgument() {
-        return LLVMIsAArgument(value) != null;
+        try {
+            return LLVMIsAArgument(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isABasicBlock() {
-        return LLVMIsABasicBlock(value) != null;
+        try {
+            return LLVMIsABasicBlock(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isInlineAsm() {
-        return LLVMIsAInlineAsm(value) != null;
+        try {
+            return LLVMIsAInlineAsm(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isUser() {
-        return LLVMIsAUser(value) != null;
+        try {
+            return LLVMIsAUser(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isAConstant() {
-        return LLVMIsAConstant(value) != null;
+        try {
+            return LLVMIsAConstant(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isConstantAggregateZero() {
-        return LLVMIsAConstantAggregateZero(value) != null;
+        try {
+            return LLVMIsAConstantAggregateZero(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isConstantArray() {
-        return LLVMIsAConstantArray(value) != null;
+        try {
+            return LLVMIsAConstantArray(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isConstantExpr() {
-        return LLVMIsAConstantExpr(value) != null;
+        try {
+            return LLVMIsAConstantExpr(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isConstantFP() {
-        return LLVMIsAConstantFP(value) != null;
+        try {
+            return LLVMIsAConstantFP(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isConstantInt() {
-        return LLVMIsAConstantInt(value) != null;
+        try {
+            return LLVMIsAConstantInt(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isConstantPointerNull() {
-        return LLVMIsAConstantPointerNull(value) != null;
+        try {
+            return LLVMIsAConstantPointerNull(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isConstantStruct() {
-        return LLVMIsAConstantStruct(value) != null;
+        try {
+            return LLVMIsAConstantStruct(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isConstantVector() {
-        return LLVMIsAConstantVector(value) != null;
+        try {
+            return LLVMIsAConstantVector(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isGlobalValue() {
-        return LLVMIsAGlobalValue(value) != null;
+        try {
+            return LLVMIsAGlobalValue(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isFunction() {
-        return LLVMIsAFunction(value) != null;
+        try {
+            return LLVMIsAFunction(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isGlobalAlias() {
-        return LLVMIsAGlobalAlias(value) != null;
+        try {
+            return LLVMIsAGlobalAlias(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isGlobalVariable() {
-        return LLVMIsAGlobalVariable(value) != null;
+        try {
+            return LLVMIsAGlobalVariable(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isUndefValue() {
-        return LLVMIsAUndefValue(value) != null;
+        try {
+            return LLVMIsAUndefValue(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isInstruction() {
-        return LLVMIsAInstruction(value) != null;
+        try {
+            return LLVMIsAInstruction(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isBinaryOperator() {
-        return LLVMIsABinaryOperator(value) != null;
+        try {
+            return LLVMIsABinaryOperator(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isCallInst() {
-        return LLVMIsACallInst(value) != null;
+        try {
+            return LLVMIsACallInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isIntrinsicInst() {
-        return LLVMIsAIntrinsicInst(value) != null;
+        try {
+            return LLVMIsAIntrinsicInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isDbgInfoIntrinsic() {
-        return LLVMIsADbgInfoIntrinsic(value) != null;
+        try {
+            return LLVMIsADbgInfoIntrinsic(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isDbgDeclareInst() {
-        return LLVMIsADbgDeclareInst(value) != null;
+        try {
+            return LLVMIsADbgDeclareInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     //	public boolean isEHSelectorInst() { return LLVMIsAEHSelectorInst(value) != null; }
     public boolean isMemIntrinsic() {
-        return LLVMIsAMemIntrinsic(value) != null;
+        try {
+            return LLVMIsAMemIntrinsic(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isMemCpyInst() {
-        return LLVMIsAMemCpyInst(value) != null;
+        try {
+            return LLVMIsAMemCpyInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isMemMoveInst() {
-        return LLVMIsAMemMoveInst(value) != null;
+        try {
+            return LLVMIsAMemMoveInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isMemSetInst() {
-        return LLVMIsAMemSetInst(value) != null;
+        try {
+            return LLVMIsAMemSetInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isCmpInst() {
-        return LLVMIsACmpInst(value) != null;
+        try {
+            return LLVMIsACmpInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isFCmpInst() {
-        return LLVMIsAFCmpInst(value) != null;
+        try {
+            return LLVMIsAFCmpInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isICmpInst() {
-        return LLVMIsAICmpInst(value) != null;
+        try {
+            return LLVMIsAICmpInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isExtractElementInst() {
-        return LLVMIsAExtractElementInst(value) != null;
+        try {
+            return LLVMIsAExtractElementInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isGetElementPtrInst() {
-        return LLVMIsAGetElementPtrInst(value) != null;
+        try {
+            return LLVMIsAGetElementPtrInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isInsertElementInst() {
-        return LLVMIsAInsertElementInst(value) != null;
+        try {
+            return LLVMIsAInsertElementInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isInsertValueInst() {
-        return LLVMIsAInsertValueInst(value) != null;
+        try {
+            return LLVMIsAInsertValueInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isPHINode() {
-        return LLVMIsAPHINode(value) != null;
+        try {
+            return LLVMIsAPHINode(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isSelectInst() {
-        return LLVMIsASelectInst(value) != null;
+        try {
+            return LLVMIsASelectInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isShuffleVectorInst() {
-        return LLVMIsAShuffleVectorInst(value) != null;
+        try {
+            return LLVMIsAShuffleVectorInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isStoreInst() {
-        return LLVMIsAStoreInst(value) != null;
+        try {
+            return LLVMIsAStoreInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isTerminatorInst() {
-        return LLVMIsATerminatorInst(value) != null;
+        try {
+            return LLVMIsATerminatorInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isBranchInst() {
-        return LLVMIsABranchInst(value) != null;
+        try {
+            return LLVMIsABranchInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isIndirectBranchInst() {
-        return LLVMIsAIndirectBrInst(value) != null;
+        try {
+            return LLVMIsAIndirectBrInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isInvokeInst() {
-        return LLVMIsAInvokeInst(value) != null;
+        try {
+            return LLVMIsAInvokeInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isReturnInst() {
-        return LLVMIsAReturnInst(value) != null;
+        try {
+            return LLVMIsAReturnInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public Value getReturnValue() {
@@ -292,20 +468,36 @@ public class Value {
     }
 
     public boolean isSwitchInst() {
-        return LLVMIsASwitchInst(value) != null;
+        try {
+            return LLVMIsASwitchInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isUnreachableInst() {
-        return LLVMIsAUnreachableInst(value) != null;
+        try {
+            return LLVMIsAUnreachableInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     //	public boolean isUnwindInst() { return LLVMIsAUnwindInst(value) != null; }
     public boolean isUnaryInstruction() {
-        return LLVMIsAUnaryInstruction(value) != null;
+        try {
+            return LLVMIsAUnaryInstruction(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isAllocaInst() {
-        return LLVMIsAAllocaInst(value) != null;
+        try {
+            return LLVMIsAAllocaInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public TypeRef getAllocatedType() {
@@ -313,67 +505,131 @@ public class Value {
     }
 
     public boolean isCastInst() {
-        return LLVMIsACastInst(value) != null;
+        try {
+            return LLVMIsACastInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isBitCastInst() {
-        return LLVMIsABitCastInst(value) != null;
+        try {
+            return LLVMIsABitCastInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isFPExtInst() {
-        return LLVMIsAFPExtInst(value) != null;
+        try {
+            return LLVMIsAFPExtInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isFPToSIInst() {
-        return LLVMIsAFPToSIInst(value) != null;
+        try {
+            return LLVMIsAFPToSIInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isFPToUIInst() {
-        return LLVMIsAFPToUIInst(value) != null;
+        try {
+            return LLVMIsAFPToUIInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isFPTruncInst() {
-        return LLVMIsAFPTruncInst(value) != null;
+        try {
+            return LLVMIsAFPTruncInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isIntToPtrInst() {
-        return LLVMIsAIntToPtrInst(value) != null;
+        try {
+            return LLVMIsAIntToPtrInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isPtrToIntInst() {
-        return LLVMIsAPtrToIntInst(value) != null;
+        try {
+            return LLVMIsAPtrToIntInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isSExtInst() {
-        return LLVMIsASExtInst(value) != null;
+        try {
+            return LLVMIsASExtInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isSIToFPInst() {
-        return LLVMIsASIToFPInst(value) != null;
+        try {
+            return LLVMIsASIToFPInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isTruncInst() {
-        return LLVMIsATruncInst(value) != null;
+        try {
+            return LLVMIsATruncInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isUIToFPInst() {
-        return LLVMIsAUIToFPInst(value) != null;
+        try {
+            return LLVMIsAUIToFPInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isZExtInst() {
-        return LLVMIsAZExtInst(value) != null;
+        try {
+            return LLVMIsAZExtInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isExtractValueInst() {
-        return LLVMIsAExtractValueInst(value) != null;
+        try {
+            return LLVMIsAExtractValueInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isLoadInst() {
-        return LLVMIsALoadInst(value) != null;
+        try {
+            return LLVMIsALoadInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isVAArgInst() {
-        return LLVMIsAVAArgInst(value) != null;
+        try {
+            return LLVMIsAVAArgInst(value) != null;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     /**
