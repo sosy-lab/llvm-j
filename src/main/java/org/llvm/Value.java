@@ -38,6 +38,14 @@ public class Value {
     }
 
     /**
+     * Cast this value into a Function
+     */
+    public Function asFunction() {
+        assert isFunction();
+        return new Function(value);
+    }
+
+    /**
      * Obtain the string name of a value.<br>
      *
      * @see llvm::Value::getName()
