@@ -2,6 +2,7 @@ package org.llvm;
 
 import org.bridj.IntValuedEnum;
 import org.bridj.Pointer;
+import org.bridj.Pointer.StringType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,11 @@ public class Value {
      */
     public void dumpValue() {
         LLVMDumpValue(value);
+    }
+
+    public String toString() {
+	  Pointer<Byte > ret = LLVMPrintValueToString(value);
+      return ret.getString(StringType.C);
     }
 
     /**
