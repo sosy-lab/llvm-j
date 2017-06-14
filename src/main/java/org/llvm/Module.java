@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Iterator;
 
 import org.bridj.IntValuedEnum;
 import org.bridj.Pointer;
@@ -15,7 +16,7 @@ import static org.llvm.binding.LLVMLibrary.*;
 /**
  * The main container class for the LLVM Intermediate Representation.
  */
-public class Module {
+public class Module implements Iterable<Value> {
 
     private LLVMModuleRef module;
 
@@ -288,6 +289,41 @@ public class Module {
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
+    }
+
+    private class ModuleIterator implements Iterator<Value> {
+        private Value current;
+        private Value last;
+
+        public ModuleIterator() {
+            current = Module.this.getFirstFunction();
+            last = Module.this.getLastFunction();
+        }
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public Value next() {
+            if (hasNext()) {
+                Value tmp = current;
+                if (current.equals(last))
+                    current = null;
+                else
+                    current = current.getNextFunction();
+
+                return tmp;
+            }
+            throw new UnsupportedOperationException();
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    public Iterator<Value> iterator() {
+        return new ModuleIterator();
     }
 
 }

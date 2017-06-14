@@ -1,5 +1,6 @@
 package org.llvm;
 
+import java.util.Iterator;
 import org.bridj.Pointer;
 
 import static org.llvm.binding.LLVMLibrary.*;
@@ -8,7 +9,7 @@ import static org.llvm.binding.LLVMLibrary.*;
  * This represents a single basic block in LLVM. A basic block is simply a
  * container of instructions that execute sequentially.
  */
-public class BasicBlock {
+public class BasicBlock implements Iterable<Value> {
     private LLVMBasicBlockRef bb;
 
     LLVMBasicBlockRef bb() {
@@ -127,4 +128,38 @@ public class BasicBlock {
         }
     }
 
+    private class BasicBlockIterator implements Iterator<Value> {
+        private Value current;
+        private Value last;
+
+        public BasicBlockIterator() {
+            current = BasicBlock.this.getFirstInstruction();
+            last = BasicBlock.this.getLastInstruction();
+        }
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public Value next() {
+            if (hasNext()) {
+                Value tmp = current;
+                if (current.equals(last))
+                    current = null;
+                else
+                    current = current.getNextInstruction();
+
+                return tmp;
+            }
+            throw new UnsupportedOperationException();
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    public Iterator<Value> iterator() {
+        return new BasicBlockIterator();
+    }
 }
