@@ -16,7 +16,7 @@ import org.llvm.PassManager;
 
 public class TestLLVM extends TestCase {
 
-	private static final double LLVM_VERSION = 4.0;
+	private static final double LLVM_VERSION = 3.9;
 
 	public void testLLVMSymbols() {
 		NativeLibrary lib = null;
