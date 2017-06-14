@@ -1344,4 +1344,14 @@ public class Value {
         return array;
     }
 
+    public int getNumSuccessors() {
+        assert isTerminatorInst();
+	    return LLVMGetNumSuccessors(value);
+    }
+
+    public BasicBlock getSuccessor(int i) {
+        assert isTerminatorInst();
+        return new BasicBlock(LLVMGetSuccessor(value, i));
+    }
+
 }
