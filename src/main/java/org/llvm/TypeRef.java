@@ -1,74 +1,11 @@
 package org.llvm;
 
-import static org.llvm.binding.LLVMLibrary.LLVMAlignOf;
-import static org.llvm.binding.LLVMLibrary.LLVMArrayType;
-import static org.llvm.binding.LLVMLibrary.LLVMConstAllOnes;
-import static org.llvm.binding.LLVMLibrary.LLVMConstInt;
-import static org.llvm.binding.LLVMLibrary.LLVMConstIntOfArbitraryPrecision;
-import static org.llvm.binding.LLVMLibrary.LLVMConstIntOfString;
-import static org.llvm.binding.LLVMLibrary.LLVMConstIntOfStringAndSize;
-import static org.llvm.binding.LLVMLibrary.LLVMConstNull;
-import static org.llvm.binding.LLVMLibrary.LLVMConstPointerNull;
-import static org.llvm.binding.LLVMLibrary.LLVMConstReal;
-import static org.llvm.binding.LLVMLibrary.LLVMConstRealOfString;
-import static org.llvm.binding.LLVMLibrary.LLVMConstRealOfStringAndSize;
-import static org.llvm.binding.LLVMLibrary.LLVMCountParamTypes;
-import static org.llvm.binding.LLVMLibrary.LLVMCountStructElementTypes;
-import static org.llvm.binding.LLVMLibrary.LLVMDoubleType;
-import static org.llvm.binding.LLVMLibrary.LLVMDoubleTypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMFP128Type;
-import static org.llvm.binding.LLVMLibrary.LLVMFP128TypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMFloatType;
-import static org.llvm.binding.LLVMLibrary.LLVMFloatTypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMFunctionType;
-import static org.llvm.binding.LLVMLibrary.LLVMGetArrayLength;
-import static org.llvm.binding.LLVMLibrary.LLVMGetElementType;
-import static org.llvm.binding.LLVMLibrary.LLVMGetGlobalContext;
-import static org.llvm.binding.LLVMLibrary.LLVMGetIntTypeWidth;
-import static org.llvm.binding.LLVMLibrary.LLVMGetParamTypes;
-import static org.llvm.binding.LLVMLibrary.LLVMGetPointerAddressSpace;
-import static org.llvm.binding.LLVMLibrary.LLVMGetReturnType;
-import static org.llvm.binding.LLVMLibrary.LLVMGetStructElementTypes;
-import static org.llvm.binding.LLVMLibrary.LLVMGetTypeContext;
-import static org.llvm.binding.LLVMLibrary.LLVMGetTypeKind;
-import static org.llvm.binding.LLVMLibrary.LLVMGetUndef;
-import static org.llvm.binding.LLVMLibrary.LLVMGetVectorSize;
-import static org.llvm.binding.LLVMLibrary.LLVMInt16Type;
-import static org.llvm.binding.LLVMLibrary.LLVMInt16TypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMInt1Type;
-import static org.llvm.binding.LLVMLibrary.LLVMInt1TypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMInt32Type;
-import static org.llvm.binding.LLVMLibrary.LLVMInt32TypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMInt64Type;
-import static org.llvm.binding.LLVMLibrary.LLVMInt64TypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMInt8Type;
-import static org.llvm.binding.LLVMLibrary.LLVMInt8TypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMIntType;
-import static org.llvm.binding.LLVMLibrary.LLVMIntTypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMIsFunctionVarArg;
-import static org.llvm.binding.LLVMLibrary.LLVMIsPackedStruct;
-import static org.llvm.binding.LLVMLibrary.LLVMLabelType;
-import static org.llvm.binding.LLVMLibrary.LLVMLabelTypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMPPCFP128Type;
-import static org.llvm.binding.LLVMLibrary.LLVMPPCFP128TypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMPointerType;
-import static org.llvm.binding.LLVMLibrary.LLVMSizeOf;
-import static org.llvm.binding.LLVMLibrary.LLVMStructCreateNamed;
-import static org.llvm.binding.LLVMLibrary.LLVMStructType;
-import static org.llvm.binding.LLVMLibrary.LLVMStructTypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMVectorType;
-import static org.llvm.binding.LLVMLibrary.LLVMVoidType;
-import static org.llvm.binding.LLVMLibrary.LLVMVoidTypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMX86FP80Type;
-import static org.llvm.binding.LLVMLibrary.LLVMX86FP80TypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMX86MMXType;
-import static org.llvm.binding.LLVMLibrary.LLVMX86MMXTypeInContext;
-import static org.llvm.binding.LLVMLibrary.LLVMIsOpaqueStruct;
-
 import org.bridj.IntValuedEnum;
 import org.bridj.Pointer;
 import org.llvm.binding.LLVMLibrary.LLVMTypeKind;
 import org.llvm.binding.LLVMLibrary.LLVMTypeRef;
+
+import static org.llvm.binding.LLVMLibrary.*;
 
 /**
  * Each value in the LLVM IR has a type, an LLVMTypeRef.
@@ -345,6 +282,21 @@ public class TypeRef {
     public void getStructElementTypes(Pointer<LLVMTypeRef> dest) {
         LLVMGetStructElementTypes(type, dest);
     }
+
+    public boolean isStructNamed() {
+        Pointer<Byte> name = LLVMGetStructName(type);
+        return name.getPeer() != 0;
+    }
+
+    public String getStructName() {
+        Pointer<Byte> name = LLVMGetStructName(type);
+        if (name.getPeer() != 0) {
+            return name.getString(Pointer.StringType.C);
+        } else {
+            throw new IllegalStateException("Type is not named struct");
+        }
+    }
+
 
     /**
      * Determine whether a structure is packed.<br>

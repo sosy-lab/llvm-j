@@ -11,7 +11,6 @@ import org.bridj.IntValuedEnum;
 import org.bridj.Pointer;
 
 import static org.llvm.binding.LLVMLibrary.*;
-import static org.llvm.binding.UtilsLibrary.*;
 
 /**
  * The main container class for the LLVM Intermediate Representation.
