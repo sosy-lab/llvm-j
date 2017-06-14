@@ -19,8 +19,12 @@ public class BasicBlock {
         this.bb = bb;
     }
 
+    public long getAddress() {
+        return bb.getPeer();
+    }
+
     public boolean equals(BasicBlock rhs) {
-        return bb.getPeer() == rhs.bb.getPeer();
+        return getAddress() == rhs.getAddress();
     }
 
     /**
