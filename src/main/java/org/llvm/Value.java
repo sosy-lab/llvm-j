@@ -16,6 +16,10 @@ public class Value {
         return value;
     }
 
+    public boolean equals(Value rhs) {
+        return value.getPeer() == rhs.value.getPeer();
+    }
+
     Value(LLVMValueRef value) {
         this.value = value;
     }

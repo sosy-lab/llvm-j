@@ -19,6 +19,10 @@ public class BasicBlock {
         this.bb = bb;
     }
 
+    public boolean equals(BasicBlock rhs) {
+        return bb.getPeer() == rhs.bb.getPeer();
+    }
+
     /**
      * Convert a basic block instance to a value type.
      */
