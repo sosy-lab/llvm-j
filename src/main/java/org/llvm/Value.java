@@ -844,6 +844,22 @@ public class Value {
         return null;
     }
 
+    public LLVMIntPredicate getICmpPredicate() {
+	    IntValuedEnum<LLVMIntPredicate> predicate = LLVMGetICmpPredicate(value);
+
+        for (LLVMIntPredicate code : LLVMIntPredicate.values()) {
+            if (code.value() == predicate.value()) {
+                return code;
+            }
+        }
+        return null;
+    }
+
+    public Value getCondition() {
+        assert LLVMIsConditional(value) == 1;
+        return new Value(LLVMGetCondition(value));
+    }
+
     public static native IntValuedEnum<LLVMOpcode> GetConstOpcode(
             LLVMValueRef constantVal);
 
@@ -1198,6 +1214,10 @@ public class Value {
 
     public Value getInitializer() {
         return new Value(LLVMGetInitializer(value));
+    }
+
+    public boolean isExternallyInitialized() {
+        return LLVMIsExternallyInitialized(value) == 1;
     }
 
     public void setInitializer(Value constantVal) {
