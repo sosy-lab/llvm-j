@@ -37,6 +37,10 @@ public class Value {
         return new TypeRef(LLVMTypeOf(value));
     }
 
+    public long getAddress() {
+        return value.getPeer();
+    }
+
     /**
      * Cast this value into a Function
      */
