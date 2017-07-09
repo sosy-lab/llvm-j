@@ -1,4 +1,6 @@
 -library LLVM
+-runtime JNA
+-direct
 -limitComments
 -f  // force overwrite
 -emptyStructsAsForwardDecls

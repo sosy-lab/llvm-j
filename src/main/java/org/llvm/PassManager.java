@@ -2,6 +2,8 @@ package org.llvm;
 
 import static org.llvm.binding.LLVMLibrary.*;
 
+import static org.llvm.binding.LLVMLibrary.*;
+
 public class PassManager {
 
     private LLVMPassManagerRef manager;
@@ -33,7 +35,7 @@ public class PassManager {
      */
     public static PassManager createForModule(Module m) {
         return new PassManager(
-                LLVMCreateFunctionPassManagerForModule(m.module()));
+                LLVMCreateFunctionPassManagerForModule(m.getModule()));
     }
 
     /**
@@ -55,10 +57,11 @@ public class PassManager {
      * the module provider.
      */
     public void dispose() {
-        boolean err = LLVMFinalizeFunctionPassManager(manager) != 0;
+        LLVMBool successB = LLVMFinalizeFunctionPassManager(manager);
+        boolean success = Utils.llvmBoolToJavaBool(successB);
         LLVMDisposePassManager(manager);
         manager = null;
-        if (err) {
+        if (success) {
             throw new RuntimeException(
                     "error in LLVMFinalizeFunctionPassManager");
         }
@@ -74,7 +77,8 @@ public class PassManager {
      * @see llvm::FunctionPassManager::doInitialization
      */
     public void initialize() {
-        boolean err = LLVMInitializeFunctionPassManager(manager) != 0;
+        LLVMBool errB = LLVMInitializeFunctionPassManager(manager);
+        boolean err = Utils.llvmBoolToJavaBool(errB);
         if (err) {
             throw new RuntimeException(
                     "error in LLVMInitializeFunctionPassManager");
@@ -89,7 +93,8 @@ public class PassManager {
      * @see llvm::PassManager::run(Module&)
      */
     public void runForModule(Module m) {
-        boolean err = LLVMRunPassManager(manager, m.module()) != 0;
+        LLVMBool errB = LLVMRunPassManager(manager, m.getModule());
+        boolean err = Utils.llvmBoolToJavaBool(errB);
         if (err) {
             throw new RuntimeException("error in LLVMRunPassManager");
         }
@@ -104,7 +109,8 @@ public class PassManager {
      * @see llvm::FunctionPassManager::run(Function&)
      */
     public void runForFunction(Value f) {
-        boolean err = LLVMRunFunctionPassManager(manager, f.value()) != 0;
+        LLVMBool errB = LLVMRunFunctionPassManager(manager, f.value());
+        boolean err = Utils.llvmBoolToJavaBool(errB);
         if (err) {
             throw new RuntimeException("error in LLVMRunFunctionPassManager");
         }

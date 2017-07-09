@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jnaerator">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jnaerator.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/jnaerator.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,7 +1,8 @@
 package org.llvm;
 
+import com.sun.jna.Pointer;
+
 import java.util.Iterator;
-import org.bridj.Pointer;
 
 import static org.llvm.binding.LLVMLibrary.*;
 
@@ -10,6 +11,7 @@ import static org.llvm.binding.LLVMLibrary.*;
  * container of instructions that execute sequentially.
  */
 public class BasicBlock implements Iterable<Value> {
+
     private LLVMBasicBlockRef bb;
 
     LLVMBasicBlockRef bb() {
@@ -20,12 +22,12 @@ public class BasicBlock implements Iterable<Value> {
         this.bb = bb;
     }
 
-    public long getAddress() {
-        return bb.getPeer();
-    }
-
-    public boolean equals(BasicBlock rhs) {
-        return getAddress() == rhs.getAddress();
+    public boolean equals(final BasicBlock rhs) {
+        if (bb == null) {
+            return rhs.bb == null;
+        } else {
+            return rhs.bb.getPointer().equals(bb.getPointer());
+        }
     }
 
     /**
@@ -48,59 +50,24 @@ public class BasicBlock implements Iterable<Value> {
      * Advance a basic block iterator.
      */
     public BasicBlock getNextBasicBlock() {
-        return new BasicBlock(LLVMGetNextBasicBlock(bb));
+        LLVMBasicBlockRef nextBb = LLVMGetNextBasicBlock(bb);
+        if (nextBb == null) {
+            return null;
+        } else {
+            return new BasicBlock(nextBb);
+        }
     }
 
     /**
      * Go backwards in a basic block iterator.
      */
     public BasicBlock getPreviousBasicBlock() {
-        return new BasicBlock(LLVMGetPreviousBasicBlock(bb));
-    }
-
-    /**
-     * Insert a new basic block before this basic block, and return it.
-     */
-    public BasicBlock insertBasicBlock(String name) {
-        return new BasicBlock(LLVMInsertBasicBlock(bb,
-                Pointer.pointerToCString(name)));
-    }
-
-    /**
-     * Insert a new basic block before this basic block, and return it
-     */
-    public BasicBlock InsertBasicBlockInContext(Context c, String name) {
-        return new BasicBlock(LLVMInsertBasicBlockInContext(c.context(), bb,
-                Pointer.pointerToCString(name)));
-    }
-
-    /**
-     * Remove a basic block from a function and delete it.<br>
-     * This deletes the basic block from its containing function and deletes<br>
-     * the basic block itself.<br>
-     *
-     * @see llvm::BasicBlock::eraseFromParent()
-     */
-    public void deleteBasicBlock() {
-        LLVMDeleteBasicBlock(bb);
-    }
-
-    /**
-     * Move a basic block to before another one.<br>
-     *
-     * @see llvm::BasicBlock::moveBefore()
-     */
-    public void moveBasicBlockBefore(BasicBlock movePos) {
-        LLVMMoveBasicBlockBefore(bb, movePos.bb());
-    }
-
-    /**
-     * Move a basic block to after another one.<br>
-     *
-     * @see llvm::BasicBlock::moveAfter()
-     */
-    public void moveBasicBlockAfter(BasicBlock movePos) {
-        LLVMMoveBasicBlockAfter(bb, movePos.bb());
+        LLVMBasicBlockRef nextBb = LLVMGetPreviousBasicBlock(bb);
+        if (nextBb == null) {
+            return null;
+        } else {
+            return new BasicBlock(nextBb);
+        }
     }
 
     /**
@@ -126,6 +93,12 @@ public class BasicBlock implements Iterable<Value> {
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        final long address = Pointer.nativeValue(bb.getPointer());
+        return Long.hashCode(address);
     }
 
     private class BasicBlockIterator implements Iterator<Value> {

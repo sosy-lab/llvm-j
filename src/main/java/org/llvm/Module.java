@@ -1,15 +1,13 @@
 package org.llvm;
 
-import java.text.ParseException;
-import java.util.concurrent.atomic.AtomicReference;
+import com.sun.jna.Memory;
+import com.sun.jna.Native;
+import com.sun.jna.NativeMappedConverter;
+import com.sun.jna.Pointer;
+import com.sun.jna.ptr.PointerByReference;
+import org.llvm.binding.LLVMLibrary.*;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Iterator;
-
-import org.bridj.IntValuedEnum;
-import org.bridj.Pointer;
 
 import static org.llvm.binding.LLVMLibrary.*;
 
@@ -17,10 +15,9 @@ import static org.llvm.binding.LLVMLibrary.*;
  * The main container class for the LLVM Intermediate Representation.
  */
 public class Module implements Iterable<Value> {
-
     private LLVMModuleRef module;
 
-    LLVMModuleRef module() {
+    LLVMModuleRef getModule() {
         return module;
     }
 
@@ -33,23 +30,38 @@ public class Module implements Iterable<Value> {
      */
     public static Module parseIR(String path) {
         /* read the module into a buffer */
-        Pointer<Byte> cstr = Pointer.pointerToCString(path);
-        Pointer<LLVMMemoryBufferRef> buff = Pointer.allocate(LLVMMemoryBufferRef.class);
-        if (LLVMCreateMemoryBufferWithContentsOfFile(cstr, buff, null) == 1) {
-            System.err.println("Reading bitcode failed\n");
-            return null;
-        }
+        //Pointer address = new Memory(1000*1000*8);
+        //LLVMMemoryBufferRef buffer = new LLVMMemoryBufferRef(address);
 
-        /* create a module from the memory buffer */
-        Pointer<LLVMModuleRef> pmod = Pointer.allocate(LLVMModuleRef.class);
-        if (LLVMParseBitcode2(buff.get(), pmod) != 0) {
-            return null;
-        }
+        PointerByReference pointerToBuffer = new PointerByReference();
+        LLVMMemoryBufferRef pointerToBufferWrapped = new LLVMMemoryBufferRef(pointerToBuffer.getPointer());
+        //LLVMMemoryBufferRef buffer = LLVMCreateMemoryBufferWithMemoryRange(fileContent, new NativeSize(800 * 1000 * 1000), "test", no);
+        Pointer outMsgAddr = new Memory(1000 * 1000 * 10 * 8);
+        PointerByReference outMsg = new PointerByReference(outMsgAddr);
+        LLVMBool success = LLVMCreateMemoryBufferWithContentsOfFile(path, pointerToBufferWrapped, outMsg);
+        LLVMMemoryBufferRef buffer = new LLVMMemoryBufferRef(pointerToBuffer.getValue());
+        // if (!Utils.llvmBoolToJavaBool(success)) {
+        //    System.err.println("Reading bitcode failed\n");
+        //    return null;
+        // }
 
+    /* create a module from the memory buffer */
+        PointerByReference pointerToModule = new PointerByReference(new Memory(getSize(LLVMModuleRef.class)));
+        LLVMModuleRef pointerToModuleWrapped = new LLVMModuleRef(pointerToModule.getPointer());
+        success = LLVMParseBitcode2(buffer, pointerToModuleWrapped);
+        //if (!Utils.llvmBoolToJavaBool(success)) {
+        //    return null;
+        //}
+        LLVMModuleRef module = new LLVMModuleRef(pointerToModule.getValue());
         /* free the buffer allocated by readFileToBuffer */
-        LLVMDisposeMemoryBuffer(buff.get());
+        LLVMDisposeMemoryBuffer(buffer);
 
-        return new Module(pmod.get());
+        return new Module(module);
+    }
+
+    private static long getSize(Class<?> pClass) {
+        Class<?> nativeClass = NativeMappedConverter.getInstance(pClass).nativeType();
+        return Native.getNativeSize(nativeClass);
     }
 
     /**
@@ -60,8 +72,7 @@ public class Module implements Iterable<Value> {
      * will be leaked.
      */
     public static Module createWithName(String moduleID) {
-        Pointer<Byte> cstr = Pointer.pointerToCString(moduleID);
-        return new Module(LLVMModuleCreateWithName(cstr));
+        return new Module(LLVMModuleCreateWithName(moduleID));
     }
 
     /**
@@ -70,8 +81,7 @@ public class Module implements Iterable<Value> {
      * will be leaked.
      */
     public static Module createWithNameInContext(String moduleID, Context c) {
-        Pointer<Byte> cstr = Pointer.pointerToCString(moduleID);
-        return new Module(LLVMModuleCreateWithNameInContext(cstr, c.context()));
+        return new Module(LLVMModuleCreateWithNameInContext(moduleID, c.context()));
     }
 
     public void finalize() {
@@ -80,7 +90,7 @@ public class Module implements Iterable<Value> {
 
     /**
      * Destroy a module instance.<br>
-     * * This must be called for every created module or memory will be<br>
+     * This must be called for every created module or memory will be<br>
      * leaked.
      */
     public void dispose() {
@@ -89,43 +99,12 @@ public class Module implements Iterable<Value> {
     }
 
     /**
-     * Verifies that a module is valid, throwing an exception if not.
-     */
-    public void verify()
-            throws LLVMException {
-        Pointer<Pointer<Byte>> ppByte = Pointer.pointerToCStrings("");
-        int retval = LLVMVerifyModule(module,
-                LLVMVerifierFailureAction.LLVMReturnStatusAction, ppByte);
-        if (retval != 0) {
-            Pointer<Byte> pByte = ppByte.getPointer(Byte.class);
-            final String message = pByte.getCString();
-            LLVMDisposeMessage(pByte);
-            throw new LLVMException(message);
-        }
-    }
-
-    public static void disposeMessage(AtomicReference<String> message) {
-
-    }
-
-    /**
      * Obtain the data layout for a module.<br>
      *
      * @see Module::getDataLayout()
      */
     public String getDataLayout() {
-        Pointer<Byte> cstr = LLVMGetDataLayout(module);
-        return cstr.getCString();
-    }
-
-    /**
-     * Set the data layout for a module.<br>
-     *
-     * @see Module::setDataLayout()
-     */
-    public void setDataLayout(String triple) {
-        Pointer<Byte> cstr = Pointer.pointerToCString(triple);
-        LLVMSetDataLayout(module, cstr);
+        return LLVMGetDataLayout(module);
     }
 
     /**
@@ -134,18 +113,7 @@ public class Module implements Iterable<Value> {
      * @see Module::getTargetTriple()
      */
     public String getTarget() {
-        Pointer<Byte> cstr = LLVMGetTarget(module);
-        return cstr.getCString();
-    }
-
-    /**
-     * Set the target triple for a module.<br>
-     *
-     * @see Module::setTargetTriple()
-     */
-    public void setTarget(String triple) {
-        Pointer<Byte> cstr = Pointer.pointerToCString(triple);
-        LLVMSetTarget(module, cstr);
+        return LLVMGetTarget(module);
     }
 
     /*public int addTypeName(String name, LLVMTypeRef ty) {
@@ -162,9 +130,7 @@ public class Module implements Iterable<Value> {
      * Obtain a Type from a module by its registered name.
      */
     public TypeRef getTypeByName(String name) {
-        //Pointer<Byte> cstr = Pointer.pointerToCString(name);
-        return new TypeRef(LLVMGetTypeByName(module,
-                Pointer.pointerToCString(name)));
+        return new TypeRef(LLVMGetTypeByName(module, name));
     }
 
     /*public String getTypeName(LLVMTypeRef ty) {
@@ -185,42 +151,20 @@ public class Module implements Iterable<Value> {
      * Writes a module to the specified path. Returns 0 on success.
      */
     public int writeBitcodeToFile(String path) {
-        return LLVMWriteBitcodeToFile(module, Pointer.pointerToCString(path));
-    }
-
-    /**
-     * Set inline assembly for a module.<br>
-     *
-     * @see Module::setModuleInlineAsm()
-     */
-    public void setModuleInlineAsm(String asm) {
-        Pointer<Byte> cstr = Pointer.pointerToCString(asm);
-        LLVMSetModuleInlineAsm(module, cstr);
+        return LLVMWriteBitcodeToFile(module, path);
     }
 
     public Context getModuleContext() {
         return Context.getModuleContext(this);
     }
 
-    public Value addGlobal(TypeRef ty, String name) {
-        return new Value(LLVMAddGlobal(module(), ty.type(),
-                Pointer.pointerToCString(name)));
-    }
-
-    public Value addGlobalInAddressSpace(TypeRef ty, String name,
-            int AddressSpace) {
-        return new Value(LLVMAddGlobalInAddressSpace(module(), ty.type(),
-                Pointer.pointerToCString(name), AddressSpace));
-    }
-
     public Value getNamedGlobal(String name) {
-        return new Value(LLVMGetNamedGlobal(module(),
-                Pointer.pointerToCString(name)));
+        return new Value(LLVMGetNamedGlobal(getModule(), name));
     }
 
     public Value getFirstGlobal() {
         try {
-            return new Value(LLVMGetFirstGlobal(module()));
+            return new Value(LLVMGetFirstGlobal(getModule()));
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
@@ -228,30 +172,14 @@ public class Module implements Iterable<Value> {
 
     public Value getLastGlobal() {
         try {
-            return new Value(LLVMGetLastGlobal(module()));
+            return new Value(LLVMGetLastGlobal(getModule()));
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
     }
 
     public Value addAlias(TypeRef ty, Value aliasee, String name) {
-        return new Value(LLVMAddAlias(module, ty.type(), aliasee.value(),
-                Pointer.pointerToCString(name)));
-    }
-
-    /**
-     * Add a function to a module under a specified name.<br>
-     *
-     * @see llvm::Function::Create()
-     */
-    public Value addFunction(String name, TypeRef functionTy) {
-        return new Value(LLVMAddFunction(module,
-                Pointer.pointerToCString(name), functionTy.type()));
-    }
-
-    public Value addFunction(String name, LLVMTypeRef functionTy) {
-        return new Value(LLVMAddFunction(module,
-                Pointer.pointerToCString(name), functionTy));
+        return new Value(LLVMAddAlias(module, ty.type(), aliasee.value(), name));
     }
 
     /**
@@ -261,8 +189,7 @@ public class Module implements Iterable<Value> {
      * @see llvm::Module::getFunction()
      */
     public Value getNamedFunction(String name) {
-        return new Value(LLVMGetNamedFunction(module,
-                Pointer.pointerToCString(name)));
+        return new Value(LLVMGetNamedFunction(module, name));
     }
 
     /**

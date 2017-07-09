@@ -1,11 +1,8 @@
 package org.llvm;
 
-import static org.llvm.binding.LLVMLibrary.LLVMContextCreate;
-import static org.llvm.binding.LLVMLibrary.LLVMContextDispose;
-import static org.llvm.binding.LLVMLibrary.LLVMGetGlobalContext;
-import static org.llvm.binding.LLVMLibrary.LLVMGetModuleContext;
+import org.llvm.binding.LLVMLibrary.*;
 
-import org.llvm.binding.LLVMLibrary.LLVMContextRef;
+import static org.llvm.binding.LLVMLibrary.*;
 
 /**
  * The top-level container for all LLVM global data.
@@ -44,7 +41,7 @@ public class Context {
      * @see Module::getContext()
      */
     public static Context getModuleContext(Module m) {
-        return new Context(LLVMGetModuleContext(m.module()));
+        return new Context(LLVMGetModuleContext(m.getModule()));
     }
 
     public void finalize() {
