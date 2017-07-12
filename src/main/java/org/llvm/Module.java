@@ -1,13 +1,13 @@
 package org.llvm;
 
-import com.sun.jna.Memory;
-import com.sun.jna.Native;
-import com.sun.jna.NativeMappedConverter;
-import com.sun.jna.Pointer;
+import com.sun.jna.*;
 import com.sun.jna.ptr.PointerByReference;
+import org.llvm.binding.LLVMLibrary;
 import org.llvm.binding.LLVMLibrary.*;
 
+import java.nio.file.Path;
 import java.util.Iterator;
+import java.util.List;
 
 import static org.llvm.binding.LLVMLibrary.*;
 
@@ -25,10 +25,17 @@ public class Module implements Iterable<Value> {
         this.module = module;
     }
 
+    public static void addLibraryLookupPaths(final List<Path> pDirectories) {
+        for (Path p : pDirectories) {
+            NativeLibrary.addSearchPath(JNA_LIBRARY_NAME, p.toAbsolutePath().toString());
+        }
+    }
+
     /**
      * Parse a module from file
      */
     public static Module parseIR(String path) {
+        LLVMLibrary.instantiate();
         /* read the module into a buffer */
         //Pointer address = new Memory(1000*1000*8);
         //LLVMMemoryBufferRef buffer = new LLVMMemoryBufferRef(address);
@@ -84,6 +91,7 @@ public class Module implements Iterable<Value> {
         return new Module(LLVMModuleCreateWithNameInContext(moduleID, c.context()));
     }
 
+    @Override
     public void finalize() {
         dispose();
     }

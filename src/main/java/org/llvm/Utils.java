@@ -1,6 +1,5 @@
 package org.llvm;
 
-import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import org.llvm.binding.LLVMLibrary;
 
@@ -8,8 +7,6 @@ import org.llvm.binding.LLVMLibrary;
  * Util methods for the llvm parser
  */
 public class Utils {
-
-    private static int llvmBoolSize = Native.getNativeSize(LLVMLibrary.LLVMBool.class);
 
     public static boolean llvmBoolToJavaBool(final LLVMLibrary.LLVMBool pBool) {
         // LLVMBool is actually an int.
