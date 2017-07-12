@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="llvm-j" basedir="." default="publish">
+  <property name="src" location="src" />
+  <property name="build" location="bin" />
+  <property name="dist" location="dist" />
+  <property name="jnaerator-jar" location="jnaerator.jar" />
+  <property name="llvm.bindings" location="src/main/java/org/llvm/binding/LLVMLibrary.java" />
+  <property name="llvm.version" value="3.9.1" />
+
+
+  <path id="classpath">
+    <fileset dir="lib" includes="*.jar" />
+  </path>
+
+  <target name="init">
+    <mkdir dir="${build}" />
+    <mkdir dir="${dist}" />
+  </target>
+
+  <target name="-check-bindings-exist" unless="bindings.exist">
+    <available file="${llvm.bindings}" property="bindings.exist" />
+  </target>
+
+  <target name="bindings" depends="-check-bindings-exist" unless="${bindings.exist}">
+    <fail unless="llvm.home">
+      Please specify the path to the directory
+      of LLVM that includes the headers for C-bindings,
+      i.e., ${llvm.home}/include/llvm-c .
+      Use -Dllvm.home=/path/to/llvm to do that.
+      Note that shell substitutions do not work and a full
+      absolute path has to be specified.
+    </fail>
+    <exec executable="java">
+      <env key="LLVM_HOME" file="${llvm.home}" />
+      <arg value="-jar" />
+      <arg value="jnaerator.jar" />
+      <arg value="config.jnaerator" />
+    </exec>
+
+    <!-- Perform minor changes to bindings -->
+
+    <!-- Set concrete LLVM version to avoid conflicts -->
+    <replace file="${llvm.bindings}"
+             token='JNA_LIBRARY_NAME = "LLVM";'
+             value='JNA_LIBRARY_NAME = "LLVM-${llvm.version}";' />
+
+    <!-- Remove jnaerator-imports.
+         We want to provide our own util classes to be independent of jnaerator -->
+    <replaceregexp file="${llvm.bindings}"
+                   flags="g,s"
+                   match="\nimport com\.ochafik\.lang\.jnaerator\.[a-zA-Z\.]*;"
+                   replace="" />
+    <!-- Replace static initializer with static method for initialization -->
+    <replace file="${llvm.bindings}"
+             token="static {"
+             value="public static void instantiate() {" />
+
+  </target>
+
+  <target name="compile" depends="init, bindings">
+    <javac srcdir="${src}" destdir="${build}" encoding="UTF-8">
+      <classpath refid="classpath" />
+    </javac>
+  </target>
+
+  <target name="publish" depends="compile">
+    <jar destfile="${dist}/llvm-j.jar" basedir="${build}">
+      <manifest>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build}" />
+    <delete dir="${dist}" />
+    <delete file="${llvm.bindings}" />
+  </target>
+</project>
