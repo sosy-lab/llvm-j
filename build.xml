@@ -5,6 +5,10 @@
   <property name="ivy.repo.url" value="https://www.sosy-lab.org/ivy"/>
   <property name="ivy.configurations" value="build, runtime" />
   <property name="ivy.settings.file" value="ivysettings.xml"/>
+  <property name="ivy.jar.dir" location="lib" />
+  <property name="ivy.jar.file" value="ivy.jar"/>
+  <property name="ivy.repo.url" value="https://www.sosy-lab.org/ivy"/>
+  <property name="ivy.target_version" value="2.4.0"/> <!-- Change version number here to use a newer version of Ivy. -->
 
   <property name="src" location="src" />
   <property name="build" location="bin" />
@@ -80,9 +84,24 @@
     <exec executable="${lib.native}/download_lib.sh" dir="${lib.build}">
       <arg value="${llvm.version}" />
     </exec>
+    <copy file="${llvm.library}" tofile="${dist}/libLLVM-${llvm.version}.so" overwrite="true" />
   </target>
 
-  <target name="publish" depends="compile, download-library">
+  <target name="bootstrap-ivy" unless="ivy.jar.present">
+    <mkdir dir="${ivy.jar.dir}"/>
+    <echo message="Downloading ivy..."/>
+    <get src="${ivy.repo.url}/org.apache.ivy/ivy/ivy-${ivy.target_version}.jar" dest="${ivy.jar.dir}/${ivy.jar.file}" usetimestamp="true"/>
+  </target>
+
+  <target name="load-ivy" depends="bootstrap-ivy">
+      <path id="ivy.lib.path">
+          <fileset dir="${ivy.jar.dir}" includes="${ivy.jar.file}"/>
+      </path>
+      <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+      <ivy:settings file="${ivy.settings.file}"/>
+  </target>
+
+  <target name="publish" depends="compile, download-library, load-ivy">
     <fail unless="llvm.library">
       Please specify the path to the LLVM-${llvm.version} shared
       library using -Dllvm.library=FILENAME.
@@ -92,8 +111,6 @@
       <manifest>
       </manifest>
     </jar>
-
-    <copy file="${llvm.library}" tofile="${dist}/libLLVM-${llvm.version}.so" />
 
     <ivy:resolve conf="runtime" />
     <available property="ivy.hasrepository" file="repository/${ivy.organisation}/${ivy.module}" />
