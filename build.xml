@@ -6,6 +6,8 @@
   <property name="jnaerator-jar" location="jnaerator.jar" />
   <property name="llvm.bindings" location="src/main/java/org/llvm/binding/LLVMLibrary.java" />
   <property name="llvm.version" value="3.9.1" />
+  <property name="llvm.library"
+            location="lib/native/libLLVM-${llvm.version}.so" />
 
 
   <path id="classpath">
@@ -68,6 +70,7 @@
       <manifest>
       </manifest>
     </jar>
+    <copy file="${llvm.library}" tofile="${dist}/libLLVM-${llvm.version}.so" />
   </target>
 
   <target name="clean">
