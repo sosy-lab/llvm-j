@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0"
+    xmlns:e="http://ant.apache.org/ivy/extra"
+    xmlns:xsi="hhtp://www.w3.org/2001/XMLSchema-instance"
+    >
+
+  <info organisation="org.sosy_lab" module="llvm-j">
+    <license name="MIT license"/>
+    <description homepage="https://github.com/sosy-lab/llvm-j">
+      Java bindings for LLVM C parser
+    </description>
+  </info>
+
+  <configurations>
+    <conf name="build" visibility="private" description="for developing and testing"/>
+    <conf name="runtime" visibility="private" description="default configuration"/>
+  </configurations>
+  
+  <publications defaultconf="runtime">
+    <artifact name="libLLVM" conf="runtime" type="shared-object" ext="so" />
+  </publications>
+
+  <dependencies>
+<!--    <dependency org="net.java.dev.jna" name="jna" rev="4.4.0" conf="build" />-->
+  </dependencies>
+</ivy-module>
