@@ -3,12 +3,12 @@
   <property name="src" location="src" />
   <property name="build" location="bin" />
   <property name="dist" location="dist" />
+  <property name="lib.build" location="lib/native/build" />
+  <property name="lib.native" location="lib/native" />
   <property name="jnaerator-jar" location="jnaerator.jar" />
-  <property name="llvm.bindings" location="src/main/java/org/llvm/binding/LLVMLibrary.java" />
   <property name="llvm.version" value="3.9.1" />
-  <property name="llvm.library"
-            location="lib/native/libLLVM-${llvm.version}.so" />
-
+  <property name="llvm.library" location="${lib.build}/libLLVM-${llvm.version}.so" />
+  <property name="llvm.bindings" location="src/main/java/org/llvm/binding/LLVMLibrary.java" />
 
   <path id="classpath">
     <fileset dir="lib" includes="*.jar" />
@@ -17,10 +17,15 @@
   <target name="init">
     <mkdir dir="${build}" />
     <mkdir dir="${dist}" />
+    <mkdir dir="${lib.build}" />
   </target>
 
   <target name="-check-bindings-exist" unless="bindings.exist">
     <available file="${llvm.bindings}" property="bindings.exist" />
+  </target>
+
+  <target name="-check-library-exists" unless="library.exist">
+    <available file="${llvm.library}" property="library.exist" />
   </target>
 
   <target name="bindings" depends="-check-bindings-exist" unless="${bindings.exist}">
@@ -65,17 +70,30 @@
     </javac>
   </target>
 
-  <target name="publish" depends="compile">
+  <target name="download-library" depends="init, -check-library-exists" unless="${library.exist}">
+    <exec executable="${lib.native}/download_lib.sh" dir="${lib.build}">
+      <arg value="${llvm.version}" />
+    </exec>
+  </target>
+
+  <target name="publish" depends="compile, download-library">
+    <fail unless="llvm.library">
+      Please specify the path to the LLVM-${llvm.version} shared
+      library using -Dllvm.library=FILENAME.
+    </fail>
+
     <jar destfile="${dist}/llvm-j.jar" basedir="${build}">
       <manifest>
       </manifest>
     </jar>
+
     <copy file="${llvm.library}" tofile="${dist}/libLLVM-${llvm.version}.so" />
   </target>
 
   <target name="clean">
     <delete dir="${build}" />
     <delete dir="${dist}" />
+    <delete dir="${lib.build}" />
     <delete file="${llvm.bindings}" />
   </target>
 </project>
