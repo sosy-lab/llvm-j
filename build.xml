@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project name="llvm-j" basedir="." default="publish">
+<project name="llvm-j" basedir="." default="publish"
+    xmlns:ivy="antlib:org.apache.ivy.ant">
+
+  <property name="ivy.repo.url" value="https://www.sosy-lab.org/ivy"/>
+  <property name="ivy.configurations" value="build, runtime" />
+  <property name="ivy.settings.file" value="ivysettings.xml"/>
+
   <property name="src" location="src" />
   <property name="build" location="bin" />
   <property name="dist" location="dist" />
@@ -88,6 +94,27 @@
     </jar>
 
     <copy file="${llvm.library}" tofile="${dist}/libLLVM-${llvm.version}.so" />
+
+    <ivy:resolve conf="runtime" />
+    <available property="ivy.hasrepository" file="repository/${ivy.organisation}/${ivy.module}" />
+    <fail unless="ivy.hasrepository">
+      Cannot publish without directory respository/ .
+      Please run 'svn co https://svn.sosy-lab.org/software/ivy/repository/${ivy.organisation}/${ivy.module} repository/${ivy.organisation}/${ivy.module}'.
+    </fail>
+
+    <ivy:publish
+      pubrevision="${llvm.version}"
+      resolver="Sosy-Lab-Publish"
+      artifactspattern="dist/[artifact]-[revision].[ext]"
+      status="release"
+    />
+
+    <echo>
+     You now want to run
+      svn add repository/${ivy.organisation}/${ivy.module}/*-${llvm.version}*
+      svn ci repository/${ivy.organisation}/${ivy.module} -m"publish version ${llvm.version} of llvm-j"
+    to make the new version publicly available.
+    </echo>
   </target>
 
   <target name="clean">
