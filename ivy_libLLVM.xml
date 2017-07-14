@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0"
+    xmlns:e="http://ant.apache.org/ivy/extra"
+    xmlns:xsi="hhtp://www.w3.org/2001/XMLSchema-instance"
+    >
+
+  <info organisation="org.sosy_lab" module="llvm-lib">
+    <license name="LLVM Release License" url="http://releases.llvm.org/4.0.0/LICENSE.TXT" />
+    <description homepage="http://llvm.org/">
+      Shared library of LLVM project
+    </description>
+  </info>
+
+  <configurations>
+    <conf name="llvm" description="llvm shared C library"/>
+  </configurations>
+  
+  <publications>
+    <artifact name="libLLVM" conf="llvm" type="shared-object" ext="so" />
+  </publications>
+</ivy-module>

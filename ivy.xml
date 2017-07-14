@@ -11,16 +11,16 @@
     </description>
   </info>
 
-  <configurations>
+  <configurations defaultconf="llvm-j-runtime">
     <conf name="build" visibility="private" description="for developing and testing"/>
-    <conf name="runtime" visibility="private" description="default configuration"/>
+    <conf name="llvm-j-runtime" description="llvm-j Java libraries"/>
   </configurations>
   
-  <publications defaultconf="runtime">
-    <artifact name="libLLVM" conf="runtime" type="shared-object" ext="so" />
+  <publications>
+    <artifact name="llvm-j" conf="llvm-j-runtime" type="jar" ext="jar" />
   </publications>
 
   <dependencies>
-<!--    <dependency org="net.java.dev.jna" name="jna" rev="4.4.0" conf="build" />-->
+    <dependency org="net.java.dev.jna" name="jna" rev="4.4.0" conf="build->default" />
   </dependencies>
 </ivy-module>

@@ -2,8 +2,6 @@
 <project name="llvm-j" basedir="." default="publish"
     xmlns:ivy="antlib:org.apache.ivy.ant">
 
-  <property name="ivy.repo.url" value="https://www.sosy-lab.org/ivy"/>
-  <property name="ivy.configurations" value="build, runtime" />
   <property name="ivy.settings.file" value="ivysettings.xml"/>
   <property name="ivy.jar.dir" location="lib" />
   <property name="ivy.jar.file" value="ivy.jar"/>
@@ -15,6 +13,7 @@
   <property name="dist" location="dist" />
   <property name="lib.build" location="lib/native/build" />
   <property name="lib.native" location="lib/native" />
+  <property name="lib.ivy" location="lib/java/" />
   <property name="jnaerator-jar" location="jnaerator.jar" />
   <property name="llvm.version" value="3.9.1" />
   <property name="llvm.library" location="${lib.build}/libLLVM-${llvm.version}.so" />
@@ -22,6 +21,7 @@
 
   <path id="classpath">
     <fileset dir="lib" includes="*.jar" />
+    <fileset dir="${lib.ivy}" includes="*.jar" />
   </path>
 
   <target name="init">
@@ -74,7 +74,7 @@
 
   </target>
 
-  <target name="compile" depends="init, bindings">
+  <target name="compile" depends="init, bindings, resolve-dependencies">
     <javac srcdir="${src}" destdir="${build}" encoding="UTF-8">
       <classpath refid="classpath" />
     </javac>
@@ -84,7 +84,6 @@
     <exec executable="${lib.native}/download_lib.sh" dir="${lib.build}">
       <arg value="${llvm.version}" />
     </exec>
-    <copy file="${llvm.library}" tofile="${dist}/libLLVM-${llvm.version}.so" overwrite="true" />
   </target>
 
   <target name="bootstrap-ivy" unless="ivy.jar.present">
@@ -100,39 +99,60 @@
       <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
       <ivy:settings file="${ivy.settings.file}"/>
   </target>
+ 
+  <target name="resolve-dependencies" depends="load-ivy, init">
+    <ivy:resolve conf="build" />
+    <ivy:retrieve sync="true" overwriteMode="different" pattern="${lib.ivy}/[artifact].[ext]" />
+  </target>
 
-  <target name="publish" depends="compile, download-library, load-ivy">
+  <target name="publish-llvm-j" depends="compile, load-ivy">
     <fail unless="llvm.library">
       Please specify the path to the LLVM-${llvm.version} shared
       library using -Dllvm.library=FILENAME.
     </fail>
 
-    <jar destfile="${dist}/llvm-j.jar" basedir="${build}">
+    <exec executable="git" dir="." outputproperty="llvm-j.revision">
+      <arg value="describe" />
+      <arg value="--always" />
+    </exec>
+    <property name="llvm-j.version" value="${llvm.version}-${llvm-j.revision}" />
+
+    <jar destfile="${dist}/llvm-j-${llvm-j.version}.jar" basedir="${build}">
       <manifest>
       </manifest>
     </jar>
 
-    <ivy:resolve conf="runtime" />
-    <available property="ivy.hasrepository" file="repository/${ivy.organisation}/${ivy.module}" />
-    <fail unless="ivy.hasrepository">
-      Cannot publish without directory respository/ .
-      Please run 'svn co https://svn.sosy-lab.org/software/ivy/repository/${ivy.organisation}/${ivy.module} repository/${ivy.organisation}/${ivy.module}'.
+    <publish-ivy ivy-conf="llvm-j-runtime" version="${llvm-j.version}" />
+
+    <echo>
+     You now want to run
+      svn add repository/${ivy.organisation}/${ivy.module}/*-${llvm-j.version}*
+      svn ci repository/${ivy.organisation}/${ivy.module} -m"publish version ${llvm-j.version} of ${ivy.module}"
+      to make the new version publicly available.
+    </echo>
+  </target>
+
+  <target name="publish-library" depends="publish-llvm-j, download-library, load-ivy">
+    <fail unless="llvm.version">
+      Please specify the llvm version with the flag -Dllvm.version=... .
+    </fail>
+    <fail unless="llvm.library">
+      Please specify the path to the LLVM-${llvm.version} shared
+      library using -Dllvm.library=FILENAME.
     </fail>
 
-    <ivy:publish
-      pubrevision="${llvm.version}"
-      resolver="Sosy-Lab-Publish"
-      artifactspattern="dist/[artifact]-[revision].[ext]"
-      status="release"
-    />
+    <copy file="${llvm.library}" tofile="${dist}/libLLVM-${llvm.version}.so" overwrite="true" />
+    <publish-ivy ivy-conf="llvm" ivy-file="ivy_libLLVM.xml" version="${llvm.version}" />
 
     <echo>
      You now want to run
       svn add repository/${ivy.organisation}/${ivy.module}/*-${llvm.version}*
-      svn ci repository/${ivy.organisation}/${ivy.module} -m"publish version ${llvm.version} of llvm-j"
-    to make the new version publicly available.
+      svn ci repository/${ivy.organisation}/${ivy.module} -m"publish version ${llvm.version} of ${ivy.module}"
+      to make the new version publicly available.
     </echo>
   </target>
+
+  <target name="publish" depends="publish-library, publish-llvm-j" />
 
   <target name="clean">
     <delete dir="${build}" />
@@ -140,4 +160,32 @@
     <delete dir="${lib.build}" />
     <delete file="${llvm.bindings}" />
   </target>
+
+  <macrodef name="publish-ivy">
+    <attribute name="ivy-conf" />
+    <attribute name="ivy-file" default="ivy.xml" />
+    <attribute name="version" />
+    <sequential>
+      
+      <ivy:resolve conf="@{ivy-conf}" file="@{ivy-file}" />
+      <echo>${ivy.module}</echo>
+      <available property="ivy.hasrepository" file="repository/${ivy.organisation}/${ivy.module}" />
+      <fail unless="ivy.hasrepository">
+        Cannot publish without directory respository/ .
+        Please run 'svn co https://svn.sosy-lab.org/software/ivy/repository/${ivy.organisation}/${ivy.module} repository/${ivy.organisation}/${ivy.module}'.
+      </fail>
+
+      <ivy:publish
+        module="${ivy.module}"
+        pubrevision="@{version}"
+        resolver="Sosy-Lab-Publish"
+        artifactspattern="${dist}/[artifact]-[revision].[ext]"
+        conf="@{ivy-conf}"
+        status="release"
+        haltonmissing="true"
+        overwrite="true"
+      />
+    </sequential>
+  </macrodef>
+
 </project>
