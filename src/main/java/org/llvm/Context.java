@@ -21,7 +21,7 @@ public class Context {
 
     /**
      * Create a new context.<br>
-     * Every call to this function should be paired with a call to<br>
+     * Every call to this function should be paired with a call to<br>w
      * LLVMContextDispose() or the context will leak memory.<br>
      */
     public static Context create() {
@@ -44,6 +44,7 @@ public class Context {
         return new Context(LLVMGetModuleContext(m.getModule()));
     }
 
+    @Override
     public void finalize() {
         dispose();
     }

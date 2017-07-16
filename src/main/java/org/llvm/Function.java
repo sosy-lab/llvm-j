@@ -21,10 +21,12 @@ public class Function extends Value implements Iterable<BasicBlock> {
             last = Function.this.getLastBasicBlock();
         }
 
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
+        @Override
         public BasicBlock next() {
             if (hasNext()) {
                 BasicBlock tmp = current;
@@ -38,11 +40,13 @@ public class Function extends Value implements Iterable<BasicBlock> {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
     }
 
+    @Override
     public Iterator<BasicBlock> iterator() {
         return new FunctionIterator();
     }

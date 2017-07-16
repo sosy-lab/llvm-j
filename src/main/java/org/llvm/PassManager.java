@@ -45,6 +45,7 @@ public class PassManager {
         return new PassManager(LLVMCreateFunctionPassManager(mp));
     }
 
+    @Override
     public void finalize() {
         dispose();
     }

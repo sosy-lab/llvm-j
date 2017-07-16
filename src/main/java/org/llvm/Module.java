@@ -235,10 +235,12 @@ public class Module implements Iterable<Value> {
             last = Module.this.getLastFunction();
         }
 
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
+        @Override
         public Value next() {
             if (hasNext()) {
                 Value tmp = current;
@@ -252,11 +254,13 @@ public class Module implements Iterable<Value> {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
     }
 
+    @Override
     public Iterator<Value> iterator() {
         return new ModuleIterator();
     }

@@ -22,7 +22,12 @@ public class BasicBlock implements Iterable<Value> {
         this.bb = bb;
     }
 
-    public boolean equals(final BasicBlock rhs) {
+    @Override
+    public boolean equals(final Object pObj) {
+        if (!(pObj instanceof BasicBlock)) {
+          return false;
+        }
+        BasicBlock rhs = (BasicBlock) pObj;
         if (bb == null) {
             return rhs.bb == null;
         } else {
@@ -110,10 +115,12 @@ public class BasicBlock implements Iterable<Value> {
             last = BasicBlock.this.getLastInstruction();
         }
 
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
+        @Override
         public Value next() {
             if (hasNext()) {
                 Value tmp = current;
@@ -127,11 +134,13 @@ public class BasicBlock implements Iterable<Value> {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
     }
-
+    
+    @Override
     public Iterator<Value> iterator() {
         return new BasicBlockIterator();
     }

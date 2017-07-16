@@ -6,6 +6,7 @@ import com.sun.jna.Pointer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.llvm.binding.LLVMLibrary.*;
 
@@ -80,7 +81,7 @@ public class Value {
         CleanupPad(64),
         CatchSwitch(65);
 
-        private int value;
+        private final int value;
         OpCode(int value) {
             this.value = value;
         }
@@ -99,7 +100,7 @@ public class Value {
         X86StdcallCallConv(64),
         X86FastcallCallConv(65);
 
-        private int value;
+        private final int value;
         CallConv(int value) {
             this.value = value;
         }
@@ -131,7 +132,7 @@ public class Value {
         /** < signed less or equal */
         IntSLE(41);
 
-        private int value;
+        private final int value;
         IntPredicate(int value) {
             this.value = value;
         }
@@ -185,7 +186,7 @@ public class Value {
         /** < Like LinkerPrivate, but is weak. */
         LinkerPrivateWeakLinkage(16);
 
-        private int value;
+        private final int value;
         Linkage(int value) {
             this.value = value;
         }
@@ -203,7 +204,7 @@ public class Value {
         /** < The GV is protected */
         Protected(2);
 
-        private int value;
+        private final int value;
         Visibility(int value) {
             this.value = value;
         }
@@ -219,13 +220,23 @@ public class Value {
         return value;
     }
 
-    public boolean equals(Value rhs) {
+    @Override
+    public boolean equals(final Object pObj) {
+        if (!(pObj instanceof Value)) {
+            return false;
+        }
+        Value rhs = (Value) pObj;
         if (value == null) {
-            return rhs.value == value;
+            return rhs.value == null;
 
         } else {
             return value.getPointer().equals(rhs.value.getPointer());
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
     }
 
     Value(LLVMValueRef value) {
@@ -275,6 +286,7 @@ public class Value {
         LLVMDumpValue(value);
     }
 
+    @Override
     public String toString() {
 	  Pointer ret = LLVMPrintValueToString(value);
       return ret.getString(Native.getNativeSize(String.class));

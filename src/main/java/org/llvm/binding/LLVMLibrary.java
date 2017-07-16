@@ -17,7 +17,7 @@ import java.nio.IntBuffer;
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
 public class LLVMLibrary implements Library {
-	public static final String JNA_LIBRARY_NAME = "LLVM-3.9.1";
+	public static final String JNA_LIBRARY_NAME = "LLVM-${llvm.version}";
 	public static final NativeLibrary JNA_NATIVE_LIB = NativeLibrary.getInstance(LLVMLibrary.JNA_LIBRARY_NAME);
 	public static void instantiate() {
 		Native.register(LLVMLibrary.class, LLVMLibrary.JNA_NATIVE_LIB);
