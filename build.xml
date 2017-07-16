@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project name="llvm-j" basedir="." default="publish"
+<project name="llvm-j" basedir="." default="publish-llvm-j"
     xmlns:ivy="antlib:org.apache.ivy.ant">
 
   <property name="ivy.settings.file" value="ivysettings.xml"/>
@@ -132,7 +132,7 @@
     </echo>
   </target>
 
-  <target name="publish-library" depends="publish-llvm-j, download-library, load-ivy">
+  <target name="publish-library" depends="download-library, load-ivy">
     <fail unless="llvm.version">
       Please specify the llvm version with the flag -Dllvm.version=... .
     </fail>
@@ -151,8 +151,6 @@
       to make the new version publicly available.
     </echo>
   </target>
-
-  <target name="publish" depends="publish-library, publish-llvm-j" />
 
   <target name="clean">
     <delete dir="${build}" />

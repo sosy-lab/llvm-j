@@ -22,5 +22,6 @@
 
   <dependencies>
     <dependency org="net.java.dev.jna" name="jna" rev="4.4.0" conf="build->default" />
+    <dependency org="org.sosy-lab" name="llvm-lib" rev="${llvm.version}" conf="build->default" />
   </dependencies>
 </ivy-module>
