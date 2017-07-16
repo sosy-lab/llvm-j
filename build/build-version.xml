@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- vim: set tabstop=8 shiftwidth=4 expandtab filetype=ant : -->
+<project name="version" basedir=".">
+
+    <!-- Targets for determining the version number based on the version-control revision. -->
+
+    <target name="determine-version">
+        <exec executable="git"
+                outputproperty="version"
+                failonerror="true">
+            <arg value="describe"/>
+            <arg value="--always"/>
+            <arg value="--dirty"/>
+        </exec>
+        <condition property="version.publishable">
+            <not><matches string="${version}" pattern="(^[a-z0-9]*$|-dirty)" /></not>
+        </condition>
+    </target>
+</project>

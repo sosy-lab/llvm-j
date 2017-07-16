@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim: set tabstop=8 shiftwidth=4 expandtab filetype=ant : -->
+<project name="documentation" basedir=".">
+
+    <!-- Targets for building documentation. -->
+
+    <!-- Keep this file synchronized between SoSy-Lab Common, CPAchecker, JavaSMT, and VerifierCloud. -->
+
+    <!-- These properties can be overridden from including file. -->
+    <property name="documentation.options.file" value="${class.dir}/org/sosy_lab/${package}/ConfigurationOptions.txt"/>
+    <property name="documentation.javadoc.dir" value="Javadoc"/>
+
+    <target name="collect-options" depends="build-project">
+        <echo message="running OptionCollector..." level="info"/>
+
+        <java classname="org.sosy_lab.common.configuration.OptionCollector"
+            fork="true"
+            output="${documentation.options.file}" append="false"
+            failonerror="true"
+            logError="true">
+
+            <classpath refid="classpath"/>
+
+            <!-- "-v" is a optional param for verbose output of OptionCollector -->
+            <!-- <arg value="-v"/> -->
+        </java>
+        <echo message="Options collected." level="info"/>
+    </target>
+
+    <target name="javadoc">
+        <javadoc
+            destdir="${documentation.javadoc.dir}"
+            classpathref="classpath"
+            locale="en_US"
+            encoding="utf-8"
+            windowtitle="${ant.project.name}"
+            failonerror="false"
+            overview="doc/javadoc_overview.html"
+            >
+
+            <fileset dir="${source.dir}" defaultexcludes="yes">
+                <exclude name="**/LLVMLibrary.java"/>
+            </fileset>
+            <link href="http://docs.oracle.com/javase/8/docs/api/"/>
+            <link href="https://sosy-lab.github.io/java-common-lib/api/"/>
+            <doctitle><![CDATA[<h1>${ant.project.name}</h1>]]></doctitle>
+        </javadoc>
+    </target>
+</project>

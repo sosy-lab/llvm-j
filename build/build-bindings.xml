@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- vim: set tabstop=8 shiftwidth=4 expandtab filetype=ant : -->
+<project name="bindings" basedir=".">
+
+    <target name="-check-bindings-exist" unless="bindings.exist">
+        <available file="${llvm.bindings}" property="bindings.exist" />
+    </target>
+
+    <target name="bindings" depends="-check-bindings-exist, build-dependencies" unless="${bindings.exist}">
+        <fail unless="llvm.home">
+            Please specify the path to the directory
+            of LLVM that includes the headers for C-bindings,
+            i.e., ${llvm.home}/include/llvm-c .
+            Use -Dllvm.home=/path/to/llvm to do that.
+            Note that shell substitutions do not work and a full
+            absolute path has to be specified.
+        </fail>
+
+        <exec executable="java">
+            <env key="LLVM_HOME" file="${llvm.home}" />
+            <arg value="-jar" />
+            <arg value="jnaerator.jar" />
+            <arg value="config.jnaerator" />
+        </exec>
+ 
+        <!-- Perform minor changes to bindings -->
+ 
+        <!-- Set concrete LLVM version to avoid conflicts -->
+        <replace file="${llvm.bindings}"
+                 token='JNA_LIBRARY_NAME = "LLVM";'
+                 value='JNA_LIBRARY_NAME = "LLVM-${llvm.version}";' />
+ 
+        <!-- Remove jnaerator-imports.
+             We want to provide our own util classes to be independent of jnaerator -->
+        <replaceregexp file="${llvm.bindings}"
+                       flags="g,s"
+                       match="\nimport com\.ochafik\.lang\.jnaerator\.[a-zA-Z    \.]*;"
+                       replace="" />
+        <!-- Replace static initializer with static method for initialization     -->
+        <replace file="${llvm.bindings}"
+                 token="static {"
+                 value="public static void instantiate() {" />
+    </target>
+        
+</project>

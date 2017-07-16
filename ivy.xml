@@ -1,27 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0"
-    xmlns:e="http://ant.apache.org/ivy/extra"
-    xmlns:xsi="hhtp://www.w3.org/2001/XMLSchema-instance"
-    >
+        xmlns:e="http://ant.apache.org/ivy/extra"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+    <info organisation="org.sosy_lab" module="llvm-j">
+      <license name="MIT license"/>
+      <description homepage="https://github.com/sohttps://github.com/sosy-lab/llvm-j">
+        Java bindings for LLVM C parser
+      </description>
+    </info>
 
-  <info organisation="org.sosy_lab" module="llvm-j">
-    <license name="MIT license"/>
-    <description homepage="https://github.com/sosy-lab/llvm-j">
-      Java bindings for LLVM C parser
-    </description>
-  </info>
+    <configurations>
+        <!-- All dependencies that are only needed during build. -->
+        <conf name="build" visibility="private" description="for developing and testing"/>
+        <conf name="test" visibility="private" description="for developing and testing"/>
 
-  <configurations defaultconf="llvm-j-runtime">
-    <conf name="build" visibility="private" description="for developing and testing"/>
-    <conf name="llvm-j-runtime" description="llvm-j Java libraries"/>
-  </configurations>
-  
-  <publications>
-    <artifact name="llvm-j" conf="llvm-j-runtime" type="jar" ext="jar" />
-  </publications>
+        <conf name="runtime" description="llvm-j libraries for external use" />
 
-  <dependencies>
-    <dependency org="net.java.dev.jna" name="jna" rev="4.4.0" conf="build->default" />
-    <dependency org="org.sosy-lab" name="llvm-lib" rev="${llvm.version}" conf="build->default" />
-  </dependencies>
+        <!-- Dependencies needed for running source-code auto-formatter. -->
+        <conf name="format-source" visibility="private" description="for developing and testing"/>
+
+        <!-- Dependencies needed for running CheckStyle. -->
+        <conf name="checkstyle" visibility="private" description="for developing and testing"/>
+
+        <!-- Dependencies needed for running FindBugs. -->
+        <conf name="findbugs" visibility="private" description="for developing and testing"/>
+
+        <!-- Additional files like JavaDocs or source code that will help developers.
+             These are not downloaded by default, but only when "ant install-contrib" is called. -->
+        <conf name="contrib" visibility="private"/>
+
+        <!-- Configuration for publishing sources -->
+        <conf name="sources" description="sources of llvm-j" />
+
+        <conf name="sources-all" extends="sources,contrib" description="sources of llvm-j and its dependencies" />
+    </configurations>
+
+    <publications defaultconf="runtime">
+        <artifact />
+
+        <artifact conf="sources" e:classifier="sources" type="source" ext="jar"/>
+    </publications>
+
+    <dependencies>
+        <!-- Dependency on Ivy itself so that we can ugprade it easily.
+             Change version number in build.xml for upgrading. -->
+        <dependency org="org.apache.ivy" name="ivy" rev="${ivy.target_version}" conf="build->default"/>
+
+        <dependency org="net.java.dev.jna" name="jna" rev="4.4.0" conf="build->default" />
+        <!--<dependency org="com.nativelibs4java" name="jnaerator" rev="0.12" conf="build->shaded" />-->
+        <!-- JUnit
+             Testing framework. -->
+        <dependency org="junit" name="junit" rev="4.12" conf="test->default"/>
+
+        <!-- JaCoCo
+             Library for code coverage -->
+        <!--<dependency org="org.jacoco" name="org.jacoco.ant" rev="0.7.9" conf="build->default"/>-->
+
+        <!-- The JUnit task for Ant so that we can run the tests.
+             The property used here is defined in build.xml according to the current Ant version. -->
+        <dependency org="org.apache.ant" name="ant-junit" rev="${ant.version.exact}" transitive="false" conf="build->default"/>
+
+        <!-- Truth
+             Library for writing literal assertions. -->
+        <!--<dependency org="com.google.truth" name="truth" rev="0.34" conf="test->default; contrib->sources"/>
+        <dependency org="com.google.truth.extensions" name="truth-java8-extension" rev="0.34" conf="test->default; contrib->sources"/>-->
+
+        <!-- Google error-prone
+             Compiler adaptor with some useful checks for common errors. -->
+        <dependency org="com.google.errorprone" name="error_prone_ant" rev="2.0.21" transitive="false" conf="build->default" />
+        <dependency org="com.google.errorprone" name="error_prone_annotations" rev="2.0.21" conf="build->default; contrib->sources" />
+
+        <!-- Eclipse JDT Compiler
+             For additional compiler warnings. -->
+        <dependency org="org.eclipse.jdt.core.compiler" name="ecj" rev="4.6.1" conf="build->default"/>
+
+        <!-- google-java-format
+             A source-code formatter for Java -->
+        <dependency org="com.google.googlejavaformat" name="google-java-format" rev="1.3" conf="format-source->default"/>
+
+        <!-- Checkstyle -->
+        <dependency org="com.github.sevntu.checkstyle" name="sevntu-checks" rev="1.23.1" conf="checkstyle->default"/>
+
+        <!-- FindBugs -->
+        <dependency org="com.google.code.findbugs" name="findbugs" rev="3.0.1" conf="findbugs->default"/>
+        <dependency org="com.google.code.findbugs" name="annotations" rev="3.0.1" conf="build->default"/>
+
+        <!-- Google Auto-Value
+             Library for auto-generating value types. -->
+        <!--<dependency org="com.google.auto.value" name="auto-value" rev="1.3" conf="build->default"/>-->
+
+        <!-- Guava has a dependency on error_prone_annotations without a revision number, need an override. -->
+        <override org="com.google.errorprone" module="error_prone_annotations" rev="2.0.21"/>
+    </dependencies>
 </ivy-module>

@@ -1,189 +1,81 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="llvm-j" basedir="." default="publish-llvm-j"
-    xmlns:ivy="antlib:org.apache.ivy.ant">
 
-  <property name="ivy.settings.file" value="ivysettings.xml"/>
-  <property name="ivy.jar.dir" location="lib" />
-  <property name="ivy.jar.file" value="ivy.jar"/>
-  <property name="ivy.repo.url" value="https://www.sosy-lab.org/ivy"/>
-  <property name="ivy.target_version" value="2.4.0"/> <!-- Change version number here to use a newer version of Ivy. -->
+<!-- vim: set tabstop=8 shiftwidth=4 expandtab : -->
+<project name="llvm-j" basedir="." default="build">
+    <!-- Include a file in which all properties can be overridden.
+         This file won't get checked in and can be used to change properties
+         locally for one machine if necessary. -->
+    <property file="build.properties"/>
+    <property environment="env"/>
 
-  <property name="src" location="src" />
-  <property name="build" location="bin" />
-  <property name="dist" location="dist" />
-  <property name="lib.build" location="lib/native/build" />
-  <property name="lib.native" location="lib/native" />
-  <property name="lib.ivy" location="lib/java/" />
-  <property name="jnaerator-jar" location="jnaerator.jar" />
-  <property name="llvm.version" value="3.9.1" />
-  <property name="llvm.library" location="${lib.build}/libLLVM-${llvm.version}.so" />
-  <property name="llvm.bindings" location="src/main/java/org/llvm/binding/LLVMLibrary.java" />
+    <property name="ivy.configurations" value="build, runtime, format-source, checkstyle, findbugs"/>
+    <property name="package" value="llvm_j"/>
+    <property name="jar.excludes" value=""/>
+    <property name="ivy.contrib.present" value="true"/> <!-- always download sources -->
 
-  <path id="classpath">
-    <fileset dir="lib" includes="*.jar" />
-    <fileset dir="${lib.ivy}" includes="*.jar" />
-  </path>
+    <!-- Maven Central metadata -->
+    <property name="ivy.pom.description" value="Java bindings for LLVM library"/>
+    <property name="ivy.pom.url" value="https://github.com/sosy-lab/llvm-j"/>
+    <property name="ivy.pom.name" value="llvm-j"/>
+    <property name="ivy.pom.groupId" value="org.sosy-lab"/>
+    <property name="ivy.pom.artifactId" value="llvm-j"/>
 
-  <target name="init">
-    <mkdir dir="${build}" />
-    <mkdir dir="${dist}" />
-    <mkdir dir="${lib.build}" />
-  </target>
+    <property name="llvm.bindings" location="src/main/java/org/llvm/binding/LLVMLibrary.java" />
 
-  <target name="-check-bindings-exist" unless="bindings.exist">
-    <available file="${llvm.bindings}" property="bindings.exist" />
-  </target>
 
-  <target name="-check-library-exists" unless="library.exist">
-    <available file="${llvm.library}" property="library.exist" />
-  </target>
+    <import file="build/build-version.xml"/>
+    <import file="build/build-ivy.xml"/>
+    <import file="build/build-bindings.xml"/>
+    <import file="build/build-compile.xml"/>
+    <import file="build/build-documentation.xml"/>
+    <import file="build/build-jar.xml"/>
+    <import file="build/build-junit.xml"/>
+    <import file="build/build-format-source.xml"/>
+    <import file="build/build-checkstyle.xml"/>
+    <import file="build/build-findbugs.xml"/>
+    <import file="build/build-publish.xml"/>
+    <import file="build/build-publish-library.xml"/>
+    <import file="build/build-maven-publish.xml"/>
 
-  <target name="bindings" depends="-check-bindings-exist" unless="${bindings.exist}">
-    <fail unless="llvm.home">
-      Please specify the path to the directory
-      of LLVM that includes the headers for C-bindings,
-      i.e., ${llvm.home}/include/llvm-c .
-      Use -Dllvm.home=/path/to/llvm to do that.
-      Note that shell substitutions do not work and a full
-      absolute path has to be specified.
-    </fail>
-    <exec executable="java">
-      <env key="LLVM_HOME" file="${llvm.home}" />
-      <arg value="-jar" />
-      <arg value="jnaerator.jar" />
-      <arg value="config.jnaerator" />
-    </exec>
+    <path id="classpath">
+        <pathelement location="${class.dir}"/>
+        <fileset dir="${ivy.lib.dir}" includes="runtime/*.jar build/annotations.jar build/auto-value.jar build/error_prone_annotations.jar build/jna.jar"/>
+    </path>
 
-    <!-- Perform minor changes to bindings -->
 
-    <!-- Set concrete LLVM version to avoid conflicts -->
-    <replace file="${llvm.bindings}"
-             token='JNA_LIBRARY_NAME = "LLVM";'
-             value='JNA_LIBRARY_NAME = "LLVM-${llvm.version}";' />
+    <!-- Main targets -->
 
-    <!-- Remove jnaerator-imports.
-         We want to provide our own util classes to be independent of jnaerator -->
-    <replaceregexp file="${llvm.bindings}"
-                   flags="g,s"
-                   match="\nimport com\.ochafik\.lang\.jnaerator\.[a-zA-Z\.]*;"
-                   replace="" />
-    <!-- Replace static initializer with static method for initialization -->
-    <replace file="${llvm.bindings}"
-             token="static {"
-             value="public static void instantiate() {" />
+    <target name="clean" description="Clean">
+        <delete includeEmptyDirs="true">
+            <fileset dir="." includes="${class.dir}/** ${ivy.module}-*.jar ivy-*.xml *.so *.jar"/>
+        </delete>
+    </target>
 
-  </target>
+    <target name="build" depends="build-project" description="Build"/>
 
-  <target name="compile" depends="init, bindings, resolve-dependencies">
-    <javac srcdir="${src}" destdir="${build}" encoding="UTF-8">
-      <classpath refid="classpath" />
-    </javac>
-  </target>
+    <target name="dist" depends="jar, sources, javadoc-jar" description="Make a distributable release"/>
 
-  <target name="download-library" depends="init, -check-library-exists" unless="${library.exist}">
-    <exec executable="${lib.native}/download_lib.sh" dir="${lib.build}">
-      <arg value="${llvm.version}" />
-    </exec>
-  </target>
+    <target name="tests" depends="unit-tests" description="Run all tests"/>
 
-  <target name="bootstrap-ivy" unless="ivy.jar.present">
-    <mkdir dir="${ivy.jar.dir}"/>
-    <echo message="Downloading ivy..."/>
-    <get src="${ivy.repo.url}/org.apache.ivy/ivy/ivy-${ivy.target_version}.jar" dest="${ivy.jar.dir}/${ivy.jar.file}" usetimestamp="true"/>
-  </target>
+    <target name="publish" depends="tests, dist, publish-artifacts" description="Publish current version to Ivy repository"/>
 
-  <target name="load-ivy" depends="bootstrap-ivy">
-      <path id="ivy.lib.path">
-          <fileset dir="${ivy.jar.dir}" includes="${ivy.jar.file}"/>
-      </path>
-      <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
-      <ivy:settings file="${ivy.settings.file}"/>
-  </target>
- 
-  <target name="resolve-dependencies" depends="load-ivy, init">
-    <ivy:resolve conf="build" />
-    <ivy:retrieve sync="true" overwriteMode="different" pattern="${lib.ivy}/[artifact].[ext]" />
-  </target>
+    <target name="documentation" depends="javadoc" description="Build documentation"/>
 
-  <target name="publish-llvm-j" depends="compile, load-ivy">
-    <fail unless="llvm.library">
-      Please specify the path to the LLVM-${llvm.version} shared
-      library using -Dllvm.library=FILENAME.
-    </fail>
+    <target name="all-checks" description="Run all tests and checks">
+        <!-- We have to use antcall here to run clean twice. -->
+        <antcall target="clean"/>
+        <antcall target="build-project-ecj"/>
+        <antcall target="clean"/>
+        <antcall target="standard-checks"/>
+    </target>
 
-    <exec executable="git" dir="." outputproperty="llvm-j.revision">
-      <arg value="describe" />
-      <arg value="--always" />
-    </exec>
-    <property name="llvm-j.version" value="${llvm.version}-${llvm-j.revision}" />
+    <!-- Auxiliary targets -->
 
-    <jar destfile="${dist}/llvm-j-${llvm-j.version}.jar" basedir="${build}">
-      <manifest>
-      </manifest>
-    </jar>
+    <target name="init" depends="determine-version">
+        <echo message="Building ${ant.project.name} ${version}"/>
+        <mkdir dir="${class.dir}"/>
+    </target>
 
-    <publish-ivy ivy-conf="llvm-j-runtime" version="${llvm-j.version}" />
+    <target name="build-dependencies" depends="init, resolve-dependencies"/>
 
-    <echo>
-     You now want to run
-      svn add repository/${ivy.organisation}/${ivy.module}/*-${llvm-j.version}*
-      svn ci repository/${ivy.organisation}/${ivy.module} -m"publish version ${llvm-j.version} of ${ivy.module}"
-      to make the new version publicly available.
-    </echo>
-  </target>
-
-  <target name="publish-library" depends="download-library, load-ivy">
-    <fail unless="llvm.version">
-      Please specify the llvm version with the flag -Dllvm.version=... .
-    </fail>
-    <fail unless="llvm.library">
-      Please specify the path to the LLVM-${llvm.version} shared
-      library using -Dllvm.library=FILENAME.
-    </fail>
-
-    <copy file="${llvm.library}" tofile="${dist}/libLLVM-${llvm.version}.so" overwrite="true" />
-    <publish-ivy ivy-conf="llvm" ivy-file="ivy_libLLVM.xml" version="${llvm.version}" />
-
-    <echo>
-     You now want to run
-      svn add repository/${ivy.organisation}/${ivy.module}/*-${llvm.version}*
-      svn ci repository/${ivy.organisation}/${ivy.module} -m"publish version ${llvm.version} of ${ivy.module}"
-      to make the new version publicly available.
-    </echo>
-  </target>
-
-  <target name="clean">
-    <delete dir="${build}" />
-    <delete dir="${dist}" />
-    <delete dir="${lib.build}" />
-    <delete file="${llvm.bindings}" />
-  </target>
-
-  <macrodef name="publish-ivy">
-    <attribute name="ivy-conf" />
-    <attribute name="ivy-file" default="ivy.xml" />
-    <attribute name="version" />
-    <sequential>
-      
-      <ivy:resolve conf="@{ivy-conf}" file="@{ivy-file}" />
-      <echo>${ivy.module}</echo>
-      <available property="ivy.hasrepository" file="repository/${ivy.organisation}/${ivy.module}" />
-      <fail unless="ivy.hasrepository">
-        Cannot publish without directory respository/ .
-        Please run 'svn co https://svn.sosy-lab.org/software/ivy/repository/${ivy.organisation}/${ivy.module} repository/${ivy.organisation}/${ivy.module}'.
-      </fail>
-
-      <ivy:publish
-        module="${ivy.module}"
-        pubrevision="@{version}"
-        resolver="Sosy-Lab-Publish"
-        artifactspattern="${dist}/[artifact]-[revision].[ext]"
-        conf="@{ivy-conf}"
-        status="release"
-        haltonmissing="true"
-        overwrite="true"
-      />
-    </sequential>
-  </macrodef>
-
+    <target name="standard-checks" depends="findbugs, checkstyle, javadoc"/>
 </project>

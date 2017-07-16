@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- vim: set tabstop=8 shiftwidth=4 expandtab sts=4 filetype=ant fdm=marker: -->
+<project name="publish-library" basedir="."
+        xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <property name="lib.native" location="lib/native" />
+
+    <target name="-check-llvm-version-set">
+        <fail unless="llvm.version">
+            Please specify the llvm version with the flag -Dllvm.version=... .
+        </fail>
+    </target>
+
+    <target name="-check-llvm-lib-exists">
+        <property name="llvm.library" location="${lib.native}/libLLVM-${llvm.version}.so" />
+        <available file="${llvm.library}" property="library.exist" />
+    </target>
+
+    <target name="download-library" depends="init, -check-llvm-version-set, -check-llvm-lib-exists" unless="${library.exist}">
+        <exec executable="${lib.native}/download_lib.sh" dir="${lib.native}">
+            <arg value="${llvm.version}" />
+        </exec>
+    </target>
+
+    <target name="package-lib" depends="-check-llvm-version-set, download-library, -check-llvm-lib-exists"
+        description="Copy libLLVM-*.so to the root folder along with the version postfix.">
+
+        <fail unless="${library.exist}">
+            Library ${llvm.library} not found.
+            Did target [download-library] work?
+        </fail>
+
+        <copy file="${llvm.library}" tofile="libLLVM-${llvm.version}.so" />
+    </target>
+
+    <target name="publish-lib" depends="package-lib, load-ivy"
+        description="Publish LLVM library to Ivy repo.">
+
+        <ivy:resolve conf="llvm" file="ivy_libLLVM.xml" />
+        <available property="ivy.hasrepository" file="repository/${ivy.organisation}/${ivy.module}" />
+        <fail unless="ivy.hasrepository">
+            Cannot publish without 'repository' dir, please run 'svn co https://svn.sosy-lab.org/software/ivy/repository/${ivy.organisation}/${ivy.module} repository/${ivy.organisation}/${ivy.module}'.
+        </fail>
+
+        <ivy:publish
+            pubrevision="${llvm.version}"
+            resolver="Sosy-Lab-Publish"
+            artifactspattern="[artifact]-[revision].[ext]"
+            conf="llvm"
+            status="release"
+            haltonmissing="true"
+            />
+        <echo>
+            You now want to run
+            svn add repository/${ivy.organisation}/${ivy.module}/*-${llvm.version}*
+            svn ci repository/${ivy.organisation}/${ivy.module} -m"publish version ${llvm.version} of LLVM shared library"
+            to make the new version publicly available.</echo>
+    </target>
+
+</project>
