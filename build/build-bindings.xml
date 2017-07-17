@@ -2,6 +2,10 @@
 <!-- vim: set tabstop=8 shiftwidth=4 expandtab filetype=ant : -->
 <project name="bindings" basedir=".">
 
+    <path id="jnaerator.classpath">
+      <fileset dir="${ivy.lib.dir}" includes="build/*.jar"/>
+    </path>
+
     <target name="-check-bindings-exist" unless="bindings.exist">
         <available file="${llvm.bindings}" property="bindings.exist" />
     </target>
@@ -16,12 +20,11 @@
             absolute path has to be specified.
         </fail>
 
-        <exec executable="java">
+        <java classname="com.ochafik.lang.jnaerator.JNAerator"
+              classpathref="jnaerator.classpath"
+              fork="true">
             <env key="LLVM_HOME" file="${llvm.home}" />
-            <arg value="-jar" />
-            <arg value="jnaerator.jar" />
-            <arg value="config.jnaerator" />
-        </exec>
+        </java>
  
         <!-- Perform minor changes to bindings -->
  
