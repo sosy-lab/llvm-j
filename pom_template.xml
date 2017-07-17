@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>${ivy.pom.groupId}</groupId>
+    <artifactId>${ivy.pom.artifactId}</artifactId>
+    <packaging>${ivy.pom.packaging}</packaging>
+    <version>${ivy.pom.version}</version>
+    <name>${ivy.pom.name}</name>
+    <description>${ivy.pom.description}</description>
+    <url>${ivy.pom.url}</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>Software Systems Lab</name>
+        <url>http://www.sosy-lab.org/</url>
+    </organization>
+
+    <scm>
+        <url>https://github.com/sosy-lab/llvm-j/</url>
+        <connection>scm:git:git://github.com/sosy-lab/llvm-j.git</connection>
+        <developerConnection>scm:git:git@github.com:sosy-lab/llvm-j.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Marek Chalupa</name>
+            <email>mchalupa@mail.muni.cz</email>
+            <organization>Statica</organization>
+            <organizationUrl>https://github.com/staticafi</organizationUrl>
+            <roles>
+                <role>contributor</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Thomas Lemberger</name>
+            <email>lembergerth@gmail.com</email>
+            <url>https://thomaslemberger.com</url>
+            <organization>Software Systems Lab</organization>
+            <organizationUrl>http://www.sosy-lab.org/</organizationUrl>
+            <roles>
+              <role>project maintainer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Richard Lincoln</name>
+            <roles>
+              <role>original project maintainer</role>
+            </roles>
+        <developer>
+            <name>Dirk Beyer</name>
+            <email>dirk.beyer@sosy-lab.org</email>
+            <url>http://www.sosy-lab.org/~dbeyer/</url>
+            <organization>Software Systems Lab</organization>
+            <organizationUrl>http://www.sosy-lab.org/</organizationUrl>
+            <roles>
+                <role>project manager</role>
+            </roles>
+        </developer>
+    </developers>
+</project>
