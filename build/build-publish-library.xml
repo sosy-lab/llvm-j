@@ -23,10 +23,11 @@
         </exec>
     </target>
 
-    <target name="package-lib" depends="-check-llvm-version-set, download-library, -check-llvm-lib-exists"
+    <target name="package-lib" depends="-check-llvm-version-set, download-library"
         description="Copy libLLVM-*.so to the root folder along with the version postfix.">
 
-        <fail unless="${library.exist}">
+        <available file="${llvm.library}" property="library.exist.2" />
+        <fail unless="${library.exist.2}">
             Library ${llvm.library} not found.
             Did target [download-library] work?
         </fail>
