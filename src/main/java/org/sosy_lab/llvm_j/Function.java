@@ -1,8 +1,8 @@
 package org.sosy_lab.llvm_j;
 
-import static org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef;
-
 import java.util.Iterator;
+
+import static org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef;
 
 /**
  * A wrapper around a function value in LLVM
@@ -16,7 +16,7 @@ public class Function extends Value implements Iterable<BasicBlock> {
         private BasicBlock current;
         private BasicBlock last;
 
-        public FunctionIterator() {
+        FunctionIterator() {
             current = Function.this.getFirstBasicBlock();
             last = Function.this.getLastBasicBlock();
         }
@@ -30,10 +30,11 @@ public class Function extends Value implements Iterable<BasicBlock> {
         public BasicBlock next() {
             if (hasNext()) {
                 BasicBlock tmp = current;
-                if (current.equals(last))
+                if (current.equals(last)) {
                     current = null;
-                else
+                } else {
                     current = current.getNextBasicBlock();
+                }
 
                 return tmp;
             }

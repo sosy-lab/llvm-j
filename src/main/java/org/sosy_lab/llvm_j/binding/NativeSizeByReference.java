@@ -18,7 +18,7 @@ public class NativeSizeByReference extends ByReference {
             this.getPointer().setInt(0L, value.intValue());
         } else {
             if (NativeSize.SIZE != 8) {
-                throw new RuntimeException("GCCLong has to be either 4 or 8 bytes.");
+                throw new AssertionError("GCCLong has to be either 4 or 8 bytes.");
             }
 
             this.getPointer().setLong(0L, value.longValue());
@@ -32,7 +32,7 @@ public class NativeSizeByReference extends ByReference {
         } else if (NativeSize.SIZE == 8) {
             return new NativeSize(this.getPointer().getLong(0L));
         } else {
-            throw new RuntimeException("GCCLong has to be either 4 or 8 bytes.");
+            throw new AssertionError("GCCLong has to be either 4 or 8 bytes.");
         }
     }
 }

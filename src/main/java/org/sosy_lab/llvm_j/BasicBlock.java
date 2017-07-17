@@ -35,23 +35,23 @@ public class BasicBlock implements Iterable<Value> {
     }
 
     /**
-     * Convert a basic block instance to a value type.
+     * Converts this basic block instance to a {@link Value}.
      */
     public Value basicBlockAsValue() {
         return new Value(LLVMLibrary.LLVMBasicBlockAsValue(bb));
     }
 
     /**
-     * Obtain the function to which a basic block belongs.<br>
-     *
-     * @see llvm::BasicBlock::getParent()
+     * Returns the function to which this basic block belongs.
      */
     public Value getBasicBlockParent() {
         return new Value(LLVMLibrary.LLVMGetBasicBlockParent(bb));
     }
 
     /**
-     * Advance a basic block iterator.
+     * Returns the next basic block following this one.
+     * If this basic block is the last basic block in a function,
+     * <code>null</code> is returned.
      */
     public BasicBlock getNextBasicBlock() {
         LLVMLibrary.LLVMBasicBlockRef nextBb = LLVMLibrary.LLVMGetNextBasicBlock(bb);
@@ -63,7 +63,9 @@ public class BasicBlock implements Iterable<Value> {
     }
 
     /**
-     * Go backwards in a basic block iterator.
+     * Returns the basic block preceding this one.
+     * If this basic block is the first basic block in a function,
+     * <code>null</code> is returned.
      */
     public BasicBlock getPreviousBasicBlock() {
         LLVMLibrary.LLVMBasicBlockRef nextBb = LLVMLibrary.LLVMGetPreviousBasicBlock(bb);
@@ -75,9 +77,7 @@ public class BasicBlock implements Iterable<Value> {
     }
 
     /**
-     * Obtain the first instruction in a basic block.<br>
-     * The returned LLVMValueRef corresponds to a llvm::Instruction<br>
-     * instance.
+     * Returns the first instruction in this basic block.
      */
     public Value getFirstInstruction() {
         try {
@@ -88,8 +88,7 @@ public class BasicBlock implements Iterable<Value> {
     }
 
     /**
-     * Obtain the last instruction in a basic block.<br>
-     * The returned LLVMValueRef corresponds to a LLVM:Instruction.
+     * Returns the last instruction in this basic block.
      */
     public Value getLastInstruction() {
         try {
@@ -109,7 +108,7 @@ public class BasicBlock implements Iterable<Value> {
         private Value current;
         private Value last;
 
-        public BasicBlockIterator() {
+        BasicBlockIterator() {
             current = BasicBlock.this.getFirstInstruction();
             last = BasicBlock.this.getLastInstruction();
         }
@@ -123,10 +122,11 @@ public class BasicBlock implements Iterable<Value> {
         public Value next() {
             if (hasNext()) {
                 Value tmp = current;
-                if (current.equals(last))
+                if (current.equals(last)) {
                     current = null;
-                else
+                } else {
                     current = current.getNextInstruction();
+                }
 
                 return tmp;
             }

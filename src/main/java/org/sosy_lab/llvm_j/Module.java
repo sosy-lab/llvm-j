@@ -1,6 +1,10 @@
 package org.sosy_lab.llvm_j;
 
-import com.sun.jna.*;
+import com.sun.jna.Memory;
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
+import com.sun.jna.NativeMappedConverter;
+import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
@@ -24,39 +28,45 @@ public class Module implements Iterable<Value> {
 
     public static void addLibraryLookupPaths(final List<Path> pDirectories) {
         for (Path p : pDirectories) {
-            NativeLibrary.addSearchPath(LLVMLibrary.JNA_LIBRARY_NAME, p.toAbsolutePath().toString());
+            NativeLibrary.addSearchPath(
+                    LLVMLibrary.JNA_LIBRARY_NAME, p.toAbsolutePath().toString());
         }
     }
 
     /**
-     * Parse a module from file
+     * Parses a module from the given file.
      */
-    public static Module parseIR(String path) {
+    public static Module parseIR(String path) throws LLVMException {
         LLVMLibrary.instantiate();
         /* read the module into a buffer */
-        //Pointer address = new Memory(1000*1000*8);
-        //LLVMMemoryBufferRef buffer = new LLVMMemoryBufferRef(address);
 
         PointerByReference pointerToBuffer = new PointerByReference();
-        LLVMLibrary.LLVMMemoryBufferRef pointerToBufferWrapped = new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
-        //LLVMMemoryBufferRef buffer = LLVMCreateMemoryBufferWithMemoryRange(fileContent, new NativeSize(800 * 1000 * 1000), "test", no);
+        LLVMLibrary.LLVMMemoryBufferRef pointerToBufferWrapped =
+                new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
         Pointer outMsgAddr = new Memory(1000 * 1000 * 10 * 8);
         PointerByReference outMsg = new PointerByReference(outMsgAddr);
-        LLVMLibrary.LLVMBool success = LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(path, pointerToBufferWrapped, outMsg);
-        LLVMLibrary.LLVMMemoryBufferRef buffer = new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getValue());
-        // if (!Utils.llvmBoolToJavaBool(success)) {
-        //    System.err.println("Reading bitcode failed\n");
-        //    return null;
-        // }
+        LLVMLibrary.LLVMBool success = LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(
+                path,
+                pointerToBufferWrapped,
+                outMsg);
+        if (!Utils.llvmBoolToJavaBool(success)) {
+            throw new LLVMException("Reading bitcode failed");
+        }
+        LLVMLibrary.LLVMMemoryBufferRef buffer =
+                new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getValue());
 
-    /* create a module from the memory buffer */
-        PointerByReference pointerToModule = new PointerByReference(new Memory(getSize(LLVMLibrary.LLVMModuleRef.class)));
-        LLVMLibrary.LLVMModuleRef pointerToModuleWrapped = new LLVMLibrary.LLVMModuleRef(pointerToModule.getPointer());
+        /* create a module from the memory buffer */
+        long moduleRefSize = getSize(LLVMLibrary.LLVMModuleRef.class);
+        PointerByReference pointerToModule = new PointerByReference(new Memory(moduleRefSize));
+        LLVMLibrary.LLVMModuleRef pointerToModuleWrapped =
+                new LLVMLibrary.LLVMModuleRef(pointerToModule.getPointer());
         success = LLVMLibrary.LLVMParseBitcode2(buffer, pointerToModuleWrapped);
-        //if (!Utils.llvmBoolToJavaBool(success)) {
-        //    return null;
-        //}
-        LLVMLibrary.LLVMModuleRef module = new LLVMLibrary.LLVMModuleRef(pointerToModule.getValue());
+        if (!Utils.llvmBoolToJavaBool(success)) {
+            throw new LLVMException("Parsing bitcode failed");
+        }
+        LLVMLibrary.LLVMModuleRef module =
+                new LLVMLibrary.LLVMModuleRef(pointerToModule.getValue());
+
         /* free the buffer allocated by readFileToBuffer */
         LLVMLibrary.LLVMDisposeMemoryBuffer(buffer);
 
@@ -69,33 +79,36 @@ public class Module implements Iterable<Value> {
     }
 
     /**
-     * Create a new, empty module in the global context.<br>
-     * This is equivalent to calling LLVMModuleCreateWithNameInContext with<br>
-     * LLVMGetGlobalContext() as the context parameter.<br>
-     * Every invocation should be paired with LLVMDisposeModule() or memory<br>
+     * Creates a new, empty module in the global context.<br>
+     * Every invocation should be paired with {link #dispose()} or memory
      * will be leaked.
+     *
+     * @param moduleID the name of the new module
      */
     public static Module createWithName(String moduleID) {
         return new Module(LLVMLibrary.LLVMModuleCreateWithName(moduleID));
     }
 
     /**
-     * Create a new, empty module in a specific context.<br>
-     * Every invocation should be paired with LLVMDisposeModule() or memory<br>
+     * Creates a new, empty module in a specific context.<br>
+     * Every invocation should be paired with {@link #dispose()} or memory
      * will be leaked.
+     *
+     * @param moduleID the name of the new module
+     * @param c the context to create the new module in
      */
     public static Module createWithNameInContext(String moduleID, Context c) {
         return new Module(LLVMLibrary.LLVMModuleCreateWithNameInContext(moduleID, c.context()));
     }
 
     @Override
-    public void finalize() {
+    protected void finalize() {
         dispose();
     }
 
     /**
-     * Destroy a module instance.<br>
-     * This must be called for every created module or memory will be<br>
+     * Destroys this module instance.<br>
+     * This must be called for every created module or memory will be
      * leaked.
      */
     public void dispose() {
@@ -104,18 +117,14 @@ public class Module implements Iterable<Value> {
     }
 
     /**
-     * Obtain the data layout for a module.<br>
-     *
-     * @see Module::getDataLayout()
+     * Returns the data layout for this module.
      */
     public String getDataLayout() {
         return LLVMLibrary.LLVMGetDataLayout(module);
     }
 
     /**
-     * Obtain the target triple for a module.<br>
-     *
-     * @see Module::getTargetTriple()
+     * Returns the target triple for this module.
      */
     public String getTarget() {
         return LLVMLibrary.LLVMGetTarget(module);
@@ -132,7 +141,7 @@ public class Module implements Iterable<Value> {
     }*/
 
     /**
-     * Obtain a Type from a module by its registered name.
+     * Returns a {@link TypeRef} from this module by its registered name.
      */
     public TypeRef getTypeByName(String name) {
         return new TypeRef(LLVMLibrary.LLVMGetTypeByName(module, name));
@@ -144,16 +153,16 @@ public class Module implements Iterable<Value> {
     }*/
 
     /**
-     * Dump a representation of a module to stderr.<br>
-     *
-     * @see Module::dump()
+     * Dumps a representation of this module to stderr.
      */
     public void dumpModule() {
         LLVMLibrary.LLVMDumpModule(module);
     }
 
     /**
-     * Writes a module to the specified path. Returns 0 on success.
+     * Writes this module to the specified path.
+     *
+     * @return returns 0 on success, an error code otherwise.
      */
     public int writeBitcodeToFile(String path) {
         return LLVMLibrary.LLVMWriteBitcodeToFile(module, path);
@@ -188,19 +197,14 @@ public class Module implements Iterable<Value> {
     }
 
     /**
-     * Obtain a Function value from a Module by its name.<br>
-     * The returned value corresponds to a llvm::Function value.<br>
-     *
-     * @see llvm::Module::getFunction()
+     * Returns a {@link Function} from this module by its name.
      */
-    public Value getNamedFunction(String name) {
-        return new Value(LLVMLibrary.LLVMGetNamedFunction(module, name));
+    public Function getNamedFunction(String name) {
+        return new Function(LLVMLibrary.LLVMGetNamedFunction(module, name));
     }
 
     /**
-     * Obtain an iterator to the first Function in a Module.<br>
-     *
-     * @see llvm::Module::begin()
+     * Returns an iterator to the first Function in this module.
      */
     public Value getFirstFunction() {
         try {
@@ -211,9 +215,7 @@ public class Module implements Iterable<Value> {
     }
 
     /**
-     * Obtain an iterator to the last Function in a Module.<br>
-     *
-     * @see llvm::Module::end()
+     * Returns an iterator to the last Function in this module.
      */
     public Value getLastFunction() {
         try {
@@ -227,7 +229,7 @@ public class Module implements Iterable<Value> {
         private Value current;
         private Value last;
 
-        public ModuleIterator() {
+        ModuleIterator() {
             current = Module.this.getFirstFunction();
             last = Module.this.getLastFunction();
         }
@@ -241,11 +243,11 @@ public class Module implements Iterable<Value> {
         public Value next() {
             if (hasNext()) {
                 Value tmp = current;
-                if (current.equals(last))
+                if (current.equals(last)) {
                     current = null;
-                else
+                } else {
                     current = current.getNextFunction();
-
+                }
                 return tmp;
             }
             throw new UnsupportedOperationException();

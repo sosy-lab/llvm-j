@@ -15,21 +15,17 @@ public class PassManager {
     }
 
     /**
-     * Constructs a new whole-module pass pipeline. This type of pipeline is<br>
-     * suitable for link-time optimization and whole-module transformations.<br>
-     *
-     * @see llvm::PassManager::PassManager
+     * Constructs a new whole-module pass pipeline. This type of pipeline is
+     * suitable for link-time optimization and whole-module transformations.
      */
     public static PassManager create() {
         return new PassManager(LLVMLibrary.LLVMCreatePassManager());
     }
 
     /**
-     * Constructs a new function-by-function pass pipeline over the module<br>
-     * provider. It does not take ownership of the module provider. This type of<br>
-     * pipeline is suitable for code generation and JIT compilation tasks.<br>
-     *
-     * @see llvm::FunctionPassManager::FunctionPassManager
+     * Constructs a new function-by-function pass pipeline over the module
+     * provider. It does not take ownership of the module provider. This type of
+     * pipeline is suitable for code generation and JIT compilation tasks.
      */
     public static PassManager createForModule(Module m) {
         return new PassManager(
@@ -44,8 +40,13 @@ public class PassManager {
     }
 
     @Override
-    public void finalize() {
-        dispose();
+    protected void finalize() {
+        try {
+            dispose();
+        } catch (LLVMException e) {
+            // We don't accept possible memory leaks
+            throw new AssertionError(e);
+        }
     }
 
     /**
@@ -55,13 +56,13 @@ public class PassManager {
      * free<br>
      * the module provider.
      */
-    public void dispose() {
+    public void dispose() throws LLVMException {
         LLVMLibrary.LLVMBool successB = LLVMLibrary.LLVMFinalizeFunctionPassManager(manager);
         boolean success = Utils.llvmBoolToJavaBool(successB);
         LLVMLibrary.LLVMDisposePassManager(manager);
         manager = null;
         if (success) {
-            throw new RuntimeException(
+            throw new LLVMException(
                     "error in LLVMFinalizeFunctionPassManager");
         }
     }
@@ -70,48 +71,43 @@ public class PassManager {
     // public static native int LLVMRunPassManager(LLVMPassManagerRef pm, LLVMModuleRef m);
 
     /**
-     * Initializes all of the function passes scheduled in the function pass<br>
-     * manager. Returns 1 if any of the passes modified the module, 0 otherwise.<br>
-     *
-     * @see llvm::FunctionPassManager::doInitialization
+     * Initializes all of the function passes scheduled in the function pass
+     * manager. Returns 1 if any of the passes modified the module, 0 otherwise.
      */
-    public void initialize() {
+    public void initialize() throws LLVMException {
         LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMInitializeFunctionPassManager(manager);
         boolean err = Utils.llvmBoolToJavaBool(errB);
         if (err) {
-            throw new RuntimeException(
+            throw new LLVMException(
                     "error in LLVMInitializeFunctionPassManager");
         }
     }
 
     /**
-     * Initializes, executes on the provided module, and finalizes all of the<br>
-     * passes scheduled in the pass manager. Returns 1 if any of the passes<br>
-     * modified the module, 0 otherwise.<br>
+     * Initializes, executes on the provided module, and finalizes all of the
+     * passes scheduled in the pass manager.
      *
-     * @see llvm::PassManager::run(Module&)
+     * @param m module to run on
      */
-    public void runForModule(Module m) {
+    public void runForModule(Module m) throws LLVMException {
         LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMRunPassManager(manager, m.getModule());
         boolean err = Utils.llvmBoolToJavaBool(errB);
         if (err) {
-            throw new RuntimeException("error in LLVMRunPassManager");
+            throw new LLVMException("error in LLVMRunPassManager");
         }
     }
 
     /**
      * Executes all of the function passes scheduled in the function pass
-     * manager<br>
-     * on the provided function. Returns 1 if any of the passes modified the<br>
-     * function, false otherwise.<br>
+     * manager on the provided function.
      *
-     * @see llvm::FunctionPassManager::run(Function&)
+     * @param f function to run on
      */
-    public void runForFunction(Value f) {
+    public void runForFunction(Function f) throws LLVMException {
         LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMRunFunctionPassManager(manager, f.value());
         boolean err = Utils.llvmBoolToJavaBool(errB);
         if (err) {
-            throw new RuntimeException("error in LLVMRunFunctionPassManager");
+            throw new LLVMException("error in LLVMRunFunctionPassManager");
         }
     }
 

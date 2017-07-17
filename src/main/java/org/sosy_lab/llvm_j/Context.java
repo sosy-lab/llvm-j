@@ -18,23 +18,24 @@ public class Context {
     }
 
     /**
-     * Create a new context.<br>
-     * Every call to this function should be paired with a call to<br>
-     * LLVMContextDispose() or the context will leak memnory.<br>
+     * Creates a new context.<br>
+     * Every call to this function should be paired with a call to
+     * {@link #dispose()}
+     * or the context will leak memory.
      */
     public static Context create() {
         return new Context(LLVMLibrary.LLVMContextCreate());
     }
 
     /**
-     * Obtain the global context instance.
+     * Returns the global context instance.
      */
     public static Context getGlobalContext() {
         return new Context(LLVMLibrary.LLVMGetGlobalContext());
     }
 
     /**
-     * Obtain the context to which this module is associated.<br>
+     * Returns the context with which a given module is associated.
      *
      * @see Module::getContext()
      */
@@ -43,14 +44,14 @@ public class Context {
     }
 
     @Override
-    public void finalize() {
+    protected void finalize() {
         dispose();
     }
 
     /**
-     * Destroy a context instance.<br>
-     * This should be called for every call to LLVMContextCreate() or memory<br>
-     * will be leaked.
+     * Destroys this context instance.<br>
+     * This should be called whenever a {@link Context} instance is not needed anymore,
+     * or memory will be leaked.
      */
     public void dispose() {
         if (context != null) {

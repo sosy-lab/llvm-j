@@ -4,10 +4,16 @@ import com.sun.jna.Pointer;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /**
- * Util methods for the llvm parser
+ * Util methods for the llvm parser.
  */
-public class Utils {
+public final class Utils {
 
+    private Utils() { }
+
+    /**
+     * Converts the given {@link LLVMLibrary.LLVMBool LLVMBool} value to a
+     * Java boolean.
+     */
     public static boolean llvmBoolToJavaBool(final LLVMLibrary.LLVMBool pBool) {
         // LLVMBool is actually an int.
         // This is a wrong mapping done by JNA, so we have to convert the PointerType

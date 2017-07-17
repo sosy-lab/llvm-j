@@ -60,9 +60,7 @@ public class TypeRef {
     }
 
     /**
-     * Obtain the enumerated type of a Type instance.<br>
-     *
-     * @see llvm::Type:getTypeID()
+     * Returns the enumerated type of this type instance.
      */
     public TypeKind getTypeKind() {
         final int typeInt = LLVMLibrary.LLVMGetTypeKind(type);
@@ -111,9 +109,7 @@ public class TypeRef {
     }
 
     /**
-     * Obtain the context to which this type instance is associated.<br>
-     *
-     * @see llvm::Type::getContext()
+     * Returns the context with which this type instance is associated.
      */
     public Context getTypeContext() {
         return new Context(LLVMLibrary.LLVMGetTypeContext(type));
@@ -124,7 +120,7 @@ public class TypeRef {
     }
 
     /**
-     * Returns whether a function type is variadic.
+     * Returns whether this is a variadic function type.
      */
     public boolean isFunctionVarArg() {
         LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsFunctionVarArg(type);
@@ -132,26 +128,24 @@ public class TypeRef {
     }
 
     /**
-     * Obtain the Type this function Type returns.
+     * Returns the type this function type returns.
+     * Only works if this is a function type.
      */
     public TypeRef getReturnType() {
         return new TypeRef(LLVMLibrary.LLVMGetReturnType(type));
     }
 
     /**
-     * Obtain the number of parameters this function accepts.
+     * Returns the number of parameters this function type accepts.
+     * Only works if this is a function type.
      */
     public int countParamTypes() {
         return LLVMLibrary.LLVMCountParamTypes(type);
     }
 
     /**
-     * Obtain the types of a function's parameters.<br>
-     * The Dest parameter should point to a pre-allocated array of<br>
-     * LLVMTypeRef at least LLVMCountParamTypes() large. On return, the<br>
-     * first LLVMCountParamTypes() entries in the array will be populated<br>
-     * with LLVMTypeRef instances.<br>
-     *
+     * Returns the types of a function's parameters.
+     * Only works if this is a function type.
      */
     public List<TypeRef> getParamTypes() {
         int paramCount = countParamTypes();
@@ -175,22 +169,16 @@ public class TypeRef {
     }
 
     /**
-     * Get the number of elements defined inside the structure.<br>
-     *
-     * @see llvm::StructType::getNumElements()
+     * Get the number of elements defined inside this structure type.
+     * Only works if this is a structure type.
      */
     public int countStructElementTypes() {
         return LLVMLibrary.LLVMCountStructElementTypes(type);
     }
 
     /**
-     * Get the elements within a structure.<br>
-     * The function is passed the address of a pre-allocated array of<br>
-     * LLVMTypeRef at least LLVMCountStructElementTypes() long. After<br>
-     * invocation, this array will be populated with the structure's<br>
-     * elements. The objects in the destination array will have a lifetime<br>
-     * of the structure type itself, which is the lifetime of the context it<br>
-     * is contained in.
+     * Get the elements within this structure.
+     * Only works if this is a structure type.
      */
     public List<TypeRef> getStructElementTypes() {
         int memberCount = countParamTypes();
@@ -219,19 +207,18 @@ public class TypeRef {
         return name != null;
     }
 
-    public String getStructName() {
+    public String getStructName() throws LLVMException {
         if (isStructNamed()) {
             return LLVMLibrary.LLVMGetStructName(type);
         } else {
-            throw new IllegalStateException("Type is not named struct");
+            throw new LLVMException("Type is not named struct");
         }
     }
 
 
     /**
-     * Determine whether a structure is packed.<br>
-     *
-     * @see llvm::StructType::isPacked()
+     * Determines whether this structure is packed.
+     * Only works if this is a structure type.
      */
     public boolean isPackedStruct() {
         LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsPackedStruct(type);
@@ -239,9 +226,8 @@ public class TypeRef {
     }
 
     /**
-     * Determine whether a structure is opaque.<br>
-     *
-     * @see llvm::StructType::isOpaque()<br>
+     * Determines whether this structure is opaque.
+     * Only works if this is a structure type.
      */
     public boolean isOpaqueStruct() {
         LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsOpaqueStruct(type);
@@ -249,40 +235,32 @@ public class TypeRef {
     }
 
     /**
-     * Obtain the type of elements within a sequential type.<br>
-     * This works on array, vector, and pointer types.<br>
-     *
-     * @see llvm::SequentialType::getElementType()
+     * Returns the type of elements within this sequential type.
+     * This only works on array, vector, and pointer types.
      */
     public TypeRef getElementType() {
         return new TypeRef(LLVMLibrary.LLVMGetElementType(type));
     }
 
     /**
-     * Obtain the length of an array type.<br>
-     * This only works on types that represent arrays.<br>
-     *
-     * @see llvm::ArrayType::getNumElements()
+     * Returns the length of this array type.
+     * This only works on array types.
      */
     public int getArrayLength() {
         return LLVMLibrary.LLVMGetArrayLength(type);
     }
 
     /**
-     * Obtain the address space of a pointer type.<br>
-     * This only works on types that represent pointers.<br>
-     *
-     * @see llvm::PointerType::getAddressSpace()
+     * Returns the address space of this pointer type.
+     * This only works on pointer types.
      */
     public int getPointerAddressSpace() {
         return LLVMLibrary.LLVMGetPointerAddressSpace(type);
     }
 
     /**
-     * Obtain the number of elements in a vector type.<br>
-     * This only works on types that represent vectors.<br>
-     *
-     * @see llvm::VectorType::getNumElements()
+     * Returns the number of elements in this vector type.
+     * This only works on vector types.
      */
     public int getVectorSize() {
         return LLVMLibrary.LLVMGetVectorSize(type);

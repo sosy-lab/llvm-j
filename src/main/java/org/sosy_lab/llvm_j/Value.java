@@ -80,6 +80,7 @@ public class Value {
         CatchSwitch(65);
 
         private final int value;
+
         OpCode(int value) {
             this.value = value;
         }
@@ -99,6 +100,7 @@ public class Value {
         X86FastcallCallConv(65);
 
         private final int value;
+
         CallConv(int value) {
             this.value = value;
         }
@@ -109,28 +111,49 @@ public class Value {
     }
 
     public enum IntPredicate {
-        /** < equal */
+        /**
+         * < equal
+         */
         IntEQ(32),
-        /** < not equal */
+        /**
+         * < not equal
+         */
         IntNE(33),
-        /** < unsigned greater than */
+        /**
+         * < unsigned greater than
+         */
         IntUGT(34),
-        /** < unsigned greater or equal */
+        /**
+         * < unsigned greater or equal
+         */
         IntUGE(35),
-        /** < unsigned less than */
+        /**
+         * < unsigned less than
+         */
         IntULT(36),
-        /** < unsigned less or equal */
+        /**
+         * < unsigned less or equal
+         */
         IntULE(37),
-        /** < signed greater than */
+        /**
+         * < signed greater than
+         */
         IntSGT(38),
-        /** < signed greater or equal */
+        /**
+         * < signed greater or equal
+         */
         IntSGE(39),
-        /** < signed less than */
+        /**
+         * < signed less than
+         */
         IntSLT(40),
-        /** < signed less or equal */
+        /**
+         * < signed less or equal
+         */
         IntSLE(41);
 
         private final int value;
+
         IntPredicate(int value) {
             this.value = value;
         }
@@ -141,50 +164,77 @@ public class Value {
     }
 
     public enum Linkage {
-        /** < Externally visible function */
+        /**
+         * < Externally visible function
+         */
         ExternalLinkage(0),
         AvailableExternallyLinkage(1),
-        /** < Keep one copy of function when linking (inline) */
+        /**
+         * < Keep one copy of function when linking (inline)
+         */
         LinkOnceAnyLinkage(2),
         /**
          * < Same, but only replaced by something<br>
          * equivalent.
          */
         LinkOnceODRLinkage(3),
-        /** < Obsolete */
+        /**
+         * < Obsolete
+         */
         LinkOnceODRAutoHideLinkage(4),
-        /** < Keep one copy of function when linking (weak) */
+        /**
+         * < Keep one copy of function when linking (weak)
+         */
         WeakAnyLinkage(5),
         /**
          * < Same, but only replaced by something<br>
          * equivalent.
          */
         WeakODRLinkage(6),
-        /** < Special purpose, only applies to global arrays */
+        /**
+         * < Special purpose, only applies to global arrays
+         */
         AppendingLinkage(7),
         /**
          * < Rename collisions when linking (static<br>
          * functions)
          */
         InternalLinkage(8),
-        /** < Like Internal, but omit from symbol table */
+        /**
+         * < Like Internal, but omit from symbol table
+         */
         PrivateLinkage(9),
-        /** < Obsolete */
+        /**
+         * < Obsolete
+         */
         DLLImportLinkage(10),
-        /** < Obsolete */
+        /**
+         * < Obsolete
+         */
         DLLExportLinkage(11),
-        /** < ExternalWeak linkage description */
+        /**
+         * < ExternalWeak linkage description
+         */
         ExternalWeakLinkage(12),
-        /** < Obsolete */
+        /**
+         * < Obsolete
+         */
         GhostLinkage(13),
-        /** < Tentative definitions */
+        /**
+         * < Tentative definitions
+         */
         CommonLinkage(14),
-        /** < Like Private, but linker removes. */
+        /**
+         * < Like Private, but linker removes.
+         */
         LinkerPrivateLinkage(15),
-        /** < Like LinkerPrivate, but is weak. */
+        /**
+         * < Like LinkerPrivate, but is weak.
+         */
         LinkerPrivateWeakLinkage(16);
 
         private final int value;
+
         Linkage(int value) {
             this.value = value;
         }
@@ -195,14 +245,21 @@ public class Value {
     }
 
     public enum Visibility {
-        /** < The GV is visible */
+        /**
+         * < The GV is visible
+         */
         Default(0),
-        /** < The GV is hidden */
+        /**
+         * < The GV is hidden
+         */
         Hidden(1),
-        /** < The GV is protected */
+        /**
+         * < The GV is protected
+         */
         Protected(2);
 
         private final int value;
+
         Visibility(int value) {
             this.value = value;
         }
@@ -211,6 +268,45 @@ public class Value {
             return value;
         }
     }
+
+    public enum Attribute {
+        ZExtAttribute(1),
+        SExtAttribute(1 << 1),
+        NoReturnAttribute(1 << 2),
+        InRegAttribute(1 << 3),
+        StructRetAttribute(1 << 4),
+        NoUnwindAttribute(1 << 5),
+        NoAliasAttribute(1 << 6),
+        ByValAttribute(1 << 7),
+        NestAttribute(1 << 8),
+        ReadNoneAttribute(1 << 9),
+        ReadOnlyAttribute(1 << 10),
+        NoInlineAttribute(1 << 11),
+        AlwaysInlineAttribute(1 << 12),
+        OptimizeForSizeAttribute(1 << 13),
+        StackProtectAttribute(1 << 14),
+        StackProtectReqAttribute(1 << 15),
+        Alignment(1 << 16),
+        NoCaptureAttribute(1 << 21),
+        NoRedZoneAttribute(1 << 22),
+        NoImplicitFloatAttribute(1 << 23),
+        NakedAttribute(1 << 24),
+        InlineHintAttribute(1 << 25),
+        StackAlignment(7 << 26),
+        ReturnsTwice(1 << 29),
+        UWTable(1 << 30),
+        NonLazyBind(1 << 31);
+
+        private final int value;
+
+        Attribute(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    };
 
     private LLVMLibrary.LLVMValueRef value;
 
@@ -242,9 +338,7 @@ public class Value {
     }
 
     /**
-     * Obtain the type of a value.<br>
-     *
-     * @see llvm::Value::getType()
+     * Return the type of this value.
      */
     public TypeRef typeOf() {
         return new TypeRef(LLVMLibrary.LLVMTypeOf(value));
@@ -259,7 +353,7 @@ public class Value {
     }
 
     /**
-     * Cast this value into a Function
+     * Cast this value to a {@link Function}.
      */
     public Function asFunction() {
         assert isFunction();
@@ -267,18 +361,14 @@ public class Value {
     }
 
     /**
-     * Obtain the string name of a value.<br>
-     *
-     * @see llvm::Value::getName()
+     * Return the string name of this value.
      */
     public String getValueName() {
         return LLVMLibrary.LLVMGetValueName(value);
     }
 
     /**
-     * Dump a representation of a value to stderr.<br>
-     *
-     * @see llvm::Value::dump()
+     * Dump a representation of this value to stderr.
      */
     public void dumpValue() {
         LLVMLibrary.LLVMDumpValue(value);
@@ -286,8 +376,8 @@ public class Value {
 
     @Override
     public String toString() {
-	  Pointer ret = LLVMLibrary.LLVMPrintValueToString(value);
-      return ret.getString(Native.getNativeSize(String.class));
+        Pointer ret = LLVMLibrary.LLVMPrintValueToString(value);
+        return ret.getString(Native.getNativeSize(String.class));
     }
 
     /**
@@ -508,7 +598,7 @@ public class Value {
         }
     }
 
-    //	public boolean isEHSelectorInst() { return LLVMIsAEHSelectorInst(value) != null; }
+    // public boolean isEHSelectorInst() { return LLVMIsAEHSelectorInst(value) != null; }
     public boolean isMemIntrinsic() {
         try {
             return LLVMLibrary.LLVMIsAMemIntrinsic(value) != null;
@@ -695,7 +785,7 @@ public class Value {
         }
     }
 
-    //	public boolean isUnwindInst() { return LLVMIsAUnwindInst(value) != null; }
+    // public boolean isUnwindInst() { return LLVMIsAUnwindInst(value) != null; }
     public boolean isUnaryInstruction() {
         try {
             return LLVMLibrary.LLVMIsAUnaryInstruction(value) != null;
@@ -853,9 +943,7 @@ public class Value {
     }
 
     /**
-     * Determine whether a value instance is null.<br>
-     *
-     * @see llvm::Constant::isNullValue()
+     * Determine whether this value instance is null.
      */
     public boolean isNull() {
         LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsNull(value);
@@ -863,7 +951,7 @@ public class Value {
     }
 
     /**
-     * Determine whether a value instance is undefined.
+     * Determine whether this value instance is undefined.
      */
     public boolean isUndef() {
         LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsUndef(value);
@@ -871,48 +959,38 @@ public class Value {
     }
 
     /**
-     * Obtain the user value for a user.<br>
-     * The returned value corresponds to a llvm::User type.<br>
-     *
-     * @see llvm::Use::getUser()
+     * Returns the user value for a user.
+     * The returned value corresponds to a llvm::User type.
      */
-    // TODO: move
     public static Value getUser(LLVMLibrary.LLVMUseRef u) {
         return new Value(LLVMLibrary.LLVMGetUser(u));
     }
 
     /**
-     * Obtain the value this use corresponds to.<br>
-     *
-     * @see llvm::Use::get()
+     * Returns the value this use corresponds to.
      */
-    // TODO: move
     public static Value getUsedValue(LLVMLibrary.LLVMUseRef u) {
         return new Value(LLVMLibrary.LLVMGetUsedValue(u));
     }
 
     /**
-     * Obtain an operand at a specific index in a llvm::User value.<br>
+     * Returns the operand at the specified index.
      *
-     * @see llvm::User::getOperand()
+     * @param index index of the operand to return
      */
     public Value getOperand(int index) {
         return new Value(LLVMLibrary.LLVMGetOperand(value, index));
     }
 
     /**
-     * Set an operand at a specific index in a llvm::User value.<br>
-     *
-     * @see llvm::User::setOperand()
+     * Set an operand at a specific index in this value.
      */
     public void setOperand(int index, Value val) {
         LLVMLibrary.LLVMSetOperand(value, index, val.value());
     }
 
     /**
-     * Obtain the number of operands in a llvm::User value.<br>
-     *
-     * @see llvm::User::getNumOperands()
+     * Returns the number of operands in this value.
      */
     public int getNumOperands() {
         return LLVMLibrary.LLVMGetNumOperands(value);
@@ -943,6 +1021,9 @@ public class Value {
                 count, packed ? 1 : 0));
     }*/
 
+    /**
+     * Returns the op code of this value.
+     */
     public OpCode getOpCode() {
         int opcode = LLVMLibrary.LLVMGetInstructionOpcode(value);
 
@@ -959,7 +1040,7 @@ public class Value {
     }
 
     public IntPredicate getICmpPredicate() {
-	    int code = LLVMLibrary.LLVMGetICmpPredicate(value);
+        int code = LLVMLibrary.LLVMGetICmpPredicate(value);
 
         for (IntPredicate predicate : IntPredicate.values()) {
             if (code == predicate.getValue()) {
@@ -1082,28 +1163,24 @@ public class Value {
     }
 
     /**
-     * Remove a function from its containing module and deletes it.<br>
-     *
-     * @see llvm::Function::eraseFromParent()
+     * Removes this function from its containing module and deletes it.
+     * This value must be a function for this method to work.
      */
     public void deleteFunction() {
         LLVMLibrary.LLVMDeleteFunction(value);
     }
 
     /**
-     * Obtain the ID number from a function instance.<br>
-     *
-     * @see llvm::Function::getIntrinsicID()
+     * Returns the ID number of this function.
+     * This value must be a functino for this method to work
      */
     public void getIntrinsicID() {
         LLVMLibrary.LLVMGetIntrinsicID(value);
     }
 
     /**
-     * Obtain the calling function of a function.<br>
-     * The returned value corresponds to the LLVMCallConv enumeration.<br>
-     *
-     * @see llvm::Function::getCallingConv()
+     * Returns the calling function of this function.
+     * The returned value corresponds to the LLVMCallConv enumeration.
      */
     public CallConv getFunctionCallConv() {
         int code = LLVMLibrary.LLVMGetFunctionCallConv(value);
@@ -1117,37 +1194,44 @@ public class Value {
     }
 
     /**
-     * Obtain the name of the garbage collector to use during code<br>
-     * generation.<br>
-     *
-     * @see llvm::Function::getGC()
+     * Returns the name of the garbage collector to use during code generation.
      */
     public String getGC() {
         return LLVMLibrary.LLVMGetGC(value);
     }
 
     /**
-     * Obtain an attribute from a function.<br>
+     * Returns the attribute of this function.
+     * Only works if this value is a function.
      *
-     * @see llvm::Function::getAttributes()
-    public IntValuedEnum<LLVMAttribute> getFunctionAttr() {
-        return LLVMGetFunctionAttr(value);
-    }
+     * @see #isFunction()
      */
+    public Attribute getFunctionAttr() {
+        int code = LLVMLibrary.LLVMGetFunctionAttr(value);
+        for (Attribute a : Attribute.values()) {
+            if (a.getValue() == code) {
+                return a;
+            }
+        }
+        throw new AssertionError("Unknown attribute code " + code);
+    }
+
 
     /**
-     * Obtain the number of parameters in a function.<br>
+     * Returns the number of parameters in this function.
+     * Only works if this value is a function.
      *
-     * @see llvm::Function::arg_size()
+     * @see #isFunction()
      */
     public int countParams() {
         return LLVMLibrary.LLVMCountParams(value);
     }
 
     /**
-     * Obtain the parameters in a function.
+     * Returns the parameters of this function.
+     * Only works if this value is a function.
      *
-     * @see llvm::Function::arg_begin()
+     * @see #isFunction()
      */
     public List<Value> getParams() {
         int paramCount = countParams();
@@ -1171,20 +1255,19 @@ public class Value {
     }
 
     /**
-     * Obtain the parameter at the specified index.<br>
-     * Parameters are indexed from 0.<br>
+     * Returns the parameter of this function at the specified index.
+     * Parameters are indexed from 0.
+     * Only works if this value is a function.
      *
-     * @see llvm::Function::arg_begin()
+     * @see #isFunction()
      */
     public Value getParam(int index) {
         return new Value(LLVMLibrary.LLVMGetParam(value, index));
     }
 
     /**
-     * Obtain the function to which this argument belongs.<br>
-     * Unlike other functions in this group, this one takes a LLVMValueRef<br>
-     * that corresponds to a llvm::Attribute.<br>
-     * The returned LLVMValueRef is the llvm::Function to which this<br>
+     * Returns the function to which this argument belongs.<br>
+     * The returned LLVMValueRef is the llvm::Function to which this
      * argument belongs.
      */
     public Value getParamParent() {
@@ -1192,9 +1275,10 @@ public class Value {
     }
 
     /**
-     * Obtain the first parameter to a function.<br>
+     * Returns the first parameter to this function.
+     * Only works if this value is a function.
      *
-     * @see llvm::Function::arg_begin()
+     * @see #isFunction()
      */
     public Value getFirstParam() {
         try {
@@ -1205,9 +1289,10 @@ public class Value {
     }
 
     /**
-     * Obtain the last parameter to a function.<br>
+     * Returns the last parameter to this function.
+     * Only works if this value is a function.
      *
-     * @see llvm::Function::arg_end()
+     * @see #isFunction()
      */
     public Value getLastParam() {
         try {
@@ -1218,18 +1303,16 @@ public class Value {
     }
 
     /**
-     * Obtain the next parameter to a function.<br>
-     * This takes a LLVMValueRef obtained from LLVMGetFirstParam() (which is<br>
-     * actually a wrapped iterator) and obtains the next parameter from the<br>
-     * underlying iterator.
+     * Returns the next parameter to the function this parameter belongs to.<br>
+     * Assumes that this value is a parameter to a function.
      */
     public Value getNextParam() {
         return new Value(LLVMLibrary.LLVMGetNextParam(value));
     }
 
     /**
-     * Obtain the previous parameter to a function.<br>
-     * This is the opposite of LLVMGetNextParam().
+     * Returns the previous parameter to the function this parameter belongs to.<br>
+     * Assumes that this value is a parameter to a function.
      */
     public Value getPreviousParam() {
         return new Value(LLVMLibrary.LLVMGetPreviousParam(value));
@@ -1237,31 +1320,34 @@ public class Value {
 
     /**
      * Get an attribute from a function argument.
-    public IntValuedEnum<LLVMAttribute> getAttribute() {
-        return LLVMGetAttribute(value);
-    }
      */
+     public Attribute getAttribute() {
+         int code = LLVMLibrary.LLVMGetAttribute(value);
+         for (Attribute a : Attribute.values()) {
+             if (a.getValue() == code) {
+                 return a;
+             }
+         }
+         throw new AssertionError("Unhandled attribute code " + code);
+     }
+
 
     /**
-     * Obtain the zero extended value for an integer constant value.<br>
-     *
-     * @see llvm::ConstantInt::getZExtValue()
+     * Returns the zero extended value for an integer constant value.
      */
     public long constIntGetZExtValue() {
         return LLVMLibrary.LLVMConstIntGetZExtValue(value);
     }
 
     /**
-     * Obtain the sign extended value for an integer constant value.<br>
-     *
-     * @see llvm::ConstantInt::getSExtValue()
+     * Returns the sign extended value for an integer constant value.
      */
     public long constIntGetSExtValue() {
         return LLVMLibrary.LLVMConstIntGetSExtValue(value);
     }
 
     /**
-     * Determine whether a LLVMValueRef is itself a basic block.
+     * Returns whether this value is a basic block.
      */
     public boolean isBasicBlock() {
         LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMValueIsBasicBlock(value);
@@ -1269,28 +1355,29 @@ public class Value {
     }
 
     /**
-     * Convert a LLVMValueRef to a LLVMBasicBlockRef instance.
+     * Converts this value to a basic block.
+     * Only works if this value is a basic block.
+     * @see #isBasicBlock()
      */
     public BasicBlock asBasicBlock() {
         return new BasicBlock(LLVMLibrary.LLVMValueAsBasicBlock(value));
     }
 
     /**
-     * Obtain the number of basic blocks in a function.<br>
+     * Returns the number of basic blocks in this function.
+     * Only works if this value is a function.
      *
-     * @param Fn
-     *            Function value to operate on.
+     * @see #isFunction()
      */
     public int countBasicBlocks() {
         return LLVMLibrary.LLVMCountBasicBlocks(value);
     }
 
     /**
-     * Obtain all of the basic blocks in a function.<br>
-     * This operates on a function value. The BasicBlocks parameter is a<br>
-     * pointer to a pre-allocated array of LLVMBasicBlockRef of at least<br>
-     * LLVMCountBasicBlocks() in length. This array is populated with<br>
-     * LLVMBasicBlockRef instances.
+     * Returns all of the basic blocks in this function.<br>
+     * Only works if this value is a function.
+     *
+     * @see #isFunction()
      */
     public List<BasicBlock> getBasicBlocks() {
         int blockCount = countBasicBlocks();
@@ -1299,13 +1386,15 @@ public class Value {
         if (blockCount > 0) {
             int blockRefOffset = Native.getNativeSize(LLVMLibrary.LLVMBasicBlockRef.class);
             Memory arrayPointer = new Memory(blockCount * blockRefOffset);
-            LLVMLibrary.LLVMBasicBlockRef blockArray = new LLVMLibrary.LLVMBasicBlockRef(arrayPointer);
+            LLVMLibrary.LLVMBasicBlockRef blockArray =
+                    new LLVMLibrary.LLVMBasicBlockRef(arrayPointer);
             LLVMLibrary.LLVMGetBasicBlocks(value, blockArray);
 
             Pointer[] blockRefs = new Pointer[blockCount];
             arrayPointer.read(blockRefOffset, blockRefs, 0, blockCount);
             for (int i = 0; i < blockCount; i++) {
-                LLVMLibrary.LLVMBasicBlockRef blockRef = new LLVMLibrary.LLVMBasicBlockRef(blockRefs[i]);
+                LLVMLibrary.LLVMBasicBlockRef blockRef =
+                        new LLVMLibrary.LLVMBasicBlockRef(blockRefs[i]);
                 blocks.add(new BasicBlock(blockRef));
             }
         }
@@ -1314,11 +1403,13 @@ public class Value {
     }
 
     /**
-     * Obtain the first basic block in a function.<br>
-     * The returned basic block can be used as an iterator. You will likely<br>
-     * eventually call into LLVMGetNextBasicBlock() with it.<br>
+     * Returns the first basic block in this function.
+     * The returned basic block can be used as an iterator
+     * using {@link BasicBlock#getNextBasicBlock()}.<br />
+     * Only works if this value is a function.
      *
-     * @see llvm::Function::begin()
+     * @see #isFunction()
+     * @see BasicBlock#getNextBasicBlock()
      */
     public BasicBlock getFirstBasicBlock() {
         try {
@@ -1329,9 +1420,10 @@ public class Value {
     }
 
     /**
-     * Obtain the last basic block in a function.<br>
+     * Returns the last basic block in this function.
+     * Only works if this value is a function.
      *
-     * @see llvm::Function::end()
+     * @see #isFunction()
      */
     public BasicBlock getLastBasicBlock() {
         try {
@@ -1342,10 +1434,11 @@ public class Value {
     }
 
     /**
-     * Obtain the basic block that corresponds to the entry point of a<br>
-     * function.<br>
+     * Returns the basic block that corresponds to the entry point of this<br>
+     * function.
+     * Only works if this value is a function.
      *
-     * @see llvm::Function::getEntryBlock()
+     * @see #isFunction()
      */
     public BasicBlock getEntryBasicBlock() {
         try {
@@ -1358,52 +1451,51 @@ public class Value {
     // Instruction
 
     /**
-     * Obtain the basic block to which an instruction belongs.<br>
-     *
-     * @see llvm::Instruction::getParent()
+     * Returns the basic block to which this instruction belongs.<br>
+     * Only works if this value is an instruction.
+     * @see #isInstruction()
      */
     public BasicBlock getInstructionParent() {
         return new BasicBlock(LLVMLibrary.LLVMGetInstructionParent(value));
     }
 
     /**
-     * Obtain the instruction that occurs after the one specified.<br>
-     * The next instruction will be from the same basic block.<br>
-     * If this is the last instruction in a basic block, NULL will be<br>
+     * Returns the instruction that occurs after this one.<br>
+     * Only works if this value is an instruction.
+     * The next instruction will be from the same basic block.
+     * If this is the last instruction in a basic block, a null-Value will be
      * returned.
+     *
+     * @see #isInstruction()
      */
     public Value getNextInstruction() {
         return new Value(LLVMLibrary.LLVMGetNextInstruction(value));
     }
 
     /**
-     * Obtain the instruction that occured before this one.<br>
-     * If the instruction is the first instruction in a basic block, NULL<br>
+     * Returns the instruction that occurred before this one.
+     * If the instruction is the first instruction in a basic block, a null-Value
      * will be returned.
+     * Only works if this value is an instruction.
+     * @see #isInstruction()
      */
     public Value getPreviousInstruction() {
         return new Value(LLVMLibrary.LLVMGetPreviousInstruction(value));
     }
 
     /**
-     * Obtain the calling convention for a call instruction.<br>
-     * This is the opposite of LLVMSetInstructionCallConv(). Reads its<br>
-     * usage.<br>
-     *
-     * @see LLVMSetInstructionCallConv()
+     * Returns the calling convention for this call instruction.
+     * Only works if this value is a call instruction.
+     * @see #isCallInst()
      */
     public int getInstructionCallConv() {
         return LLVMLibrary.LLVMGetInstructionCallConv(value);
     }
-    public void setInstrParamAlignment(int index, int align) {
-        LLVMLibrary.LLVMSetInstrParamAlignment(value, index, align);
-    }
 
     /**
-     * Obtain whether a call instruction is a tail call.<br>
-     * This only works on llvm::CallInst instructions.<br>
-     *
-     * @see llvm::CallInst::isTailCall()
+     * Returns whether this call instruction is a tail call.<br>
+     * Only works if this value is a call instruction.
+     * @see #isCallInst()
      */
     public boolean isTailCall() {
         LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsTailCall(value);
@@ -1411,31 +1503,54 @@ public class Value {
     }
 
     /**
-     * Obtain the number of incoming basic blocks to a PHI node.
+     * Returns the number of incoming basic blocks to this PHI node.
+     * Only works if this value is a phi node.
+     * @see #isPHINode()
      */
     public int countIncoming() {
         return LLVMLibrary.LLVMCountIncoming(value);
     }
 
     /**
-     * Obtain an incoming value to a PHI node as a LLVMValueRef.
+     * Returns the incoming value to this PHI node at the specified index.
+     * Only works if this value is a phi node.
+     *
+     * @param index the index of the incoming value that should be returned
+     * @see #isPHINode()
      */
     public Value getIncomingValue(int index) {
         return new Value(LLVMLibrary.LLVMGetIncomingValue(value, index));
     }
 
     /**
-     * Obtain an incoming value to a PHI node as a LLVMBasicBlockRef.
+     * Returns the incoming value to the PHI node at the specified index as a basic block.
+     * Only works if this value is a phi node.
+     *
+     * @param index the index of the incoming basic block that should be returned
+     * @see #isPHINode()
      */
     public BasicBlock getIncomingBlock(int index) {
         return new BasicBlock(LLVMLibrary.LLVMGetIncomingBlock(value, index));
     }
 
+    /**
+     * Returns the number of successors to this termination instruction.
+     * Only works if this value is a termination instruction.
+     *
+     * @see #isTerminatorInst()
+     */
     public int getNumSuccessors() {
         assert isTerminatorInst();
-	    return LLVMLibrary.LLVMGetNumSuccessors(value);
+        return LLVMLibrary.LLVMGetNumSuccessors(value);
     }
 
+    /**
+     * Returns the successor to this termination instruction at the specified index.
+     * Only works if this value is a termination instruction.
+     *
+     * @param i index of the successor that should be returned
+     * @see #isTerminatorInst()
+     */
     public BasicBlock getSuccessor(int i) {
         assert isTerminatorInst();
         return new BasicBlock(LLVMLibrary.LLVMGetSuccessor(value, i));
