@@ -36,8 +36,6 @@ public class Context {
 
     /**
      * Returns the context with which a given module is associated.
-     *
-     * @see Module::getContext()
      */
     public static Context getModuleContext(Module m) {
         return new Context(LLVMLibrary.LLVMGetModuleContext(m.getModule()));
