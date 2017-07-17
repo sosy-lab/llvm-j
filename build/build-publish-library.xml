@@ -17,7 +17,8 @@
     </target>
 
     <target name="download-library" depends="init, -check-llvm-version-set, -check-llvm-lib-exists" unless="${library.exist}">
-        <exec executable="${lib.native}/download_lib.sh" dir="${lib.native}">
+        <mkdir dir="${lib.native}"/>
+        <exec executable="../../build/download_lib.sh" dir="${lib.native}">
             <arg value="${llvm.version}" />
         </exec>
     </target>
