@@ -7,7 +7,7 @@
     <property file="build.properties"/>
     <property environment="env"/>
 
-    <property name="ivy.configurations" value="build, runtime, format-source, checkstyle, findbugs"/>
+    <property name="ivy.configurations" value="build, runtime, test, format-source, checkstyle, findbugs"/>
     <property name="package" value="llvm_j"/>
     <property name="jar.excludes" value=""/>
     <property name="ivy.contrib.present" value="true"/> <!-- always download sources -->
@@ -38,7 +38,7 @@
 
     <path id="classpath">
         <pathelement location="${class.dir}"/>
-        <fileset dir="${ivy.lib.dir}" includes="runtime/*.jar build/annotations.jar build/auto-value.jar build/error_prone_annotations.jar build/jna.jar"/>
+        <fileset dir="${ivy.lib.dir}" includes="runtime/*.jar test/*.jar build/annotations.jar build/error_prone_annotations.jar"/>
     </path>
 
 
