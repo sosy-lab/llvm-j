@@ -5,7 +5,7 @@
 -f  // force overwrite
 -emptyStructsAsForwardDecls
 -mode Directory
--package org.llvm.binding
+-package org.sosy_lab.llvm_j.binding
 -o $(DIR)/src/main/java
 -I$(LLVM_HOME)/include/llvm-c/
 
