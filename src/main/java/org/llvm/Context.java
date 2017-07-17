@@ -21,8 +21,8 @@ public class Context {
 
     /**
      * Create a new context.<br>
-     * Every call to this function should be paired with a call to<br>w
-     * LLVMContextDispose() or the context will leak memory.<br>
+     * Every call to this function should be paired with a call to<br>
+     * LLVMContextDispose() or the context will leak memnory.<br>
      */
     public static Context create() {
         return new Context(LLVMContextCreate());

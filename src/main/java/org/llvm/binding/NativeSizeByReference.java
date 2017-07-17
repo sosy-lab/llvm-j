@@ -28,7 +28,7 @@ public class NativeSizeByReference extends ByReference {
 
     public NativeSize getValue() {
         if (NativeSize.SIZE == 4) {
-            return new NativeSize((long) this.getPointer().getInt(0L));
+            return new NativeSize(this.getPointer().getInt(0L));
         } else if (NativeSize.SIZE == 8) {
             return new NativeSize(this.getPointer().getLong(0L));
         } else {
