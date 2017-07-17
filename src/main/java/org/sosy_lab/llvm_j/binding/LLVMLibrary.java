@@ -1,4 +1,4 @@
-package org.llvm.binding;
+package org.sosy_lab.llvm_j.binding;
 import com.sun.jna.Callback;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
@@ -541,7 +541,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMPassManagerBuilderRef LLVMPassManagerBuilderCreate();
 	/**
 	 * Original signature : <code>void LLVMPassManagerBuilderDispose(LLVMPassManagerBuilderRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderDispose(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef)} and {@link #LLVMPassManagerBuilderDispose(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderDispose(LLVMLibrary.LLVMPassManagerBuilderRef)} and {@link #LLVMPassManagerBuilderDispose(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderDispose(Pointer PMB);
@@ -550,7 +550,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * See llvm::PassManagerBuilder::OptLevel.<br>
 	 * Original signature : <code>void LLVMPassManagerBuilderSetOptLevel(LLVMPassManagerBuilderRef, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetOptLevel(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef, int)} and {@link #LLVMPassManagerBuilderSetOptLevel(com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetOptLevel(LLVMLibrary.LLVMPassManagerBuilderRef, int)} and {@link #LLVMPassManagerBuilderSetOptLevel(com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderSetOptLevel(Pointer PMB, int OptLevel);
@@ -562,7 +562,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * See llvm::PassManagerBuilder::SizeLevel.<br>
 	 * Original signature : <code>void LLVMPassManagerBuilderSetSizeLevel(LLVMPassManagerBuilderRef, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetSizeLevel(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef, int)} and {@link #LLVMPassManagerBuilderSetSizeLevel(com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetSizeLevel(LLVMLibrary.LLVMPassManagerBuilderRef, int)} and {@link #LLVMPassManagerBuilderSetSizeLevel(com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderSetSizeLevel(Pointer PMB, int SizeLevel);
@@ -574,7 +574,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * See llvm::PassManagerBuilder::DisableUnitAtATime.<br>
 	 * Original signature : <code>void LLVMPassManagerBuilderSetDisableUnitAtATime(LLVMPassManagerBuilderRef, LLVMBool)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetDisableUnitAtATime(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef, org.llvm.binding.LLVMLibrary.LLVMBool)} and {@link #LLVMPassManagerBuilderSetDisableUnitAtATime(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMBool)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetDisableUnitAtATime(LLVMLibrary.LLVMPassManagerBuilderRef, LLVMLibrary.LLVMBool)} and {@link #LLVMPassManagerBuilderSetDisableUnitAtATime(com.sun.jna.Pointer, LLVMLibrary.LLVMBool)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderSetDisableUnitAtATime(Pointer PMB, LLVMLibrary.LLVMBool Value);
@@ -586,7 +586,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * See llvm::PassManagerBuilder::DisableUnrollLoops.<br>
 	 * Original signature : <code>void LLVMPassManagerBuilderSetDisableUnrollLoops(LLVMPassManagerBuilderRef, LLVMBool)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetDisableUnrollLoops(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef, org.llvm.binding.LLVMLibrary.LLVMBool)} and {@link #LLVMPassManagerBuilderSetDisableUnrollLoops(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMBool)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetDisableUnrollLoops(LLVMLibrary.LLVMPassManagerBuilderRef, LLVMLibrary.LLVMBool)} and {@link #LLVMPassManagerBuilderSetDisableUnrollLoops(com.sun.jna.Pointer, LLVMLibrary.LLVMBool)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderSetDisableUnrollLoops(Pointer PMB, LLVMLibrary.LLVMBool Value);
@@ -598,7 +598,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * See llvm::PassManagerBuilder::DisableSimplifyLibCalls<br>
 	 * Original signature : <code>void LLVMPassManagerBuilderSetDisableSimplifyLibCalls(LLVMPassManagerBuilderRef, LLVMBool)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetDisableSimplifyLibCalls(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef, org.llvm.binding.LLVMLibrary.LLVMBool)} and {@link #LLVMPassManagerBuilderSetDisableSimplifyLibCalls(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMBool)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderSetDisableSimplifyLibCalls(LLVMLibrary.LLVMPassManagerBuilderRef, LLVMLibrary.LLVMBool)} and {@link #LLVMPassManagerBuilderSetDisableSimplifyLibCalls(com.sun.jna.Pointer, LLVMLibrary.LLVMBool)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderSetDisableSimplifyLibCalls(Pointer PMB, LLVMLibrary.LLVMBool Value);
@@ -610,7 +610,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * See llvm::PassManagerBuilder::Inliner.<br>
 	 * Original signature : <code>void LLVMPassManagerBuilderUseInlinerWithThreshold(LLVMPassManagerBuilderRef, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderUseInlinerWithThreshold(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef, int)} and {@link #LLVMPassManagerBuilderUseInlinerWithThreshold(com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderUseInlinerWithThreshold(LLVMLibrary.LLVMPassManagerBuilderRef, int)} and {@link #LLVMPassManagerBuilderUseInlinerWithThreshold(com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderUseInlinerWithThreshold(Pointer PMB, int Threshold);
@@ -622,7 +622,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * See llvm::PassManagerBuilder::populateFunctionPassManager.<br>
 	 * Original signature : <code>void LLVMPassManagerBuilderPopulateFunctionPassManager(LLVMPassManagerBuilderRef, LLVMPassManagerRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderPopulateFunctionPassManager(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef, org.llvm.binding.LLVMLibrary.LLVMPassManagerRef)} and {@link #LLVMPassManagerBuilderPopulateFunctionPassManager(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMPassManagerRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderPopulateFunctionPassManager(LLVMLibrary.LLVMPassManagerBuilderRef, LLVMLibrary.LLVMPassManagerRef)} and {@link #LLVMPassManagerBuilderPopulateFunctionPassManager(com.sun.jna.Pointer, LLVMLibrary.LLVMPassManagerRef)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderPopulateFunctionPassManager(Pointer PMB, LLVMLibrary.LLVMPassManagerRef PM);
@@ -634,7 +634,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * See llvm::PassManagerBuilder::populateModulePassManager.<br>
 	 * Original signature : <code>void LLVMPassManagerBuilderPopulateModulePassManager(LLVMPassManagerBuilderRef, LLVMPassManagerRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderPopulateModulePassManager(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef, org.llvm.binding.LLVMLibrary.LLVMPassManagerRef)} and {@link #LLVMPassManagerBuilderPopulateModulePassManager(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMPassManagerRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderPopulateModulePassManager(LLVMLibrary.LLVMPassManagerBuilderRef, LLVMLibrary.LLVMPassManagerRef)} and {@link #LLVMPassManagerBuilderPopulateModulePassManager(com.sun.jna.Pointer, LLVMLibrary.LLVMPassManagerRef)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderPopulateModulePassManager(Pointer PMB, LLVMLibrary.LLVMPassManagerRef PM);
@@ -646,7 +646,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * See llvm::PassManagerBuilder::populateLTOPassManager.<br>
 	 * Original signature : <code>void LLVMPassManagerBuilderPopulateLTOPassManager(LLVMPassManagerBuilderRef, LLVMPassManagerRef, LLVMBool, LLVMBool)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderPopulateLTOPassManager(org.llvm.binding.LLVMLibrary.LLVMPassManagerBuilderRef, org.llvm.binding.LLVMLibrary.LLVMPassManagerRef, org.llvm.binding.LLVMLibrary.LLVMBool, org.llvm.binding.LLVMLibrary.LLVMBool)} and {@link #LLVMPassManagerBuilderPopulateLTOPassManager(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMPassManagerRef, org.llvm.binding.LLVMLibrary.LLVMBool, org.llvm.binding.LLVMLibrary.LLVMBool)} instead
+	 * @deprecated use the safer methods {@link #LLVMPassManagerBuilderPopulateLTOPassManager(LLVMLibrary.LLVMPassManagerBuilderRef, LLVMLibrary.LLVMPassManagerRef, LLVMLibrary.LLVMBool, LLVMLibrary.LLVMBool)} and {@link #LLVMPassManagerBuilderPopulateLTOPassManager(com.sun.jna.Pointer, LLVMLibrary.LLVMPassManagerRef, LLVMLibrary.LLVMBool, LLVMLibrary.LLVMBool)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMPassManagerBuilderPopulateLTOPassManager(Pointer PMB, LLVMLibrary.LLVMPassManagerRef PM, LLVMLibrary.LLVMBool Internalize, LLVMLibrary.LLVMBool RunInliner);
@@ -932,7 +932,7 @@ public class LLVMLibrary implements Library {
 	public static native int LLVMGetDiagInfoSeverity(LLVMLibrary.LLVMDiagnosticInfoRef DI);
 	/**
 	 * Original signature : <code>int LLVMGetMDKindIDInContext(LLVMContextRef, const char*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetMDKindIDInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, java.lang.String, int)} and {@link #LLVMGetMDKindIDInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetMDKindIDInContext(LLVMLibrary.LLVMContextRef, java.lang.String, int)} and {@link #LLVMGetMDKindIDInContext(LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMGetMDKindIDInContext(LLVMLibrary.LLVMContextRef C, Pointer Name, int SLen);
@@ -991,7 +991,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Create a string attribute.<br>
 	 * Original signature : <code>LLVMAttributeRef LLVMCreateStringAttribute(LLVMContextRef, const char*, unsigned, const char*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMCreateStringAttribute(org.llvm.binding.LLVMLibrary.LLVMContextRef, java.lang.String, int, java.lang.String, int)} and {@link #LLVMCreateStringAttribute(org.llvm.binding.LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMCreateStringAttribute(LLVMLibrary.LLVMContextRef, java.lang.String, int, java.lang.String, int)} and {@link #LLVMCreateStringAttribute(LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMAttributeRef LLVMCreateStringAttribute(LLVMLibrary.LLVMContextRef C, Pointer K, int KLength, Pointer V, int VLength);
@@ -1003,7 +1003,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Get the string attribute's kind.<br>
 	 * Original signature : <code>char* LLVMGetStringAttributeKind(LLVMAttributeRef, unsigned*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetStringAttributeKind(org.llvm.binding.LLVMLibrary.LLVMAttributeRef, java.nio.IntBuffer)} and {@link #LLVMGetStringAttributeKind(org.llvm.binding.LLVMLibrary.LLVMAttributeRef, com.sun.jna.ptr.IntByReference)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetStringAttributeKind(LLVMLibrary.LLVMAttributeRef, java.nio.IntBuffer)} and {@link #LLVMGetStringAttributeKind(LLVMLibrary.LLVMAttributeRef, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	public static native String LLVMGetStringAttributeKind(LLVMLibrary.LLVMAttributeRef A, IntByReference Length);
@@ -1015,7 +1015,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Get the string attribute's value.<br>
 	 * Original signature : <code>char* LLVMGetStringAttributeValue(LLVMAttributeRef, unsigned*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetStringAttributeValue(org.llvm.binding.LLVMLibrary.LLVMAttributeRef, java.nio.IntBuffer)} and {@link #LLVMGetStringAttributeValue(org.llvm.binding.LLVMLibrary.LLVMAttributeRef, com.sun.jna.ptr.IntByReference)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetStringAttributeValue(LLVMLibrary.LLVMAttributeRef, java.nio.IntBuffer)} and {@link #LLVMGetStringAttributeValue(LLVMLibrary.LLVMAttributeRef, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	public static native String LLVMGetStringAttributeValue(LLVMLibrary.LLVMAttributeRef A, IntByReference Length);
@@ -1056,7 +1056,7 @@ public class LLVMLibrary implements Library {
 	 * Every invocation should be paired with LLVMDisposeModule() or memory<br>
 	 * will be leaked.<br>
 	 * Original signature : <code>LLVMModuleRef LLVMModuleCreateWithNameInContext(const char*, LLVMContextRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMModuleCreateWithNameInContext(java.lang.String, org.llvm.binding.LLVMLibrary.LLVMContextRef)} and {@link #LLVMModuleCreateWithNameInContext(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMContextRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMModuleCreateWithNameInContext(java.lang.String, LLVMLibrary.LLVMContextRef)} and {@link #LLVMModuleCreateWithNameInContext(com.sun.jna.Pointer, LLVMLibrary.LLVMContextRef)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMModuleRef LLVMModuleCreateWithNameInContext(Pointer ModuleID, LLVMLibrary.LLVMContextRef C);
@@ -1095,7 +1095,7 @@ public class LLVMLibrary implements Library {
 	 * @param Len Length of Ident<br>
 	 * @see Module::setModuleIdentifier()<br>
 	 * Original signature : <code>void LLVMSetModuleIdentifier(LLVMModuleRef, const char*, size_t)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMSetModuleIdentifier(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String, com.ochafik.lang.jnaerator.runtime.NativeSize)} and {@link #LLVMSetModuleIdentifier(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize)} instead
+	 * @deprecated use the safer methods {@link #LLVMSetModuleIdentifier(LLVMLibrary.LLVMModuleRef, java.lang.String, com.ochafik.lang.jnaerator.runtime.NativeSize)} and {@link #LLVMSetModuleIdentifier(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMSetModuleIdentifier(LLVMLibrary.LLVMModuleRef M, Pointer Ident, NativeSize Len);
@@ -1123,7 +1123,7 @@ public class LLVMLibrary implements Library {
 	 * Set the data layout for a module.<br>
 	 * @see Module::setDataLayout()<br>
 	 * Original signature : <code>void LLVMSetDataLayout(LLVMModuleRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMSetDataLayout(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMSetDataLayout(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMSetDataLayout(LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMSetDataLayout(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMSetDataLayout(LLVMLibrary.LLVMModuleRef M, Pointer DataLayoutStr);
@@ -1143,7 +1143,7 @@ public class LLVMLibrary implements Library {
 	 * Set the target triple for a module.<br>
 	 * @see Module::setTargetTriple()<br>
 	 * Original signature : <code>void LLVMSetTarget(LLVMModuleRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMSetTarget(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMSetTarget(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMSetTarget(LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMSetTarget(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMSetTarget(LLVMLibrary.LLVMModuleRef M, Pointer Triple);
@@ -1164,7 +1164,7 @@ public class LLVMLibrary implements Library {
 	 * disposed with LLVMDisposeMessage. Returns 0 on success, 1 otherwise.<br>
 	 * @see Module::print()<br>
 	 * Original signature : <code>LLVMBool LLVMPrintModuleToFile(LLVMModuleRef, const char*, char**)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPrintModuleToFile(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String, com.sun.jna.ptr.PointerByReference)} and {@link #LLVMPrintModuleToFile(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #LLVMPrintModuleToFile(LLVMLibrary.LLVMModuleRef, java.lang.String, com.sun.jna.ptr.PointerByReference)} and {@link #LLVMPrintModuleToFile(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBool LLVMPrintModuleToFile(LLVMLibrary.LLVMModuleRef M, Pointer Filename, PointerByReference ErrorMessage);
@@ -1186,7 +1186,7 @@ public class LLVMLibrary implements Library {
 	 * Set inline assembly for a module.<br>
 	 * @see Module::setModuleInlineAsm()<br>
 	 * Original signature : <code>void LLVMSetModuleInlineAsm(LLVMModuleRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMSetModuleInlineAsm(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMSetModuleInlineAsm(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMSetModuleInlineAsm(LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMSetModuleInlineAsm(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMSetModuleInlineAsm(LLVMLibrary.LLVMModuleRef M, Pointer Asm);
@@ -1205,7 +1205,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Obtain a Type from a module by its registered name.<br>
 	 * Original signature : <code>LLVMTypeRef LLVMGetTypeByName(LLVMModuleRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetTypeByName(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMGetTypeByName(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetTypeByName(LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMGetTypeByName(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMTypeRef LLVMGetTypeByName(LLVMLibrary.LLVMModuleRef M, Pointer Name);
@@ -1218,7 +1218,7 @@ public class LLVMLibrary implements Library {
 	 * Obtain the number of operands for named metadata in a module.<br>
 	 * @see llvm::Module::getNamedMetadata()<br>
 	 * Original signature : <code>int LLVMGetNamedMetadataNumOperands(LLVMModuleRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetNamedMetadataNumOperands(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMGetNamedMetadataNumOperands(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetNamedMetadataNumOperands(LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMGetNamedMetadataNumOperands(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMGetNamedMetadataNumOperands(LLVMLibrary.LLVMModuleRef M, Pointer Name);
@@ -1237,7 +1237,7 @@ public class LLVMLibrary implements Library {
 	 * @see llvm::Module::getNamedMetadata()<br>
 	 * @see llvm::MDNode::getOperand()<br>
 	 * Original signature : <code>void LLVMGetNamedMetadataOperands(LLVMModuleRef, const char*, LLVMValueRef*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetNamedMetadataOperands(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String, org.llvm.binding.LLVMLibrary.LLVMValueRef)} and {@link #LLVMGetNamedMetadataOperands(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMValueRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetNamedMetadataOperands(LLVMLibrary.LLVMModuleRef, java.lang.String, LLVMLibrary.LLVMValueRef)} and {@link #LLVMGetNamedMetadataOperands(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, LLVMLibrary.LLVMValueRef)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMGetNamedMetadataOperands(LLVMLibrary.LLVMModuleRef M, Pointer Name, LLVMLibrary.LLVMValueRef Dest);
@@ -1257,7 +1257,7 @@ public class LLVMLibrary implements Library {
 	 * @see llvm::Module::getNamedMetadata()<br>
 	 * @see llvm::MDNode::addOperand()<br>
 	 * Original signature : <code>void LLVMAddNamedMetadataOperand(LLVMModuleRef, const char*, LLVMValueRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMAddNamedMetadataOperand(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String, org.llvm.binding.LLVMLibrary.LLVMValueRef)} and {@link #LLVMAddNamedMetadataOperand(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMValueRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMAddNamedMetadataOperand(LLVMLibrary.LLVMModuleRef, java.lang.String, LLVMLibrary.LLVMValueRef)} and {@link #LLVMAddNamedMetadataOperand(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, LLVMLibrary.LLVMValueRef)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMAddNamedMetadataOperand(LLVMLibrary.LLVMModuleRef M, Pointer Name, LLVMLibrary.LLVMValueRef Val);
@@ -1272,7 +1272,7 @@ public class LLVMLibrary implements Library {
 	 * Add a function to a module under a specified name.<br>
 	 * @see llvm::Function::Create()<br>
 	 * Original signature : <code>LLVMValueRef LLVMAddFunction(LLVMModuleRef, const char*, LLVMTypeRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMAddFunction(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} and {@link #LLVMAddFunction(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMAddFunction(LLVMLibrary.LLVMModuleRef, java.lang.String, LLVMLibrary.LLVMTypeRef)} and {@link #LLVMAddFunction(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer, LLVMLibrary.LLVMTypeRef)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMAddFunction(LLVMLibrary.LLVMModuleRef M, Pointer Name, LLVMLibrary.LLVMTypeRef FunctionTy);
@@ -1287,7 +1287,7 @@ public class LLVMLibrary implements Library {
 	 * The returned value corresponds to a llvm::Function value.<br>
 	 * @see llvm::Module::getFunction()<br>
 	 * Original signature : <code>LLVMValueRef LLVMGetNamedFunction(LLVMModuleRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetNamedFunction(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMGetNamedFunction(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetNamedFunction(LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMGetNamedFunction(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMGetNamedFunction(LLVMLibrary.LLVMModuleRef M, Pointer Name);
@@ -1491,7 +1491,7 @@ public class LLVMLibrary implements Library {
 	 * Create an empty structure in a context having a specified name.<br>
 	 * @see llvm::StructType::create()<br>
 	 * Original signature : <code>LLVMTypeRef LLVMStructCreateNamed(LLVMContextRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMStructCreateNamed(org.llvm.binding.LLVMLibrary.LLVMContextRef, java.lang.String)} and {@link #LLVMStructCreateNamed(org.llvm.binding.LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMStructCreateNamed(LLVMLibrary.LLVMContextRef, java.lang.String)} and {@link #LLVMStructCreateNamed(LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMTypeRef LLVMStructCreateNamed(LLVMLibrary.LLVMContextRef C, Pointer Name);
@@ -1648,7 +1648,7 @@ public class LLVMLibrary implements Library {
 	 * Set the string name of a value.<br>
 	 * @see llvm::Value::setName()<br>
 	 * Original signature : <code>void LLVMSetValueName(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMSetValueName(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMSetValueName(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMSetValueName(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMSetValueName(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMSetValueName(LLVMLibrary.LLVMValueRef Val, Pointer Name);
@@ -1956,7 +1956,7 @@ public class LLVMLibrary implements Library {
 	 * Obtain a constant value for an integer of arbitrary precision.<br>
 	 * @see llvm::ConstantInt::get()<br>
 	 * Original signature : <code>LLVMValueRef LLVMConstIntOfArbitraryPrecision(LLVMTypeRef, unsigned, const uint64_t[])</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstIntOfArbitraryPrecision(org.llvm.binding.LLVMLibrary.LLVMTypeRef, int, long[])} and {@link #LLVMConstIntOfArbitraryPrecision(org.llvm.binding.LLVMLibrary.LLVMTypeRef, int, com.sun.jna.ptr.LongByReference)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstIntOfArbitraryPrecision(LLVMLibrary.LLVMTypeRef, int, long[])} and {@link #LLVMConstIntOfArbitraryPrecision(LLVMLibrary.LLVMTypeRef, int, com.sun.jna.ptr.LongByReference)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstIntOfArbitraryPrecision(LLVMLibrary.LLVMTypeRef IntTy, int NumWords, LongByReference Words);
@@ -1973,7 +1973,7 @@ public class LLVMLibrary implements Library {
 	 * instead.<br>
 	 * @see llvm::ConstantInt::get()<br>
 	 * Original signature : <code>LLVMValueRef LLVMConstIntOfString(LLVMTypeRef, const char*, uint8_t)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstIntOfString(org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String, byte)} and {@link #LLVMConstIntOfString(org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, byte)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstIntOfString(LLVMLibrary.LLVMTypeRef, java.lang.String, byte)} and {@link #LLVMConstIntOfString(LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, byte)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstIntOfString(LLVMLibrary.LLVMTypeRef IntTy, Pointer Text, byte Radix);
@@ -1991,7 +1991,7 @@ public class LLVMLibrary implements Library {
 	 * specified length.<br>
 	 * @see llvm::ConstantInt::get()<br>
 	 * Original signature : <code>LLVMValueRef LLVMConstIntOfStringAndSize(LLVMTypeRef, const char*, unsigned, uint8_t)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstIntOfStringAndSize(org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String, int, byte)} and {@link #LLVMConstIntOfStringAndSize(org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, int, byte)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstIntOfStringAndSize(LLVMLibrary.LLVMTypeRef, java.lang.String, int, byte)} and {@link #LLVMConstIntOfStringAndSize(LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, int, byte)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstIntOfStringAndSize(LLVMLibrary.LLVMTypeRef IntTy, Pointer Text, int SLen, byte Radix);
@@ -2012,7 +2012,7 @@ public class LLVMLibrary implements Library {
 	 * A similar API, LLVMConstRealOfStringAndSize is also available. It<br>
 	 * should be used if the input string's length is known.<br>
 	 * Original signature : <code>LLVMValueRef LLVMConstRealOfString(LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstRealOfString(org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMConstRealOfString(org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstRealOfString(LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMConstRealOfString(LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstRealOfString(LLVMLibrary.LLVMTypeRef RealTy, Pointer Text);
@@ -2026,7 +2026,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Obtain a constant for a floating point value parsed from a string.<br>
 	 * Original signature : <code>LLVMValueRef LLVMConstRealOfStringAndSize(LLVMTypeRef, const char*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstRealOfStringAndSize(org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String, int)} and {@link #LLVMConstRealOfStringAndSize(org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstRealOfStringAndSize(LLVMLibrary.LLVMTypeRef, java.lang.String, int)} and {@link #LLVMConstRealOfStringAndSize(LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstRealOfStringAndSize(LLVMLibrary.LLVMTypeRef RealTy, Pointer Text, int SLen);
@@ -2058,7 +2058,7 @@ public class LLVMLibrary implements Library {
 	 * Create a ConstantDataSequential and initialize it with a string.<br>
 	 * @see llvm::ConstantDataArray::getString()<br>
 	 * Original signature : <code>LLVMValueRef LLVMConstStringInContext(LLVMContextRef, const char*, unsigned, LLVMBool)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstStringInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, java.lang.String, int, org.llvm.binding.LLVMLibrary.LLVMBool)} and {@link #LLVMConstStringInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int, org.llvm.binding.LLVMLibrary.LLVMBool)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstStringInContext(LLVMLibrary.LLVMContextRef, java.lang.String, int, LLVMLibrary.LLVMBool)} and {@link #LLVMConstStringInContext(LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int, LLVMLibrary.LLVMBool)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstStringInContext(LLVMLibrary.LLVMContextRef C, Pointer Str, int Length, LLVMLibrary.LLVMBool DontNullTerminate);
@@ -2075,7 +2075,7 @@ public class LLVMLibrary implements Library {
 	 * @see LLVMConstStringInContext()<br>
 	 * @see llvm::ConstantDataArray::getString()<br>
 	 * Original signature : <code>LLVMValueRef LLVMConstString(const char*, unsigned, LLVMBool)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstString(java.lang.String, int, org.llvm.binding.LLVMLibrary.LLVMBool)} and {@link #LLVMConstString(com.sun.jna.Pointer, int, org.llvm.binding.LLVMLibrary.LLVMBool)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstString(java.lang.String, int, LLVMLibrary.LLVMBool)} and {@link #LLVMConstString(com.sun.jna.Pointer, int, LLVMLibrary.LLVMBool)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstString(Pointer Str, int Length, LLVMLibrary.LLVMBool DontNullTerminate);
@@ -2266,7 +2266,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMConstShuffleVector(LLVMLibrary.LLVMValueRef VectorAConstant, LLVMLibrary.LLVMValueRef VectorBConstant, LLVMLibrary.LLVMValueRef MaskConstant);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMConstExtractValue(LLVMValueRef, unsigned*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstExtractValue(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.nio.IntBuffer, int)} and {@link #LLVMConstExtractValue(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.ptr.IntByReference, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstExtractValue(LLVMLibrary.LLVMValueRef, java.nio.IntBuffer, int)} and {@link #LLVMConstExtractValue(LLVMLibrary.LLVMValueRef, com.sun.jna.ptr.IntByReference, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstExtractValue(LLVMLibrary.LLVMValueRef AggConstant, IntByReference IdxList, int NumIdx);
@@ -2274,7 +2274,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMConstExtractValue(LLVMLibrary.LLVMValueRef AggConstant, IntBuffer IdxList, int NumIdx);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMConstInsertValue(LLVMValueRef, LLVMValueRef, unsigned*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstInsertValue(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.nio.IntBuffer, int)} and {@link #LLVMConstInsertValue(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.ptr.IntByReference, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstInsertValue(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.nio.IntBuffer, int)} and {@link #LLVMConstInsertValue(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.ptr.IntByReference, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstInsertValue(LLVMLibrary.LLVMValueRef AggConstant, LLVMLibrary.LLVMValueRef ElementValueConstant, IntByReference IdxList, int NumIdx);
@@ -2282,7 +2282,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMConstInsertValue(LLVMLibrary.LLVMValueRef AggConstant, LLVMLibrary.LLVMValueRef ElementValueConstant, IntBuffer IdxList, int NumIdx);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMConstInlineAsm(LLVMTypeRef, const char*, const char*, LLVMBool, LLVMBool)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMConstInlineAsm(org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String, java.lang.String, org.llvm.binding.LLVMLibrary.LLVMBool, org.llvm.binding.LLVMLibrary.LLVMBool)} and {@link #LLVMConstInlineAsm(org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMBool, org.llvm.binding.LLVMLibrary.LLVMBool)} instead
+	 * @deprecated use the safer methods {@link #LLVMConstInlineAsm(LLVMLibrary.LLVMTypeRef, java.lang.String, java.lang.String, LLVMLibrary.LLVMBool, LLVMLibrary.LLVMBool)} and {@link #LLVMConstInlineAsm(LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, com.sun.jna.Pointer, LLVMLibrary.LLVMBool, LLVMLibrary.LLVMBool)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMConstInlineAsm(LLVMLibrary.LLVMTypeRef Ty, Pointer AsmString, Pointer Constraints, LLVMLibrary.LLVMBool HasSideEffects, LLVMLibrary.LLVMBool IsAlignStack);
@@ -2309,7 +2309,7 @@ public class LLVMLibrary implements Library {
 	public static native String LLVMGetSection(LLVMLibrary.LLVMValueRef Global);
 	/**
 	 * Original signature : <code>void LLVMSetSection(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMSetSection(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMSetSection(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMSetSection(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMSetSection(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMSetSection(LLVMLibrary.LLVMValueRef Global, Pointer Section);
@@ -2351,7 +2351,7 @@ public class LLVMLibrary implements Library {
 	 * @see llvm::GlobalVariable<br>
 	 * @{<br>
 	 * Original signature : <code>LLVMValueRef LLVMAddGlobal(LLVMModuleRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMAddGlobal(org.llvm.binding.LLVMLibrary.LLVMModuleRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMAddGlobal(org.llvm.binding.LLVMLibrary.LLVMModuleRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMAddGlobal(LLVMLibrary.LLVMModuleRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMAddGlobal(LLVMLibrary.LLVMModuleRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMAddGlobal(LLVMLibrary.LLVMModuleRef M, LLVMLibrary.LLVMTypeRef Ty, Pointer Name);
@@ -2365,7 +2365,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMAddGlobal(LLVMLibrary.LLVMModuleRef M, LLVMLibrary.LLVMTypeRef Ty, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMAddGlobalInAddressSpace(LLVMModuleRef, LLVMTypeRef, const char*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMAddGlobalInAddressSpace(org.llvm.binding.LLVMLibrary.LLVMModuleRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String, int)} and {@link #LLVMAddGlobalInAddressSpace(org.llvm.binding.LLVMLibrary.LLVMModuleRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMAddGlobalInAddressSpace(LLVMLibrary.LLVMModuleRef, LLVMLibrary.LLVMTypeRef, java.lang.String, int)} and {@link #LLVMAddGlobalInAddressSpace(LLVMLibrary.LLVMModuleRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMAddGlobalInAddressSpace(LLVMLibrary.LLVMModuleRef M, LLVMLibrary.LLVMTypeRef Ty, Pointer Name, int AddressSpace);
@@ -2373,7 +2373,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMAddGlobalInAddressSpace(LLVMLibrary.LLVMModuleRef M, LLVMLibrary.LLVMTypeRef Ty, String Name, int AddressSpace);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMGetNamedGlobal(LLVMModuleRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetNamedGlobal(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMGetNamedGlobal(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetNamedGlobal(LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMGetNamedGlobal(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMGetNamedGlobal(LLVMLibrary.LLVMModuleRef M, Pointer Name);
@@ -2415,7 +2415,7 @@ public class LLVMLibrary implements Library {
 	 * @see llvm::GlobalAlias<br>
 	 * @{<br>
 	 * Original signature : <code>LLVMValueRef LLVMAddAlias(LLVMModuleRef, LLVMTypeRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMAddAlias(org.llvm.binding.LLVMLibrary.LLVMModuleRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMAddAlias(org.llvm.binding.LLVMLibrary.LLVMModuleRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMAddAlias(LLVMLibrary.LLVMModuleRef, LLVMLibrary.LLVMTypeRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMAddAlias(LLVMLibrary.LLVMModuleRef, LLVMLibrary.LLVMTypeRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMAddAlias(LLVMLibrary.LLVMModuleRef M, LLVMLibrary.LLVMTypeRef Ty, LLVMLibrary.LLVMValueRef Aliasee, Pointer Name);
@@ -2483,7 +2483,7 @@ public class LLVMLibrary implements Library {
 	 * Define the garbage collector to use during code generation.<br>
 	 * @see llvm::Function::setGC()<br>
 	 * Original signature : <code>void LLVMSetGC(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMSetGC(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMSetGC(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMSetGC(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMSetGC(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMSetGC(LLVMLibrary.LLVMValueRef Fn, Pointer Name);
@@ -2509,7 +2509,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMAttributeRef LLVMGetEnumAttributeAtIndex(LLVMLibrary.LLVMValueRef F, int Idx, int KindID);
 	/**
 	 * Original signature : <code>LLVMAttributeRef LLVMGetStringAttributeAtIndex(LLVMValueRef, LLVMAttributeIndex, const char*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetStringAttributeAtIndex(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String, int)} and {@link #LLVMGetStringAttributeAtIndex(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetStringAttributeAtIndex(LLVMLibrary.LLVMValueRef, int, java.lang.String, int)} and {@link #LLVMGetStringAttributeAtIndex(LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMAttributeRef LLVMGetStringAttributeAtIndex(LLVMLibrary.LLVMValueRef F, int Idx, Pointer K, int KLen);
@@ -2519,7 +2519,7 @@ public class LLVMLibrary implements Library {
 	public static native void LLVMRemoveEnumAttributeAtIndex(LLVMLibrary.LLVMValueRef F, int Idx, int KindID);
 	/**
 	 * Original signature : <code>void LLVMRemoveStringAttributeAtIndex(LLVMValueRef, LLVMAttributeIndex, const char*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMRemoveStringAttributeAtIndex(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String, int)} and {@link #LLVMRemoveStringAttributeAtIndex(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMRemoveStringAttributeAtIndex(LLVMLibrary.LLVMValueRef, int, java.lang.String, int)} and {@link #LLVMRemoveStringAttributeAtIndex(LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMRemoveStringAttributeAtIndex(LLVMLibrary.LLVMValueRef F, int Idx, Pointer K, int KLen);
@@ -2529,7 +2529,7 @@ public class LLVMLibrary implements Library {
 	 * Add a target-dependent attribute to a function<br>
 	 * @see llvm::AttrBuilder::addAttribute()<br>
 	 * Original signature : <code>void LLVMAddTargetDependentFunctionAttr(LLVMValueRef, const char*, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMAddTargetDependentFunctionAttr(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String, java.lang.String)} and {@link #LLVMAddTargetDependentFunctionAttr(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMAddTargetDependentFunctionAttr(LLVMLibrary.LLVMValueRef, java.lang.String, java.lang.String)} and {@link #LLVMAddTargetDependentFunctionAttr(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMAddTargetDependentFunctionAttr(LLVMLibrary.LLVMValueRef Fn, Pointer A, Pointer V);
@@ -2640,7 +2640,7 @@ public class LLVMLibrary implements Library {
 	 * string content is copied, so the backing memory can be freed after<br>
 	 * this function returns.<br>
 	 * Original signature : <code>LLVMValueRef LLVMMDStringInContext(LLVMContextRef, const char*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMMDStringInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, java.lang.String, int)} and {@link #LLVMMDStringInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMMDStringInContext(LLVMLibrary.LLVMContextRef, java.lang.String, int)} and {@link #LLVMMDStringInContext(LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMMDStringInContext(LLVMLibrary.LLVMContextRef C, Pointer Str, int SLen);
@@ -2682,7 +2682,7 @@ public class LLVMLibrary implements Library {
 	 * @param Length Memory address which will hold length of returned string.<br>
 	 * @return String data in MDString.<br>
 	 * Original signature : <code>char* LLVMGetMDString(LLVMValueRef, unsigned*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetMDString(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.nio.IntBuffer)} and {@link #LLVMGetMDString(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.ptr.IntByReference)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetMDString(LLVMLibrary.LLVMValueRef, java.nio.IntBuffer)} and {@link #LLVMGetMDString(LLVMLibrary.LLVMValueRef, com.sun.jna.ptr.IntByReference)} instead
 	 */
 	@Deprecated 
 	public static native String LLVMGetMDString(LLVMLibrary.LLVMValueRef V, IntByReference Length);
@@ -2797,7 +2797,7 @@ public class LLVMLibrary implements Library {
 	 * Append a basic block to the end of a function.<br>
 	 * @see llvm::BasicBlock::Create()<br>
 	 * Original signature : <code>LLVMBasicBlockRef LLVMAppendBasicBlockInContext(LLVMContextRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMAppendBasicBlockInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMAppendBasicBlockInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMAppendBasicBlockInContext(LLVMLibrary.LLVMContextRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMAppendBasicBlockInContext(LLVMLibrary.LLVMContextRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBasicBlockRef LLVMAppendBasicBlockInContext(LLVMLibrary.LLVMContextRef C, LLVMLibrary.LLVMValueRef Fn, Pointer Name);
@@ -2812,7 +2812,7 @@ public class LLVMLibrary implements Library {
 	 * context.<br>
 	 * @see llvm::BasicBlock::Create()<br>
 	 * Original signature : <code>LLVMBasicBlockRef LLVMAppendBasicBlock(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMAppendBasicBlock(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMAppendBasicBlock(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMAppendBasicBlock(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMAppendBasicBlock(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBasicBlockRef LLVMAppendBasicBlock(LLVMLibrary.LLVMValueRef Fn, Pointer Name);
@@ -2829,7 +2829,7 @@ public class LLVMLibrary implements Library {
 	 * passed basic block.<br>
 	 * @see llvm::BasicBlock::Create()<br>
 	 * Original signature : <code>LLVMBasicBlockRef LLVMInsertBasicBlockInContext(LLVMContextRef, LLVMBasicBlockRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMInsertBasicBlockInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, org.llvm.binding.LLVMLibrary.LLVMBasicBlockRef, java.lang.String)} and {@link #LLVMInsertBasicBlockInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, org.llvm.binding.LLVMLibrary.LLVMBasicBlockRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMInsertBasicBlockInContext(LLVMLibrary.LLVMContextRef, LLVMLibrary.LLVMBasicBlockRef, java.lang.String)} and {@link #LLVMInsertBasicBlockInContext(LLVMLibrary.LLVMContextRef, LLVMLibrary.LLVMBasicBlockRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBasicBlockRef LLVMInsertBasicBlockInContext(LLVMLibrary.LLVMContextRef C, LLVMLibrary.LLVMBasicBlockRef BB, Pointer Name);
@@ -2845,7 +2845,7 @@ public class LLVMLibrary implements Library {
 	 * Insert a basic block in a function using the global context.<br>
 	 * @see llvm::BasicBlock::Create()<br>
 	 * Original signature : <code>LLVMBasicBlockRef LLVMInsertBasicBlock(LLVMBasicBlockRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMInsertBasicBlock(org.llvm.binding.LLVMLibrary.LLVMBasicBlockRef, java.lang.String)} and {@link #LLVMInsertBasicBlock(org.llvm.binding.LLVMLibrary.LLVMBasicBlockRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMInsertBasicBlock(LLVMLibrary.LLVMBasicBlockRef, java.lang.String)} and {@link #LLVMInsertBasicBlock(LLVMLibrary.LLVMBasicBlockRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBasicBlockRef LLVMInsertBasicBlock(LLVMLibrary.LLVMBasicBlockRef InsertBeforeBB, Pointer Name);
@@ -3021,7 +3021,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMAttributeRef LLVMGetCallSiteEnumAttribute(LLVMLibrary.LLVMValueRef C, int Idx, int KindID);
 	/**
 	 * Original signature : <code>LLVMAttributeRef LLVMGetCallSiteStringAttribute(LLVMValueRef, LLVMAttributeIndex, const char*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetCallSiteStringAttribute(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String, int)} and {@link #LLVMGetCallSiteStringAttribute(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetCallSiteStringAttribute(LLVMLibrary.LLVMValueRef, int, java.lang.String, int)} and {@link #LLVMGetCallSiteStringAttribute(LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMAttributeRef LLVMGetCallSiteStringAttribute(LLVMLibrary.LLVMValueRef C, int Idx, Pointer K, int KLen);
@@ -3031,7 +3031,7 @@ public class LLVMLibrary implements Library {
 	public static native void LLVMRemoveCallSiteEnumAttribute(LLVMLibrary.LLVMValueRef C, int Idx, int KindID);
 	/**
 	 * Original signature : <code>void LLVMRemoveCallSiteStringAttribute(LLVMValueRef, LLVMAttributeIndex, const char*, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMRemoveCallSiteStringAttribute(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String, int)} and {@link #LLVMRemoveCallSiteStringAttribute(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMRemoveCallSiteStringAttribute(LLVMLibrary.LLVMValueRef, int, java.lang.String, int)} and {@link #LLVMRemoveCallSiteStringAttribute(LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMRemoveCallSiteStringAttribute(LLVMLibrary.LLVMValueRef C, int Idx, Pointer K, int KLen);
@@ -3204,7 +3204,7 @@ public class LLVMLibrary implements Library {
 	public static native void LLVMInsertIntoBuilder(LLVMLibrary.LLVMBuilderRef Builder, LLVMLibrary.LLVMValueRef Instr);
 	/**
 	 * Original signature : <code>void LLVMInsertIntoBuilderWithName(LLVMBuilderRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMInsertIntoBuilderWithName(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMInsertIntoBuilderWithName(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMInsertIntoBuilderWithName(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMInsertIntoBuilderWithName(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMInsertIntoBuilderWithName(LLVMLibrary.LLVMBuilderRef Builder, LLVMLibrary.LLVMValueRef Instr, Pointer Name);
@@ -3240,7 +3240,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildIndirectBr(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef Addr, int NumDests);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildInvoke(LLVMValueRef, LLVMValueRef*, unsigned, LLVMBasicBlockRef, LLVMBasicBlockRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildInvoke(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, org.llvm.binding.LLVMLibrary.LLVMBasicBlockRef, org.llvm.binding.LLVMLibrary.LLVMBasicBlockRef, java.lang.String)} and {@link #LLVMBuildInvoke(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, org.llvm.binding.LLVMLibrary.LLVMBasicBlockRef, org.llvm.binding.LLVMLibrary.LLVMBasicBlockRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildInvoke(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, LLVMLibrary.LLVMBasicBlockRef, LLVMLibrary.LLVMBasicBlockRef, java.lang.String)} and {@link #LLVMBuildInvoke(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, LLVMLibrary.LLVMBasicBlockRef, LLVMLibrary.LLVMBasicBlockRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildInvoke(LLVMLibrary.LLVMValueRef Fn, LLVMLibrary.LLVMValueRef Args, int NumArgs, LLVMLibrary.LLVMBasicBlockRef Then, LLVMLibrary.LLVMBasicBlockRef Catch, Pointer Name);
@@ -3248,7 +3248,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildInvoke(LLVMLibrary.LLVMValueRef Fn, LLVMLibrary.LLVMValueRef Args, int NumArgs, LLVMLibrary.LLVMBasicBlockRef Then, LLVMLibrary.LLVMBasicBlockRef Catch, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildLandingPad(LLVMBuilderRef, LLVMTypeRef, LLVMValueRef, unsigned, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildLandingPad(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildLandingPad(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildLandingPad(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMTypeRef, LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildLandingPad(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMTypeRef, LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildLandingPad(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMTypeRef Ty, LLVMLibrary.LLVMValueRef PersFn, int NumClauses, Pointer Name);
@@ -3296,7 +3296,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Arithmetic<br>
 	 * Original signature : <code>LLVMValueRef LLVMBuildAdd(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildAdd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildAdd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildAdd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildAdd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAdd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3307,7 +3307,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAdd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNSWAdd(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNSWAdd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNSWAdd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNSWAdd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNSWAdd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNSWAdd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3315,7 +3315,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNSWAdd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNUWAdd(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNUWAdd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNUWAdd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNUWAdd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNUWAdd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNUWAdd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3323,7 +3323,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNUWAdd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFAdd(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFAdd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFAdd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFAdd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFAdd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFAdd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3331,7 +3331,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFAdd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildSub(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildSub(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildSub(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildSub(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildSub(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSub(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3339,7 +3339,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSub(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNSWSub(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNSWSub(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNSWSub(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNSWSub(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNSWSub(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNSWSub(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3347,7 +3347,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNSWSub(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNUWSub(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNUWSub(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNUWSub(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNUWSub(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNUWSub(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNUWSub(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3355,7 +3355,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNUWSub(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFSub(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFSub(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFSub(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFSub(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFSub(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFSub(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3363,7 +3363,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFSub(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildMul(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildMul(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildMul(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildMul(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildMul(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildMul(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3371,7 +3371,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildMul(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNSWMul(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNSWMul(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNSWMul(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNSWMul(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNSWMul(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNSWMul(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3379,7 +3379,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNSWMul(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNUWMul(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNUWMul(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNUWMul(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNUWMul(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNUWMul(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNUWMul(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3387,7 +3387,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNUWMul(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFMul(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFMul(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFMul(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFMul(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFMul(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFMul(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3395,7 +3395,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFMul(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildUDiv(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildUDiv(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildUDiv(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildUDiv(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildUDiv(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildUDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3403,7 +3403,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildUDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildSDiv(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildSDiv(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildSDiv(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildSDiv(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildSDiv(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3411,7 +3411,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildExactSDiv(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildExactSDiv(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildExactSDiv(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildExactSDiv(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildExactSDiv(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildExactSDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3419,7 +3419,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildExactSDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFDiv(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFDiv(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFDiv(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFDiv(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFDiv(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3427,7 +3427,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFDiv(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildURem(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildURem(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildURem(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildURem(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildURem(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildURem(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3435,7 +3435,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildURem(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildSRem(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildSRem(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildSRem(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildSRem(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildSRem(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSRem(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3443,7 +3443,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSRem(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFRem(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFRem(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFRem(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFRem(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFRem(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFRem(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3451,7 +3451,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFRem(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildShl(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildShl(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildShl(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildShl(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildShl(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildShl(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3459,7 +3459,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildShl(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildLShr(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildLShr(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildLShr(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildLShr(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildLShr(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildLShr(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3467,7 +3467,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildLShr(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildAShr(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildAShr(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildAShr(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildAShr(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildAShr(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAShr(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3475,7 +3475,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAShr(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildAnd(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildAnd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildAnd(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildAnd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildAnd(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAnd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3483,7 +3483,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAnd(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildOr(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildOr(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildOr(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildOr(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildOr(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildOr(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3491,7 +3491,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildOr(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildXor(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildXor(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildXor(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildXor(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildXor(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildXor(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3499,7 +3499,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildXor(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildBinOp(LLVMBuilderRef, LLVMOpcode, LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildBinOp(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, int, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildBinOp(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, int, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildBinOp(LLVMLibrary.LLVMBuilderRef, int, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildBinOp(LLVMLibrary.LLVMBuilderRef, int, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildBinOp(LLVMLibrary.LLVMBuilderRef B, int Op, LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3507,7 +3507,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildBinOp(LLVMLibrary.LLVMBuilderRef B, int Op, LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNeg(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNeg(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNeg(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNeg(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNeg(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNeg(LLVMLibrary.LLVMValueRef V, Pointer Name);
@@ -3515,7 +3515,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNeg(LLVMLibrary.LLVMValueRef V, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNSWNeg(LLVMBuilderRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNSWNeg(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNSWNeg(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNSWNeg(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNSWNeg(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNSWNeg(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef V, Pointer Name);
@@ -3523,7 +3523,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNSWNeg(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef V, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNUWNeg(LLVMBuilderRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNUWNeg(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNUWNeg(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNUWNeg(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNUWNeg(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNUWNeg(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef V, Pointer Name);
@@ -3531,7 +3531,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNUWNeg(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef V, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFNeg(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFNeg(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFNeg(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFNeg(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFNeg(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFNeg(LLVMLibrary.LLVMValueRef V, Pointer Name);
@@ -3539,7 +3539,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFNeg(LLVMLibrary.LLVMValueRef V, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildNot(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildNot(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNot(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildNot(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildNot(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildNot(LLVMLibrary.LLVMValueRef V, Pointer Name);
@@ -3548,7 +3548,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Memory<br>
 	 * Original signature : <code>LLVMValueRef LLVMBuildMalloc(LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildMalloc(org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildMalloc(org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildMalloc(LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildMalloc(LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildMalloc(LLVMLibrary.LLVMTypeRef Ty, Pointer Name);
@@ -3559,7 +3559,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildMalloc(LLVMLibrary.LLVMTypeRef Ty, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildArrayMalloc(LLVMTypeRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildArrayMalloc(org.llvm.binding.LLVMLibrary.LLVMTypeRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildArrayMalloc(org.llvm.binding.LLVMLibrary.LLVMTypeRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildArrayMalloc(LLVMLibrary.LLVMTypeRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildArrayMalloc(LLVMLibrary.LLVMTypeRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildArrayMalloc(LLVMLibrary.LLVMTypeRef Ty, LLVMLibrary.LLVMValueRef Val, Pointer Name);
@@ -3567,7 +3567,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildArrayMalloc(LLVMLibrary.LLVMTypeRef Ty, LLVMLibrary.LLVMValueRef Val, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildAlloca(LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildAlloca(org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildAlloca(org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildAlloca(LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildAlloca(LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAlloca(LLVMLibrary.LLVMTypeRef Ty, Pointer Name);
@@ -3575,7 +3575,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAlloca(LLVMLibrary.LLVMTypeRef Ty, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildArrayAlloca(LLVMTypeRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildArrayAlloca(org.llvm.binding.LLVMLibrary.LLVMTypeRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildArrayAlloca(org.llvm.binding.LLVMLibrary.LLVMTypeRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildArrayAlloca(LLVMLibrary.LLVMTypeRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildArrayAlloca(LLVMLibrary.LLVMTypeRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildArrayAlloca(LLVMLibrary.LLVMTypeRef Ty, LLVMLibrary.LLVMValueRef Val, Pointer Name);
@@ -3585,7 +3585,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFree(LLVMLibrary.LLVMValueRef PointerVal);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildLoad(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildLoad(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildLoad(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildLoad(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildLoad(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildLoad(LLVMLibrary.LLVMValueRef PointerVal, Pointer Name);
@@ -3595,7 +3595,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildStore(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMValueRef Ptr);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildGEP(LLVMBuilderRef, LLVMValueRef, LLVMValueRef*, unsigned, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildGEP(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildGEP(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildGEP(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildGEP(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildGEP(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef Pointer, LLVMLibrary.LLVMValueRef Indices, int NumIndices, Pointer Name);
@@ -3603,7 +3603,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildGEP(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef Pointer, LLVMLibrary.LLVMValueRef Indices, int NumIndices, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildInBoundsGEP(LLVMBuilderRef, LLVMValueRef, LLVMValueRef*, unsigned, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildInBoundsGEP(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildInBoundsGEP(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildInBoundsGEP(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildInBoundsGEP(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildInBoundsGEP(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef Pointer, LLVMLibrary.LLVMValueRef Indices, int NumIndices, Pointer Name);
@@ -3611,7 +3611,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildInBoundsGEP(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef Pointer, LLVMLibrary.LLVMValueRef Indices, int NumIndices, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildStructGEP(LLVMBuilderRef, LLVMValueRef, unsigned, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildStructGEP(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildStructGEP(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildStructGEP(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildStructGEP(LLVMLibrary.LLVMBuilderRef, LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildStructGEP(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef Pointer, int Idx, Pointer Name);
@@ -3619,7 +3619,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildStructGEP(LLVMLibrary.LLVMBuilderRef B, LLVMLibrary.LLVMValueRef Pointer, int Idx, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildGlobalString(LLVMBuilderRef, const char*, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildGlobalString(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, java.lang.String, java.lang.String)} and {@link #LLVMBuildGlobalString(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildGlobalString(LLVMLibrary.LLVMBuilderRef, java.lang.String, java.lang.String)} and {@link #LLVMBuildGlobalString(LLVMLibrary.LLVMBuilderRef, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildGlobalString(LLVMLibrary.LLVMBuilderRef B, Pointer Str, Pointer Name);
@@ -3627,7 +3627,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildGlobalString(LLVMLibrary.LLVMBuilderRef B, String Str, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildGlobalStringPtr(LLVMBuilderRef, const char*, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildGlobalStringPtr(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, java.lang.String, java.lang.String)} and {@link #LLVMBuildGlobalStringPtr(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildGlobalStringPtr(LLVMLibrary.LLVMBuilderRef, java.lang.String, java.lang.String)} and {@link #LLVMBuildGlobalStringPtr(LLVMLibrary.LLVMBuilderRef, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildGlobalStringPtr(LLVMLibrary.LLVMBuilderRef B, Pointer Str, Pointer Name);
@@ -3644,7 +3644,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Casts<br>
 	 * Original signature : <code>LLVMValueRef LLVMBuildTrunc(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildTrunc(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildTrunc(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildTrunc(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildTrunc(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildTrunc(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3655,7 +3655,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildTrunc(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildZExt(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildZExt(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildZExt(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildZExt(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildZExt(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildZExt(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3663,7 +3663,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildZExt(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildSExt(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildSExt(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildSExt(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildSExt(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildSExt(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSExt(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3671,7 +3671,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSExt(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFPToUI(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFPToUI(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPToUI(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFPToUI(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPToUI(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFPToUI(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3679,7 +3679,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFPToUI(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFPToSI(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFPToSI(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPToSI(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFPToSI(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPToSI(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFPToSI(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3687,7 +3687,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFPToSI(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildUIToFP(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildUIToFP(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildUIToFP(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildUIToFP(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildUIToFP(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildUIToFP(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3695,7 +3695,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildUIToFP(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildSIToFP(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildSIToFP(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildSIToFP(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildSIToFP(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildSIToFP(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSIToFP(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3703,7 +3703,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSIToFP(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFPTrunc(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFPTrunc(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPTrunc(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFPTrunc(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPTrunc(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFPTrunc(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3711,7 +3711,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFPTrunc(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFPExt(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFPExt(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPExt(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFPExt(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPExt(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFPExt(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3719,7 +3719,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFPExt(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildPtrToInt(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildPtrToInt(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildPtrToInt(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildPtrToInt(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildPtrToInt(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildPtrToInt(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3727,7 +3727,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildPtrToInt(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildIntToPtr(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildIntToPtr(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildIntToPtr(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildIntToPtr(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildIntToPtr(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildIntToPtr(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3735,7 +3735,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildIntToPtr(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildBitCast(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildBitCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildBitCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildBitCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildBitCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildBitCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3743,7 +3743,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildBitCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildAddrSpaceCast(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildAddrSpaceCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildAddrSpaceCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildAddrSpaceCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildAddrSpaceCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAddrSpaceCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3751,7 +3751,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildAddrSpaceCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildZExtOrBitCast(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildZExtOrBitCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildZExtOrBitCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildZExtOrBitCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildZExtOrBitCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildZExtOrBitCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3759,7 +3759,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildZExtOrBitCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildSExtOrBitCast(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildSExtOrBitCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildSExtOrBitCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildSExtOrBitCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildSExtOrBitCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSExtOrBitCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3767,7 +3767,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSExtOrBitCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildTruncOrBitCast(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildTruncOrBitCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildTruncOrBitCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildTruncOrBitCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildTruncOrBitCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildTruncOrBitCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3775,7 +3775,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildTruncOrBitCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildCast(LLVMBuilderRef, LLVMOpcode, LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildCast(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, int, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildCast(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, int, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildCast(LLVMLibrary.LLVMBuilderRef, int, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildCast(LLVMLibrary.LLVMBuilderRef, int, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildCast(LLVMLibrary.LLVMBuilderRef B, int Op, LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3783,7 +3783,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildCast(LLVMLibrary.LLVMBuilderRef B, int Op, LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildPointerCast(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildPointerCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildPointerCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildPointerCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildPointerCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildPointerCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3793,7 +3793,7 @@ public class LLVMLibrary implements Library {
 	 * Signed cast!<br>
 	 * Original signature : <code>LLVMValueRef LLVMBuildIntCast(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
 	 * @param Val Signed cast!<br>
-	 * @deprecated use the safer methods {@link #LLVMBuildIntCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildIntCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildIntCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildIntCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildIntCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3805,7 +3805,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildIntCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFPCast(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFPCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPCast(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFPCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildFPCast(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFPCast(LLVMLibrary.LLVMValueRef Val, LLVMLibrary.LLVMTypeRef DestTy, Pointer Name);
@@ -3814,7 +3814,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Comparisons<br>
 	 * Original signature : <code>LLVMValueRef LLVMBuildICmp(LLVMIntPredicate, LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildICmp(int, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildICmp(int, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildICmp(int, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildICmp(int, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildICmp(int Op, LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3825,7 +3825,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildICmp(int Op, LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFCmp(LLVMRealPredicate, LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFCmp(int, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFCmp(int, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFCmp(int, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildFCmp(int, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFCmp(int Op, LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3834,7 +3834,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Miscellaneous instructions<br>
 	 * Original signature : <code>LLVMValueRef LLVMBuildPhi(LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildPhi(org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildPhi(org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildPhi(LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildPhi(LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildPhi(LLVMLibrary.LLVMTypeRef Ty, Pointer Name);
@@ -3845,7 +3845,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildPhi(LLVMLibrary.LLVMTypeRef Ty, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildCall(LLVMValueRef, LLVMValueRef*, unsigned, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildCall(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildCall(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildCall(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildCall(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildCall(LLVMLibrary.LLVMValueRef Fn, LLVMLibrary.LLVMValueRef Args, int NumArgs, Pointer Name);
@@ -3853,7 +3853,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildCall(LLVMLibrary.LLVMValueRef Fn, LLVMLibrary.LLVMValueRef Args, int NumArgs, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildSelect(LLVMValueRef, LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildSelect(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildSelect(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildSelect(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildSelect(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSelect(LLVMLibrary.LLVMValueRef If, LLVMLibrary.LLVMValueRef Then, LLVMLibrary.LLVMValueRef Else, Pointer Name);
@@ -3861,7 +3861,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildSelect(LLVMLibrary.LLVMValueRef If, LLVMLibrary.LLVMValueRef Then, LLVMLibrary.LLVMValueRef Else, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildVAArg(LLVMValueRef, LLVMTypeRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildVAArg(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildVAArg(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildVAArg(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, java.lang.String)} and {@link #LLVMBuildVAArg(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMTypeRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildVAArg(LLVMLibrary.LLVMValueRef List, LLVMLibrary.LLVMTypeRef Ty, Pointer Name);
@@ -3869,7 +3869,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildVAArg(LLVMLibrary.LLVMValueRef List, LLVMLibrary.LLVMTypeRef Ty, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildExtractElement(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildExtractElement(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildExtractElement(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildExtractElement(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildExtractElement(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildExtractElement(LLVMLibrary.LLVMValueRef VecVal, LLVMLibrary.LLVMValueRef Index, Pointer Name);
@@ -3877,7 +3877,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildExtractElement(LLVMLibrary.LLVMValueRef VecVal, LLVMLibrary.LLVMValueRef Index, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildInsertElement(LLVMValueRef, LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildInsertElement(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildInsertElement(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildInsertElement(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildInsertElement(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildInsertElement(LLVMLibrary.LLVMValueRef VecVal, LLVMLibrary.LLVMValueRef EltVal, LLVMLibrary.LLVMValueRef Index, Pointer Name);
@@ -3885,7 +3885,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildInsertElement(LLVMLibrary.LLVMValueRef VecVal, LLVMLibrary.LLVMValueRef EltVal, LLVMLibrary.LLVMValueRef Index, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildShuffleVector(LLVMValueRef, LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildShuffleVector(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildShuffleVector(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildShuffleVector(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildShuffleVector(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildShuffleVector(LLVMLibrary.LLVMValueRef V1, LLVMLibrary.LLVMValueRef V2, LLVMLibrary.LLVMValueRef Mask, Pointer Name);
@@ -3893,7 +3893,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildShuffleVector(LLVMLibrary.LLVMValueRef V1, LLVMLibrary.LLVMValueRef V2, LLVMLibrary.LLVMValueRef Mask, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildExtractValue(LLVMValueRef, unsigned, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildExtractValue(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildExtractValue(org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildExtractValue(LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildExtractValue(LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildExtractValue(LLVMLibrary.LLVMValueRef AggVal, int Index, Pointer Name);
@@ -3901,7 +3901,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildExtractValue(LLVMLibrary.LLVMValueRef AggVal, int Index, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildInsertValue(LLVMValueRef, LLVMValueRef, unsigned, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildInsertValue(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildInsertValue(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildInsertValue(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, java.lang.String)} and {@link #LLVMBuildInsertValue(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, int, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildInsertValue(LLVMLibrary.LLVMValueRef AggVal, LLVMLibrary.LLVMValueRef EltVal, int Index, Pointer Name);
@@ -3909,7 +3909,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildInsertValue(LLVMLibrary.LLVMValueRef AggVal, LLVMLibrary.LLVMValueRef EltVal, int Index, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildIsNull(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildIsNull(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildIsNull(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildIsNull(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildIsNull(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildIsNull(LLVMLibrary.LLVMValueRef Val, Pointer Name);
@@ -3917,7 +3917,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildIsNull(LLVMLibrary.LLVMValueRef Val, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildIsNotNull(LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildIsNotNull(org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildIsNotNull(org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildIsNotNull(LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildIsNotNull(LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildIsNotNull(LLVMLibrary.LLVMValueRef Val, Pointer Name);
@@ -3925,7 +3925,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildIsNotNull(LLVMLibrary.LLVMValueRef Val, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildPtrDiff(LLVMValueRef, LLVMValueRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildPtrDiff(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildPtrDiff(org.llvm.binding.LLVMLibrary.LLVMValueRef, org.llvm.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildPtrDiff(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link #LLVMBuildPtrDiff(LLVMLibrary.LLVMValueRef, LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildPtrDiff(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
@@ -3933,7 +3933,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildPtrDiff(LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
 	/**
 	 * Original signature : <code>LLVMValueRef LLVMBuildFence(LLVMBuilderRef, LLVMAtomicOrdering, LLVMBool, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMBuildFence(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, int, org.llvm.binding.LLVMLibrary.LLVMBool, java.lang.String)} and {@link #LLVMBuildFence(org.llvm.binding.LLVMLibrary.LLVMBuilderRef, int, org.llvm.binding.LLVMLibrary.LLVMBool, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMBuildFence(LLVMLibrary.LLVMBuilderRef, int, LLVMLibrary.LLVMBool, java.lang.String)} and {@link #LLVMBuildFence(LLVMLibrary.LLVMBuilderRef, int, LLVMLibrary.LLVMBool, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMValueRef LLVMBuildFence(LLVMLibrary.LLVMBuilderRef B, int ordering, LLVMLibrary.LLVMBool singleThread, Pointer Name);
@@ -3970,7 +3970,7 @@ public class LLVMLibrary implements Library {
 	 * @defgroup LLVMCCoreMemoryBuffers Memory Buffers<br>
 	 * @{<br>
 	 * Original signature : <code>LLVMBool LLVMCreateMemoryBufferWithContentsOfFile(const char*, LLVMMemoryBufferRef*, char**)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMCreateMemoryBufferWithContentsOfFile(java.lang.String, org.llvm.binding.LLVMLibrary.LLVMMemoryBufferRef, com.sun.jna.ptr.PointerByReference)} and {@link #LLVMCreateMemoryBufferWithContentsOfFile(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMMemoryBufferRef, com.sun.jna.ptr.PointerByReference)} instead
+	 * @deprecated use the safer methods {@link #LLVMCreateMemoryBufferWithContentsOfFile(java.lang.String, LLVMLibrary.LLVMMemoryBufferRef, com.sun.jna.ptr.PointerByReference)} and {@link #LLVMCreateMemoryBufferWithContentsOfFile(com.sun.jna.Pointer, LLVMLibrary.LLVMMemoryBufferRef, com.sun.jna.ptr.PointerByReference)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBool LLVMCreateMemoryBufferWithContentsOfFile(Pointer Path, LLVMLibrary.LLVMMemoryBufferRef OutMemBuf, PointerByReference OutMessage);
@@ -3984,7 +3984,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMBool LLVMCreateMemoryBufferWithSTDIN(LLVMLibrary.LLVMMemoryBufferRef OutMemBuf, PointerByReference OutMessage);
 	/**
 	 * Original signature : <code>LLVMMemoryBufferRef LLVMCreateMemoryBufferWithMemoryRange(const char*, size_t, const char*, LLVMBool)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMCreateMemoryBufferWithMemoryRange(java.lang.String, com.ochafik.lang.jnaerator.runtime.NativeSize, java.lang.String, org.llvm.binding.LLVMLibrary.LLVMBool)} and {@link #LLVMCreateMemoryBufferWithMemoryRange(com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize, com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMBool)} instead
+	 * @deprecated use the safer methods {@link #LLVMCreateMemoryBufferWithMemoryRange(java.lang.String, com.ochafik.lang.jnaerator.runtime.NativeSize, java.lang.String, LLVMLibrary.LLVMBool)} and {@link #LLVMCreateMemoryBufferWithMemoryRange(com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize, com.sun.jna.Pointer, LLVMLibrary.LLVMBool)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMMemoryBufferRef LLVMCreateMemoryBufferWithMemoryRange(Pointer InputData, NativeSize InputDataLength, Pointer BufferName, LLVMLibrary.LLVMBool RequiresNullTerminator);
@@ -4110,7 +4110,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Writes a module to the specified path. Returns 0 on success.<br>
 	 * Original signature : <code>int LLVMWriteBitcodeToFile(LLVMModuleRef, const char*)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMWriteBitcodeToFile(org.llvm.binding.LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMWriteBitcodeToFile(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMWriteBitcodeToFile(LLVMLibrary.LLVMModuleRef, java.lang.String)} and {@link #LLVMWriteBitcodeToFile(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMWriteBitcodeToFile(LLVMLibrary.LLVMModuleRef M, Pointer Path);
@@ -4206,7 +4206,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMObjectFileRef LLVMCreateObjectFile(LLVMLibrary.LLVMMemoryBufferRef MemBuf);
 	/**
 	 * Original signature : <code>void LLVMDisposeObjectFile(LLVMObjectFileRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMDisposeObjectFile(org.llvm.binding.LLVMLibrary.LLVMObjectFileRef)} and {@link #LLVMDisposeObjectFile(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMDisposeObjectFile(LLVMLibrary.LLVMObjectFileRef)} and {@link #LLVMDisposeObjectFile(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMDisposeObjectFile(Pointer ObjectFile);
@@ -4215,7 +4215,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * ObjectFile Section iterators<br>
 	 * Original signature : <code>LLVMSectionIteratorRef LLVMGetSections(LLVMObjectFileRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSections(org.llvm.binding.LLVMLibrary.LLVMObjectFileRef)} and {@link #LLVMGetSections(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSections(LLVMLibrary.LLVMObjectFileRef)} and {@link #LLVMGetSections(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMSectionIteratorRef LLVMGetSections(Pointer ObjectFile);
@@ -4226,7 +4226,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMSectionIteratorRef LLVMGetSections(LLVMLibrary.LLVMObjectFileRef ObjectFile);
 	/**
 	 * Original signature : <code>void LLVMDisposeSectionIterator(LLVMSectionIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMDisposeSectionIterator(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMDisposeSectionIterator(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMDisposeSectionIterator(LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMDisposeSectionIterator(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMDisposeSectionIterator(Pointer SI);
@@ -4234,7 +4234,7 @@ public class LLVMLibrary implements Library {
 	public static native void LLVMDisposeSectionIterator(LLVMLibrary.LLVMSectionIteratorRef SI);
 	/**
 	 * Original signature : <code>LLVMBool LLVMIsSectionIteratorAtEnd(LLVMObjectFileRef, LLVMSectionIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMIsSectionIteratorAtEnd(org.llvm.binding.LLVMLibrary.LLVMObjectFileRef, org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMIsSectionIteratorAtEnd(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMIsSectionIteratorAtEnd(LLVMLibrary.LLVMObjectFileRef, LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMIsSectionIteratorAtEnd(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBool LLVMIsSectionIteratorAtEnd(Pointer ObjectFile, Pointer SI);
@@ -4242,7 +4242,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMBool LLVMIsSectionIteratorAtEnd(LLVMLibrary.LLVMObjectFileRef ObjectFile, LLVMLibrary.LLVMSectionIteratorRef SI);
 	/**
 	 * Original signature : <code>void LLVMMoveToNextSection(LLVMSectionIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMMoveToNextSection(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMMoveToNextSection(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMMoveToNextSection(LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMMoveToNextSection(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMMoveToNextSection(Pointer SI);
@@ -4250,7 +4250,7 @@ public class LLVMLibrary implements Library {
 	public static native void LLVMMoveToNextSection(LLVMLibrary.LLVMSectionIteratorRef SI);
 	/**
 	 * Original signature : <code>void LLVMMoveToContainingSection(LLVMSectionIteratorRef, LLVMSymbolIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMMoveToContainingSection(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef, org.llvm.binding.LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMMoveToContainingSection(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMMoveToContainingSection(LLVMLibrary.LLVMSectionIteratorRef, LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMMoveToContainingSection(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMMoveToContainingSection(Pointer Sect, Pointer Sym);
@@ -4259,7 +4259,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * ObjectFile Symbol iterators<br>
 	 * Original signature : <code>LLVMSymbolIteratorRef LLVMGetSymbols(LLVMObjectFileRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSymbols(org.llvm.binding.LLVMLibrary.LLVMObjectFileRef)} and {@link #LLVMGetSymbols(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSymbols(LLVMLibrary.LLVMObjectFileRef)} and {@link #LLVMGetSymbols(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMSymbolIteratorRef LLVMGetSymbols(Pointer ObjectFile);
@@ -4270,7 +4270,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMSymbolIteratorRef LLVMGetSymbols(LLVMLibrary.LLVMObjectFileRef ObjectFile);
 	/**
 	 * Original signature : <code>void LLVMDisposeSymbolIterator(LLVMSymbolIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMDisposeSymbolIterator(org.llvm.binding.LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMDisposeSymbolIterator(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMDisposeSymbolIterator(LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMDisposeSymbolIterator(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMDisposeSymbolIterator(Pointer SI);
@@ -4278,7 +4278,7 @@ public class LLVMLibrary implements Library {
 	public static native void LLVMDisposeSymbolIterator(LLVMLibrary.LLVMSymbolIteratorRef SI);
 	/**
 	 * Original signature : <code>LLVMBool LLVMIsSymbolIteratorAtEnd(LLVMObjectFileRef, LLVMSymbolIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMIsSymbolIteratorAtEnd(org.llvm.binding.LLVMLibrary.LLVMObjectFileRef, org.llvm.binding.LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMIsSymbolIteratorAtEnd(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMIsSymbolIteratorAtEnd(LLVMLibrary.LLVMObjectFileRef, LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMIsSymbolIteratorAtEnd(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBool LLVMIsSymbolIteratorAtEnd(Pointer ObjectFile, Pointer SI);
@@ -4286,7 +4286,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMBool LLVMIsSymbolIteratorAtEnd(LLVMLibrary.LLVMObjectFileRef ObjectFile, LLVMLibrary.LLVMSymbolIteratorRef SI);
 	/**
 	 * Original signature : <code>void LLVMMoveToNextSymbol(LLVMSymbolIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMMoveToNextSymbol(org.llvm.binding.LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMMoveToNextSymbol(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMMoveToNextSymbol(LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMMoveToNextSymbol(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMMoveToNextSymbol(Pointer SI);
@@ -4295,7 +4295,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * SectionRef accessors<br>
 	 * Original signature : <code>char* LLVMGetSectionName(LLVMSectionIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSectionName(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetSectionName(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSectionName(LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetSectionName(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native String LLVMGetSectionName(Pointer SI);
@@ -4306,7 +4306,7 @@ public class LLVMLibrary implements Library {
 	public static native String LLVMGetSectionName(LLVMLibrary.LLVMSectionIteratorRef SI);
 	/**
 	 * Original signature : <code>uint64_t LLVMGetSectionSize(LLVMSectionIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSectionSize(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetSectionSize(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSectionSize(LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetSectionSize(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMGetSectionSize(Pointer SI);
@@ -4314,7 +4314,7 @@ public class LLVMLibrary implements Library {
 	public static native long LLVMGetSectionSize(LLVMLibrary.LLVMSectionIteratorRef SI);
 	/**
 	 * Original signature : <code>char* LLVMGetSectionContents(LLVMSectionIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSectionContents(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetSectionContents(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSectionContents(LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetSectionContents(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native String LLVMGetSectionContents(Pointer SI);
@@ -4322,7 +4322,7 @@ public class LLVMLibrary implements Library {
 	public static native String LLVMGetSectionContents(LLVMLibrary.LLVMSectionIteratorRef SI);
 	/**
 	 * Original signature : <code>uint64_t LLVMGetSectionAddress(LLVMSectionIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSectionAddress(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetSectionAddress(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSectionAddress(LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetSectionAddress(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMGetSectionAddress(Pointer SI);
@@ -4330,7 +4330,7 @@ public class LLVMLibrary implements Library {
 	public static native long LLVMGetSectionAddress(LLVMLibrary.LLVMSectionIteratorRef SI);
 	/**
 	 * Original signature : <code>LLVMBool LLVMGetSectionContainsSymbol(LLVMSectionIteratorRef, LLVMSymbolIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSectionContainsSymbol(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef, org.llvm.binding.LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMGetSectionContainsSymbol(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSectionContainsSymbol(LLVMLibrary.LLVMSectionIteratorRef, LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMGetSectionContainsSymbol(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBool LLVMGetSectionContainsSymbol(Pointer SI, Pointer Sym);
@@ -4339,7 +4339,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * Section Relocation iterators<br>
 	 * Original signature : <code>LLVMRelocationIteratorRef LLVMGetRelocations(LLVMSectionIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetRelocations(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetRelocations(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetRelocations(LLVMLibrary.LLVMSectionIteratorRef)} and {@link #LLVMGetRelocations(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMRelocationIteratorRef LLVMGetRelocations(Pointer Section);
@@ -4350,7 +4350,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMRelocationIteratorRef LLVMGetRelocations(LLVMLibrary.LLVMSectionIteratorRef Section);
 	/**
 	 * Original signature : <code>void LLVMDisposeRelocationIterator(LLVMRelocationIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMDisposeRelocationIterator(org.llvm.binding.LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMDisposeRelocationIterator(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMDisposeRelocationIterator(LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMDisposeRelocationIterator(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMDisposeRelocationIterator(Pointer RI);
@@ -4358,7 +4358,7 @@ public class LLVMLibrary implements Library {
 	public static native void LLVMDisposeRelocationIterator(LLVMLibrary.LLVMRelocationIteratorRef RI);
 	/**
 	 * Original signature : <code>LLVMBool LLVMIsRelocationIteratorAtEnd(LLVMSectionIteratorRef, LLVMRelocationIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMIsRelocationIteratorAtEnd(org.llvm.binding.LLVMLibrary.LLVMSectionIteratorRef, org.llvm.binding.LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMIsRelocationIteratorAtEnd(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMIsRelocationIteratorAtEnd(LLVMLibrary.LLVMSectionIteratorRef, LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMIsRelocationIteratorAtEnd(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMBool LLVMIsRelocationIteratorAtEnd(Pointer Section, Pointer RI);
@@ -4366,7 +4366,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMBool LLVMIsRelocationIteratorAtEnd(LLVMLibrary.LLVMSectionIteratorRef Section, LLVMLibrary.LLVMRelocationIteratorRef RI);
 	/**
 	 * Original signature : <code>void LLVMMoveToNextRelocation(LLVMRelocationIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMMoveToNextRelocation(org.llvm.binding.LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMMoveToNextRelocation(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMMoveToNextRelocation(LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMMoveToNextRelocation(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMMoveToNextRelocation(Pointer RI);
@@ -4375,7 +4375,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * SymbolRef accessors<br>
 	 * Original signature : <code>char* LLVMGetSymbolName(LLVMSymbolIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSymbolName(org.llvm.binding.LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMGetSymbolName(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSymbolName(LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMGetSymbolName(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native String LLVMGetSymbolName(Pointer SI);
@@ -4386,7 +4386,7 @@ public class LLVMLibrary implements Library {
 	public static native String LLVMGetSymbolName(LLVMLibrary.LLVMSymbolIteratorRef SI);
 	/**
 	 * Original signature : <code>uint64_t LLVMGetSymbolAddress(LLVMSymbolIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSymbolAddress(org.llvm.binding.LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMGetSymbolAddress(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSymbolAddress(LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMGetSymbolAddress(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMGetSymbolAddress(Pointer SI);
@@ -4394,7 +4394,7 @@ public class LLVMLibrary implements Library {
 	public static native long LLVMGetSymbolAddress(LLVMLibrary.LLVMSymbolIteratorRef SI);
 	/**
 	 * Original signature : <code>uint64_t LLVMGetSymbolSize(LLVMSymbolIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetSymbolSize(org.llvm.binding.LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMGetSymbolSize(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetSymbolSize(LLVMLibrary.LLVMSymbolIteratorRef)} and {@link #LLVMGetSymbolSize(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMGetSymbolSize(Pointer SI);
@@ -4403,7 +4403,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * RelocationRef accessors<br>
 	 * Original signature : <code>uint64_t LLVMGetRelocationOffset(LLVMRelocationIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetRelocationOffset(org.llvm.binding.LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationOffset(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetRelocationOffset(LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationOffset(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMGetRelocationOffset(Pointer RI);
@@ -4414,7 +4414,7 @@ public class LLVMLibrary implements Library {
 	public static native long LLVMGetRelocationOffset(LLVMLibrary.LLVMRelocationIteratorRef RI);
 	/**
 	 * Original signature : <code>LLVMSymbolIteratorRef LLVMGetRelocationSymbol(LLVMRelocationIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetRelocationSymbol(org.llvm.binding.LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationSymbol(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetRelocationSymbol(LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationSymbol(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMSymbolIteratorRef LLVMGetRelocationSymbol(Pointer RI);
@@ -4422,7 +4422,7 @@ public class LLVMLibrary implements Library {
 	public static native LLVMLibrary.LLVMSymbolIteratorRef LLVMGetRelocationSymbol(LLVMLibrary.LLVMRelocationIteratorRef RI);
 	/**
 	 * Original signature : <code>uint64_t LLVMGetRelocationType(LLVMRelocationIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetRelocationType(org.llvm.binding.LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationType(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetRelocationType(LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationType(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMGetRelocationType(Pointer RI);
@@ -4431,7 +4431,7 @@ public class LLVMLibrary implements Library {
 	/**
 	 * following functions.<br>
 	 * Original signature : <code>char* LLVMGetRelocationTypeName(LLVMRelocationIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetRelocationTypeName(org.llvm.binding.LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationTypeName(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetRelocationTypeName(LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationTypeName(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native String LLVMGetRelocationTypeName(Pointer RI);
@@ -4442,7 +4442,7 @@ public class LLVMLibrary implements Library {
 	public static native String LLVMGetRelocationTypeName(LLVMLibrary.LLVMRelocationIteratorRef RI);
 	/**
 	 * Original signature : <code>char* LLVMGetRelocationValueString(LLVMRelocationIteratorRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMGetRelocationValueString(org.llvm.binding.LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationValueString(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMGetRelocationValueString(LLVMLibrary.LLVMRelocationIteratorRef)} and {@link #LLVMGetRelocationValueString(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native String LLVMGetRelocationValueString(Pointer RI);
@@ -4458,7 +4458,7 @@ public class LLVMLibrary implements Library {
 	 * Set the data layout for a module.<br>
 	 * @see Module::setDataLayout()<br>
 	 * Original signature : <code>void LLVMSetModuleDataLayout(LLVMModuleRef, LLVMTargetDataRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMSetModuleDataLayout(org.llvm.binding.LLVMLibrary.LLVMModuleRef, org.llvm.binding.LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMSetModuleDataLayout(org.llvm.binding.LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMSetModuleDataLayout(LLVMLibrary.LLVMModuleRef, LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMSetModuleDataLayout(LLVMLibrary.LLVMModuleRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMSetModuleDataLayout(LLVMLibrary.LLVMModuleRef M, Pointer DL);
@@ -4486,7 +4486,7 @@ public class LLVMLibrary implements Library {
 	 * Deallocates a TargetData.<br>
 	 * See the destructor llvm::DataLayout::~DataLayout.<br>
 	 * Original signature : <code>void LLVMDisposeTargetData(LLVMTargetDataRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMDisposeTargetData(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMDisposeTargetData(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMDisposeTargetData(LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMDisposeTargetData(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMDisposeTargetData(Pointer TD);
@@ -4501,7 +4501,7 @@ public class LLVMLibrary implements Library {
 	 * ownership of the target library info.<br>
 	 * See the method llvm::PassManagerBase::add.<br>
 	 * Original signature : <code>void LLVMAddTargetLibraryInfo(LLVMTargetLibraryInfoRef, LLVMPassManagerRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMAddTargetLibraryInfo(org.llvm.binding.LLVMLibrary.LLVMTargetLibraryInfoRef, org.llvm.binding.LLVMLibrary.LLVMPassManagerRef)} and {@link #LLVMAddTargetLibraryInfo(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMPassManagerRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMAddTargetLibraryInfo(LLVMLibrary.LLVMTargetLibraryInfoRef, LLVMLibrary.LLVMPassManagerRef)} and {@link #LLVMAddTargetLibraryInfo(com.sun.jna.Pointer, LLVMLibrary.LLVMPassManagerRef)} instead
 	 */
 	@Deprecated 
 	public static native void LLVMAddTargetLibraryInfo(Pointer TLI, LLVMLibrary.LLVMPassManagerRef PM);
@@ -4517,7 +4517,7 @@ public class LLVMLibrary implements Library {
 	 * with LLVMDisposeMessage.<br>
 	 * See the constructor llvm::DataLayout::DataLayout.<br>
 	 * Original signature : <code>char* LLVMCopyStringRepOfTargetData(LLVMTargetDataRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMCopyStringRepOfTargetData(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMCopyStringRepOfTargetData(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMCopyStringRepOfTargetData(LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMCopyStringRepOfTargetData(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native Pointer LLVMCopyStringRepOfTargetData(Pointer TD);
@@ -4533,7 +4533,7 @@ public class LLVMLibrary implements Library {
 	 * LLVMLittleEndian.<br>
 	 * See the method llvm::DataLayout::isLittleEndian.<br>
 	 * Original signature : <code>LLVMByteOrdering LLVMByteOrder(LLVMTargetDataRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMByteOrder(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMByteOrder(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMByteOrder(LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMByteOrder(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMByteOrder(Pointer TD);
@@ -4548,7 +4548,7 @@ public class LLVMLibrary implements Library {
 	 * Returns the pointer size in bytes for a target.<br>
 	 * See the method llvm::DataLayout::getPointerSize.<br>
 	 * Original signature : <code>int LLVMPointerSize(LLVMTargetDataRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPointerSize(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMPointerSize(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMPointerSize(LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMPointerSize(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMPointerSize(Pointer TD);
@@ -4563,7 +4563,7 @@ public class LLVMLibrary implements Library {
 	 * address space.<br>
 	 * See the method llvm::DataLayout::getPointerSize.<br>
 	 * Original signature : <code>int LLVMPointerSizeForAS(LLVMTargetDataRef, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPointerSizeForAS(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, int)} and {@link #LLVMPointerSizeForAS(com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMPointerSizeForAS(LLVMLibrary.LLVMTargetDataRef, int)} and {@link #LLVMPointerSizeForAS(com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMPointerSizeForAS(Pointer TD, int AS);
@@ -4578,7 +4578,7 @@ public class LLVMLibrary implements Library {
 	 * Returns the integer type that is the same size as a pointer on a target.<br>
 	 * See the method llvm::DataLayout::getIntPtrType.<br>
 	 * Original signature : <code>LLVMTypeRef LLVMIntPtrType(LLVMTargetDataRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMIntPtrType(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMIntPtrType(com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMIntPtrType(LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMIntPtrType(com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMTypeRef LLVMIntPtrType(Pointer TD);
@@ -4593,7 +4593,7 @@ public class LLVMLibrary implements Library {
 	 * This version allows the address space to be specified.<br>
 	 * See the method llvm::DataLayout::getIntPtrType.<br>
 	 * Original signature : <code>LLVMTypeRef LLVMIntPtrTypeForAS(LLVMTargetDataRef, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMIntPtrTypeForAS(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, int)} and {@link #LLVMIntPtrTypeForAS(com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMIntPtrTypeForAS(LLVMLibrary.LLVMTargetDataRef, int)} and {@link #LLVMIntPtrTypeForAS(com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMTypeRef LLVMIntPtrTypeForAS(Pointer TD, int AS);
@@ -4608,7 +4608,7 @@ public class LLVMLibrary implements Library {
 	 * Returns the integer type that is the same size as a pointer on a target.<br>
 	 * See the method llvm::DataLayout::getIntPtrType.<br>
 	 * Original signature : <code>LLVMTypeRef LLVMIntPtrTypeInContext(LLVMContextRef, LLVMTargetDataRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMIntPtrTypeInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, org.llvm.binding.LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMIntPtrTypeInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer)} instead
+	 * @deprecated use the safer methods {@link #LLVMIntPtrTypeInContext(LLVMLibrary.LLVMContextRef, LLVMLibrary.LLVMTargetDataRef)} and {@link #LLVMIntPtrTypeInContext(LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMTypeRef LLVMIntPtrTypeInContext(LLVMLibrary.LLVMContextRef C, Pointer TD);
@@ -4623,7 +4623,7 @@ public class LLVMLibrary implements Library {
 	 * This version allows the address space to be specified.<br>
 	 * See the method llvm::DataLayout::getIntPtrType.<br>
 	 * Original signature : <code>LLVMTypeRef LLVMIntPtrTypeForASInContext(LLVMContextRef, LLVMTargetDataRef, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMIntPtrTypeForASInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, int)} and {@link #LLVMIntPtrTypeForASInContext(org.llvm.binding.LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMIntPtrTypeForASInContext(LLVMLibrary.LLVMContextRef, LLVMLibrary.LLVMTargetDataRef, int)} and {@link #LLVMIntPtrTypeForASInContext(LLVMLibrary.LLVMContextRef, com.sun.jna.Pointer, int)} instead
 	 */
 	@Deprecated 
 	public static native LLVMLibrary.LLVMTypeRef LLVMIntPtrTypeForASInContext(LLVMLibrary.LLVMContextRef C, Pointer TD, int AS);
@@ -4638,7 +4638,7 @@ public class LLVMLibrary implements Library {
 	 * Computes the size of a type in bytes for a target.<br>
 	 * See the method llvm::DataLayout::getTypeSizeInBits.<br>
 	 * Original signature : <code>long long LLVMSizeOfTypeInBits(LLVMTargetDataRef, LLVMTypeRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMSizeOfTypeInBits(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} and {@link #LLVMSizeOfTypeInBits(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMSizeOfTypeInBits(LLVMLibrary.LLVMTargetDataRef, LLVMLibrary.LLVMTypeRef)} and {@link #LLVMSizeOfTypeInBits(com.sun.jna.Pointer, LLVMLibrary.LLVMTypeRef)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMSizeOfTypeInBits(Pointer TD, LLVMLibrary.LLVMTypeRef Ty);
@@ -4652,7 +4652,7 @@ public class LLVMLibrary implements Library {
 	 * Computes the storage size of a type in bytes for a target.<br>
 	 * See the method llvm::DataLayout::getTypeStoreSize.<br>
 	 * Original signature : <code>long long LLVMStoreSizeOfType(LLVMTargetDataRef, LLVMTypeRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMStoreSizeOfType(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} and {@link #LLVMStoreSizeOfType(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMStoreSizeOfType(LLVMLibrary.LLVMTargetDataRef, LLVMLibrary.LLVMTypeRef)} and {@link #LLVMStoreSizeOfType(com.sun.jna.Pointer, LLVMLibrary.LLVMTypeRef)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMStoreSizeOfType(Pointer TD, LLVMLibrary.LLVMTypeRef Ty);
@@ -4666,7 +4666,7 @@ public class LLVMLibrary implements Library {
 	 * Computes the ABI size of a type in bytes for a target.<br>
 	 * See the method llvm::DataLayout::getTypeAllocSize.<br>
 	 * Original signature : <code>long long LLVMABISizeOfType(LLVMTargetDataRef, LLVMTypeRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMABISizeOfType(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} and {@link #LLVMABISizeOfType(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMABISizeOfType(LLVMLibrary.LLVMTargetDataRef, LLVMLibrary.LLVMTypeRef)} and {@link #LLVMABISizeOfType(com.sun.jna.Pointer, LLVMLibrary.LLVMTypeRef)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMABISizeOfType(Pointer TD, LLVMLibrary.LLVMTypeRef Ty);
@@ -4680,7 +4680,7 @@ public class LLVMLibrary implements Library {
 	 * Computes the ABI alignment of a type in bytes for a target.<br>
 	 * See the method llvm::DataLayout::getTypeABISize.<br>
 	 * Original signature : <code>int LLVMABIAlignmentOfType(LLVMTargetDataRef, LLVMTypeRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMABIAlignmentOfType(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} and {@link #LLVMABIAlignmentOfType(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMABIAlignmentOfType(LLVMLibrary.LLVMTargetDataRef, LLVMLibrary.LLVMTypeRef)} and {@link #LLVMABIAlignmentOfType(com.sun.jna.Pointer, LLVMLibrary.LLVMTypeRef)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMABIAlignmentOfType(Pointer TD, LLVMLibrary.LLVMTypeRef Ty);
@@ -4694,7 +4694,7 @@ public class LLVMLibrary implements Library {
 	 * Computes the call frame alignment of a type in bytes for a target.<br>
 	 * See the method llvm::DataLayout::getTypeABISize.<br>
 	 * Original signature : <code>int LLVMCallFrameAlignmentOfType(LLVMTargetDataRef, LLVMTypeRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMCallFrameAlignmentOfType(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} and {@link #LLVMCallFrameAlignmentOfType(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMCallFrameAlignmentOfType(LLVMLibrary.LLVMTargetDataRef, LLVMLibrary.LLVMTypeRef)} and {@link #LLVMCallFrameAlignmentOfType(com.sun.jna.Pointer, LLVMLibrary.LLVMTypeRef)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMCallFrameAlignmentOfType(Pointer TD, LLVMLibrary.LLVMTypeRef Ty);
@@ -4708,7 +4708,7 @@ public class LLVMLibrary implements Library {
 	 * Computes the preferred alignment of a type in bytes for a target.<br>
 	 * See the method llvm::DataLayout::getTypeABISize.<br>
 	 * Original signature : <code>int LLVMPreferredAlignmentOfType(LLVMTargetDataRef, LLVMTypeRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPreferredAlignmentOfType(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} and {@link #LLVMPreferredAlignmentOfType(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMTypeRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMPreferredAlignmentOfType(LLVMLibrary.LLVMTargetDataRef, LLVMLibrary.LLVMTypeRef)} and {@link #LLVMPreferredAlignmentOfType(com.sun.jna.Pointer, LLVMLibrary.LLVMTypeRef)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMPreferredAlignmentOfType(Pointer TD, LLVMLibrary.LLVMTypeRef Ty);
@@ -4722,7 +4722,7 @@ public class LLVMLibrary implements Library {
 	 * Computes the preferred alignment of a global variable in bytes for a target.<br>
 	 * See the method llvm::DataLayout::getPreferredAlignment.<br>
 	 * Original signature : <code>int LLVMPreferredAlignmentOfGlobal(LLVMTargetDataRef, LLVMValueRef)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMPreferredAlignmentOfGlobal(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, org.llvm.binding.LLVMLibrary.LLVMValueRef)} and {@link #LLVMPreferredAlignmentOfGlobal(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMValueRef)} instead
+	 * @deprecated use the safer methods {@link #LLVMPreferredAlignmentOfGlobal(LLVMLibrary.LLVMTargetDataRef, LLVMLibrary.LLVMValueRef)} and {@link #LLVMPreferredAlignmentOfGlobal(com.sun.jna.Pointer, LLVMLibrary.LLVMValueRef)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMPreferredAlignmentOfGlobal(Pointer TD, LLVMLibrary.LLVMValueRef GlobalVar);
@@ -4736,7 +4736,7 @@ public class LLVMLibrary implements Library {
 	 * Computes the structure element that contains the byte offset for a target.<br>
 	 * See the method llvm::StructLayout::getElementContainingOffset.<br>
 	 * Original signature : <code>int LLVMElementAtOffset(LLVMTargetDataRef, LLVMTypeRef, unsigned long long)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMElementAtOffset(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, long)} and {@link #LLVMElementAtOffset(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMTypeRef, long)} instead
+	 * @deprecated use the safer methods {@link #LLVMElementAtOffset(LLVMLibrary.LLVMTargetDataRef, LLVMLibrary.LLVMTypeRef, long)} and {@link #LLVMElementAtOffset(com.sun.jna.Pointer, LLVMLibrary.LLVMTypeRef, long)} instead
 	 */
 	@Deprecated 
 	public static native int LLVMElementAtOffset(Pointer TD, LLVMLibrary.LLVMTypeRef StructTy, long Offset);
@@ -4750,7 +4750,7 @@ public class LLVMLibrary implements Library {
 	 * Computes the byte offset of the indexed struct element for a target.<br>
 	 * See the method llvm::StructLayout::getElementContainingOffset.<br>
 	 * Original signature : <code>long long LLVMOffsetOfElement(LLVMTargetDataRef, LLVMTypeRef, unsigned)</code><br>
-	 * @deprecated use the safer methods {@link #LLVMOffsetOfElement(org.llvm.binding.LLVMLibrary.LLVMTargetDataRef, org.llvm.binding.LLVMLibrary.LLVMTypeRef, int)} and {@link #LLVMOffsetOfElement(com.sun.jna.Pointer, org.llvm.binding.LLVMLibrary.LLVMTypeRef, int)} instead
+	 * @deprecated use the safer methods {@link #LLVMOffsetOfElement(LLVMLibrary.LLVMTargetDataRef, LLVMLibrary.LLVMTypeRef, int)} and {@link #LLVMOffsetOfElement(com.sun.jna.Pointer, LLVMLibrary.LLVMTypeRef, int)} instead
 	 */
 	@Deprecated 
 	public static native long LLVMOffsetOfElement(Pointer TD, LLVMLibrary.LLVMTypeRef StructTy, int Element);

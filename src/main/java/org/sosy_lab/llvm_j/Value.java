@@ -1,14 +1,12 @@
-package org.llvm;
+package org.sosy_lab.llvm_j;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import static org.llvm.binding.LLVMLibrary.*;
 
 /**
  * Represents an individual value in LLVM IR.
@@ -214,9 +212,9 @@ public class Value {
         }
     }
 
-    private LLVMValueRef value;
+    private LLVMLibrary.LLVMValueRef value;
 
-    LLVMValueRef value() {
+    LLVMLibrary.LLVMValueRef value() {
         return value;
     }
 
@@ -239,7 +237,7 @@ public class Value {
         return value.hashCode();
     }
 
-    Value(LLVMValueRef value) {
+    Value(LLVMLibrary.LLVMValueRef value) {
         this.value = value;
     }
 
@@ -249,7 +247,7 @@ public class Value {
      * @see llvm::Value::getType()
      */
     public TypeRef typeOf() {
-        return new TypeRef(LLVMTypeOf(value));
+        return new TypeRef(LLVMLibrary.LLVMTypeOf(value));
     }
 
     public long getAddress() {
@@ -274,7 +272,7 @@ public class Value {
      * @see llvm::Value::getName()
      */
     public String getValueName() {
-        return LLVMGetValueName(value);
+        return LLVMLibrary.LLVMGetValueName(value);
     }
 
     /**
@@ -283,12 +281,12 @@ public class Value {
      * @see llvm::Value::dump()
      */
     public void dumpValue() {
-        LLVMDumpValue(value);
+        LLVMLibrary.LLVMDumpValue(value);
     }
 
     @Override
     public String toString() {
-	  Pointer ret = LLVMPrintValueToString(value);
+	  Pointer ret = LLVMLibrary.LLVMPrintValueToString(value);
       return ret.getString(Native.getNativeSize(String.class));
     }
 
@@ -296,21 +294,21 @@ public class Value {
      * Determine whether an instruction has any metadata attached.
      */
     public int hasMetadata() {
-        return LLVMHasMetadata(value);
+        return LLVMLibrary.LLVMHasMetadata(value);
     }
 
     /**
      * Return metadata associated with an instruction value.
      */
     public Value getMetadata(int kindID) {
-        return new Value(LLVMGetMetadata(value, kindID));
+        return new Value(LLVMLibrary.LLVMGetMetadata(value, kindID));
     }
 
     /**
      * Set metadata associated with an instruction value.
      */
     public void setMetadata(int kindID, Value node) {
-        LLVMSetMetadata(value, kindID, node.value());
+        LLVMLibrary.LLVMSetMetadata(value, kindID, node.value());
     }
 
     /**
@@ -320,7 +318,7 @@ public class Value {
      */
     public boolean isArgument() {
         try {
-            return LLVMIsAArgument(value) != null;
+            return LLVMLibrary.LLVMIsAArgument(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -328,7 +326,7 @@ public class Value {
 
     public boolean isABasicBlock() {
         try {
-            return LLVMIsABasicBlock(value) != null;
+            return LLVMLibrary.LLVMIsABasicBlock(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -336,7 +334,7 @@ public class Value {
 
     public boolean isInlineAsm() {
         try {
-            return LLVMIsAInlineAsm(value) != null;
+            return LLVMLibrary.LLVMIsAInlineAsm(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -344,7 +342,7 @@ public class Value {
 
     public boolean isUser() {
         try {
-            return LLVMIsAUser(value) != null;
+            return LLVMLibrary.LLVMIsAUser(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -352,7 +350,7 @@ public class Value {
 
     public boolean isAConstant() {
         try {
-            return LLVMIsAConstant(value) != null;
+            return LLVMLibrary.LLVMIsAConstant(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -360,7 +358,7 @@ public class Value {
 
     public boolean isConstantAggregateZero() {
         try {
-            return LLVMIsAConstantAggregateZero(value) != null;
+            return LLVMLibrary.LLVMIsAConstantAggregateZero(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -368,7 +366,7 @@ public class Value {
 
     public boolean isConstantArray() {
         try {
-            return LLVMIsAConstantArray(value) != null;
+            return LLVMLibrary.LLVMIsAConstantArray(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -376,7 +374,7 @@ public class Value {
 
     public boolean isConstantExpr() {
         try {
-            return LLVMIsAConstantExpr(value) != null;
+            return LLVMLibrary.LLVMIsAConstantExpr(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -384,7 +382,7 @@ public class Value {
 
     public boolean isConstantFP() {
         try {
-            return LLVMIsAConstantFP(value) != null;
+            return LLVMLibrary.LLVMIsAConstantFP(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -392,7 +390,7 @@ public class Value {
 
     public boolean isConstantInt() {
         try {
-            return LLVMIsAConstantInt(value) != null;
+            return LLVMLibrary.LLVMIsAConstantInt(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -400,7 +398,7 @@ public class Value {
 
     public boolean isConstantPointerNull() {
         try {
-            return LLVMIsAConstantPointerNull(value) != null;
+            return LLVMLibrary.LLVMIsAConstantPointerNull(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -408,7 +406,7 @@ public class Value {
 
     public boolean isConstantStruct() {
         try {
-            return LLVMIsAConstantStruct(value) != null;
+            return LLVMLibrary.LLVMIsAConstantStruct(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -416,7 +414,7 @@ public class Value {
 
     public boolean isConstantVector() {
         try {
-            return LLVMIsAConstantVector(value) != null;
+            return LLVMLibrary.LLVMIsAConstantVector(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -424,7 +422,7 @@ public class Value {
 
     public boolean isGlobalValue() {
         try {
-            return LLVMIsAGlobalValue(value) != null;
+            return LLVMLibrary.LLVMIsAGlobalValue(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -432,7 +430,7 @@ public class Value {
 
     public boolean isFunction() {
         try {
-            return LLVMIsAFunction(value) != null;
+            return LLVMLibrary.LLVMIsAFunction(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -440,7 +438,7 @@ public class Value {
 
     public boolean isGlobalAlias() {
         try {
-            return LLVMIsAGlobalAlias(value) != null;
+            return LLVMLibrary.LLVMIsAGlobalAlias(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -448,7 +446,7 @@ public class Value {
 
     public boolean isGlobalVariable() {
         try {
-            return LLVMIsAGlobalVariable(value) != null;
+            return LLVMLibrary.LLVMIsAGlobalVariable(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -456,7 +454,7 @@ public class Value {
 
     public boolean isUndefValue() {
         try {
-            return LLVMIsAUndefValue(value) != null;
+            return LLVMLibrary.LLVMIsAUndefValue(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -464,7 +462,7 @@ public class Value {
 
     public boolean isInstruction() {
         try {
-            return LLVMIsAInstruction(value) != null;
+            return LLVMLibrary.LLVMIsAInstruction(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -472,7 +470,7 @@ public class Value {
 
     public boolean isBinaryOperator() {
         try {
-            return LLVMIsABinaryOperator(value) != null;
+            return LLVMLibrary.LLVMIsABinaryOperator(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -480,7 +478,7 @@ public class Value {
 
     public boolean isCallInst() {
         try {
-            return LLVMIsACallInst(value) != null;
+            return LLVMLibrary.LLVMIsACallInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -488,7 +486,7 @@ public class Value {
 
     public boolean isIntrinsicInst() {
         try {
-            return LLVMIsAIntrinsicInst(value) != null;
+            return LLVMLibrary.LLVMIsAIntrinsicInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -496,7 +494,7 @@ public class Value {
 
     public boolean isDbgInfoIntrinsic() {
         try {
-            return LLVMIsADbgInfoIntrinsic(value) != null;
+            return LLVMLibrary.LLVMIsADbgInfoIntrinsic(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -504,7 +502,7 @@ public class Value {
 
     public boolean isDbgDeclareInst() {
         try {
-            return LLVMIsADbgDeclareInst(value) != null;
+            return LLVMLibrary.LLVMIsADbgDeclareInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -513,7 +511,7 @@ public class Value {
     //	public boolean isEHSelectorInst() { return LLVMIsAEHSelectorInst(value) != null; }
     public boolean isMemIntrinsic() {
         try {
-            return LLVMIsAMemIntrinsic(value) != null;
+            return LLVMLibrary.LLVMIsAMemIntrinsic(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -521,7 +519,7 @@ public class Value {
 
     public boolean isMemCpyInst() {
         try {
-            return LLVMIsAMemCpyInst(value) != null;
+            return LLVMLibrary.LLVMIsAMemCpyInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -529,7 +527,7 @@ public class Value {
 
     public boolean isMemMoveInst() {
         try {
-            return LLVMIsAMemMoveInst(value) != null;
+            return LLVMLibrary.LLVMIsAMemMoveInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -537,7 +535,7 @@ public class Value {
 
     public boolean isMemSetInst() {
         try {
-            return LLVMIsAMemSetInst(value) != null;
+            return LLVMLibrary.LLVMIsAMemSetInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -545,7 +543,7 @@ public class Value {
 
     public boolean isCmpInst() {
         try {
-            return LLVMIsACmpInst(value) != null;
+            return LLVMLibrary.LLVMIsACmpInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -553,7 +551,7 @@ public class Value {
 
     public boolean isFCmpInst() {
         try {
-            return LLVMIsAFCmpInst(value) != null;
+            return LLVMLibrary.LLVMIsAFCmpInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -561,7 +559,7 @@ public class Value {
 
     public boolean isICmpInst() {
         try {
-            return LLVMIsAICmpInst(value) != null;
+            return LLVMLibrary.LLVMIsAICmpInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -569,7 +567,7 @@ public class Value {
 
     public boolean isExtractElementInst() {
         try {
-            return LLVMIsAExtractElementInst(value) != null;
+            return LLVMLibrary.LLVMIsAExtractElementInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -577,7 +575,7 @@ public class Value {
 
     public boolean isGetElementPtrInst() {
         try {
-            return LLVMIsAGetElementPtrInst(value) != null;
+            return LLVMLibrary.LLVMIsAGetElementPtrInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -585,7 +583,7 @@ public class Value {
 
     public boolean isInsertElementInst() {
         try {
-            return LLVMIsAInsertElementInst(value) != null;
+            return LLVMLibrary.LLVMIsAInsertElementInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -593,7 +591,7 @@ public class Value {
 
     public boolean isInsertValueInst() {
         try {
-            return LLVMIsAInsertValueInst(value) != null;
+            return LLVMLibrary.LLVMIsAInsertValueInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -601,7 +599,7 @@ public class Value {
 
     public boolean isPHINode() {
         try {
-            return LLVMIsAPHINode(value) != null;
+            return LLVMLibrary.LLVMIsAPHINode(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -609,7 +607,7 @@ public class Value {
 
     public boolean isSelectInst() {
         try {
-            return LLVMIsASelectInst(value) != null;
+            return LLVMLibrary.LLVMIsASelectInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -617,7 +615,7 @@ public class Value {
 
     public boolean isShuffleVectorInst() {
         try {
-            return LLVMIsAShuffleVectorInst(value) != null;
+            return LLVMLibrary.LLVMIsAShuffleVectorInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -625,7 +623,7 @@ public class Value {
 
     public boolean isStoreInst() {
         try {
-            return LLVMIsAStoreInst(value) != null;
+            return LLVMLibrary.LLVMIsAStoreInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -633,7 +631,7 @@ public class Value {
 
     public boolean isTerminatorInst() {
         try {
-            return LLVMIsATerminatorInst(value) != null;
+            return LLVMLibrary.LLVMIsATerminatorInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -641,7 +639,7 @@ public class Value {
 
     public boolean isBranchInst() {
         try {
-            return LLVMIsABranchInst(value) != null;
+            return LLVMLibrary.LLVMIsABranchInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -649,7 +647,7 @@ public class Value {
 
     public boolean isIndirectBranchInst() {
         try {
-            return LLVMIsAIndirectBrInst(value) != null;
+            return LLVMLibrary.LLVMIsAIndirectBrInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -657,7 +655,7 @@ public class Value {
 
     public boolean isInvokeInst() {
         try {
-            return LLVMIsAInvokeInst(value) != null;
+            return LLVMLibrary.LLVMIsAInvokeInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -665,7 +663,7 @@ public class Value {
 
     public boolean isReturnInst() {
         try {
-            return LLVMIsAReturnInst(value) != null;
+            return LLVMLibrary.LLVMIsAReturnInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -683,7 +681,7 @@ public class Value {
 
     public boolean isSwitchInst() {
         try {
-            return LLVMIsASwitchInst(value) != null;
+            return LLVMLibrary.LLVMIsASwitchInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -691,7 +689,7 @@ public class Value {
 
     public boolean isUnreachableInst() {
         try {
-            return LLVMIsAUnreachableInst(value) != null;
+            return LLVMLibrary.LLVMIsAUnreachableInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -700,7 +698,7 @@ public class Value {
     //	public boolean isUnwindInst() { return LLVMIsAUnwindInst(value) != null; }
     public boolean isUnaryInstruction() {
         try {
-            return LLVMIsAUnaryInstruction(value) != null;
+            return LLVMLibrary.LLVMIsAUnaryInstruction(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -708,19 +706,19 @@ public class Value {
 
     public boolean isAllocaInst() {
         try {
-            return LLVMIsAAllocaInst(value) != null;
+            return LLVMLibrary.LLVMIsAAllocaInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
     }
 
     public TypeRef getAllocatedType() {
-        return new TypeRef(LLVMGetAllocatedType(value));
+        return new TypeRef(LLVMLibrary.LLVMGetAllocatedType(value));
     }
 
     public boolean isCastInst() {
         try {
-            return LLVMIsACastInst(value) != null;
+            return LLVMLibrary.LLVMIsACastInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -728,7 +726,7 @@ public class Value {
 
     public boolean isBitCastInst() {
         try {
-            return LLVMIsABitCastInst(value) != null;
+            return LLVMLibrary.LLVMIsABitCastInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -736,7 +734,7 @@ public class Value {
 
     public boolean isFPExtInst() {
         try {
-            return LLVMIsAFPExtInst(value) != null;
+            return LLVMLibrary.LLVMIsAFPExtInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -744,7 +742,7 @@ public class Value {
 
     public boolean isFPToSIInst() {
         try {
-            return LLVMIsAFPToSIInst(value) != null;
+            return LLVMLibrary.LLVMIsAFPToSIInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -752,7 +750,7 @@ public class Value {
 
     public boolean isFPToUIInst() {
         try {
-            return LLVMIsAFPToUIInst(value) != null;
+            return LLVMLibrary.LLVMIsAFPToUIInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -760,7 +758,7 @@ public class Value {
 
     public boolean isFPTruncInst() {
         try {
-            return LLVMIsAFPTruncInst(value) != null;
+            return LLVMLibrary.LLVMIsAFPTruncInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -768,7 +766,7 @@ public class Value {
 
     public boolean isIntToPtrInst() {
         try {
-            return LLVMIsAIntToPtrInst(value) != null;
+            return LLVMLibrary.LLVMIsAIntToPtrInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -776,7 +774,7 @@ public class Value {
 
     public boolean isPtrToIntInst() {
         try {
-            return LLVMIsAPtrToIntInst(value) != null;
+            return LLVMLibrary.LLVMIsAPtrToIntInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -784,7 +782,7 @@ public class Value {
 
     public boolean isSExtInst() {
         try {
-            return LLVMIsASExtInst(value) != null;
+            return LLVMLibrary.LLVMIsASExtInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -792,7 +790,7 @@ public class Value {
 
     public boolean isSIToFPInst() {
         try {
-            return LLVMIsASIToFPInst(value) != null;
+            return LLVMLibrary.LLVMIsASIToFPInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -800,7 +798,7 @@ public class Value {
 
     public boolean isTruncInst() {
         try {
-            return LLVMIsATruncInst(value) != null;
+            return LLVMLibrary.LLVMIsATruncInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -808,7 +806,7 @@ public class Value {
 
     public boolean isUIToFPInst() {
         try {
-            return LLVMIsAUIToFPInst(value) != null;
+            return LLVMLibrary.LLVMIsAUIToFPInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -816,7 +814,7 @@ public class Value {
 
     public boolean isZExtInst() {
         try {
-            return LLVMIsAZExtInst(value) != null;
+            return LLVMLibrary.LLVMIsAZExtInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -824,7 +822,7 @@ public class Value {
 
     public boolean isExtractValueInst() {
         try {
-            return LLVMIsAExtractValueInst(value) != null;
+            return LLVMLibrary.LLVMIsAExtractValueInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -832,7 +830,7 @@ public class Value {
 
     public boolean isLoadInst() {
         try {
-            return LLVMIsALoadInst(value) != null;
+            return LLVMLibrary.LLVMIsALoadInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -840,7 +838,7 @@ public class Value {
 
     public boolean isVAArgInst() {
         try {
-            return LLVMIsAVAArgInst(value) != null;
+            return LLVMLibrary.LLVMIsAVAArgInst(value) != null;
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -850,7 +848,7 @@ public class Value {
      * Determine whether the specified constant instance is constant.
      */
     public boolean isConstant() {
-        LLVMBool b = LLVMIsConstant(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsConstant(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
@@ -860,7 +858,7 @@ public class Value {
      * @see llvm::Constant::isNullValue()
      */
     public boolean isNull() {
-        LLVMBool b = LLVMIsNull(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsNull(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
@@ -868,7 +866,7 @@ public class Value {
      * Determine whether a value instance is undefined.
      */
     public boolean isUndef() {
-        LLVMBool b = LLVMIsUndef(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsUndef(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
@@ -879,8 +877,8 @@ public class Value {
      * @see llvm::Use::getUser()
      */
     // TODO: move
-    public static Value getUser(LLVMUseRef u) {
-        return new Value(LLVMGetUser(u));
+    public static Value getUser(LLVMLibrary.LLVMUseRef u) {
+        return new Value(LLVMLibrary.LLVMGetUser(u));
     }
 
     /**
@@ -889,8 +887,8 @@ public class Value {
      * @see llvm::Use::get()
      */
     // TODO: move
-    public static Value getUsedValue(LLVMUseRef u) {
-        return new Value(LLVMGetUsedValue(u));
+    public static Value getUsedValue(LLVMLibrary.LLVMUseRef u) {
+        return new Value(LLVMLibrary.LLVMGetUsedValue(u));
     }
 
     /**
@@ -899,7 +897,7 @@ public class Value {
      * @see llvm::User::getOperand()
      */
     public Value getOperand(int index) {
-        return new Value(LLVMGetOperand(value, index));
+        return new Value(LLVMLibrary.LLVMGetOperand(value, index));
     }
 
     /**
@@ -908,7 +906,7 @@ public class Value {
      * @see llvm::User::setOperand()
      */
     public void setOperand(int index, Value val) {
-        LLVMSetOperand(value, index, val.value());
+        LLVMLibrary.LLVMSetOperand(value, index, val.value());
     }
 
     /**
@@ -917,7 +915,7 @@ public class Value {
      * @see llvm::User::getNumOperands()
      */
     public int getNumOperands() {
-        return LLVMGetNumOperands(value);
+        return LLVMLibrary.LLVMGetNumOperands(value);
     }
 
     // MetaData
@@ -946,7 +944,7 @@ public class Value {
     }*/
 
     public OpCode getOpCode() {
-        int opcode = LLVMGetInstructionOpcode(value);
+        int opcode = LLVMLibrary.LLVMGetInstructionOpcode(value);
 
         // Use the value-based enums with this for-loop
         // to convert the integer opcode returned by the llvm library
@@ -961,7 +959,7 @@ public class Value {
     }
 
     public IntPredicate getICmpPredicate() {
-	    int code = LLVMGetICmpPredicate(value);
+	    int code = LLVMLibrary.LLVMGetICmpPredicate(value);
 
         for (IntPredicate predicate : IntPredicate.values()) {
             if (code == predicate.getValue()) {
@@ -972,33 +970,33 @@ public class Value {
     }
 
     public boolean isConditional() {
-        LLVMBool b = LLVMIsConditional(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsConditional(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
     public Value getCondition() {
         assert isConditional();
-        return new Value(LLVMGetCondition(value));
+        return new Value(LLVMLibrary.LLVMGetCondition(value));
     }
 
     public static Value blockAddress(Value f, BasicBlock bb) {
-        return new Value(LLVMBlockAddress(f.value(), bb.bb()));
+        return new Value(LLVMLibrary.LLVMBlockAddress(f.value(), bb.bb()));
     }
 
     public Module getGlobalParent() {
-        return new Module(LLVMGetGlobalParent(value));
+        return new Module(LLVMLibrary.LLVMGetGlobalParent(value));
     }
 
     public boolean isDeclaration() {
         if (value == null) {
             throw new NullPointerException("Null pointer value");
         }
-        LLVMBool b = LLVMIsDeclaration(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsDeclaration(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
     public Linkage getLinkage() {
-        int code = LLVMGetLinkage(value);
+        int code = LLVMLibrary.LLVMGetLinkage(value);
 
         for (Linkage l : Linkage.values()) {
             if (code == l.getValue()) {
@@ -1009,11 +1007,11 @@ public class Value {
     }
 
     public String getSection() {
-        return LLVMGetSection(value);
+        return LLVMLibrary.LLVMGetSection(value);
     }
 
     public Visibility getVisibility() {
-        int code = LLVMGetVisibility(value);
+        int code = LLVMLibrary.LLVMGetVisibility(value);
 
         for (Visibility v : Visibility.values()) {
             if (code == v.getValue()) {
@@ -1024,34 +1022,34 @@ public class Value {
     }
 
     public int getAlignment() {
-        return LLVMGetAlignment(value);
+        return LLVMLibrary.LLVMGetAlignment(value);
     }
 
     // this.value is GlobalVar
     public Value getNextGlobal() {
-        return new Value(LLVMGetNextGlobal(value));
+        return new Value(LLVMLibrary.LLVMGetNextGlobal(value));
     }
 
     public Value getPreviousGlobal() {
-        return new Value(LLVMGetPreviousGlobal(value));
+        return new Value(LLVMLibrary.LLVMGetPreviousGlobal(value));
     }
 
     public Value getInitializer() {
-        return new Value(LLVMGetInitializer(value));
+        return new Value(LLVMLibrary.LLVMGetInitializer(value));
     }
 
     public boolean isExternallyInitialized() {
-        LLVMBool b = LLVMIsExternallyInitialized(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsExternallyInitialized(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
     public boolean isThreadLocal() {
-        LLVMBool b = LLVMIsThreadLocal(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsThreadLocal(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
     public boolean isGlobalConstant() {
-        LLVMBool b = LLVMIsGlobalConstant(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsGlobalConstant(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
@@ -1061,7 +1059,7 @@ public class Value {
      * functions.
      */
     public Value getNextFunction() {
-        LLVMValueRef nextFunc = LLVMGetNextFunction(value);
+        LLVMLibrary.LLVMValueRef nextFunc = LLVMLibrary.LLVMGetNextFunction(value);
         if (nextFunc == null) {
             return null;
         } else {
@@ -1075,7 +1073,7 @@ public class Value {
      * no previous functions.
      */
     public Value getPreviousFunction() {
-        LLVMValueRef previousFunc = LLVMGetPreviousFunction(value);
+        LLVMLibrary.LLVMValueRef previousFunc = LLVMLibrary.LLVMGetPreviousFunction(value);
         if (previousFunc == null) {
             return null;
         } else {
@@ -1089,7 +1087,7 @@ public class Value {
      * @see llvm::Function::eraseFromParent()
      */
     public void deleteFunction() {
-        LLVMDeleteFunction(value);
+        LLVMLibrary.LLVMDeleteFunction(value);
     }
 
     /**
@@ -1098,7 +1096,7 @@ public class Value {
      * @see llvm::Function::getIntrinsicID()
      */
     public void getIntrinsicID() {
-        LLVMGetIntrinsicID(value);
+        LLVMLibrary.LLVMGetIntrinsicID(value);
     }
 
     /**
@@ -1108,7 +1106,7 @@ public class Value {
      * @see llvm::Function::getCallingConv()
      */
     public CallConv getFunctionCallConv() {
-        int code = LLVMGetFunctionCallConv(value);
+        int code = LLVMLibrary.LLVMGetFunctionCallConv(value);
 
         for (CallConv v : CallConv.values()) {
             if (code == v.getValue()) {
@@ -1125,7 +1123,7 @@ public class Value {
      * @see llvm::Function::getGC()
      */
     public String getGC() {
-        return LLVMGetGC(value);
+        return LLVMLibrary.LLVMGetGC(value);
     }
 
     /**
@@ -1143,7 +1141,7 @@ public class Value {
      * @see llvm::Function::arg_size()
      */
     public int countParams() {
-        return LLVMCountParams(value);
+        return LLVMLibrary.LLVMCountParams(value);
     }
 
     /**
@@ -1156,15 +1154,15 @@ public class Value {
         List<Value> params = new ArrayList<Value>(paramCount);
 
         if (paramCount > 0) {
-            int valueRefOffset = Native.getNativeSize(LLVMValueRef.class);
+            int valueRefOffset = Native.getNativeSize(LLVMLibrary.LLVMValueRef.class);
             Memory arrayPointer = new Memory(paramCount * valueRefOffset);
-            LLVMValueRef paramArray = new LLVMValueRef(arrayPointer);
-            LLVMGetParams(value, paramArray);
+            LLVMLibrary.LLVMValueRef paramArray = new LLVMLibrary.LLVMValueRef(arrayPointer);
+            LLVMLibrary.LLVMGetParams(value, paramArray);
 
             Pointer[] paramRefs = new Pointer[paramCount];
             arrayPointer.read(valueRefOffset, paramRefs, 0, paramCount);
             for (int i = 0; i < paramCount; i++) {
-                LLVMValueRef valueRef = new LLVMValueRef(paramRefs[i]);
+                LLVMLibrary.LLVMValueRef valueRef = new LLVMLibrary.LLVMValueRef(paramRefs[i]);
                 params.add(new Value(valueRef));
             }
         }
@@ -1179,7 +1177,7 @@ public class Value {
      * @see llvm::Function::arg_begin()
      */
     public Value getParam(int index) {
-        return new Value(LLVMGetParam(value, index));
+        return new Value(LLVMLibrary.LLVMGetParam(value, index));
     }
 
     /**
@@ -1190,7 +1188,7 @@ public class Value {
      * argument belongs.
      */
     public Value getParamParent() {
-        return new Value(LLVMGetParamParent(value));
+        return new Value(LLVMLibrary.LLVMGetParamParent(value));
     }
 
     /**
@@ -1200,7 +1198,7 @@ public class Value {
      */
     public Value getFirstParam() {
         try {
-            return new Value(LLVMGetFirstParam(value));
+            return new Value(LLVMLibrary.LLVMGetFirstParam(value));
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
@@ -1213,7 +1211,7 @@ public class Value {
      */
     public Value getLastParam() {
         try {
-            return new Value(LLVMGetLastParam(value));
+            return new Value(LLVMLibrary.LLVMGetLastParam(value));
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
@@ -1226,7 +1224,7 @@ public class Value {
      * underlying iterator.
      */
     public Value getNextParam() {
-        return new Value(LLVMGetNextParam(value));
+        return new Value(LLVMLibrary.LLVMGetNextParam(value));
     }
 
     /**
@@ -1234,7 +1232,7 @@ public class Value {
      * This is the opposite of LLVMGetNextParam().
      */
     public Value getPreviousParam() {
-        return new Value(LLVMGetPreviousParam(value));
+        return new Value(LLVMLibrary.LLVMGetPreviousParam(value));
     }
 
     /**
@@ -1250,7 +1248,7 @@ public class Value {
      * @see llvm::ConstantInt::getZExtValue()
      */
     public long constIntGetZExtValue() {
-        return LLVMConstIntGetZExtValue(value);
+        return LLVMLibrary.LLVMConstIntGetZExtValue(value);
     }
 
     /**
@@ -1259,14 +1257,14 @@ public class Value {
      * @see llvm::ConstantInt::getSExtValue()
      */
     public long constIntGetSExtValue() {
-        return LLVMConstIntGetSExtValue(value);
+        return LLVMLibrary.LLVMConstIntGetSExtValue(value);
     }
 
     /**
      * Determine whether a LLVMValueRef is itself a basic block.
      */
     public boolean isBasicBlock() {
-        LLVMBool b = LLVMValueIsBasicBlock(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMValueIsBasicBlock(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
@@ -1274,7 +1272,7 @@ public class Value {
      * Convert a LLVMValueRef to a LLVMBasicBlockRef instance.
      */
     public BasicBlock asBasicBlock() {
-        return new BasicBlock(LLVMValueAsBasicBlock(value));
+        return new BasicBlock(LLVMLibrary.LLVMValueAsBasicBlock(value));
     }
 
     /**
@@ -1284,7 +1282,7 @@ public class Value {
      *            Function value to operate on.
      */
     public int countBasicBlocks() {
-        return LLVMCountBasicBlocks(value);
+        return LLVMLibrary.LLVMCountBasicBlocks(value);
     }
 
     /**
@@ -1299,15 +1297,15 @@ public class Value {
         List<BasicBlock> blocks = new ArrayList<BasicBlock>(blockCount);
 
         if (blockCount > 0) {
-            int blockRefOffset = Native.getNativeSize(LLVMBasicBlockRef.class);
+            int blockRefOffset = Native.getNativeSize(LLVMLibrary.LLVMBasicBlockRef.class);
             Memory arrayPointer = new Memory(blockCount * blockRefOffset);
-            LLVMBasicBlockRef blockArray = new LLVMBasicBlockRef(arrayPointer);
-            LLVMGetBasicBlocks(value, blockArray);
+            LLVMLibrary.LLVMBasicBlockRef blockArray = new LLVMLibrary.LLVMBasicBlockRef(arrayPointer);
+            LLVMLibrary.LLVMGetBasicBlocks(value, blockArray);
 
             Pointer[] blockRefs = new Pointer[blockCount];
             arrayPointer.read(blockRefOffset, blockRefs, 0, blockCount);
             for (int i = 0; i < blockCount; i++) {
-                LLVMBasicBlockRef blockRef = new LLVMBasicBlockRef(blockRefs[i]);
+                LLVMLibrary.LLVMBasicBlockRef blockRef = new LLVMLibrary.LLVMBasicBlockRef(blockRefs[i]);
                 blocks.add(new BasicBlock(blockRef));
             }
         }
@@ -1324,7 +1322,7 @@ public class Value {
      */
     public BasicBlock getFirstBasicBlock() {
         try {
-            return new BasicBlock(LLVMGetFirstBasicBlock(value));
+            return new BasicBlock(LLVMLibrary.LLVMGetFirstBasicBlock(value));
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
@@ -1337,7 +1335,7 @@ public class Value {
      */
     public BasicBlock getLastBasicBlock() {
         try {
-            return new BasicBlock(LLVMGetLastBasicBlock(value));
+            return new BasicBlock(LLVMLibrary.LLVMGetLastBasicBlock(value));
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
@@ -1351,7 +1349,7 @@ public class Value {
      */
     public BasicBlock getEntryBasicBlock() {
         try {
-            return new BasicBlock(LLVMGetEntryBasicBlock(value));
+            return new BasicBlock(LLVMLibrary.LLVMGetEntryBasicBlock(value));
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
@@ -1365,7 +1363,7 @@ public class Value {
      * @see llvm::Instruction::getParent()
      */
     public BasicBlock getInstructionParent() {
-        return new BasicBlock(LLVMGetInstructionParent(value));
+        return new BasicBlock(LLVMLibrary.LLVMGetInstructionParent(value));
     }
 
     /**
@@ -1375,7 +1373,7 @@ public class Value {
      * returned.
      */
     public Value getNextInstruction() {
-        return new Value(LLVMGetNextInstruction(value));
+        return new Value(LLVMLibrary.LLVMGetNextInstruction(value));
     }
 
     /**
@@ -1384,7 +1382,7 @@ public class Value {
      * will be returned.
      */
     public Value getPreviousInstruction() {
-        return new Value(LLVMGetPreviousInstruction(value));
+        return new Value(LLVMLibrary.LLVMGetPreviousInstruction(value));
     }
 
     /**
@@ -1395,10 +1393,10 @@ public class Value {
      * @see LLVMSetInstructionCallConv()
      */
     public int getInstructionCallConv() {
-        return LLVMGetInstructionCallConv(value);
+        return LLVMLibrary.LLVMGetInstructionCallConv(value);
     }
     public void setInstrParamAlignment(int index, int align) {
-        LLVMSetInstrParamAlignment(value, index, align);
+        LLVMLibrary.LLVMSetInstrParamAlignment(value, index, align);
     }
 
     /**
@@ -1408,7 +1406,7 @@ public class Value {
      * @see llvm::CallInst::isTailCall()
      */
     public boolean isTailCall() {
-        LLVMBool b = LLVMIsTailCall(value);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsTailCall(value);
         return Utils.llvmBoolToJavaBool(b);
     }
 
@@ -1416,31 +1414,31 @@ public class Value {
      * Obtain the number of incoming basic blocks to a PHI node.
      */
     public int countIncoming() {
-        return LLVMCountIncoming(value);
+        return LLVMLibrary.LLVMCountIncoming(value);
     }
 
     /**
      * Obtain an incoming value to a PHI node as a LLVMValueRef.
      */
     public Value getIncomingValue(int index) {
-        return new Value(LLVMGetIncomingValue(value, index));
+        return new Value(LLVMLibrary.LLVMGetIncomingValue(value, index));
     }
 
     /**
      * Obtain an incoming value to a PHI node as a LLVMBasicBlockRef.
      */
     public BasicBlock getIncomingBlock(int index) {
-        return new BasicBlock(LLVMGetIncomingBlock(value, index));
+        return new BasicBlock(LLVMLibrary.LLVMGetIncomingBlock(value, index));
     }
 
     public int getNumSuccessors() {
         assert isTerminatorInst();
-	    return LLVMGetNumSuccessors(value);
+	    return LLVMLibrary.LLVMGetNumSuccessors(value);
     }
 
     public BasicBlock getSuccessor(int i) {
         assert isTerminatorInst();
-        return new BasicBlock(LLVMGetSuccessor(value, i));
+        return new BasicBlock(LLVMLibrary.LLVMGetSuccessor(value, i));
     }
 
 }

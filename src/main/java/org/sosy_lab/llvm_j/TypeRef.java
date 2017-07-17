@@ -1,13 +1,12 @@
-package org.llvm;
+package org.sosy_lab.llvm_j;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.llvm.binding.LLVMLibrary.*;
 
 /**
  * Each value in the LLVM IR has a type, an LLVMTypeRef.
@@ -50,13 +49,13 @@ public class TypeRef {
         Token,
     }
 
-    private LLVMTypeRef type;
+    private LLVMLibrary.LLVMTypeRef type;
 
-    public LLVMTypeRef type() {
+    public LLVMLibrary.LLVMTypeRef type() {
         return type;
     }
 
-    TypeRef(LLVMTypeRef type) {
+    TypeRef(LLVMLibrary.LLVMTypeRef type) {
         this.type = type;
     }
 
@@ -66,41 +65,41 @@ public class TypeRef {
      * @see llvm::Type:getTypeID()
      */
     public TypeKind getTypeKind() {
-        final int typeInt = LLVMGetTypeKind(type);
+        final int typeInt = LLVMLibrary.LLVMGetTypeKind(type);
 
-        if (typeInt == LLVMTypeKind.LLVMHalfTypeKind) {
+        if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMHalfTypeKind) {
             return TypeKind.Half;
-        } else if (typeInt == LLVMTypeKind.LLVMFloatTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMFloatTypeKind) {
             return TypeKind.Float;
-        } else if (typeInt == LLVMTypeKind.LLVMDoubleTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMDoubleTypeKind) {
             return TypeKind.Double;
-        } else if (typeInt == LLVMTypeKind.LLVMX86_FP80TypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMX86_FP80TypeKind) {
             return TypeKind.X86_FP80;
-        } else if (typeInt == LLVMTypeKind.LLVMFP128TypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMFP128TypeKind) {
             return TypeKind.FP128;
-        } else if (typeInt == LLVMTypeKind.LLVMPPC_FP128TypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMPPC_FP128TypeKind) {
             return TypeKind.PPC_FP128;
-        } else if (typeInt == LLVMTypeKind.LLVMLabelTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMLabelTypeKind) {
             return TypeKind.Label;
-        } else if (typeInt == LLVMTypeKind.LLVMIntegerTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMIntegerTypeKind) {
             return TypeKind.Integer;
-        } else if (typeInt == LLVMTypeKind.LLVMFunctionTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMFunctionTypeKind) {
             return TypeKind.Function;
-        } else if (typeInt == LLVMTypeKind.LLVMStructTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMStructTypeKind) {
             return TypeKind.Struct;
-        } else if (typeInt == LLVMTypeKind.LLVMArrayTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMArrayTypeKind) {
             return TypeKind.Array;
-        } else if (typeInt == LLVMTypeKind.LLVMPointerTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMPointerTypeKind) {
             return TypeKind.Pointer;
-        } else if (typeInt == LLVMTypeKind.LLVMMetadataTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMMetadataTypeKind) {
             return TypeKind.Metadata;
-        } else if (typeInt == LLVMTypeKind.LLVMTokenTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMTokenTypeKind) {
             return TypeKind.Token;
-        } else if (typeInt == LLVMTypeKind.LLVMVoidTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMVoidTypeKind) {
             return TypeKind.Void;
-        } else if (typeInt == LLVMTypeKind.LLVMX86_MMXTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMX86_MMXTypeKind) {
             return TypeKind.X86_MMX;
-        } else if (typeInt == LLVMTypeKind.LLVMVectorTypeKind) {
+        } else if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMVectorTypeKind) {
             return TypeKind.Vector;
         } else {
             throw new AssertionError("Unhanlded type kind id " + typeInt);
@@ -108,7 +107,7 @@ public class TypeRef {
     }
 
     public void dump() {
-        LLVMDumpType(type);
+        LLVMLibrary.LLVMDumpType(type);
     }
 
     /**
@@ -117,18 +116,18 @@ public class TypeRef {
      * @see llvm::Type::getContext()
      */
     public Context getTypeContext() {
-        return new Context(LLVMGetTypeContext(type));
+        return new Context(LLVMLibrary.LLVMGetTypeContext(type));
     }
 
     public int getIntTypeWidth() {
-        return LLVMGetIntTypeWidth(type);
+        return LLVMLibrary.LLVMGetIntTypeWidth(type);
     }
 
     /**
      * Returns whether a function type is variadic.
      */
     public boolean isFunctionVarArg() {
-        LLVMBool b = LLVMIsFunctionVarArg(type);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsFunctionVarArg(type);
         return Utils.llvmBoolToJavaBool(b);
     }
 
@@ -136,14 +135,14 @@ public class TypeRef {
      * Obtain the Type this function Type returns.
      */
     public TypeRef getReturnType() {
-        return new TypeRef(LLVMGetReturnType(type));
+        return new TypeRef(LLVMLibrary.LLVMGetReturnType(type));
     }
 
     /**
      * Obtain the number of parameters this function accepts.
      */
     public int countParamTypes() {
-        return LLVMCountParamTypes(type);
+        return LLVMLibrary.LLVMCountParamTypes(type);
     }
 
     /**
@@ -159,15 +158,15 @@ public class TypeRef {
         List<TypeRef> params = new ArrayList<TypeRef>(paramCount);
 
         if (paramCount > 0) {
-            int typeRefOffset = Native.getNativeSize(LLVMTypeRef.class);
+            int typeRefOffset = Native.getNativeSize(LLVMLibrary.LLVMTypeRef.class);
             Memory arrayPointer = new Memory(paramCount * typeRefOffset);
-            LLVMTypeRef typeRefArray = new LLVMTypeRef(arrayPointer);
-            LLVMGetParamTypes(type, typeRefArray);
+            LLVMLibrary.LLVMTypeRef typeRefArray = new LLVMLibrary.LLVMTypeRef(arrayPointer);
+            LLVMLibrary.LLVMGetParamTypes(type, typeRefArray);
 
             Pointer[] paramRefs = new Pointer[paramCount];
             arrayPointer.read(typeRefOffset, paramRefs, 0, paramCount);
             for (int i = 0; i < paramCount; i++) {
-                LLVMTypeRef paramRef = new LLVMTypeRef(paramRefs[i]);
+                LLVMLibrary.LLVMTypeRef paramRef = new LLVMLibrary.LLVMTypeRef(paramRefs[i]);
                 params.add(new TypeRef(paramRef));
             }
         }
@@ -181,7 +180,7 @@ public class TypeRef {
      * @see llvm::StructType::getNumElements()
      */
     public int countStructElementTypes() {
-        return LLVMCountStructElementTypes(type);
+        return LLVMLibrary.LLVMCountStructElementTypes(type);
     }
 
     /**
@@ -198,16 +197,16 @@ public class TypeRef {
         List<TypeRef> members = new ArrayList<TypeRef>(memberCount);
 
         if (memberCount > 0) {
-            int typeRefOffset = Native.getNativeSize(LLVMTypeRef.class);
+            int typeRefOffset = Native.getNativeSize(LLVMLibrary.LLVMTypeRef.class);
             Memory arrayPointer = new Memory(memberCount * typeRefOffset);
-            LLVMTypeRef typeRefArray = new LLVMTypeRef(arrayPointer);
-            LLVMGetStructElementTypes(type, typeRefArray);
+            LLVMLibrary.LLVMTypeRef typeRefArray = new LLVMLibrary.LLVMTypeRef(arrayPointer);
+            LLVMLibrary.LLVMGetStructElementTypes(type, typeRefArray);
 
             Pointer[] memberRefs = new Pointer[memberCount];
             arrayPointer.read(typeRefOffset, memberRefs, 0, memberCount);
 
             for (int i = 0; i < memberCount; i++) {
-                LLVMTypeRef memberRef = new LLVMTypeRef(memberRefs[i]);
+                LLVMLibrary.LLVMTypeRef memberRef = new LLVMLibrary.LLVMTypeRef(memberRefs[i]);
                 members.add(new TypeRef(memberRef));
             }
         }
@@ -216,13 +215,13 @@ public class TypeRef {
     }
 
     public boolean isStructNamed() {
-        String name = LLVMGetStructName(type);
+        String name = LLVMLibrary.LLVMGetStructName(type);
         return name != null;
     }
 
     public String getStructName() {
         if (isStructNamed()) {
-            return LLVMGetStructName(type);
+            return LLVMLibrary.LLVMGetStructName(type);
         } else {
             throw new IllegalStateException("Type is not named struct");
         }
@@ -235,7 +234,7 @@ public class TypeRef {
      * @see llvm::StructType::isPacked()
      */
     public boolean isPackedStruct() {
-        LLVMBool b = LLVMIsPackedStruct(type);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsPackedStruct(type);
         return Utils.llvmBoolToJavaBool(b);
     }
 
@@ -245,7 +244,7 @@ public class TypeRef {
      * @see llvm::StructType::isOpaque()<br>
      */
     public boolean isOpaqueStruct() {
-        LLVMBool b = LLVMIsOpaqueStruct(type);
+        LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsOpaqueStruct(type);
         return Utils.llvmBoolToJavaBool(b);
     }
 
@@ -256,7 +255,7 @@ public class TypeRef {
      * @see llvm::SequentialType::getElementType()
      */
     public TypeRef getElementType() {
-        return new TypeRef(LLVMGetElementType(type));
+        return new TypeRef(LLVMLibrary.LLVMGetElementType(type));
     }
 
     /**
@@ -266,7 +265,7 @@ public class TypeRef {
      * @see llvm::ArrayType::getNumElements()
      */
     public int getArrayLength() {
-        return LLVMGetArrayLength(type);
+        return LLVMLibrary.LLVMGetArrayLength(type);
     }
 
     /**
@@ -276,7 +275,7 @@ public class TypeRef {
      * @see llvm::PointerType::getAddressSpace()
      */
     public int getPointerAddressSpace() {
-        return LLVMGetPointerAddressSpace(type);
+        return LLVMLibrary.LLVMGetPointerAddressSpace(type);
     }
 
     /**
@@ -286,14 +285,14 @@ public class TypeRef {
      * @see llvm::VectorType::getNumElements()
      */
     public int getVectorSize() {
-        return LLVMGetVectorSize(type);
+        return LLVMLibrary.LLVMGetVectorSize(type);
     }
 
     public Value alignOf(TypeRef ty) {
-        return new Value(LLVMAlignOf(type));
+        return new Value(LLVMLibrary.LLVMAlignOf(type));
     }
 
     public Value sizeOf(TypeRef ty) {
-        return new Value(LLVMSizeOf(type));
+        return new Value(LLVMLibrary.LLVMSizeOf(type));
     }
 }

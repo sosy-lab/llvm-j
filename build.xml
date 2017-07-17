@@ -19,7 +19,7 @@
     <property name="ivy.pom.groupId" value="org.sosy-lab"/>
     <property name="ivy.pom.artifactId" value="llvm-j"/>
 
-    <property name="llvm.bindings" location="src/main/java/org/llvm/binding/LLVMLibrary.java" />
+    <property name="llvm.bindings" location="src/main/java/org/sosy_lab/llvm_j/binding/LLVMLibrary.java" />
 
 
     <import file="build/build-version.xml"/>

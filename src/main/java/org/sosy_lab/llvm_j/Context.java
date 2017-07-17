@@ -1,21 +1,19 @@
-package org.llvm;
+package org.sosy_lab.llvm_j;
 
-import org.llvm.binding.LLVMLibrary.*;
-
-import static org.llvm.binding.LLVMLibrary.*;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /**
  * The top-level container for all LLVM global data.
  */
 public class Context {
 
-    private LLVMContextRef context;
+    private LLVMLibrary.LLVMContextRef context;
 
-    LLVMContextRef context() {
+    LLVMLibrary.LLVMContextRef context() {
         return context;
     }
 
-    Context(LLVMContextRef context) {
+    Context(LLVMLibrary.LLVMContextRef context) {
         this.context = context;
     }
 
@@ -25,14 +23,14 @@ public class Context {
      * LLVMContextDispose() or the context will leak memnory.<br>
      */
     public static Context create() {
-        return new Context(LLVMContextCreate());
+        return new Context(LLVMLibrary.LLVMContextCreate());
     }
 
     /**
      * Obtain the global context instance.
      */
     public static Context getGlobalContext() {
-        return new Context(LLVMGetGlobalContext());
+        return new Context(LLVMLibrary.LLVMGetGlobalContext());
     }
 
     /**
@@ -41,7 +39,7 @@ public class Context {
      * @see Module::getContext()
      */
     public static Context getModuleContext(Module m) {
-        return new Context(LLVMGetModuleContext(m.getModule()));
+        return new Context(LLVMLibrary.LLVMGetModuleContext(m.getModule()));
     }
 
     @Override
@@ -56,7 +54,7 @@ public class Context {
      */
     public void dispose() {
         if (context != null) {
-            LLVMContextDispose(context);
+            LLVMLibrary.LLVMContextDispose(context);
         }
         context = null;
     }

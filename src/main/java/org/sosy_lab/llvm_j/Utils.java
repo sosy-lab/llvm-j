@@ -1,7 +1,7 @@
-package org.llvm;
+package org.sosy_lab.llvm_j;
 
 import com.sun.jna.Pointer;
-import org.llvm.binding.LLVMLibrary;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /**
  * Util methods for the llvm parser

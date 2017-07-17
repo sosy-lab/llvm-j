@@ -1,18 +1,16 @@
-package org.llvm;
+package org.sosy_lab.llvm_j;
 
-import static org.llvm.binding.LLVMLibrary.*;
-
-import static org.llvm.binding.LLVMLibrary.*;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 public class PassManager {
 
-    private LLVMPassManagerRef manager;
+    private LLVMLibrary.LLVMPassManagerRef manager;
 
-    LLVMPassManagerRef manager() {
+    LLVMLibrary.LLVMPassManagerRef manager() {
         return manager;
     }
 
-    PassManager(LLVMPassManagerRef manager) {
+    PassManager(LLVMLibrary.LLVMPassManagerRef manager) {
         this.manager = manager;
     }
 
@@ -23,7 +21,7 @@ public class PassManager {
      * @see llvm::PassManager::PassManager
      */
     public static PassManager create() {
-        return new PassManager(LLVMCreatePassManager());
+        return new PassManager(LLVMLibrary.LLVMCreatePassManager());
     }
 
     /**
@@ -35,14 +33,14 @@ public class PassManager {
      */
     public static PassManager createForModule(Module m) {
         return new PassManager(
-                LLVMCreateFunctionPassManagerForModule(m.getModule()));
+                LLVMLibrary.LLVMCreateFunctionPassManagerForModule(m.getModule()));
     }
 
     /**
      * Deprecated: Use LLVMCreateFunctionPassManagerForModule instead.
      */
-    public static PassManager createFPM(LLVMModuleProviderRef mp) {
-        return new PassManager(LLVMCreateFunctionPassManager(mp));
+    public static PassManager createFPM(LLVMLibrary.LLVMModuleProviderRef mp) {
+        return new PassManager(LLVMLibrary.LLVMCreateFunctionPassManager(mp));
     }
 
     @Override
@@ -58,9 +56,9 @@ public class PassManager {
      * the module provider.
      */
     public void dispose() {
-        LLVMBool successB = LLVMFinalizeFunctionPassManager(manager);
+        LLVMLibrary.LLVMBool successB = LLVMLibrary.LLVMFinalizeFunctionPassManager(manager);
         boolean success = Utils.llvmBoolToJavaBool(successB);
-        LLVMDisposePassManager(manager);
+        LLVMLibrary.LLVMDisposePassManager(manager);
         manager = null;
         if (success) {
             throw new RuntimeException(
@@ -78,7 +76,7 @@ public class PassManager {
      * @see llvm::FunctionPassManager::doInitialization
      */
     public void initialize() {
-        LLVMBool errB = LLVMInitializeFunctionPassManager(manager);
+        LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMInitializeFunctionPassManager(manager);
         boolean err = Utils.llvmBoolToJavaBool(errB);
         if (err) {
             throw new RuntimeException(
@@ -94,7 +92,7 @@ public class PassManager {
      * @see llvm::PassManager::run(Module&)
      */
     public void runForModule(Module m) {
-        LLVMBool errB = LLVMRunPassManager(manager, m.getModule());
+        LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMRunPassManager(manager, m.getModule());
         boolean err = Utils.llvmBoolToJavaBool(errB);
         if (err) {
             throw new RuntimeException("error in LLVMRunPassManager");
@@ -110,7 +108,7 @@ public class PassManager {
      * @see llvm::FunctionPassManager::run(Function&)
      */
     public void runForFunction(Value f) {
-        LLVMBool errB = LLVMRunFunctionPassManager(manager, f.value());
+        LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMRunFunctionPassManager(manager, f.value());
         boolean err = Utils.llvmBoolToJavaBool(errB);
         if (err) {
             throw new RuntimeException("error in LLVMRunFunctionPassManager");
@@ -119,15 +117,15 @@ public class PassManager {
 
     /* Function Pass Manager */
     public void addArgumentPromotionPass() {
-        LLVMAddArgumentPromotionPass(manager);
+        LLVMLibrary.LLVMAddArgumentPromotionPass(manager);
     }
 
     public void addConstantMergePass() {
-        LLVMAddConstantMergePass(manager);
+        LLVMLibrary.LLVMAddConstantMergePass(manager);
     }
 
     public void addDeadArgEliminationPass() {
-        LLVMAddDeadArgEliminationPass(manager);
+        LLVMLibrary.LLVMAddDeadArgEliminationPass(manager);
     }
 
     /*public void addDeadTypeEliminationPass() {
@@ -135,23 +133,23 @@ public class PassManager {
     }*/
 
     public void addFunctionAttrsPass() {
-        LLVMAddFunctionAttrsPass(manager);
+        LLVMLibrary.LLVMAddFunctionAttrsPass(manager);
     }
 
     public void addFunctionInliningPass() {
-        LLVMAddFunctionInliningPass(manager);
+        LLVMLibrary.LLVMAddFunctionInliningPass(manager);
     }
 
     public void addGlobalDCEPass() {
-        LLVMAddGlobalDCEPass(manager);
+        LLVMLibrary.LLVMAddGlobalDCEPass(manager);
     }
 
     public void addGlobalOptimizerPass() {
-        LLVMAddGlobalOptimizerPass(manager);
+        LLVMLibrary.LLVMAddGlobalOptimizerPass(manager);
     }
 
     public void addIPConstantPropagationPass() {
-        LLVMAddIPConstantPropagationPass(manager);
+        LLVMLibrary.LLVMAddIPConstantPropagationPass(manager);
     }
 
     /*public void addLowerSetJmpPass() {
@@ -159,15 +157,15 @@ public class PassManager {
     }*/
 
     public void addPruneEHPass() {
-        LLVMAddPruneEHPass(manager);
+        LLVMLibrary.LLVMAddPruneEHPass(manager);
     }
 
     public void addIPSCCPPass() {
-        LLVMAddIPSCCPPass(manager);
+        LLVMLibrary.LLVMAddIPSCCPPass(manager);
     }
 
     public void addInternalizePass(boolean allButMain) {
-        LLVMAddInternalizePass(allButMain ? 1 : 0);
+        LLVMLibrary.LLVMAddInternalizePass(allButMain ? 1 : 0);
     }
 
     /*public void addRaiseAllocationsPass() {
@@ -175,103 +173,103 @@ public class PassManager {
     }*/
 
     public void addStripDeadPrototypesPass() {
-        LLVMAddStripDeadPrototypesPass(manager);
+        LLVMLibrary.LLVMAddStripDeadPrototypesPass(manager);
     }
 
     public void addStripSymbolsPass() {
-        LLVMAddStripSymbolsPass(manager);
+        LLVMLibrary.LLVMAddStripSymbolsPass(manager);
     }
 
     public void addAggressiveDCEPass() {
-        LLVMAddAggressiveDCEPass(manager);
+        LLVMLibrary.LLVMAddAggressiveDCEPass(manager);
     }
 
     public void addCFGSimplificationPass() {
-        LLVMAddCFGSimplificationPass(manager);
+        LLVMLibrary.LLVMAddCFGSimplificationPass(manager);
     }
 
     public void addDeadStoreEliminationPass() {
-        LLVMAddDeadStoreEliminationPass(manager);
+        LLVMLibrary.LLVMAddDeadStoreEliminationPass(manager);
     }
 
     public void addGVNPass() {
-        LLVMAddGVNPass(manager);
+        LLVMLibrary.LLVMAddGVNPass(manager);
     }
 
     public void addIndVarSimplifyPass() {
-        LLVMAddIndVarSimplifyPass(manager);
+        LLVMLibrary.LLVMAddIndVarSimplifyPass(manager);
     }
 
     public void addInstructionCombiningPass() {
-        LLVMAddInstructionCombiningPass(manager);
+        LLVMLibrary.LLVMAddInstructionCombiningPass(manager);
     }
 
     public void addJumpThreadingPass() {
-        LLVMAddJumpThreadingPass(manager);
+        LLVMLibrary.LLVMAddJumpThreadingPass(manager);
     }
 
     public void addLICMPass() {
-        LLVMAddLICMPass(manager);
+        LLVMLibrary.LLVMAddLICMPass(manager);
     }
 
     public void addLoopDeletionPass() {
-        LLVMAddLoopDeletionPass(manager);
+        LLVMLibrary.LLVMAddLoopDeletionPass(manager);
     }
 
     public void addLoopRotatePass() {
-        LLVMAddLoopRotatePass(manager);
+        LLVMLibrary.LLVMAddLoopRotatePass(manager);
     }
 
     public void addLoopUnrollPass() {
-        LLVMAddLoopUnrollPass(manager);
+        LLVMLibrary.LLVMAddLoopUnrollPass(manager);
     }
 
     public void addLoopUnswitchPass() {
-        LLVMAddLoopUnswitchPass(manager);
+        LLVMLibrary.LLVMAddLoopUnswitchPass(manager);
     }
 
     public void addMemCpyOptPass() {
-        LLVMAddMemCpyOptPass(manager);
+        LLVMLibrary.LLVMAddMemCpyOptPass(manager);
     }
 
     public void addPromoteMemoryToRegisterPass() {
-        LLVMAddPromoteMemoryToRegisterPass(manager);
+        LLVMLibrary.LLVMAddPromoteMemoryToRegisterPass(manager);
     }
 
     public void addReassociatePass() {
-        LLVMAddReassociatePass(manager);
+        LLVMLibrary.LLVMAddReassociatePass(manager);
     }
 
     public void addSCCPPass() {
-        LLVMAddSCCPPass(manager);
+        LLVMLibrary.LLVMAddSCCPPass(manager);
     }
 
     public void addScalarReplAggregatesPass() {
-        LLVMAddScalarReplAggregatesPass(manager);
+        LLVMLibrary.LLVMAddScalarReplAggregatesPass(manager);
     }
 
     public void addScalarReplAggregatesPassWithThreshold(int threshold) {
-        LLVMAddScalarReplAggregatesPassWithThreshold(manager, threshold);
+        LLVMLibrary.LLVMAddScalarReplAggregatesPassWithThreshold(manager, threshold);
     }
 
     public void addSimplifyLibCallsPass() {
-        LLVMAddSimplifyLibCallsPass(manager);
+        LLVMLibrary.LLVMAddSimplifyLibCallsPass(manager);
     }
 
     public void addTailCallEliminationPass() {
-        LLVMAddTailCallEliminationPass(manager);
+        LLVMLibrary.LLVMAddTailCallEliminationPass(manager);
     }
 
     public void addConstantPropagationPass() {
-        LLVMAddConstantPropagationPass(manager);
+        LLVMLibrary.LLVMAddConstantPropagationPass(manager);
     }
 
     public void addDemoteMemoryToRegisterPass() {
-        LLVMAddDemoteMemoryToRegisterPass(manager);
+        LLVMLibrary.LLVMAddDemoteMemoryToRegisterPass(manager);
     }
 
     public void addVerifierPass() {
-        LLVMAddVerifierPass(manager);
+        LLVMLibrary.LLVMAddVerifierPass(manager);
     }
 
 }

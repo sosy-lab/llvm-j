@@ -1,4 +1,4 @@
-package org.llvm.binding;
+package org.sosy_lab.llvm_j.binding;
 
 import com.sun.jna.ptr.ByReference;
 

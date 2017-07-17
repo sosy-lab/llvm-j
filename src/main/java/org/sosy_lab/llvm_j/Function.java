@@ -1,6 +1,6 @@
-package org.llvm;
+package org.sosy_lab.llvm_j;
 
-import static org.llvm.binding.LLVMLibrary.LLVMValueRef;
+import static org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef;
 
 import java.util.Iterator;
 

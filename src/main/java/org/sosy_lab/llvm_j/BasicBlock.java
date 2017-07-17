@@ -1,10 +1,9 @@
-package org.llvm;
+package org.sosy_lab.llvm_j;
 
 import com.sun.jna.Pointer;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 import java.util.Iterator;
-
-import static org.llvm.binding.LLVMLibrary.*;
 
 /**
  * This represents a single basic block in LLVM. A basic block is simply a
@@ -12,13 +11,13 @@ import static org.llvm.binding.LLVMLibrary.*;
  */
 public class BasicBlock implements Iterable<Value> {
 
-    private LLVMBasicBlockRef bb;
+    private LLVMLibrary.LLVMBasicBlockRef bb;
 
-    LLVMBasicBlockRef bb() {
+    LLVMLibrary.LLVMBasicBlockRef bb() {
         return bb;
     }
 
-    BasicBlock(LLVMBasicBlockRef bb) {
+    BasicBlock(LLVMLibrary.LLVMBasicBlockRef bb) {
         this.bb = bb;
     }
 
@@ -39,7 +38,7 @@ public class BasicBlock implements Iterable<Value> {
      * Convert a basic block instance to a value type.
      */
     public Value basicBlockAsValue() {
-        return new Value(LLVMBasicBlockAsValue(bb));
+        return new Value(LLVMLibrary.LLVMBasicBlockAsValue(bb));
     }
 
     /**
@@ -48,14 +47,14 @@ public class BasicBlock implements Iterable<Value> {
      * @see llvm::BasicBlock::getParent()
      */
     public Value getBasicBlockParent() {
-        return new Value(LLVMGetBasicBlockParent(bb));
+        return new Value(LLVMLibrary.LLVMGetBasicBlockParent(bb));
     }
 
     /**
      * Advance a basic block iterator.
      */
     public BasicBlock getNextBasicBlock() {
-        LLVMBasicBlockRef nextBb = LLVMGetNextBasicBlock(bb);
+        LLVMLibrary.LLVMBasicBlockRef nextBb = LLVMLibrary.LLVMGetNextBasicBlock(bb);
         if (nextBb == null) {
             return null;
         } else {
@@ -67,7 +66,7 @@ public class BasicBlock implements Iterable<Value> {
      * Go backwards in a basic block iterator.
      */
     public BasicBlock getPreviousBasicBlock() {
-        LLVMBasicBlockRef nextBb = LLVMGetPreviousBasicBlock(bb);
+        LLVMLibrary.LLVMBasicBlockRef nextBb = LLVMLibrary.LLVMGetPreviousBasicBlock(bb);
         if (nextBb == null) {
             return null;
         } else {
@@ -82,7 +81,7 @@ public class BasicBlock implements Iterable<Value> {
      */
     public Value getFirstInstruction() {
         try {
-            return new Value(LLVMGetFirstInstruction(bb));
+            return new Value(LLVMLibrary.LLVMGetFirstInstruction(bb));
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
@@ -94,7 +93,7 @@ public class BasicBlock implements Iterable<Value> {
      */
     public Value getLastInstruction() {
         try {
-            return new Value(LLVMGetLastInstruction(bb));
+            return new Value(LLVMLibrary.LLVMGetLastInstruction(bb));
         } catch (java.lang.IllegalArgumentException e) {
             return null;
         }
