@@ -25,14 +25,14 @@
               fork="true">
             <env key="LLVM_HOME" file="${llvm.home}" />
         </java>
- 
+
         <!-- Perform minor changes to bindings -->
- 
+
         <!-- Set concrete LLVM version to avoid conflicts -->
         <replace file="${llvm.bindings}"
                  token='JNA_LIBRARY_NAME = "LLVM";'
                  value='JNA_LIBRARY_NAME = "LLVM-${llvm.version}";' />
- 
+
         <!-- Remove jnaerator-imports.
              We want to provide our own util classes to be independent of jnaerator -->
         <replaceregexp file="${llvm.bindings}"
@@ -43,6 +43,10 @@
         <replace file="${llvm.bindings}"
                  token="static {"
                  value="public static void instantiate() {" />
+
+        <!-- Format bindings to adhere to our styleguide as far as possible -->
+        <property name="format.selection" location="${llvm.bindings}" />
+        <antcall target="format-selection" />
     </target>
-        
+
 </project>

@@ -10,7 +10,6 @@
         description="Reformat the whole source">
         <fileset dir="${source.dir}" id="source.files">
             <include name="**/*.java" />
-            <exclude name="**/LLVMLibrary.java" />
         </fileset>
         <pathconvert property="source.files" refid="source.files" pathsep="' '"/>
         <java fork="true" classname="com.google.googlejavaformat.java.Main">
@@ -19,6 +18,17 @@
             </classpath>
             <arg value="-i"/>
             <arg line="'${source.files}'"/>
+        </java>
+    </target>
+
+    <target name="format-selection" depends="resolve-dependencies"
+        description="Reformat the files in property format.selection">
+        <java fork="true" classname="com.google.googlejavaformat.java.Main">
+            <classpath>
+                <fileset dir="${ivy.lib.dir}" includes="format-source/*.jar"/>
+            </classpath>
+            <arg value="-i"/>
+            <arg line="'${format.selection}'"/>
         </java>
     </target>
 
