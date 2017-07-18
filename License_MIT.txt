@@ -1,5 +1,6 @@
 Copyright (C) 2012 Kevin Kelly
 Copyright (C) 2013 Richard Lincoln
+Copyright (C) 2017 Marek Chalupa, Dirk Beyer
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
