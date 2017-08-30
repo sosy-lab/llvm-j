@@ -21,7 +21,7 @@ import java.nio.IntBuffer;
  * href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
 public class LLVMLibrary implements Library {
-  public static final String JNA_LIBRARY_NAME = "LLVM-${llvm.version}";
+  public static final String JNA_LIBRARY_NAME = "LLVM-3.9.1";
   public static final NativeLibrary JNA_NATIVE_LIB =
       NativeLibrary.getInstance(LLVMLibrary.JNA_LIBRARY_NAME);
 
@@ -459,21 +459,6 @@ public class LLVMLibrary implements Library {
   public interface LLVMYieldCallback extends Callback {
     void apply(Pointer voidPtr1);
   };
-  /**
-   * See llvm::createBBVectorizePass function.<br>
-   * Original signature : <code>void LLVMAddBBVectorizePass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddBBVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLoopVectorizePass function.<br>
-   * Original signature : <code>void LLVMAddLoopVectorizePass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLoopVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createSLPVectorizerPass function.<br>
-   * Original signature : <code>void LLVMAddSLPVectorizePass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddSLPVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
    * See llvm::createArgumentPromotionPass function.<br>
    * Original signature : <code>void LLVMAddArgumentPromotionPass(LLVMPassManagerRef)</code>
@@ -961,6 +946,21 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>void LLVMAddBasicAliasAnalysisPass(LLVMPassManagerRef)</code>
    */
   public static native void LLVMAddBasicAliasAnalysisPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createBBVectorizePass function.<br>
+   * Original signature : <code>void LLVMAddBBVectorizePass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddBBVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLoopVectorizePass function.<br>
+   * Original signature : <code>void LLVMAddLoopVectorizePass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLoopVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createSLPVectorizerPass function.<br>
+   * Original signature : <code>void LLVMAddSLPVectorizePass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddSLPVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
    * @}<br>
    * Original signature : <code>void LLVMInitializeCore(LLVMPassRegistryRef)</code>
@@ -3269,17 +3269,6 @@ public class LLVMLibrary implements Library {
   public static native void LLVMAddAttributeAtIndex(
       LLVMLibrary.LLVMValueRef F, int Idx, LLVMLibrary.LLVMAttributeRef A);
   /**
-   * Original signature : <code>int LLVMGetAttributeCountAtIndex(LLVMValueRef, LLVMAttributeIndex)
-   * </code>
-   */
-  public static native int LLVMGetAttributeCountAtIndex(LLVMLibrary.LLVMValueRef F, int Idx);
-  /**
-   * Original signature : <code>
-   * void LLVMGetAttributesAtIndex(LLVMValueRef, LLVMAttributeIndex, LLVMAttributeRef*)</code>
-   */
-  public static native void LLVMGetAttributesAtIndex(
-      LLVMLibrary.LLVMValueRef F, int Idx, LLVMLibrary.LLVMAttributeRef Attrs);
-  /**
    * Original signature : <code>
    * LLVMAttributeRef LLVMGetEnumAttributeAtIndex(LLVMValueRef, LLVMAttributeIndex, unsigned)</code>
    */
@@ -3967,17 +3956,6 @@ public class LLVMLibrary implements Library {
    */
   public static native void LLVMAddCallSiteAttribute(
       LLVMLibrary.LLVMValueRef C, int Idx, LLVMLibrary.LLVMAttributeRef A);
-  /**
-   * Original signature : <code>int LLVMGetCallSiteAttributeCount(LLVMValueRef, LLVMAttributeIndex)
-   * </code>
-   */
-  public static native int LLVMGetCallSiteAttributeCount(LLVMLibrary.LLVMValueRef C, int Idx);
-  /**
-   * Original signature : <code>
-   * void LLVMGetCallSiteAttributes(LLVMValueRef, LLVMAttributeIndex, LLVMAttributeRef*)</code>
-   */
-  public static native void LLVMGetCallSiteAttributes(
-      LLVMLibrary.LLVMValueRef C, int Idx, LLVMLibrary.LLVMAttributeRef Attrs);
   /**
    * Original signature : <code>
    * LLVMAttributeRef LLVMGetCallSiteEnumAttribute(LLVMValueRef, LLVMAttributeIndex, unsigned)

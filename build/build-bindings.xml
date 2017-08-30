@@ -10,7 +10,8 @@
         <available file="${llvm.bindings}" property="bindings.exist" />
     </target>
 
-    <target name="bindings" depends="-check-bindings-exist, build-dependencies" unless="${bindings.exist}">
+    <target name="bindings" depends="-check-bindings-exist, build-dependencies"
+        unless="${bindings.exist}">
         <fail unless="llvm.home">
             Please specify the path to the directory
             of LLVM that includes the headers for C-bindings,
@@ -18,6 +19,9 @@
             Use -Dllvm.home=/path/to/llvm to do that.
             Note that shell substitutions do not work and a full
             absolute path has to be specified.
+        </fail>
+        <fail unless="llvm.version">
+            Please specify the llvm version with the flag -Dllvm.version=... .
         </fail>
 
         <java classname="com.ochafik.lang.jnaerator.JNAerator"
@@ -30,8 +34,8 @@
 
         <!-- Set concrete LLVM version to avoid conflicts -->
         <replace file="${llvm.bindings}"
-                 token='JNA_LIBRARY_NAME = "LLVM";'
-                 value='JNA_LIBRARY_NAME = "LLVM-${llvm.version}";' />
+                token="JNA_LIBRARY_NAME = &quot;LLVM&quot;;"
+                value="JNA_LIBRARY_NAME = &quot;LLVM-${llvm.version}&quot;;" />
 
         <!-- Remove jnaerator-imports.
              We want to provide our own util classes to be independent of jnaerator -->
