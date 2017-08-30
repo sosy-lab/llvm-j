@@ -912,6 +912,28 @@ public class Value {
     return LLVMLibrary.LLVMGetNumOperands(value);
   }
 
+  /** Returns the number of argument operands for this function call. */
+  public int getNumArgOperands() {
+    assert isCallInst();
+    return LLVMLibrary.LLVMGetNumArgOperands(value);
+  }
+
+  /**
+   * Returns the argument operand at the specified index
+   */
+  public Value getArgOperand(int index) {
+    assert getNumArgOperands() > index;
+    return getOperand(index);
+  }
+
+  /**
+   * Returns the function called by this call instruction
+   */
+  public Value getCalledFunction() {
+    assert isCallInst();
+    return new Value(LLVMLibrary.LLVMGetCalledValue(value));
+  }
+
   // MetaData
   /*public ValueRef MDStringInContext(LLVMContextRef c, Pointer<Byte> str,
           int sLen) {
