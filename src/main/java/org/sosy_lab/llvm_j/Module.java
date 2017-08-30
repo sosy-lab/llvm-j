@@ -41,8 +41,9 @@ public class Module implements Iterable<Value> {
     PointerByReference outMsg = new PointerByReference(outMsgAddr);
     LLVMLibrary.LLVMBool success =
         LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(path, pointerToBufferWrapped, outMsg);
-    if (!Utils.llvmBoolToJavaBool(success)) {
-      throw new LLVMException("Reading bitcode failed");
+    if (Utils.llvmBoolToJavaBool(success)) {
+      String errorMessage = outMsg.getValue().getString(0);
+      throw new LLVMException("Reading bitcode failed. " + errorMessage);
     }
     LLVMLibrary.LLVMMemoryBufferRef buffer =
         new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getValue());
@@ -53,7 +54,7 @@ public class Module implements Iterable<Value> {
     LLVMLibrary.LLVMModuleRef pointerToModuleWrapped =
         new LLVMLibrary.LLVMModuleRef(pointerToModule.getPointer());
     success = LLVMLibrary.LLVMParseBitcode2(buffer, pointerToModuleWrapped);
-    if (!Utils.llvmBoolToJavaBool(success)) {
+    if (Utils.llvmBoolToJavaBool(success)) {
       throw new LLVMException("Parsing bitcode failed");
     }
     LLVMLibrary.LLVMModuleRef module = new LLVMLibrary.LLVMModuleRef(pointerToModule.getValue());

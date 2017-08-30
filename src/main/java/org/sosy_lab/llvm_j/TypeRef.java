@@ -3,9 +3,10 @@ package org.sosy_lab.llvm_j;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** Each value in the LLVM IR has a type, an LLVMTypeRef. */
 public class TypeRef {
@@ -137,13 +138,13 @@ public class TypeRef {
     List<TypeRef> params = new ArrayList<TypeRef>(paramCount);
 
     if (paramCount > 0) {
-      int typeRefOffset = Native.getNativeSize(LLVMLibrary.LLVMTypeRef.class);
-      Memory arrayPointer = new Memory(paramCount * typeRefOffset);
+      int typeRefSize = Native.getNativeSize(LLVMLibrary.LLVMTypeRef.class);
+      Memory arrayPointer = new Memory(paramCount * typeRefSize);
       LLVMLibrary.LLVMTypeRef typeRefArray = new LLVMLibrary.LLVMTypeRef(arrayPointer);
       LLVMLibrary.LLVMGetParamTypes(type, typeRefArray);
 
       Pointer[] paramRefs = new Pointer[paramCount];
-      arrayPointer.read(typeRefOffset, paramRefs, 0, paramCount);
+      arrayPointer.read(0, paramRefs, 0, paramCount);
       for (int i = 0; i < paramCount; i++) {
         LLVMLibrary.LLVMTypeRef paramRef = new LLVMLibrary.LLVMTypeRef(paramRefs[i]);
         params.add(new TypeRef(paramRef));
@@ -167,13 +168,13 @@ public class TypeRef {
     List<TypeRef> members = new ArrayList<TypeRef>(memberCount);
 
     if (memberCount > 0) {
-      int typeRefOffset = Native.getNativeSize(LLVMLibrary.LLVMTypeRef.class);
-      Memory arrayPointer = new Memory(memberCount * typeRefOffset);
+      int typeRefSize = Native.getNativeSize(LLVMLibrary.LLVMTypeRef.class);
+      Memory arrayPointer = new Memory(memberCount * typeRefSize);
       LLVMLibrary.LLVMTypeRef typeRefArray = new LLVMLibrary.LLVMTypeRef(arrayPointer);
       LLVMLibrary.LLVMGetStructElementTypes(type, typeRefArray);
 
       Pointer[] memberRefs = new Pointer[memberCount];
-      arrayPointer.read(typeRefOffset, memberRefs, 0, memberCount);
+      arrayPointer.read(0, memberRefs, 0, memberCount);
 
       for (int i = 0; i < memberCount; i++) {
         LLVMLibrary.LLVMTypeRef memberRef = new LLVMLibrary.LLVMTypeRef(memberRefs[i]);

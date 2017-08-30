@@ -3,9 +3,10 @@ package org.sosy_lab.llvm_j;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** Represents an individual value in LLVM IR. */
 public class Value {
@@ -1150,7 +1151,7 @@ public class Value {
       LLVMLibrary.LLVMGetParams(value, paramArray);
 
       Pointer[] paramRefs = new Pointer[paramCount];
-      arrayPointer.read(valueRefOffset, paramRefs, 0, paramCount);
+      arrayPointer.read(0, paramRefs, 0, paramCount);
       for (int i = 0; i < paramCount; i++) {
         LLVMLibrary.LLVMValueRef valueRef = new LLVMLibrary.LLVMValueRef(paramRefs[i]);
         params.add(new Value(valueRef));
@@ -1276,13 +1277,13 @@ public class Value {
     List<BasicBlock> blocks = new ArrayList<BasicBlock>(blockCount);
 
     if (blockCount > 0) {
-      int blockRefOffset = Native.getNativeSize(LLVMLibrary.LLVMBasicBlockRef.class);
-      Memory arrayPointer = new Memory(blockCount * blockRefOffset);
+      int blockRefSize = Native.getNativeSize(LLVMLibrary.LLVMBasicBlockRef.class);
+      Memory arrayPointer = new Memory(blockCount * blockRefSize);
       LLVMLibrary.LLVMBasicBlockRef blockArray = new LLVMLibrary.LLVMBasicBlockRef(arrayPointer);
       LLVMLibrary.LLVMGetBasicBlocks(value, blockArray);
 
       Pointer[] blockRefs = new Pointer[blockCount];
-      arrayPointer.read(blockRefOffset, blockRefs, 0, blockCount);
+      arrayPointer.read(0, blockRefs, 0, blockCount);
       for (int i = 0; i < blockCount; i++) {
         LLVMLibrary.LLVMBasicBlockRef blockRef = new LLVMLibrary.LLVMBasicBlockRef(blockRefs[i]);
         blocks.add(new BasicBlock(blockRef));
