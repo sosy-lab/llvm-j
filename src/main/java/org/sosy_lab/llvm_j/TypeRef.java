@@ -99,6 +99,15 @@ public class TypeRef {
     }
   }
 
+  public long offsetOfElement(LLVMLibrary.LLVMTargetDataRef TD, int idx) {
+      assert getTypeKind() == TypeKind.Struct;
+      return LLVMLibrary.LLVMOffsetOfElement(TD, type, idx);
+  }
+
+  public long storeSize(LLVMLibrary.LLVMTargetDataRef TD) {
+      return LLVMLibrary.LLVMStoreSizeOfType(TD, type);
+  }
+
   public void dump() {
     LLVMLibrary.LLVMDumpType(type);
   }
