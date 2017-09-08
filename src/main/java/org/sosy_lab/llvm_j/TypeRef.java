@@ -3,10 +3,9 @@ package org.sosy_lab.llvm_j;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
-import org.sosy_lab.llvm_j.binding.LLVMLibrary;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** Each value in the LLVM IR has a type, an LLVMTypeRef. */
 public class TypeRef {

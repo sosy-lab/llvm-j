@@ -3,10 +3,9 @@ package org.sosy_lab.llvm_j;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
-import org.sosy_lab.llvm_j.binding.LLVMLibrary;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** Represents an individual value in LLVM IR. */
 public class Value {
@@ -918,17 +917,13 @@ public class Value {
     return LLVMLibrary.LLVMGetNumArgOperands(value);
   }
 
-  /**
-   * Returns the argument operand at the specified index
-   */
+  /** Returns the argument operand at the specified index */
   public Value getArgOperand(int index) {
     assert getNumArgOperands() > index;
     return getOperand(index);
   }
 
-  /**
-   * Returns the function called by this call instruction
-   */
+  /** Returns the function called by this call instruction */
   public Value getCalledFunction() {
     assert isCallInst();
     return new Value(LLVMLibrary.LLVMGetCalledValue(value));
