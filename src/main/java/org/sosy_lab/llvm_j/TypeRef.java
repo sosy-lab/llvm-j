@@ -217,6 +217,16 @@ public class TypeRef {
     return new TypeRef(LLVMLibrary.LLVMGetElementType(type));
   }
 
+  /**
+   * Returns the type of element at index idx.
+   *
+   * This must be a struct type.
+   */
+  public TypeRef getTypeAtIndex(int idx) {
+    assert(getTypeKind() == TypeKind.Struct);
+    return new TypeRef(LLVMLibrary.LLVMStructGetTypeAtIndex(type, idx));
+  }
+
   /** Returns the length of this array type. This only works on array types. */
   public int getArrayLength() {
     return LLVMLibrary.LLVMGetArrayLength(type);
