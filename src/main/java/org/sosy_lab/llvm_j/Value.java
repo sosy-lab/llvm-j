@@ -251,7 +251,7 @@ public class Value {
     public int getValue() {
       return value;
     }
-  };
+  }
 
   private LLVMLibrary.LLVMValueRef value;
 
@@ -1159,7 +1159,7 @@ public class Value {
    */
   public List<Value> getParams() {
     int paramCount = countParams();
-    List<Value> params = new ArrayList<Value>(paramCount);
+    List<Value> params = new ArrayList<>(paramCount);
 
     if (paramCount > 0) {
       int valueRefOffset = Native.getNativeSize(LLVMLibrary.LLVMValueRef.class);
@@ -1291,7 +1291,7 @@ public class Value {
    */
   public List<BasicBlock> getBasicBlocks() {
     int blockCount = countBasicBlocks();
-    List<BasicBlock> blocks = new ArrayList<BasicBlock>(blockCount);
+    List<BasicBlock> blocks = new ArrayList<>(blockCount);
 
     if (blockCount > 0) {
       int blockRefSize = Native.getNativeSize(LLVMLibrary.LLVMBasicBlockRef.class);

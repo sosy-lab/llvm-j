@@ -134,7 +134,7 @@ public class TypeRef {
   /** Returns the types of a function's parameters. Only works if this is a function type. */
   public List<TypeRef> getParamTypes() {
     int paramCount = countParamTypes();
-    List<TypeRef> params = new ArrayList<TypeRef>(paramCount);
+    List<TypeRef> params = new ArrayList<>(paramCount);
 
     if (paramCount > 0) {
       int typeRefSize = Native.getNativeSize(LLVMLibrary.LLVMTypeRef.class);
@@ -164,7 +164,7 @@ public class TypeRef {
   /** Get the elements within this structure. Only works if this is a structure type. */
   public List<TypeRef> getStructElementTypes() {
     int memberCount = countParamTypes();
-    List<TypeRef> members = new ArrayList<TypeRef>(memberCount);
+    List<TypeRef> members = new ArrayList<>(memberCount);
 
     if (memberCount > 0) {
       int typeRefSize = Native.getNativeSize(LLVMLibrary.LLVMTypeRef.class);
@@ -232,11 +232,13 @@ public class TypeRef {
     return LLVMLibrary.LLVMGetVectorSize(type);
   }
 
-  public Value alignOf(TypeRef ty) {
+  /** Returns the alignment of this type. */
+  public Value alignOf() {
     return new Value(LLVMLibrary.LLVMAlignOf(type));
   }
 
-  public Value sizeOf(TypeRef ty) {
+  /** Returns the size of this type. */
+  public Value sizeOf() {
     return new Value(LLVMLibrary.LLVMSizeOf(type));
   }
 }
