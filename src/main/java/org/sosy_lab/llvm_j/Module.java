@@ -105,13 +105,18 @@ public class Module implements Iterable<Value> {
     module = null;
   }
 
-  /** Returns the data layout for this module. */
-  public String getDataLayout() {
+  /** Returns the data layout string for this module. */
+  public String getDataLayoutString() {
     return LLVMLibrary.LLVMGetDataLayout(module);
   }
 
+  /** Returns the data layout object for this module. */
+  public LLVMLibrary.LLVMTargetDataRef getDataLayout() {
+    return LLVMLibrary.LLVMCreateTargetData(getDataLayoutString());
+  }
+
   /** Returns the target triple for this module. */
-  public String getTarget() {
+  public String getTargetString() {
     return LLVMLibrary.LLVMGetTarget(module);
   }
 
