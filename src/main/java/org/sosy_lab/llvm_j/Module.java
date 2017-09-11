@@ -225,7 +225,7 @@ public final class Module implements Iterable<Value> {
   }*/
 
   /** Dumps a representation of this module to stderr. */
-  public void dumpModule() {
+  public void dump() {
     LLVMLibrary.LLVMDumpModule(module);
   }
 
