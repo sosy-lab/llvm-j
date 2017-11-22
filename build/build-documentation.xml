@@ -34,7 +34,7 @@
             locale="en_US"
             encoding="utf-8"
             windowtitle="${ant.project.name}"
-            failonerror="false"
+            failonerror="true"
             overview="doc/javadoc_overview.html"
             >
 
