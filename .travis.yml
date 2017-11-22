@@ -1,0 +1,36 @@
+git:
+  depth: 1
+cache:
+  directories:
+    - $HOME/.ivy2
+
+language: java
+jdk:
+  - oraclejdk8
+env:
+    global:
+        - GH_REF: github.com/sosy-lab/llvm-j.git
+install:
+  - ant build-dependencies
+
+matrix:
+    include:
+      - env: NAME='Build with ECJ'
+        script:
+          - ant build-project-ecj
+      - env: NAME='Package LLVM library'
+        script:
+          - ant package-lib -Dllvm.library=3.9.1
+      - env: NAME='Create Javadoc'
+        script:
+          - ant javadoc
+      - env: NAME=Checkstyle
+        script:
+          - ant checkstyle -Dcheckstyle.output=plain && cat Checkstyle*.xml && [ $(cat Checkstyle*xml | grep -vic audit) -eq 0]
+      - env: NAME=FindBugs
+        script:
+          - ant findbugs -Dfindbugs.output=text && cat FindBugs.xml && test \! -s FindBugs.xml
+      - env: NAME='Check source-code format'
+        script:
+          - ant format-source && git diff -s --exit-code
+
