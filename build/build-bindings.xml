@@ -10,6 +10,10 @@
         <available file="${llvm.bindings}" property="bindings.exist" />
     </target>
 
+    <target name="clean-bindings">
+        <delete file="${llvm.bindings}" />
+    </target>
+
     <target name="bindings" depends="-check-bindings-exist, build-dependencies"
         unless="${bindings.exist}">
         <fail unless="llvm.home">
