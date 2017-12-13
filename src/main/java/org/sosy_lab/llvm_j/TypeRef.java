@@ -100,12 +100,12 @@ public class TypeRef {
   }
 
   public long offsetOfElement(LLVMLibrary.LLVMTargetDataRef TD, int idx) {
-      assert getTypeKind() == TypeKind.Struct;
-      return LLVMLibrary.LLVMOffsetOfElement(TD, type, idx);
+    assert getTypeKind() == TypeKind.Struct;
+    return LLVMLibrary.LLVMOffsetOfElement(TD, type, idx);
   }
 
   public long storeSize(LLVMLibrary.LLVMTargetDataRef TD) {
-      return LLVMLibrary.LLVMStoreSizeOfType(TD, type);
+    return LLVMLibrary.LLVMStoreSizeOfType(TD, type);
   }
 
   public void dump() {
@@ -229,10 +229,10 @@ public class TypeRef {
   /**
    * Returns the type of element at index idx.
    *
-   * This must be a struct type.
+   * <p>This must be a struct type.
    */
   public TypeRef getTypeAtIndex(int idx) {
-    assert(getTypeKind() == TypeKind.Struct);
+    assert (getTypeKind() == TypeKind.Struct);
     return new TypeRef(LLVMLibrary.LLVMStructGetTypeAtIndex(type, idx));
   }
 
