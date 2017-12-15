@@ -30,11 +30,24 @@
                compiler="com.google.errorprone.ErrorProneAntCompilerAdapter"
                encoding="UTF-8">
             <src path="${source.dir}"/>
-               <exclude name="${source.dir}" />
             <classpath refid="classpath"/>
             <compilerarg value="-Xlint"/>
             <compilerarg value="-Xlint:-processing"/>
             <compilerarg value="-Werror"/>
+            <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
+            <compilerarg value="-XepAllDisabledChecksAsWarnings"/>
+            <compilerarg value="-Xep:InconsistentOverloads:OFF"/>
+            <compilerarg value="-Xep:UngroupedOverloads:OFF"/>
+            <compilerarg value="-Xep:StaticOrDefaultInterfaceMethod:OFF"/> <!-- only relevant for Android -->
+            <compilerarg value="-Xep:TestExceptionChecker:OFF"/> <!-- TODO -->
+            <compilerarg value="-Xep:ParameterPackage:OFF"/> <!-- buggy -->
+            <compilerarg value="-Xep:ConstructorInvokesOverridable:OFF"/> <!-- buggy -->
+            <compilerarg value="-Xep:ConstructorLeaksThis:OFF"/> <!-- buggy -->
+            <compilerarg value="-Xep:FieldMissingNullable:OFF"/> <!-- buggy -->
+            <compilerarg value="-Xep:ReturnMissingNullable:OFF"/> <!-- buggy -->
+            <compilerarg value="-XepPatchLocation:${basedir}"/>
+            <compilerarg value="-XepPatchChecks:"/>
+            <compilerarg value="-XepDisableWarningsInGeneratedCode"/>
             <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
             <compilerclasspath refid="errorprone"/>
         </javac>
