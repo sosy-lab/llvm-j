@@ -2,7 +2,8 @@ package org.sosy_lab.llvm_j;
 
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
-public class PassManager {
+/** Pass manager. Always has to be disposed of with {@link #dispose()} to avoid memory leaks. */
+public final class PassManager {
 
   private LLVMLibrary.LLVMPassManagerRef manager;
 
@@ -10,7 +11,7 @@ public class PassManager {
     return manager;
   }
 
-  PassManager(LLVMLibrary.LLVMPassManagerRef manager) {
+  private PassManager(LLVMLibrary.LLVMPassManagerRef manager) {
     this.manager = manager;
   }
 
@@ -36,21 +37,10 @@ public class PassManager {
     return new PassManager(LLVMLibrary.LLVMCreateFunctionPassManager(mp));
   }
 
-  @Override
-  protected void finalize() {
-    try {
-      dispose();
-    } catch (LLVMException e) {
-      // We don't accept possible memory leaks
-      throw new AssertionError(e);
-    }
-  }
-
   /**
-   * Finalizes all of the function passes scheduled in in the function pass<br>
-   * manager. Returns 1 if any of the passes modified the module, 0 otherwise.<br>
-   * Frees the memory of a pass pipeline. For function pipelines, does not free<br>
-   * the module provider.
+   * Finalizes all of the function passes scheduled in in the function pass manager. Returns 1 if
+   * any of the passes modified the module, 0 otherwise. Frees the memory of a pass pipeline. For
+   * function pipelines, does not free the module provider.
    */
   public void dispose() throws LLVMException {
     LLVMLibrary.LLVMBool successB = LLVMLibrary.LLVMFinalizeFunctionPassManager(manager);

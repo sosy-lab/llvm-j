@@ -5,7 +5,8 @@ import static org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef;
 import java.util.Iterator;
 
 /** A wrapper around a function value in LLVM */
-public class Function extends Value implements Iterable<BasicBlock> {
+public final class Function extends Value implements Iterable<BasicBlock> {
+
   Function(LLVMValueRef value) {
     super(value);
   }

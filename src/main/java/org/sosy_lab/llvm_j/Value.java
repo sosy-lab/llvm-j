@@ -996,7 +996,7 @@ public class Value {
   }
 
   public Module getGlobalParent() {
-    return new Module(LLVMLibrary.LLVMGetGlobalParent(value));
+    return Module.createGlobalParentOf(this);
   }
 
   public boolean isDeclaration() {

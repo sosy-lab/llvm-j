@@ -8,7 +8,7 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
  * This represents a single basic block in LLVM. A basic block is simply a container of instructions
  * that execute sequentially.
  */
-public class BasicBlock implements Iterable<Value> {
+public final class BasicBlock implements Iterable<Value> {
 
   private LLVMLibrary.LLVMBasicBlockRef bb;
 

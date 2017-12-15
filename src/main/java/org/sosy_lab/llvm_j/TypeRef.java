@@ -99,22 +99,22 @@ public class TypeRef {
     }
   }
 
-  public long offsetOfElement(LLVMLibrary.LLVMTargetDataRef TD, int idx) {
+  public long offsetOfElement(LLVMLibrary.LLVMTargetDataRef td, int idx) {
     assert getTypeKind() == TypeKind.Struct;
-    return LLVMLibrary.LLVMOffsetOfElement(TD, type, idx);
+    return LLVMLibrary.LLVMOffsetOfElement(td, type, idx);
   }
 
-  public long storeSize(LLVMLibrary.LLVMTargetDataRef TD) {
-    return LLVMLibrary.LLVMStoreSizeOfType(TD, type);
+  public long storeSize(LLVMLibrary.LLVMTargetDataRef td) {
+    return LLVMLibrary.LLVMStoreSizeOfType(td, type);
   }
 
   public void dump() {
     LLVMLibrary.LLVMDumpType(type);
   }
 
-  /** Returns the context with which this type instance is associated. */
+  /** Returns the {@link Context} with which this type instance is associated. */
   public Context getTypeContext() {
-    return new Context(LLVMLibrary.LLVMGetTypeContext(type));
+    return Context.getTypeContext(this);
   }
 
   public int getIntTypeWidth() {

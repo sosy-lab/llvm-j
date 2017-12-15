@@ -11,15 +11,20 @@ import java.util.Iterator;
 import java.util.List;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
-/** The main container class for the LLVM Intermediate Representation. */
-public class Module implements Iterable<Value> {
+/**
+ * The main container class for the LLVM Intermediate Representation.
+ *
+ * <p>Resources of this class always have to be freed using {@link #dispose()} to avoid memory
+ * leaks.
+ */
+public final class Module implements Iterable<Value> {
   private LLVMLibrary.LLVMModuleRef module;
 
   LLVMLibrary.LLVMModuleRef getModule() {
     return module;
   }
 
-  Module(LLVMLibrary.LLVMModuleRef module) {
+  private Module(LLVMLibrary.LLVMModuleRef module) {
     this.module = module;
   }
 
@@ -74,6 +79,9 @@ public class Module implements Iterable<Value> {
    * Creates a new, empty module in the global context.<br>
    * Every invocation should be paired with {link #dispose()} or memory will be leaked.
    *
+   * <p>To avoid memory leaks, a model always has to be disposed of using {@link #dispose()} after
+   * use.
+   *
    * @param moduleID the name of the new module
    */
   public static Module createWithName(String moduleID) {
@@ -84,6 +92,9 @@ public class Module implements Iterable<Value> {
    * Creates a new, empty module in a specific context.<br>
    * Every invocation should be paired with {@link #dispose()} or memory will be leaked.
    *
+   * <p>To avoid memory leaks, a model always has to be disposed of using {@link #dispose()} after
+   * use.
+   *
    * @param moduleID the name of the new module
    * @param c the context to create the new module in
    */
@@ -91,9 +102,14 @@ public class Module implements Iterable<Value> {
     return new Module(LLVMLibrary.LLVMModuleCreateWithNameInContext(moduleID, c.context()));
   }
 
-  @Override
-  protected void finalize() {
-    dispose();
+  /**
+   * Creates a module representing the global parent of the given {@link Value}.
+   *
+   * <p>To avoid memory leaks, a model always has to be disposed of using {@link #dispose()} after
+   * use.
+   */
+  public static Module createGlobalParentOf(Value pValue) {
+    return new Module(LLVMLibrary.LLVMGetGlobalParent(pValue.value()));
   }
 
   /**
