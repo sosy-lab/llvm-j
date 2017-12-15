@@ -30,6 +30,7 @@
                compiler="com.google.errorprone.ErrorProneAntCompilerAdapter"
                encoding="UTF-8">
             <src path="${source.dir}"/>
+               <exclude name="${source.dir}" />
             <classpath refid="classpath"/>
             <compilerarg value="-Xlint"/>
             <compilerarg value="-Xlint:-processing"/>

@@ -38,7 +38,7 @@
     <target name="publish-lib" depends="package-lib, load-ivy"
         description="Publish LLVM library to Ivy repo.">
 
-        <ivy:resolve conf="llvm" file="ivy_libLLVM.xml" />
+        <ivy:resolve conf="llvm" file="lib/ivy_libLLVM.xml" />
         <available property="ivy.hasrepository" file="repository/${ivy.organisation}/${ivy.module}" />
         <fail unless="ivy.hasrepository">
             Cannot publish without 'repository' dir, please run 'svn co https://svn.sosy-lab.org/software/ivy/repository/${ivy.organisation}/${ivy.module} repository/${ivy.organisation}/${ivy.module}'.

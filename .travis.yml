@@ -30,7 +30,7 @@ matrix:
           - ant checkstyle -Dcheckstyle.output=plain && cat Checkstyle*.xml && [ $(cat Checkstyle*xml | grep -vic audit) -eq 0]
       - env: NAME=FindBugs
         script:
-          - ant findbugs -Dfindbugs.output=text && cat FindBugs.xml && test \! -s FindBugs.xml
+          - ant spotbugs -Dspotbugs.output=text && cat SpotBugs.xml && test \! -s SpotBugs.xml
       - env: NAME='Check source-code format'
         script:
           - ant format-source && git diff -s --exit-code
