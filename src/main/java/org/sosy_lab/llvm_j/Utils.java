@@ -12,7 +12,7 @@ public final class Utils {
    * Converts the given {@link org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMBool LLVMBool} value to a
    * Java boolean.
    */
-  public static boolean llvmBoolToJavaBool(final LLVMLibrary.LLVMBool pBool) {
+  public static boolean llvmBoolToJavaBool(LLVMLibrary.LLVMBool pBool) {
     // LLVMBool is actually an int.
     // This is a wrong mapping done by JNA, so we have to convert the PointerType
     // to an integer value.

@@ -21,7 +21,7 @@ public final class BasicBlock implements Iterable<Value> {
   }
 
   @Override
-  public boolean equals(final Object pObj) {
+  public boolean equals(Object pObj) {
     if (!(pObj instanceof BasicBlock)) {
       return false;
     }
@@ -89,7 +89,7 @@ public final class BasicBlock implements Iterable<Value> {
 
   @Override
   public int hashCode() {
-    final long address = Pointer.nativeValue(bb.getPointer());
+    long address = Pointer.nativeValue(bb.getPointer());
     return Long.hashCode(address);
   }
 

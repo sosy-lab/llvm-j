@@ -260,7 +260,7 @@ public class Value {
   }
 
   @Override
-  public boolean equals(final Object pObj) {
+  public boolean equals(Object pObj) {
     if (!(pObj instanceof Value)) {
       return false;
     }

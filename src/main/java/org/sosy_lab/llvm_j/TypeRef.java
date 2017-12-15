@@ -58,7 +58,7 @@ public class TypeRef {
 
   /** Returns the enumerated type of this type instance. */
   public TypeKind getTypeKind() {
-    final int typeInt = LLVMLibrary.LLVMGetTypeKind(type);
+    int typeInt = LLVMLibrary.LLVMGetTypeKind(type);
 
     if (typeInt == LLVMLibrary.LLVMTypeKind.LLVMHalfTypeKind) {
       return TypeKind.Half;

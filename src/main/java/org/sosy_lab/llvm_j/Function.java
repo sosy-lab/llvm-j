@@ -1,13 +1,12 @@
 package org.sosy_lab.llvm_j;
 
-import static org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef;
-
 import java.util.Iterator;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** A wrapper around a function value in LLVM */
 public final class Function extends Value implements Iterable<BasicBlock> {
 
-  Function(LLVMValueRef value) {
+  Function(LLVMLibrary.LLVMValueRef value) {
     super(value);
   }
 

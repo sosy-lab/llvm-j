@@ -1,5 +1,6 @@
 package org.sosy_lab.llvm_j;
 
+import com.google.errorprone.annotations.Var;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;
@@ -28,7 +29,7 @@ public final class Module implements Iterable<Value> {
     this.module = module;
   }
 
-  public static void addLibraryLookupPaths(final List<Path> pDirectories) {
+  public static void addLibraryLookupPaths(List<Path> pDirectories) {
     for (Path p : pDirectories) {
       NativeLibrary.addSearchPath(LLVMLibrary.JNA_LIBRARY_NAME, p.toAbsolutePath().toString());
     }
@@ -44,7 +45,7 @@ public final class Module implements Iterable<Value> {
         new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
     Pointer outMsgAddr = new Memory(1000 * 1000 * 10 * 8);
     PointerByReference outMsg = new PointerByReference(outMsgAddr);
-    LLVMLibrary.LLVMBool success =
+    @Var LLVMLibrary.LLVMBool success =
         LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(path, pointerToBufferWrapped, outMsg);
     if (Utils.llvmBoolToJavaBool(success)) {
       String errorMessage = outMsg.getValue().getString(0);
