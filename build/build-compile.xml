@@ -9,6 +9,8 @@
     <!-- These properties can be overridden from including file. -->
     <property name="source.format" value="1.8"/>
     <property name="source.dir" value="src/main/java"/>
+    <property name="bindings.pkg" value="org/sosy_lab/llvm_j/binding" />
+    <property name="bindings.file" value="${bindings.pkg}/LLVMLibrary.java" />
     <property name="source.generated.dir" value=".apt-generated"/>
     <property name="class.format" value="1.8"/>
     <property name="class.dir" value="bin"/>
@@ -21,6 +23,28 @@
     <target name="build-project" depends="build-dependencies, bindings">
         <depend srcdir="${source.dir}" destdir="${class.dir}"/>
         <mkdir dir="${source.generated.dir}"/>
+
+        <!-- Compile 'dirty', auto-generated LLVMLibrary.java with
+             less strict checks first, other code after that with strict
+             checks -->
+        <javac debug="true"
+               debuglevel="source,lines,vars"
+               srcdir="${source.dir}"
+               destdir="${class.dir}"
+               source="${source.format}"
+               target="${class.format}"
+               includeAntRuntime="false"
+               compiler="com.google.errorprone.ErrorProneAntCompilerAdapter"
+               encoding="UTF-8">
+            <include name="${bindings.file}" />
+            <classpath refid="classpath"/>
+            <compilerarg value="-Xlint"/>
+            <compilerarg value="-Xlint:-processing"/>
+            <compilerarg value="-Werror"/>
+            <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
+            <compilerclasspath refid="errorprone"/>
+        </javac>
+
         <javac debug="true"
                debuglevel="source,lines,vars"
                destdir="${class.dir}"
@@ -30,6 +54,7 @@
                compiler="com.google.errorprone.ErrorProneAntCompilerAdapter"
                encoding="UTF-8">
             <src path="${source.dir}"/>
+            <exclude name="${bindings.file}" />
             <classpath refid="classpath"/>
             <compilerarg value="-Xlint"/>
             <compilerarg value="-Xlint:-processing"/>
@@ -51,6 +76,7 @@
             <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
             <compilerclasspath refid="errorprone"/>
         </javac>
+
     </target>
 
     <path id="ecj">
@@ -70,15 +96,35 @@
             </filterchain>
         </copy>
 
+        <!-- Compile 'dirty', auto-generated LLVMLibrary.java with
+             less strict checks first, other code after that with strict
+             checks -->
         <javac debug="true"
                debuglevel="source,lines,vars"
+               srcdir="${source.dir}"
                destdir="${class.dir}"
                source="${source.format}"
                target="${class.format}"
                compiler="org.eclipse.jdt.core.JDTCompilerAdapter"
                includeAntRuntime="false"
                encoding="UTF-8">
-            <src path="${source.dir}"/>
+            <include name="${bindings.file}"/>
+            <classpath refid="classpath"/>
+            <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
+            <compilerclasspath refid="ecj"/>
+        </javac>
+
+        <javac debug="true"
+               debuglevel="source,lines,vars"
+               srcdir="${source.dir}"
+               sourcepath=""
+               destdir="${class.dir}"
+               source="${source.format}"
+               target="${class.format}"
+               compiler="org.eclipse.jdt.core.JDTCompilerAdapter"
+               includeAntRuntime="false"
+               encoding="UTF-8">
+            <include name="**/llvm_j/*.java" />
             <classpath refid="classpath"/>
             <compilerarg value="-properties"/>
             <compilerarg value="${ivy.lib.dir}/build/org.eclipse.jdt.core.prefs"/>
