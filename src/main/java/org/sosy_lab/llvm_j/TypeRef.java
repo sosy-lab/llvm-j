@@ -12,37 +12,37 @@ public class TypeRef {
 
   public enum TypeKind {
     Void,
-    /** < 16 bit floating point type */
+    /** 16 bit floating point type */
     Half,
-    /** < 32 bit floating point type */
+    /** 32 bit floating point type */
     Float,
-    /** < 64 bit floating point type */
+    /** 64 bit floating point type */
     Double,
-    /** < 80 bit floating point type (X87) */
+    /** 80 bit floating point type (X87) */
     X86_FP80,
-    /** < 128 bit floating point type (112-bit mantissa) */
+    /** 128 bit floating point type (112-bit mantissa) */
     FP128,
-    /** < 128 bit floating point type (two 64-bits) */
+    /** 128 bit floating point type (two 64-bits) */
     PPC_FP128,
-    /** < Labels */
+    /** Labels */
     Label,
-    /** < Arbitrary bit width integers */
+    /** Arbitrary bit width integers */
     Integer,
-    /** < Functions */
+    /** Functions */
     Function,
-    /** < Structures */
+    /** Structures */
     Struct,
-    /** < Arrays */
+    /** Arrays */
     Array,
-    /** < Pointers */
+    /** Pointers */
     Pointer,
-    /** < SIMD 'packed' format, or other vector type */
+    /** SIMD 'packed' format, or other vector type */
     Vector,
-    /** < Metadata */
+    /** Metadata */
     Metadata,
-    /** < X86 MMX */
+    /** X86 MMX */
     X86_MMX,
-    /** < Tokens */
+    /** Tokens */
     Token,
   }
 

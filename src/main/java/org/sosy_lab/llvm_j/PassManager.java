@@ -72,6 +72,7 @@ public final class PassManager {
    * pass manager.
    *
    * @param m module to run on
+   * @throws LLVMException if error occurs in underlying LLVM run pass manager.
    */
   public void runForModule(Module m) throws LLVMException {
     LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMRunPassManager(manager, m.getModule());
@@ -86,6 +87,7 @@ public final class PassManager {
    * function.
    *
    * @param f function to run on
+   * @throws LLVMException if error occurs in underlying LLVM function pass manager.
    */
   public void runForFunction(Function f) throws LLVMException {
     LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMRunFunctionPassManager(manager, f.value());

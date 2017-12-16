@@ -108,25 +108,25 @@ public class Value {
   }
 
   public enum IntPredicate {
-    /** < equal */
+    /** equal */
     IntEQ(32),
-    /** < not equal */
+    /** not equal */
     IntNE(33),
-    /** < unsigned greater than */
+    /** unsigned greater than */
     IntUGT(34),
-    /** < unsigned greater or equal */
+    /** unsigned greater or equal */
     IntUGE(35),
-    /** < unsigned less than */
+    /** unsigned less than */
     IntULT(36),
-    /** < unsigned less or equal */
+    /** unsigned less or equal */
     IntULE(37),
-    /** < signed greater than */
+    /** signed greater than */
     IntSGT(38),
-    /** < signed greater or equal */
+    /** signed greater or equal */
     IntSGE(39),
-    /** < signed less than */
+    /** signed less than */
     IntSLT(40),
-    /** < signed less or equal */
+    /** signed less or equal */
     IntSLE(41);
 
     private final int value;
@@ -141,47 +141,47 @@ public class Value {
   }
 
   public enum Linkage {
-    /** < Externally visible function */
+    /** Externally visible function */
     ExternalLinkage(0),
     AvailableExternallyLinkage(1),
-    /** < Keep one copy of function when linking (inline) */
+    /** Keep one copy of function when linking (inline) */
     LinkOnceAnyLinkage(2),
     /**
-     * < Same, but only replaced by something<br>
+     * Same, but only replaced by something<br>
      * equivalent.
      */
     LinkOnceODRLinkage(3),
-    /** < Obsolete */
+    /** Obsolete */
     LinkOnceODRAutoHideLinkage(4),
-    /** < Keep one copy of function when linking (weak) */
+    /** Keep one copy of function when linking (weak) */
     WeakAnyLinkage(5),
     /**
-     * < Same, but only replaced by something<br>
+     * Same, but only replaced by something<br>
      * equivalent.
      */
     WeakODRLinkage(6),
-    /** < Special purpose, only applies to global arrays */
+    /** Special purpose, only applies to global arrays */
     AppendingLinkage(7),
     /**
-     * < Rename collisions when linking (static<br>
+     * Rename collisions when linking (static<br>
      * functions)
      */
     InternalLinkage(8),
-    /** < Like Internal, but omit from symbol table */
+    /** Like Internal, but omit from symbol table */
     PrivateLinkage(9),
-    /** < Obsolete */
+    /** Obsolete */
     DLLImportLinkage(10),
-    /** < Obsolete */
+    /** Obsolete */
     DLLExportLinkage(11),
-    /** < ExternalWeak linkage description */
+    /** ExternalWeak linkage description */
     ExternalWeakLinkage(12),
-    /** < Obsolete */
+    /** Obsolete */
     GhostLinkage(13),
-    /** < Tentative definitions */
+    /** Tentative definitions */
     CommonLinkage(14),
-    /** < Like Private, but linker removes. */
+    /** Like Private, but linker removes. */
     LinkerPrivateLinkage(15),
-    /** < Like LinkerPrivate, but is weak. */
+    /** Like LinkerPrivate, but is weak. */
     LinkerPrivateWeakLinkage(16);
 
     private final int value;
@@ -196,11 +196,11 @@ public class Value {
   }
 
   public enum Visibility {
-    /** < The GV is visible */
+    /** The value is visible */
     Default(0),
-    /** < The GV is hidden */
+    /** The value is hidden */
     Hidden(1),
-    /** < The GV is protected */
+    /** The value is protected */
     Protected(2);
 
     private final int value;
