@@ -21,7 +21,7 @@ matrix:
       - env:
             - NAME='Package LLVM library' LLVM_VERSION="3.9.1"
         script:
-          - ant package-lib -Dllvm.library=$LLVM_VERSION
+          - ant package-lib -Dllvm.version=$LLVM_VERSION
       - env: NAME='Create Javadoc'
         script:
           - ant javadoc
