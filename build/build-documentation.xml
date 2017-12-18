@@ -37,10 +37,7 @@
             failonerror="true"
             overview="doc/javadoc_overview.html"
             >
-
-            <fileset dir="${source.dir}" defaultexcludes="yes">
-                <exclude name="**/LLVMLibrary.java"/>
-            </fileset>
+            <fileset dir="${source.dir}" defaultexcludes="yes" />
             <link href="http://docs.oracle.com/javase/8/docs/api/"/>
             <link href="https://sosy-lab.github.io/java-common-lib/api/"/>
             <doctitle><![CDATA[<h1>${ant.project.name}</h1>]]></doctitle>

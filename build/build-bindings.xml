@@ -52,9 +52,52 @@
                  token="static {"
                  value="public static void instantiate() {" />
 
+        <!-- Format and adjust invalid Javadoc -->
+        <antcall target="adjust-bindings-javadoc" />
+
         <!-- Format bindings to adhere to our styleguide as far as possible -->
         <property name="format.selection" location="${llvm.bindings}" />
         <antcall target="format-selection" />
     </target>
 
+    <target name="adjust-bindings-javadoc">
+        <replace file="${llvm.bindings}"
+                 token="@see "
+                 value="See " />
+        <!-- We loose doxygen group information -->
+        <replaceregexp file="${llvm.bindings}"
+                 flags="g"
+                 match="\n.*@defgroup.*"
+                 replace="" />
+        <replaceregexp file="${llvm.bindings}"
+                 flags="g"
+                 match="\n.*@ingroup.*"
+                 replace="" />
+        <replaceregexp file="${llvm.bindings}"
+                 flags="g"
+                 match="\n.*@\{.*"
+                 replace="" />
+        <replaceregexp file="${llvm.bindings}"
+                 flags="g"
+                 match="\n.*@\}.*"
+                 replace="" />
+
+        <!-- The @see tags reference C code, so that won't work with javadoc.
+             We still want to keep the references, though. -->
+        <replace file="${llvm.bindings}"
+                 token="@see "
+                 value="See " />
+
+        <!-- And some minor fixes -->
+        <replace file="${llvm.bindings}"
+            token="&lt;&gt;"
+            value="&amp;lt;&amp;gt;">
+        </replace>
+        <replace file="${llvm.bindings}"
+                 token="* &lt; "
+                 value="* " />
+        <replace file="${llvm.bindings}"
+                 token="&amp;)"
+                 value="&amp;amp;)" />
+    </target>
 </project>
