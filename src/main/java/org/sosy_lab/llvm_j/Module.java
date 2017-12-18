@@ -45,7 +45,8 @@ public final class Module implements Iterable<Value> {
         new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
     Pointer outMsgAddr = new Memory(1000 * 1000 * 10 * 8);
     PointerByReference outMsg = new PointerByReference(outMsgAddr);
-    @Var LLVMLibrary.LLVMBool success =
+    @Var
+    LLVMLibrary.LLVMBool success =
         LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(path, pointerToBufferWrapped, outMsg);
     if (Utils.llvmBoolToJavaBool(success)) {
       String errorMessage = outMsg.getValue().getString(0);

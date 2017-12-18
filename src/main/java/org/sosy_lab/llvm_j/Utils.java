@@ -8,10 +8,7 @@ public final class Utils {
 
   private Utils() {}
 
-  /**
-   * Converts the given {@link LLVMLibrary.LLVMBool } value to a
-   * Java boolean.
-   */
+  /** Converts the given {@link LLVMLibrary.LLVMBool } value to a Java boolean. */
   public static boolean llvmBoolToJavaBool(LLVMLibrary.LLVMBool pBool) {
     // LLVMBool is actually an int.
     // This is a wrong mapping done by JNA, so we have to convert the PointerType
