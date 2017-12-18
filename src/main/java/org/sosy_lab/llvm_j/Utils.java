@@ -9,7 +9,7 @@ public final class Utils {
   private Utils() {}
 
   /**
-   * Converts the given {@link org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMBool LLVMBool} value to a
+   * Converts the given {@link LLVMLibrary.LLVMBool } value to a
    * Java boolean.
    */
   public static boolean llvmBoolToJavaBool(LLVMLibrary.LLVMBool pBool) {
