@@ -27,7 +27,7 @@ matrix:
           - ant javadoc
       - env: NAME=Checkstyle
         script:
-          - ant checkstyle -Dcheckstyle.output=plain && cat Checkstyle*.xml && [ $(cat Checkstyle*xml | grep -vic audit) -eq 0]
+          - ant run-checkstyle -Dcheckstyle.output=plain && cat Checkstyle*.xml && [ $(cat Checkstyle*xml | grep -vic audit) -eq 0]
       - env: NAME=SpotBugs
         script:
           - ant spotbugs -Dspotbugs.output=text && cat SpotBugs.xml && test \! -s SpotBugs.xml
