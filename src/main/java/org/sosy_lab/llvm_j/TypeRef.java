@@ -39,7 +39,9 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 /** Each value in the LLVM IR has a type, an LLVMTypeRef. */
 public class TypeRef {
 
+  /** Types in LLVM IR */
   public enum TypeKind {
+    /** Void, i.e., no type */
     Void,
     /** 16 bit floating point type */
     Half,
@@ -77,7 +79,7 @@ public class TypeRef {
 
   private LLVMLibrary.LLVMTypeRef type;
 
-  public LLVMLibrary.LLVMTypeRef type() {
+  LLVMLibrary.LLVMTypeRef type() {
     return type;
   }
 
@@ -128,16 +130,22 @@ public class TypeRef {
     }
   }
 
-  public long offsetOfElement(LLVMLibrary.LLVMTargetDataRef td, int idx) {
-    assert getTypeKind() == TypeKind.Struct;
+  /**
+   * Returns the offset of this struct to the specified index, based on the given data layout.
+   *
+   * @param idx the index of the element to return the offset for
+   * @param td the data layout to assume
+   * @return the offset of the given element index from the address of this struct
+   * @throws LLVMException if this type is not a struct
+   */
+  public long getOffsetOfElement(int idx, LLVMLibrary.LLVMTargetDataRef td) throws LLVMException {
+    if (getTypeKind() != TypeKind.Struct) {
+      throw new LLVMException("Type is not a struct");
+    }
     return LLVMLibrary.LLVMOffsetOfElement(td, type, idx);
   }
 
-  public long storeSize(LLVMLibrary.LLVMTargetDataRef td) {
-    return LLVMLibrary.LLVMStoreSizeOfType(td, type);
-  }
-
-  public void dump() {
+  void dump() {
     LLVMLibrary.LLVMDumpType(type);
   }
 
@@ -222,11 +230,19 @@ public class TypeRef {
     return members;
   }
 
+  /** Returns whether this type is a named struct. */
   public boolean isStructNamed() {
     String name = LLVMLibrary.LLVMGetStructName(type);
     return name != null;
   }
 
+  /**
+   * Return the name of this type. This type has to be a named struct.
+   *
+   * @returns the name of this type, if it is a named struct
+   * @throws LLVMException if this type is not a named struct
+   * @see #isStructNamed()
+   */
   public String getStructName() throws LLVMException {
     if (isStructNamed()) {
       return LLVMLibrary.LLVMGetStructName(type);

@@ -34,8 +34,8 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 /**
  * The top-level container for all LLVM global data.
  *
- * <p>Each instance of this class should be disposed of using its {@link #dispose()} method after
- * use.
+ * <p>After use, each instance of this class should be disposed of using its {@link #dispose()}
+ * method.
  */
 public final class Context {
 

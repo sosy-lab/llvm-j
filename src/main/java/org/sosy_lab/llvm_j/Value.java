@@ -39,6 +39,7 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 /** Represents an individual value in LLVM IR. */
 public class Value {
 
+  /** LLVM IR operations */
   public enum OpCode {
     Ret(1),
     Br(2),
@@ -116,6 +117,7 @@ public class Value {
     }
   }
 
+  /** Calling conventions of a function */
   public enum CallConv {
     CCallConv(0),
     FastCallConv(8),
@@ -136,6 +138,7 @@ public class Value {
     }
   }
 
+  /** Predicates for integer comparison */
   public enum IntPredicate {
     /** equal */
     IntEQ(32),
@@ -169,6 +172,7 @@ public class Value {
     }
   }
 
+  /** Possible types of linkage */
   public enum Linkage {
     /** Externally visible function */
     ExternalLinkage(0),
@@ -224,6 +228,7 @@ public class Value {
     }
   }
 
+  /** Visibility of functions and global variables */
   public enum Visibility {
     /** The value is visible */
     Default(0),
@@ -243,6 +248,7 @@ public class Value {
     }
   }
 
+  /** Attributes that a function parameter may have */
   public enum Attribute {
     ZExtAttribute(1),
     SExtAttribute(1 << 1),
@@ -1020,14 +1026,17 @@ public class Value {
     return new Value(LLVMLibrary.LLVMGetCondition(value));
   }
 
+  /** Returns the block address of the given value in the given block. */
   public static Value blockAddress(Value f, BasicBlock bb) {
     return new Value(LLVMLibrary.LLVMBlockAddress(f.value(), bb.bb()));
   }
 
+  /** Returns the global parent of this value. */
   public Module getGlobalParent() {
     return Module.createGlobalParentOf(this);
   }
 
+  /** Returns whether this value is a declaration. */
   public boolean isDeclaration() {
     if (value == null) {
       throw new NullPointerException("Null pointer value");
@@ -1036,6 +1045,7 @@ public class Value {
     return Utils.llvmBoolToJavaBool(b);
   }
 
+  /** Returns the linkage of this value. */
   public Linkage getLinkage() {
     int code = LLVMLibrary.LLVMGetLinkage(value);
 
@@ -1047,10 +1057,12 @@ public class Value {
     throw new AssertionError("Unhandled code id " + code);
   }
 
+  /** Returns the section of this value. */
   public String getSection() {
     return LLVMLibrary.LLVMGetSection(value);
   }
 
+  /** Returns the {@link Visibility visibility} of this value. */
   public Visibility getVisibility() {
     int code = LLVMLibrary.LLVMGetVisibility(value);
 
@@ -1062,33 +1074,39 @@ public class Value {
     throw new AssertionError("Unhandled code id " + code);
   }
 
+  /** Returns the alignment of this value */
   public int getAlignment() {
     return LLVMLibrary.LLVMGetAlignment(value);
   }
 
-  // this.value is GlobalVar
+  /** Returns the next global value after this value. */
   public Value getNextGlobal() {
     return new Value(LLVMLibrary.LLVMGetNextGlobal(value));
   }
 
+  /** Returns the previous global value before this value. */
   public Value getPreviousGlobal() {
     return new Value(LLVMLibrary.LLVMGetPreviousGlobal(value));
   }
 
+  /** Returns the initializer of this value. */
   public Value getInitializer() {
     return new Value(LLVMLibrary.LLVMGetInitializer(value));
   }
 
+  /** Returns whether this value is externally initialized */
   public boolean isExternallyInitialized() {
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsExternallyInitialized(value);
     return Utils.llvmBoolToJavaBool(b);
   }
 
+  /** Returns whether this value is defined as thread_local. */
   public boolean isThreadLocal() {
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsThreadLocal(value);
     return Utils.llvmBoolToJavaBool(b);
   }
 
+  /** Returns whether this value is a global constant. */
   public boolean isGlobalConstant() {
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsGlobalConstant(value);
     return Utils.llvmBoolToJavaBool(b);
@@ -1267,7 +1285,7 @@ public class Value {
     return new Value(LLVMLibrary.LLVMGetPreviousParam(value));
   }
 
-  /** Get an attribute from a function argument. */
+  /** Get an attribute from this value. The value has to be a function argument. */
   public Attribute getAttribute() {
     int code = LLVMLibrary.LLVMGetAttribute(value);
     for (Attribute a : Attribute.values()) {

@@ -58,13 +58,31 @@ public final class Module implements Iterable<Value> {
     this.module = module;
   }
 
+  /**
+   * Adds the given directories to the list of paths in which llvm-j looks for the LLVM library.
+   *
+   * <p>
+   *
+   * @param pDirectories list of directories that may contain the LLVM library
+   */
   public static void addLibraryLookupPaths(List<Path> pDirectories) {
     for (Path p : pDirectories) {
       NativeLibrary.addSearchPath(LLVMLibrary.JNA_LIBRARY_NAME, p.toAbsolutePath().toString());
     }
   }
 
-  /** Parses a module from the given file. */
+  /**
+   * Parses a module from the given file.
+   *
+   * <p>This method has to instantiate {@link LLVMLibrary}. If your LLVM shared library (*.so file)
+   * is not in one of the default JNA library search paths (e.g., system directories, directories
+   * specified by system property jna.library.path), it can only be found if the directory it is in
+   * is added to the search paths using {@link #addLibraryLookupPaths(List)} before calling this
+   * method.
+   *
+   * @param path the LLVM IR bitcode file to parse
+   * @return the parsed LLVM module structure
+   */
   public static Module parseIR(String path) throws LLVMException {
     LLVMLibrary.instantiate();
     /* read the module into a buffer */
@@ -201,14 +219,17 @@ public final class Module implements Iterable<Value> {
     return LLVMLibrary.LLVMWriteBitcodeToFile(module, path);
   }
 
+  /** Returns the module context */
   public Context getModuleContext() {
     return Context.getModuleContext(this);
   }
 
+  /** Returns the named global in this module with the given name */
   public Value getNamedGlobal(String name) {
     return new Value(LLVMLibrary.LLVMGetNamedGlobal(getModule(), name));
   }
 
+  /** Returns the first global value in this module */
   public Value getFirstGlobal() {
     try {
       return new Value(LLVMLibrary.LLVMGetFirstGlobal(getModule()));
@@ -217,6 +238,7 @@ public final class Module implements Iterable<Value> {
     }
   }
 
+  /** Returns the last global value in this module */
   public Value getLastGlobal() {
     try {
       return new Value(LLVMLibrary.LLVMGetLastGlobal(getModule()));
@@ -225,6 +247,14 @@ public final class Module implements Iterable<Value> {
     }
   }
 
+  /**
+   * Returns a new alias for the given type and adds it to the end of the modules alias list.
+   *
+   * @param ty type of the value to create the alias for
+   * @param aliasee value to create the alias for
+   * @param name name of the new alias
+   * @return the newly created alias for the given value
+   */
   public Value addAlias(TypeRef ty, Value aliasee, String name) {
     return new Value(LLVMLibrary.LLVMAddAlias(module, ty.type(), aliasee.value(), name));
   }

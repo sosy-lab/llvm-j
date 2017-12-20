@@ -29,9 +29,18 @@
 
 package org.sosy_lab.llvm_j;
 
-@SuppressWarnings("serial")
-public final class LLVMException extends Exception {
+import java.io.Serializable;
 
+/** {@link Exception} in an LLVM component. */
+public final class LLVMException extends Exception implements Serializable {
+
+  private static final long serialVersionUID = 8265315876168727104L;
+
+  /**
+   * Creates a new <code>LLVMException</code> with the given exception message.
+   *
+   * @param message the exception message
+   */
   public LLVMException(String message) {
     super(message);
   }
