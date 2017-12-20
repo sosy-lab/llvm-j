@@ -154,18 +154,28 @@ public class TypeRef {
     return Context.getTypeContext(this);
   }
 
-  public int getIntTypeWidth() {
+  /** Get width of this type. This type has to be an integer type. */
+  public int getIntTypeWidth() throws LLVMException {
+    if (getTypeKind() != TypeKind.Integer) {
+      throw new LLVMException("Type is not an integer");
+    }
     return LLVMLibrary.LLVMGetIntTypeWidth(type);
   }
 
-  /** Returns whether this is a variadic function type. */
-  public boolean isFunctionVarArg() {
+  /** Returns whether this is a function type. */
+  public boolean isFunctionVarArg() throws LLVMException {
+    if (getTypeKind() != TypeKind.Function) {
+      throw new LLVMException("Type is not a function");
+    }
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsFunctionVarArg(type);
     return Utils.llvmBoolToJavaBool(b);
   }
 
   /** Returns the type this function type returns. Only works if this is a function type. */
-  public TypeRef getReturnType() {
+  public TypeRef getReturnType() throws LLVMException {
+    if (getTypeKind() != TypeKind.Function) {
+      throw new LLVMException("Type is not a function");
+    }
     return new TypeRef(LLVMLibrary.LLVMGetReturnType(type));
   }
 
@@ -173,12 +183,18 @@ public class TypeRef {
    * Returns the number of parameters this function type accepts. Only works if this is a function
    * type.
    */
-  public int countParamTypes() {
+  public int countParamTypes() throws LLVMException {
+    if (getTypeKind() != TypeKind.Function) {
+      throw new LLVMException("Type is not a function");
+    }
     return LLVMLibrary.LLVMCountParamTypes(type);
   }
 
   /** Returns the types of a function's parameters. Only works if this is a function type. */
-  public List<TypeRef> getParamTypes() {
+  public List<TypeRef> getParamTypes() throws LLVMException {
+    if (getTypeKind() != TypeKind.Function) {
+      throw new LLVMException("Type is not a function");
+    }
     int paramCount = countParamTypes();
     List<TypeRef> params = new ArrayList<>(paramCount);
 
@@ -203,12 +219,19 @@ public class TypeRef {
    * Get the number of elements defined inside this structure type. Only works if this is a
    * structure type.
    */
-  public int countStructElementTypes() {
+  public int countStructElementTypes() throws LLVMException {
+    if (getTypeKind() != TypeKind.Struct) {
+      throw new LLVMException("Type is not a struct");
+    }
     return LLVMLibrary.LLVMCountStructElementTypes(type);
   }
 
   /** Get the elements within this structure. Only works if this is a structure type. */
-  public List<TypeRef> getStructElementTypes() {
+  public List<TypeRef> getStructElementTypes() throws LLVMException {
+    if (getTypeKind() != TypeKind.Struct) {
+      throw new LLVMException("Type is not a struct");
+    }
+
     int memberCount = countParamTypes();
     List<TypeRef> members = new ArrayList<>(memberCount);
 
@@ -252,13 +275,19 @@ public class TypeRef {
   }
 
   /** Determines whether this structure is packed. Only works if this is a structure type. */
-  public boolean isPackedStruct() {
+  public boolean isPackedStruct() throws LLVMException {
+    if (getTypeKind() != TypeKind.Struct) {
+      throw new LLVMException("Type is not a struct");
+    }
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsPackedStruct(type);
     return Utils.llvmBoolToJavaBool(b);
   }
 
   /** Determines whether this structure is opaque. Only works if this is a structure type. */
-  public boolean isOpaqueStruct() {
+  public boolean isOpaqueStruct() throws LLVMException {
+    if (getTypeKind() != TypeKind.Struct) {
+      throw new LLVMException("Type is not a struct");
+    }
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsOpaqueStruct(type);
     return Utils.llvmBoolToJavaBool(b);
   }
@@ -267,7 +296,11 @@ public class TypeRef {
    * Returns the type of elements within this sequential type. This only works on array, vector, and
    * pointer types.
    */
-  public TypeRef getElementType() {
+  public TypeRef getElementType() throws LLVMException {
+    TypeKind typeKind = getTypeKind();
+    if (typeKind != TypeKind.Array && typeKind != TypeKind.Vector && typeKind != TypeKind.Pointer) {
+      throw new LLVMException("Type neither array, nor vector, nor pointer");
+    }
     return new TypeRef(LLVMLibrary.LLVMGetElementType(type));
   }
 
@@ -276,23 +309,34 @@ public class TypeRef {
    *
    * <p>This must be a struct type.
    */
-  public TypeRef getTypeAtIndex(int idx) {
-    assert (getTypeKind() == TypeKind.Struct);
+  public TypeRef getTypeAtIndex(int idx) throws LLVMException {
+    if (getTypeKind() != TypeKind.Struct) {
+      throw new LLVMException("Type is not a struct");
+    }
     return new TypeRef(LLVMLibrary.LLVMStructGetTypeAtIndex(type, idx));
   }
 
   /** Returns the length of this array type. This only works on array types. */
-  public int getArrayLength() {
+  public int getArrayLength() throws LLVMException {
+    if (getTypeKind() != TypeKind.Array) {
+      throw new LLVMException("Type is not an array");
+    }
     return LLVMLibrary.LLVMGetArrayLength(type);
   }
 
   /** Returns the address space of this pointer type. This only works on pointer types. */
-  public int getPointerAddressSpace() {
+  public int getPointerAddressSpace() throws LLVMException {
+    if (getTypeKind() != TypeKind.Pointer) {
+      throw new LLVMException("Type is not a pointer");
+    }
     return LLVMLibrary.LLVMGetPointerAddressSpace(type);
   }
 
   /** Returns the number of elements in this vector type. This only works on vector types. */
-  public int getVectorSize() {
+  public int getVectorSize() throws LLVMException {
+    if (getTypeKind() != TypeKind.Vector) {
+      throw new LLVMException("Type is not a vector");
+    }
     return LLVMLibrary.LLVMGetVectorSize(type);
   }
 

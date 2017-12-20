@@ -61,8 +61,6 @@ public final class Module implements Iterable<Value> {
   /**
    * Adds the given directories to the list of paths in which llvm-j looks for the LLVM library.
    *
-   * <p>
-   *
    * @param pDirectories list of directories that may contain the LLVM library
    */
   public static void addLibraryLookupPaths(List<Path> pDirectories) {
