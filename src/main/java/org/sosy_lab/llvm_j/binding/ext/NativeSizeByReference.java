@@ -31,26 +31,26 @@ public class NativeSizeByReference extends ByReference {
 
   public NativeSizeByReference(NativeSize value) {
     super(NativeSize.SIZE);
-    this.setValue(value);
+    setValue(value);
   }
 
   public void setValue(NativeSize value) {
     if (NativeSize.SIZE == 4) {
-      this.getPointer().setInt(0L, value.intValue());
+      getPointer().setInt(0L, value.intValue());
     } else {
       if (NativeSize.SIZE != 8) {
         throw new AssertionError("GCCLong has to be either 4 or 8 bytes.");
       }
 
-      this.getPointer().setLong(0L, value.longValue());
+      getPointer().setLong(0L, value.longValue());
     }
   }
 
   public NativeSize getValue() {
     if (NativeSize.SIZE == 4) {
-      return new NativeSize(this.getPointer().getInt(0L));
+      return new NativeSize(getPointer().getInt(0L));
     } else if (NativeSize.SIZE == 8) {
-      return new NativeSize(this.getPointer().getLong(0L));
+      return new NativeSize(getPointer().getLong(0L));
     } else {
       throw new AssertionError("GCCLong has to be either 4 or 8 bytes.");
     }
