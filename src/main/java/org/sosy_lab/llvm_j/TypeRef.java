@@ -262,7 +262,7 @@ public class TypeRef {
   /**
    * Return the name of this type. This type has to be a named struct.
    *
-   * @returns the name of this type, if it is a named struct
+   * @return the name of this type, if it is a named struct
    * @throws LLVMException if this type is not a named struct
    * @see #isStructNamed()
    */
