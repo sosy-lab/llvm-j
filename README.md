@@ -95,12 +95,12 @@ To create the JavaDoc, run `ant javadoc` in the project's root directory.
 ### Tools for Code Quality
 
 We provide some checks that may help you in writing good and correct code.
-You can run:
-    * [CheckStyle](ADDLINK) through `ant checkstyle`
-    * [Eclipse Compiler](ADDLINK) with Eclipse-specific warnings
+You can run: 
+  * [CheckStyle](ADDLINK) through `ant checkstyle`
+  * [Eclipse Compiler](ADDLINK) with Eclipse-specific warnings
       through `ant build-project-ecj`
-    * [Google Code Formatter](ADDLINK) through `ant format-source`
-    * [SpotBugs](ADDLINK) through `ant spotbugs`
+  * [Google Code Formatter](ADDLINK) through `ant format-source`
+  * [SpotBugs](ADDLINK) through `ant spotbugs`
 
 You can run `ant all-checks` to run CheckStyle, the Eclipse compiler, the JavaDoc
 task (which performs linting for JavaDoc) and SpotBugs.
