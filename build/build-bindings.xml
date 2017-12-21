@@ -54,7 +54,13 @@
         <!-- Replace static initializer with static method for initialization     -->
         <replace file="${llvm.bindings}"
                  token="static {"
-                 value="public static void instantiate() {" />
+                 value="
+                /**
+                  Instantiates the LLVM library.
+                  This method always has to be called before calling any other method of this class.
+                  If you don't do this, an {@link UnsatisfiedLinkError} will occur.
+                  */
+                 public static void instantiate() {" />
 
         <!-- Format and adjust invalid Javadoc -->
         <antcall target="adjust-bindings-javadoc" />

@@ -55,7 +55,10 @@ public class LLVMLibrary implements Library {
   public static final String JNA_LIBRARY_NAME = "LLVM-3.9.1";
   public static final NativeLibrary JNA_NATIVE_LIB =
       NativeLibrary.getInstance(LLVMLibrary.JNA_LIBRARY_NAME);
-
+  /**
+   * Instantiates the LLVM library. This method always has to be called before calling any other
+   * method of this class. If you don't do this, an {@link UnsatisfiedLinkError} will occur.
+   */
   public static void instantiate() {
     Native.register(LLVMLibrary.class, LLVMLibrary.JNA_NATIVE_LIB);
   }
