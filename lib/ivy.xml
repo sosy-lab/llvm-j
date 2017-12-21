@@ -49,7 +49,10 @@
 
         <!-- Google Core Libraries for Java
              Contains a lot of helpful data structures. -->
-        <!-- <dependency org="com.google.guava" name="guava" rev="23.2-jre" conf="runtime->default; contrib->sources"/>-->
+        <dependency org="com.google.guava" name="guava" rev="23.2-jre" conf="runtime->default; contrib->sources"/>
+
+        <!-- Guava-testlib contains many useful testing utilities -->
+        <dependency org="com.google.guava" name="guava-testlib" rev="23.2-jre" conf="test->default; contrib->sources" />
 
         <dependency org="net.java.dev.jna" name="jna" rev="4.4.0" conf="runtime->default; contrib->sources" />
         <dependency org="com.nativelibs4java" name="jnaerator" rev="0.12" conf="build->default; contrib->sources" />
