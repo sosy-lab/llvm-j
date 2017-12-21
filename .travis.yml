@@ -36,3 +36,6 @@ matrix:
         script:
           - ant format-source && git diff -s --exit-code
 
+      - env: NAME="Unit Tests"
+        script:
+          - ant unit-tests
