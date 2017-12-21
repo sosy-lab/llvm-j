@@ -922,15 +922,14 @@ public class Value {
   }
 
   /** Returns the user value for a user. The returned value corresponds to a llvm::User type. */
-  public static Value getUser(LLVMLibrary.LLVMUseRef u) {
+  public static Value getUser(Use u) {
     checkNotNull(u);
-    return new Value(LLVMLibrary.LLVMGetUser(u));
+    return new Value(LLVMLibrary.LLVMGetUser(u.use()));
   }
 
   /** Returns the value this use corresponds to. */
-  public static Value getUsedValue(LLVMLibrary.LLVMUseRef u) {
-    checkNotNull(u);
-    return new Value(LLVMLibrary.LLVMGetUsedValue(u));
+  public static Value getUsedValue(Use u) {
+    return new Value(LLVMLibrary.LLVMGetUsedValue(u.use()));
   }
 
   /**
