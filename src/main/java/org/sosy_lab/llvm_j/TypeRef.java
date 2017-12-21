@@ -86,6 +86,7 @@ public class TypeRef {
   }
 
   TypeRef(LLVMLibrary.LLVMTypeRef type) {
+    checkNotNull(type);
     this.type = type;
   }
 

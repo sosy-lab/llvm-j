@@ -10,16 +10,17 @@ jdk:
 env:
     global:
         - GH_REF: github.com/sosy-lab/llvm-j.git
+        - LLVM_VERSION: 3.9.1
 install:
   - ant build-dependencies
-
+  - ant download-library -Dllvm.version=$LLVM_VERSION
 matrix:
     include:
       - env: NAME='Build with ECJ'
         script:
           - ant build-project-ecj
       - env:
-            - NAME='Package LLVM library' LLVM_VERSION="3.9.1"
+            - NAME='Package LLVM library'
         script:
           - ant package-lib -Dllvm.version=$LLVM_VERSION
       - env: NAME='Create Javadoc'

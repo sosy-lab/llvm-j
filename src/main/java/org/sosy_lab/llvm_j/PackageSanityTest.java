@@ -28,7 +28,30 @@
 package org.sosy_lab.llvm_j;
 
 import com.google.common.testing.AbstractPackageSanityTests;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 public class PackageSanityTest extends AbstractPackageSanityTests {
 
+  {
+    try {
+      Module module = Module.parseIR("build/test.bc");
+      BasicBlock b1 = module.getFirstFunction().getFirstBasicBlock();
+      BasicBlock b2 = b1.getNextBasicBlock();
+      Value v = b1.getFirstInstruction();
+      TypeRef t = v.typeOf();
+
+      setDefault(Context.class, module.getModuleContext());
+
+      setDefault(TypeRef.class, t);
+      setDefault(Value.class, v);
+      setDistinctValues(Value.class, v, b1.basicBlockAsValue());
+      setDefault(BasicBlock.class, b1);
+      setDistinctValues(BasicBlock.class, b1, b2);
+      setDefault(LLVMLibrary.LLVMBasicBlockRef.class, b1.bb());
+      setDistinctValues(LLVMLibrary.LLVMBasicBlockRef.class, b1.bb(), b2.bb());
+
+    } catch (LLVMException e) {
+      e.printStackTrace();
+    }
+  }
 }

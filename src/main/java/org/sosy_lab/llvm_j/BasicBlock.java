@@ -28,6 +28,8 @@
  */
 package org.sosy_lab.llvm_j;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.sun.jna.Pointer;
 import java.util.Iterator;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
@@ -45,6 +47,7 @@ public final class BasicBlock implements Iterable<Value> {
   }
 
   BasicBlock(LLVMLibrary.LLVMBasicBlockRef bb) {
+    checkNotNull(bb);
     this.bb = bb;
   }
 

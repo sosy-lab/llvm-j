@@ -27,18 +27,20 @@
 
 package org.sosy_lab.llvm_j;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 public class Use {
 
-    private LLVMLibrary.LLVMUseRef useRef;
+  private LLVMLibrary.LLVMUseRef useRef;
 
-    Use(LLVMLibrary.LLVMUseRef use) {
-        useRef = use;
-    }
+  Use(LLVMLibrary.LLVMUseRef use) {
+    checkNotNull(use);
+    useRef = use;
+  }
 
-    LLVMLibrary.LLVMUseRef use() {
-        return useRef;
-    }
-
+  LLVMLibrary.LLVMUseRef use() {
+    return useRef;
+  }
 }

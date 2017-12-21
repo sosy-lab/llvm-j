@@ -28,8 +28,11 @@
 package org.sosy_lab.llvm_j.binding.ext;
 
 import com.google.common.testing.AbstractPackageSanityTests;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 public class PackageSanityTest extends AbstractPackageSanityTests {
 
+  {
+    LLVMLibrary.instantiate();
+  }
 }
-

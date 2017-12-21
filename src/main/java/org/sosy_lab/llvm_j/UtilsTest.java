@@ -25,14 +25,17 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package org.sosy_lab.llvm_j.binding;
+package org.sosy_lab.llvm_j;
 
-import com.google.common.base.Predicates;
-import com.google.common.testing.AbstractPackageSanityTests;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class PackageSanityTest extends AbstractPackageSanityTests {
-  {
-    LLVMLibrary.instantiate();
-    ignoreClasses(Predicates.equalTo(LLVMLibrary.class));
+public class UtilsTest {
+
+  @Test
+  public void testNulls() {
+    boolean actualValue = Utils.llvmBoolToJavaBool(null);
+
+    Assert.assertFalse(actualValue);
   }
 }
