@@ -29,6 +29,8 @@
 
 package org.sosy_lab.llvm_j;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.errorprone.annotations.Var;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
@@ -64,6 +66,7 @@ public final class Module implements Iterable<Value> {
    * @param pDirectories list of directories that may contain the LLVM library
    */
   public static void addLibraryLookupPaths(List<Path> pDirectories) {
+    checkNotNull(pDirectories);
     for (Path p : pDirectories) {
       NativeLibrary.addSearchPath(LLVMLibrary.JNA_LIBRARY_NAME, p.toAbsolutePath().toString());
     }
@@ -82,6 +85,7 @@ public final class Module implements Iterable<Value> {
    * @return the parsed LLVM module structure
    */
   public static Module parseIR(String path) throws LLVMException {
+    checkNotNull(path);
     LLVMLibrary.instantiate();
     /* read the module into a buffer */
 
@@ -132,6 +136,7 @@ public final class Module implements Iterable<Value> {
    * @param moduleID the name of the new module
    */
   public static Module createWithName(String moduleID) {
+    checkNotNull(moduleID);
     return new Module(LLVMLibrary.LLVMModuleCreateWithName(moduleID));
   }
 
@@ -146,6 +151,8 @@ public final class Module implements Iterable<Value> {
    * @param c the context to create the new module in
    */
   public static Module createWithNameInContext(String moduleID, Context c) {
+    checkNotNull(moduleID);
+    checkNotNull(c);
     return new Module(LLVMLibrary.LLVMModuleCreateWithNameInContext(moduleID, c.context()));
   }
 
@@ -195,6 +202,7 @@ public final class Module implements Iterable<Value> {
 
   /** Returns a {@link TypeRef} from this module by its registered name. */
   public TypeRef getTypeByName(String name) {
+    checkNotNull(name);
     return new TypeRef(LLVMLibrary.LLVMGetTypeByName(module, name));
   }
 
@@ -214,6 +222,7 @@ public final class Module implements Iterable<Value> {
    * @return returns 0 on success, an error code otherwise.
    */
   public int writeBitcodeToFile(String path) {
+    checkNotNull(path);
     return LLVMLibrary.LLVMWriteBitcodeToFile(module, path);
   }
 
@@ -224,6 +233,7 @@ public final class Module implements Iterable<Value> {
 
   /** Returns the named global in this module with the given name */
   public Value getNamedGlobal(String name) {
+    checkNotNull(name);
     return new Value(LLVMLibrary.LLVMGetNamedGlobal(getModule(), name));
   }
 
@@ -254,11 +264,15 @@ public final class Module implements Iterable<Value> {
    * @return the newly created alias for the given value
    */
   public Value addAlias(TypeRef ty, Value aliasee, String name) {
+    checkNotNull(ty);
+    checkNotNull(aliasee);
+    checkNotNull(name);
     return new Value(LLVMLibrary.LLVMAddAlias(module, ty.type(), aliasee.value(), name));
   }
 
   /** Returns a {@link Function} from this module by its name. */
   public Function getNamedFunction(String name) {
+    checkNotNull(name);
     return new Function(LLVMLibrary.LLVMGetNamedFunction(module, name));
   }
 

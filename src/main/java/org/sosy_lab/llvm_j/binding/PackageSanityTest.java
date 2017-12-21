@@ -27,9 +27,12 @@
 
 package org.sosy_lab.llvm_j.binding;
 
+import com.google.common.base.Predicates;
 import com.google.common.testing.AbstractPackageSanityTests;
 
 public class PackageSanityTest extends AbstractPackageSanityTests {
-
+  {
+    ignoreClasses(Predicates.equalTo(LLVMLibrary.class));
+  }
 }
 

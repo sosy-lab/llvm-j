@@ -21,6 +21,8 @@
 
 package org.sosy_lab.llvm_j.binding.ext;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.sun.jna.ptr.ByReference;
 
 public class NativeSizeByReference extends ByReference {
@@ -35,6 +37,7 @@ public class NativeSizeByReference extends ByReference {
   }
 
   public void setValue(NativeSize value) {
+    checkNotNull(value);
     if (NativeSize.SIZE == 4) {
       getPointer().setInt(0L, value.intValue());
     } else {

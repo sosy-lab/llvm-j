@@ -29,6 +29,8 @@
 
 package org.sosy_lab.llvm_j;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
@@ -314,6 +316,7 @@ public class Value {
   }
 
   Value(LLVMLibrary.LLVMValueRef value) {
+    checkNotNull(value);
     this.value = value;
   }
 
@@ -364,6 +367,7 @@ public class Value {
 
   /** Set metadata associated with an instruction value. */
   public void setMetadata(int kindID, Value node) {
+    checkNotNull(node);
     LLVMLibrary.LLVMSetMetadata(value, kindID, node.value());
   }
 
@@ -919,11 +923,13 @@ public class Value {
 
   /** Returns the user value for a user. The returned value corresponds to a llvm::User type. */
   public static Value getUser(LLVMLibrary.LLVMUseRef u) {
+    checkNotNull(u);
     return new Value(LLVMLibrary.LLVMGetUser(u));
   }
 
   /** Returns the value this use corresponds to. */
   public static Value getUsedValue(LLVMLibrary.LLVMUseRef u) {
+    checkNotNull(u);
     return new Value(LLVMLibrary.LLVMGetUsedValue(u));
   }
 
@@ -938,6 +944,7 @@ public class Value {
 
   /** Set an operand at a specific index in this value. */
   public void setOperand(int index, Value val) {
+    checkNotNull(val);
     LLVMLibrary.LLVMSetOperand(value, index, val.value());
   }
 

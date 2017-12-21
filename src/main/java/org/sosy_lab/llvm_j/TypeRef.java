@@ -29,6 +29,8 @@
 
 package org.sosy_lab.llvm_j;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
@@ -139,6 +141,7 @@ public class TypeRef {
    * @throws LLVMException if this type is not a struct
    */
   public long getOffsetOfElement(int idx, LLVMLibrary.LLVMTargetDataRef td) throws LLVMException {
+    checkNotNull(td);
     if (getTypeKind() != TypeKind.Struct) {
       throw new LLVMException("Type is not a struct");
     }

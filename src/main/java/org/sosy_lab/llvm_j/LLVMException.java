@@ -29,6 +29,8 @@
 
 package org.sosy_lab.llvm_j;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.io.Serializable;
 
 /** {@link Exception} in an LLVM component. */
@@ -43,5 +45,6 @@ public final class LLVMException extends Exception implements Serializable {
    */
   public LLVMException(String message) {
     super(message);
+    checkNotNull(message);
   }
 }

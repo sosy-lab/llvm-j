@@ -29,6 +29,8 @@
 
 package org.sosy_lab.llvm_j;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** Pass manager. Always has to be disposed of with {@link #dispose()} to avoid memory leaks. */
@@ -58,11 +60,13 @@ public final class PassManager {
    * compilation tasks.
    */
   public static PassManager createForModule(Module m) {
+    checkNotNull(m);
     return new PassManager(LLVMLibrary.LLVMCreateFunctionPassManagerForModule(m.getModule()));
   }
 
   /** Deprecated: Use LLVMCreateFunctionPassManagerForModule instead. */
   public static PassManager createFPM(LLVMLibrary.LLVMModuleProviderRef mp) {
+    checkNotNull(mp);
     return new PassManager(LLVMLibrary.LLVMCreateFunctionPassManager(mp));
   }
 
