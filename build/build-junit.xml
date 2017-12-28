@@ -37,7 +37,7 @@
 
     <target name="unit-tests" depends="build, load-junit, init-unit-tests" description="Run all JUnit tests">
         <delete dir="{junit.dir}"/>
-        <junit fork="true" printSummary="true" showOutput="false" failureproperty="junit.failed" timeout="100000">
+        <junit fork="true" printSummary="false" showOutput="false" failureproperty="junit.failed" timeout="100000">
             <sysproperty key="jna.library.path" value="lib/native" />
             <assertions><enable/></assertions>
             <formatter type="xml"/>
@@ -48,6 +48,7 @@
                     <exclude name="**/*$*Test.*"/>
                 </fileset>
             </batchtest>
+            <formatter type="brief" usefile="false" />
         </junit>
         <junitreport todir="${junit.dir}">
             <fileset dir="${junit.dir}" includes="TEST-*.xml"/>
