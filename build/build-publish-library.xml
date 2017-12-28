@@ -3,7 +3,7 @@
 <project name="publish-library" basedir="."
         xmlns:ivy="antlib:org.apache.ivy.ant">
 
-    <property name="lib.native" location="lib/native" />
+        <property name="lib.native" location="${basedir}/lib/native" />
 
     <target name="-check-llvm-version-set">
         <fail unless="llvm.version">
@@ -21,6 +21,8 @@
         <exec executable="../../build/download_lib.sh" dir="${lib.native}">
             <arg value="${llvm.version}" />
         </exec>
+        <antcall target="-check-llvm-lib-exists" />
+        <fail unless="${library.exist}" />
     </target>
 
     <target name="package-lib" depends="-check-llvm-version-set, download-library"
