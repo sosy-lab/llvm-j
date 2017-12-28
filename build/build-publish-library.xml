@@ -22,7 +22,7 @@
             <arg value="${llvm.version}" />
         </exec>
         <antcall target="-check-llvm-lib-exists" />
-        <fail unless="${library.exist}" />
+        <fail unless="library.exist" />
     </target>
 
     <target name="package-lib" depends="-check-llvm-version-set, download-library"
