@@ -3,7 +3,11 @@
 <project name="publish-library" basedir="."
         xmlns:ivy="antlib:org.apache.ivy.ant">
 
-        <property name="lib.native" location="${basedir}/lib/native" />
+    <property name="lib.native" location="${basedir}/lib/native" />
+
+    <condition property="llvm.library" value="${lib.native}/libLLVM-${llvm.version}.so">
+        <isset property="llvm.version" />
+    </condition>
 
     <target name="-check-llvm-version-set">
         <fail unless="llvm.version">
@@ -12,8 +16,13 @@
     </target>
 
     <target name="-check-llvm-lib-exists">
-        <property name="llvm.library" location="${lib.native}/libLLVM-${llvm.version}.so" />
         <available file="${llvm.library}" property="library.exist" />
+    </target>
+
+    <target name="clean-library" depends="init, -check-llvm-version-set">
+        <delete includeEmptyDirs="true">
+            <fileset dir="${lib.native}" includes="libLLVM*${llvm.version}* libllvm*${llvm.version}* data.tar.gz Packages Packages.gz" />
+        </delete>
     </target>
 
     <target name="download-library" depends="init, -check-llvm-version-set, -check-llvm-lib-exists" unless="${library.exist}">
@@ -22,7 +31,14 @@
             <arg value="${llvm.version}" />
         </exec>
         <available file="${llvm.library}" property="library.exist" />
-        <fail unless="library.exist" />
+        <fail unless="library.exist"
+            message="Wasn't able to find ${llvm.library}, even though the task should've created it." />
+
+        <exec executable="ldd" outputproperty="llvm.library.lddinfo">
+            <arg value="${llvm.library}" />
+        </exec>
+        <echo level="verbose" message="${llvm.library.lddinfo}" />
+
     </target>
 
     <target name="package-lib" depends="-check-llvm-version-set, download-library"
