@@ -13,7 +13,7 @@ env:
         - LLVM_VERSION: 3.9.1
 install:
   - ant build-dependencies
-  - ant download-library -Dllvm.version=$LLVM_VERSION
+  - ant -verbose download-library -Dllvm.version=$LLVM_VERSION
 matrix:
     include:
       - env: NAME='Build with ECJ'
