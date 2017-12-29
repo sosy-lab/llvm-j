@@ -7,6 +7,13 @@ cache:
 language: java
 jdk:
   - oraclejdk8
+os: linux
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - g++-6
 env:
     global:
         - GH_REF: github.com/sosy-lab/llvm-j.git
