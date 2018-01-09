@@ -32,6 +32,7 @@ package org.sosy_lab.llvm_j;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.errorprone.annotations.Var;
+import com.sun.istack.internal.Nullable;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;
@@ -50,14 +51,21 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
  * leaks.
  */
 public final class Module implements Iterable<Value> {
+
   private LLVMLibrary.LLVMModuleRef module;
+  private String fileName;
 
   LLVMLibrary.LLVMModuleRef getModule() {
     return module;
   }
 
-  private Module(LLVMLibrary.LLVMModuleRef module) {
-    this.module = module;
+  private Module(LLVMLibrary.LLVMModuleRef pModule, String pFileName) {
+    module = pModule;
+    fileName = pFileName;
+  }
+
+  private Module(LLVMLibrary.LLVMModuleRef pModule) {
+    module = pModule;
   }
 
   /**
@@ -118,7 +126,7 @@ public final class Module implements Iterable<Value> {
     /* free the buffer allocated by readFileToBuffer */
     LLVMLibrary.LLVMDisposeMemoryBuffer(buffer);
 
-    return new Module(module);
+    return new Module(module, path);
   }
 
   private static long getSize(Class<?> pClass) {
@@ -173,6 +181,13 @@ public final class Module implements Iterable<Value> {
   public void dispose() {
     LLVMLibrary.LLVMDisposeModule(module);
     module = null;
+  }
+
+  /**
+   * Returns the origin of this module, i.e., its source file name.
+   */
+  public @Nullable String getOriginFileName() {
+    return fileName;
   }
 
   /** Returns the data layout string for this module. */
