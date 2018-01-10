@@ -183,9 +183,7 @@ public final class Module implements Iterable<Value> {
     module = null;
   }
 
-  /**
-   * Returns the origin of this module, i.e., its source file name.
-   */
+  /** Returns the origin of this module, i.e., its source file name. */
   public @Nullable String getOriginFileName() {
     return fileName;
   }
