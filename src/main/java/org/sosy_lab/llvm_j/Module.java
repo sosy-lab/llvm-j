@@ -253,7 +253,12 @@ public final class Module implements Iterable<Value> {
   /** Returns the first global value in this module */
   public Value getFirstGlobal() {
     try {
-      return new Value(LLVMLibrary.LLVMGetFirstGlobal(getModule()));
+      LLVMLibrary.LLVMValueRef ref = LLVMLibrary.LLVMGetFirstGlobal(getModule());
+      if (ref != null) {
+        return new Value(ref);
+      } else {
+        return null;
+      }
     } catch (java.lang.IllegalArgumentException e) {
       return null;
     }
