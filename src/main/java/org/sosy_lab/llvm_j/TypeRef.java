@@ -81,7 +81,7 @@ public class TypeRef {
 
   private LLVMLibrary.LLVMTypeRef type;
 
-  LLVMLibrary.LLVMTypeRef type() {
+  public LLVMLibrary.LLVMTypeRef type() {
     return type;
   }
 
