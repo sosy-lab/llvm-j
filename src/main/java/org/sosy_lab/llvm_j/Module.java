@@ -49,7 +49,11 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
  *
  * <p>Resources of this class always have to be freed using {@link #dispose()} to avoid memory
  * leaks.
+ *
+ * <p>Suppress the warning about JavaLangClash, as we really want this class to be named Module as
+ * in the C++ LLVM API.
  */
+@SuppressWarnings("JavaLangClash")
 public final class Module implements Iterable<Value> {
 
   private LLVMLibrary.LLVMModuleRef module;
