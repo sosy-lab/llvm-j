@@ -345,7 +345,7 @@ public class Value {
   }
 
   /** Dump a representation of this value to stderr. */
-  public void dumpValue() {
+  public void dump() {
     LLVMLibrary.LLVMDumpValue(value);
   }
 
