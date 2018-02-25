@@ -29,8 +29,8 @@
 
 package org.sosy_lab.llvm_j;
 
-import com.sun.istack.internal.Nullable;
 import com.sun.jna.Pointer;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** Util methods for the llvm parser. */

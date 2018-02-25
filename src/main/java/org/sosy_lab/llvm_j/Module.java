@@ -32,13 +32,13 @@ package org.sosy_lab.llvm_j;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.errorprone.annotations.Var;
-import com.sun.istack.internal.Nullable;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;
 import com.sun.jna.NativeMappedConverter;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
@@ -49,7 +49,11 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
  *
  * <p>Resources of this class always have to be freed using {@link #dispose()} to avoid memory
  * leaks.
+ *
+ * <p>Suppress the warning about JavaLangClash, as we really want this class to be named Module as
+ * in the C++ LLVM API.
  */
+@SuppressWarnings("JavaLangClash")
 public final class Module implements Iterable<Value> {
 
   private LLVMLibrary.LLVMModuleRef module;
