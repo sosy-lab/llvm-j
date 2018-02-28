@@ -20,10 +20,18 @@ fi
 
 # Cut minor revisions
 LLVM_VERSION=`echo $LLVM_FULL_VERSION | cut -d'.' -f1,2`
-
-wget -N http://apt.llvm.org/precise/dists/llvm-toolchain-precise-${LLVM_VERSION}/main/binary-amd64/Packages.gz
-gunzip Packages.gz
-CANDIDATE_LINES=`grep "Filename:" Packages | grep libllvm${LLVM_VERSION}_`
+TMP=/tmp/llvm-j-$RANDOM
+if [[ ! -d "$TMP" ]]; then
+    mkdir -p "$TMP"
+fi
+TMP_PACKAGE=$TMP/Packages
+if [[ -f "$TMP_PACKAGE" ]]; then
+    >&2 echo "$TMP_PACKAGE already exists. Moved to $TMP_PACKAGE.old"
+    mv "$TMP_PACKAGE" "$TMP_PACKAGE.old"
+fi
+wget -N http://apt.llvm.org/precise/dists/llvm-toolchain-precise-${LLVM_VERSION}/main/binary-amd64/Packages.gz -O "$TMP_PACKAGE".gz
+gunzip "$TMP_PACKAGE".gz
+CANDIDATE_LINES=`grep "Filename:" "$TMP_PACKAGE" | grep libllvm${LLVM_VERSION}_`
 
 if [[ `echo $CANDIDATE_LINES | wc -l` -ne 1 ]]; then
   >&2 echo "Error: Not exactly one possible candidate. Candidates:"
@@ -32,12 +40,12 @@ if [[ `echo $CANDIDATE_LINES | wc -l` -ne 1 ]]; then
 fi
 
 DEB_SUFFIX=`echo $CANDIDATE_LINES | cut -d":" -f2 | tr -d " "`
-DEB_NAME=`echo $DEB_SUFFIX | rev | cut -d"/" -f1 | rev`
+DEB_NAME="$TMP/$(echo $DEB_SUFFIX | rev | cut -d"/" -f1 | rev)"
 
 # Download deb if it doesn't exist yet
 if [[ ! -e $DEB_NAME ]]; then
     DEB_URL="http://apt.llvm.org/precise/${DEB_SUFFIX}"
-    if wget $DEB_URL; then
+    if wget $DEB_URL -O "$DEB_NAME"; then
       echo "Download successful"
     else
       >&2 echo "Error: wget failed (see above)."
@@ -45,9 +53,12 @@ if [[ ! -e $DEB_NAME ]]; then
     fi
 fi
 
-ar x $DEB_NAME data.tar.gz
-tar xvzf data.tar.gz --wildcards '*libLLVM*.so*' --transform='s/.*\///'
-LIB_FILE=`find . -maxdepth 1 -name 'libLLVM*.so*' -type f`
+DATA_TAR="data.tar.gz"
+TMP_UNTAR_FOLDER="$TMP"
+TMP_DATA_TAR="$TMP_UNTAR_FOLDER/$DATA_TAR"
+(cd $TMP_UNTAR_FOLDER; ar x $DEB_NAME "$DATA_TAR")
+tar xvzf "$TMP_DATA_TAR" -C "$TMP_UNTAR_FOLDER" --wildcards '*libLLVM*.so*' --transform='s/.*\///'
+LIB_FILE=`find "$TMP_UNTAR_FOLDER" -maxdepth 1 -name 'libLLVM*.so*' -type f`
 
 if [[ `echo $LIB_FILE | wc -l` -ne 1 ]]; then
   >&2 echo "Error: Not exactly one library available."
@@ -57,7 +68,7 @@ if [[ `echo $LIB_FILE | wc -l` -ne 1 ]]; then
   exit 3
 fi
 
-CMD="mv ${LIB_FILE} ${EXPECTED_LIB}"
+CMD="cp ${LIB_FILE} ${EXPECTED_LIB}"
 echo $CMD
 $CMD
 echo "libLLVM-${LLVM_FULL_VERSION}.so extracted successfully."
