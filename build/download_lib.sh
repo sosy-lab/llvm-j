@@ -1,9 +1,11 @@
 #!/bin/bash
+set -e
 
 # Download the LLVM shared library of the version number
 # given on the command line.
 # We use packages prepared for Ubuntu 12.04 to ensure compatibility
 # with older systems.
+UBUNTU_VERSION=precise
 
 LLVM_FULL_VERSION=$1
 if [[ -z $LLVM_FULL_VERSION ]]; then
@@ -29,7 +31,7 @@ if [[ -f "$TMP_PACKAGE" ]]; then
     >&2 echo "$TMP_PACKAGE already exists. Moved to $TMP_PACKAGE.old"
     mv "$TMP_PACKAGE" "$TMP_PACKAGE.old"
 fi
-wget -N http://apt.llvm.org/precise/dists/llvm-toolchain-precise-${LLVM_VERSION}/main/binary-amd64/Packages.gz -O "$TMP_PACKAGE".gz
+wget -N http://apt.llvm.org/$UBUNTU_VERSION/dists/llvm-toolchain-$UBUNTU_VERSION-${LLVM_VERSION}/main/binary-amd64/Packages.gz -O "$TMP_PACKAGE".gz
 gunzip "$TMP_PACKAGE".gz
 CANDIDATE_LINES=`grep "Filename:" "$TMP_PACKAGE" | grep libllvm${LLVM_VERSION}_`
 
@@ -44,7 +46,7 @@ DEB_NAME="$TMP/$(echo $DEB_SUFFIX | rev | cut -d"/" -f1 | rev)"
 
 # Download deb if it doesn't exist yet
 if [[ ! -e $DEB_NAME ]]; then
-    DEB_URL="http://apt.llvm.org/precise/${DEB_SUFFIX}"
+    DEB_URL="http://apt.llvm.org/$UBUNTU_VERSION/${DEB_SUFFIX}"
     if wget $DEB_URL -O "$DEB_NAME"; then
       echo "Download successful"
     else
@@ -53,11 +55,11 @@ if [[ ! -e $DEB_NAME ]]; then
     fi
 fi
 
-DATA_TAR="data.tar.gz"
+DATA_TAR=$(ar t "$DEB_NAME"| grep data.tar)
 TMP_UNTAR_FOLDER="$TMP"
 TMP_DATA_TAR="$TMP_UNTAR_FOLDER/$DATA_TAR"
 (cd $TMP_UNTAR_FOLDER; ar x $DEB_NAME "$DATA_TAR")
-tar xvzf "$TMP_DATA_TAR" -C "$TMP_UNTAR_FOLDER" --wildcards '*libLLVM*.so*' --transform='s/.*\///'
+tar xvf "$TMP_DATA_TAR" -C "$TMP_UNTAR_FOLDER" --wildcards '*libLLVM*.so*' --transform='s/.*\///'
 LIB_FILE=`find "$TMP_UNTAR_FOLDER" -maxdepth 1 -name 'libLLVM*.so*' -type f`
 
 if [[ `echo $LIB_FILE | wc -l` -ne 1 ]]; then
