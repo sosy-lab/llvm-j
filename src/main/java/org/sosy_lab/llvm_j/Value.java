@@ -34,6 +34,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
@@ -1321,6 +1322,25 @@ public class Value {
   /** Returns the sign extended value for an integer constant value. */
   public long constIntGetSExtValue() {
     return LLVMLibrary.LLVMConstIntGetSExtValue(value);
+  }
+
+  /**
+   * Returns the element at the specified position of this array or vector. This value has to be an
+   * array or vector for this to work.
+   *
+   * @param pElementIndex the index of the element to return
+   * @return the element at the specified index
+   * @see #isConstantArray()
+   * @see #isConstantVector()
+   * @see #typeOf()
+   */
+  public Value getElementAsConstant(int pElementIndex) {
+    return new Value(LLVMLibrary.LLVMGetElementAsConstant(value, pElementIndex));
+  }
+
+  public Value getElement(int pElementIndex, int pSize) {
+    IntBuffer intBuffer = IntBuffer.allocate(pSize);
+    return new Value(LLVMLibrary.LLVMConstExtractValue(value, intBuffer, pElementIndex));
   }
 
   /** Returns whether this value is a basic block. */
