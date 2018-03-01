@@ -407,14 +407,6 @@ public class Value {
     }
   }
 
-  public boolean isAConstant() {
-    try {
-      return LLVMLibrary.LLVMIsAConstant(value) != null;
-    } catch (IllegalArgumentException e) {
-      return false;
-    }
-  }
-
   public boolean isConstantAggregateZero() {
     try {
       return LLVMLibrary.LLVMIsAConstantAggregateZero(value) != null;
@@ -426,6 +418,14 @@ public class Value {
   public boolean isConstantArray() {
     try {
       return LLVMLibrary.LLVMIsAConstantArray(value) != null;
+    } catch (IllegalArgumentException e) {
+      return false;
+    }
+  }
+
+  public boolean isConstantDataArray() {
+    try {
+      return LLVMLibrary.LLVMIsAConstantDataArray(value) != null;
     } catch (IllegalArgumentException e) {
       return false;
     }
@@ -995,20 +995,31 @@ public class Value {
               count, packed ? 1 : 0));
   }*/
 
-  /** Returns the op code of this value. */
+  /**
+   * Returns the op code of this value. If the value is a constant expression, use {@link
+   * #getConstOpCode} instead.
+   */
   public OpCode getOpCode() {
     int opcode = LLVMLibrary.LLVMGetInstructionOpcode(value);
+    return transformOpCodeIndex(opcode);
+  }
 
+  public OpCode getConstOpCode() {
+    int opcode = LLVMLibrary.LLVMGetConstOpcode(value);
+    return transformOpCodeIndex(opcode);
+  }
+
+  private static OpCode transformOpCodeIndex(int pOpCodeInt) {
     // Use the value-based enums with this for-loop
     // to convert the integer opcode returned by the llvm library
     // into an enum without an if-else statement for every
     // single possible value
     for (OpCode code : OpCode.values()) {
-      if (code.getValue() == opcode) {
+      if (code.getValue() == pOpCodeInt) {
         return code;
       }
     }
-    throw new AssertionError("Unhandled code id " + opcode);
+    throw new AssertionError("Unhandled code id " + pOpCodeInt);
   }
 
   public IntPredicate getICmpPredicate() {
