@@ -8,9 +8,14 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/java/runtime/jna.jar" sourcepath="lib/java-contrib/jna-sources.jar"/>
-	<classpathentry kind="lib" path="lib/java/build/error_prone_annotations.jar" sourcepath="lib/java-contrib/error_prone_annotations-sources.jar"/>
 	<classpathentry kind="lib" path="lib/java/test/hamcrest-core.jar"/>
 	<classpathentry kind="lib" path="lib/java/test/junit.jar"/>
-	<classpathentry kind="lib" path="lib/java/build/annotations.jar"/>
+	<classpathentry kind="lib" path="lib/java/runtime/animal-sniffer-annotations.jar"/>
+	<classpathentry kind="lib" path="lib/java/runtime/error_prone_annotations.jar" sourcepath="lib/java-contrib/error_prone_annotations-sources.jar"/>
+	<classpathentry kind="lib" path="lib/java/runtime/guava.jar" sourcepath="lib/java-contrib/guava-sources.jar"/>
+	<classpathentry kind="lib" path="lib/java/runtime/j2objc-annotations.jar"/>
+	<classpathentry kind="lib" path="lib/java/runtime/jsr305.jar" sourcepath="lib/java-contrib/jsr305-sources.jar"/>
+	<classpathentry kind="lib" path="lib/java/runtime/spotbugs-annotations.jar" sourcepath="lib/java-contrib/spotbugs-annotations-sources.jar"/>
+	<classpathentry kind="lib" path="lib/java/test/guava-testlib.jar" sourcepath="lib/java-contrib/guava-testlib-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
