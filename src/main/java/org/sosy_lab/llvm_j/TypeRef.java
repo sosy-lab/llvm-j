@@ -189,7 +189,7 @@ public class TypeRef {
    */
   public int countParamTypes() throws LLVMException {
     if (getTypeKind() != TypeKind.Function) {
-      throw new LLVMException("Type is not a function");
+      throw new LLVMException("Type is not a function: " + getTypeKind());
     }
     return LLVMLibrary.LLVMCountParamTypes(type);
   }
@@ -236,7 +236,7 @@ public class TypeRef {
       throw new LLVMException("Type is not a struct");
     }
 
-    int memberCount = countParamTypes();
+    int memberCount = countStructElementTypes();
     List<TypeRef> members = new ArrayList<>(memberCount);
 
     if (memberCount > 0) {
