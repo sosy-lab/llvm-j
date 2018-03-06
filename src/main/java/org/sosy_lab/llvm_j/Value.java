@@ -959,6 +959,23 @@ public class Value {
     return LLVMLibrary.LLVMGetNumArgOperands(value);
   }
 
+  /** Returns the number of indices given to an ExtractValue or InsertValue instruction. */
+  public int getNumIndices() {
+    assert isExtractValueInst();
+    return LLVMLibrary.LLVMGetNumIndices(value);
+  }
+
+  /** Returns the list of indices given to an ExtractValue or InsertValue instruction. */
+  public List<Integer> getIndices() {
+    int length = getNumIndices();
+    Pointer arrayPointer = LLVMLibrary.LLVMGetIndices(value);
+    List<Integer> indices = new ArrayList<>(length);
+    for (int i : arrayPointer.getIntArray(0, length)) {
+      indices.add(i);
+    }
+    return indices;
+  }
+
   /** Returns the argument operand at the specified index */
   public Value getArgOperand(int index) {
     assert getNumArgOperands() > index;
