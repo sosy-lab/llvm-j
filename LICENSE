@@ -2,7 +2,7 @@
 llvm-j  is a library for parsing and modification of LLVM IR in Java.
 
 This project uses code from projects different than llvm-j.
-All of this code can be found in directory src/main/java/org/sosy_lab/llvm_j/binding/ext .
+All of this code can be found in directory src/org/sosy_lab/llvm_j/binding/ext .
 Each code file in this directory states at its beginning its copyright
 and license .
 All other data of this project falls under:

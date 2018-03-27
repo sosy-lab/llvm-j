@@ -6,7 +6,7 @@
 -emptyStructsAsForwardDecls
 -mode Directory
 -package org.sosy_lab.llvm_j.binding
--o $(DIR)/src/main/java
+-o $(DIR)/src
 -I$(LLVM_HOME)/include/llvm-c/
 
 $(LLVM_HOME)/include/llvm-c/Transforms/*.h
