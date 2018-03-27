@@ -99,6 +99,7 @@
              Library for auto-generating value types. -->
         <!--<dependency org="com.google.auto.value" name="auto-value" rev="1.3" conf="build->default"/>-->
 
+        <!-- Shared C library for LLVM, bound by Java bindings -->
         <dependency org="org.sosy_lab" name="llvm-lib" rev="3.9.1" conf="runtime->llvm" />
 
         <!-- Guava has a dependency on error_prone_annotations without a revision number, need an override. -->

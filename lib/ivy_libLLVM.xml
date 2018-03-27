@@ -12,10 +12,13 @@
   </info>
 
   <configurations>
-    <conf name="llvm" description="llvm shared C library"/>
+    <conf name="full" description="llvm shared C library with the subset of required shared libraries that are not available on most distributions"/>
+    <conf name="single" description="llvm shared C library without dependencies included"/>
   </configurations>
   
   <publications>
-    <artifact name="libLLVM" conf="llvm" type="shared-object" ext="so" />
+    <artifact name="libLLVM-3.9.1" type="shared-object" ext="so" />
+    <artifact name="libedit" conf="full" type="shared-object" ext="so.2" />
+    <artifact name="libtinfo" conf="full" type="shared-object" ext="so.5" />
   </publications>
 </ivy-module>
