@@ -46,14 +46,14 @@ function download_and_extract {
     ## Get dependencies of libLLVM
     mkdir -p $TMP_TINFO_FOLDER
     TINFO=$TMP_TINFO_FOLDER/libtinfo5.deb
-    wget http://mirrors.kernel.org/ubuntu/pool/main/n/ncurses/libtinfo5_6.0+20160213-1ubuntu1_amd64.deb -O $TINFO
+    wget http://mirrors.kernel.org/ubuntu/pool/main/n/ncurses/libtinfo5_6.0+20160625-1ubuntu1_amd64.deb -O $TINFO
     (cd $TMP_TINFO_FOLDER; ar x $TINFO data.tar.xz)
     # extract all shared libraries of libtinfo because of symlinks
     tar xf $TMP_TINFO_FOLDER/data.tar.xz -C "$TMP_TINFO_FOLDER" --wildcards '*libtinfo*.so*' --transform='s/.*\///'
 
     mkdir -p $TMP_EDIT_FOLDER
     EDIT=$TMP_EDIT_FOLDER/libedit2.deb
-    wget http://mirrors.kernel.org/ubuntu/pool/main/libe/libedit/libedit2_3.1-20150325-1ubuntu2_amd64.deb -O $EDIT
+    wget http://mirrors.kernel.org/ubuntu/pool/main/libe/libedit/libedit2_3.1-20170329-1_amd64.deb -O $EDIT
     (cd $TMP_EDIT_FOLDER; ar x $EDIT data.tar.xz)
     # extract all shared libraries of libedit because of symlinks
     tar xf $TMP_EDIT_FOLDER/data.tar.xz -C "$TMP_EDIT_FOLDER" --wildcards '*libedit*.so*' --transform='s/.*\///'
@@ -88,6 +88,16 @@ LLVM_VERSION=`echo $LLVM_FULL_VERSION | cut -d'.' -f1,2`
 (cd $TMP && download_and_extract "$@")
 
 LIB_FILE=`find "$TMP_LLVM_FOLDER" -maxdepth 1 -name 'libLLVM*.so*' -type f`
+
+# change rpath of libLLVM to take our libtinfo and libedit without
+# the need to set LD_LIBRARY_PATH whenever libLLVM should be used
+if ! hash chrpath 2> /dev/null; then
+    >&2 echo "Application chrpath required but not installed."
+    exit 6
+else
+    chrpath -r '$ORIGIN' "$LIB_FILE"
+fi
+
 EXPECTED_LIB="libLLVM-${LLVM_FULL_VERSION}.so"
 if [[ -e $EXPECTED_LIB ]]; then
   >&2 echo "$EXPECTED_LIB already exists. That shouldn't be possible."
@@ -103,4 +113,5 @@ $CMD
 CMD="cp ${LIB_FILE} ${EXPECTED_LIB}"
 echo $CMD
 $CMD
+
 echo "libLLVM-${LLVM_FULL_VERSION}.so extracted successfully."
