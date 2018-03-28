@@ -27,10 +27,6 @@ matrix:
       - env: NAME='Build with ECJ'
         script:
           - ant build-project-ecj
-      - env:
-            - NAME='Download LLVM library'
-        script:
-          - ant download-lib -Dllvm.version=$LLVM_VERSION
       - env: NAME='Create Javadoc'
         script:
           - ant javadoc
