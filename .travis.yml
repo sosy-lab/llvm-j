@@ -13,7 +13,8 @@ addons:
         sources:
             - ubuntu-toolchain-r-test
         packages:
-            - g++-6 chrpath
+            - g++-6
+            - chrpath
 env:
     global:
         - GH_REF: github.com/sosy-lab/llvm-j.git
@@ -27,9 +28,9 @@ matrix:
         script:
           - ant build-project-ecj
       - env:
-            - NAME='Package LLVM library'
+            - NAME='Download LLVM library'
         script:
-          - ant package-lib -Dllvm.version=$LLVM_VERSION
+          - ant download-lib -Dllvm.version=$LLVM_VERSION
       - env: NAME='Create Javadoc'
         script:
           - ant javadoc
