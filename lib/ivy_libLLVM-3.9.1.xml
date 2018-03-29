@@ -4,10 +4,10 @@
     xmlns:xsi="hhtp://www.w3.org/2001/XMLSchema-instance"
     >
 
-  <info organisation="org.sosy_lab" module="llvm-lib">
+  <info organisation="org.sosy_lab" module="llvm-lib-3.9.1">
     <license name="LLVM Release License" url="http://releases.llvm.org/4.0.0/LICENSE.TXT" />
     <description homepage="http://llvm.org/">
-      Shared library of LLVM project
+      Shared library of LLVM project, version 3.9.1
     </description>
   </info>
 
