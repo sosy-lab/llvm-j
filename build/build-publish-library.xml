@@ -44,6 +44,9 @@
     <target name="publish-lib" depends="-check-llvm-version-set, download-library, load-ivy"
         description="Publish LLVM library to Ivy repo.">
 
+        <fail unless="version.publishable"
+            message="Cannot publish version ${version}, only unmodified working copies may be published." />
+
         <ivy:resolve conf="full,single" file="lib/ivy_libLLVM.xml" />
         <available property="ivy.hasrepository" file="repository/${ivy.organisation}/${ivy.module}" />
         <fail unless="ivy.hasrepository">
