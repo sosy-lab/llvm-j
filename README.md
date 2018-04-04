@@ -149,5 +149,5 @@ helpers.
 
 
 Currently, the proxy classes aim at parsing LLVM IR bitcode, not modifying it.
-If you miss any functionality, we're always happy about pull-requests
-or new issues on GitHub!
+If you miss any functionality, please create a new issue or message us
+to help us improve llvm-j!
