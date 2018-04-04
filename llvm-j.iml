@@ -17,37 +17,31 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/java/build/error_prone_annotations.jar!/" />
+          <root url="file://$MODULE_DIR$/lib/java/build" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/lib/java/build" />
+          <root url="file://$MODULE_DIR$/lib/java-contrib" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/lib/java/build" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/lib/java-contrib" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$MODULE_DIR$/lib/java/build" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/java/test/guava-testlib.jar!/" />
+          <root url="file://$MODULE_DIR$/lib/java/test" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/java/runtime/guava.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/java/test/junit.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/lib/java/test" />
+          <root url="file://$MODULE_DIR$/lib/java-contrib" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/lib/java/test" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/lib/java-contrib" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$MODULE_DIR$/lib/java/test" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
   </component>
