@@ -99,8 +99,8 @@ public final class Module implements Iterable<Value> {
   public static Module parseIR(String path) throws LLVMException {
     checkNotNull(path);
     LLVMLibrary.instantiate();
-    /* read the module into a buffer */
 
+    /* read the module into a buffer */
     PointerByReference pointerToBuffer = new PointerByReference();
     LLVMLibrary.LLVMMemoryBufferRef pointerToBufferWrapped =
         new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
