@@ -50,7 +50,7 @@ checkstyle:
 
 spotbugs:
     stage: test
-    script: "ant spotbugs -Dspotbugs.output=text && cat SpotBugs.xml && test \! -s SpotBugs.xml"
+    script: 'ant spotbugs -Dspotbugs.output=text && cat SpotBugs.xml && test \! -s SpotBugs.xml'
     dependencies:
         - build-llvm-j
 
