@@ -1,0 +1,67 @@
+stages:
+    - dependencies
+    - build
+    - test
+
+variables:
+    LLVM_VERSION: "3.9.1"
+
+before_script:
+    - apt-get update -qq && apt-get install -y -qq g++-6 chrpath 
+
+cache:
+    paths:
+        - $HOME/.ivy2
+        - lib/java/
+
+resolve-dependencies:
+    stage: dependencies
+    script: "ant build-dependencies"
+
+build-llvm-j:
+    stage: build
+    script: "ant build"
+    artifacts:
+        paths:
+            - bin/
+
+build-llvm-j-ecj:
+    stage: build
+    script: "ant build-project-ecj"
+
+download-lib:
+    stage: build
+    script: "ant -verbose download-library -Dllvm.version=$LLVM_VERSION"
+    artifacts:
+        paths:
+            - lib/native
+
+create-javadoc:
+    stage: test
+    script: "ant javadoc"
+    dependencies:
+        - build-llvm-j
+
+checkstyle:
+    stage: test
+    script: "ant run-checkstyle -Dcheckstyle.output=plain && cat Checkstyle*.xml && test $(cat Checkstyle*xml | grep -vic audit) -eq 0"
+    dependencies:
+        - build-llvm-j
+
+spotbugs:
+    stage: test
+    script: "ant spotbugs -Dspotbugs.output=text && cat SpotBugs.xml && test \! -s SpotBugs.xml"
+    dependencies:
+        - build-llvm-j
+
+check-format:
+    stage: test
+    script: "ant format-source && git diff -s --exit-code"
+    dependencies:
+        - build-llvm-j
+
+unit-tests:
+    stage: test
+    script: "ant -verbose unit-tests"
+    dependencies:
+        - build-llvm-j
