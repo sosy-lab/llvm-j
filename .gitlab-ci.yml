@@ -3,6 +3,8 @@ stages:
     - build
     - test
 
+image: openjdk:8-jdk
+
 variables:
     LLVM_VERSION: "3.9.1"
 
