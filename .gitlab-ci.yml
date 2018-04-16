@@ -7,13 +7,15 @@ image: openjdk:8-jdk
 
 variables:
     LLVM_VERSION: "3.9.1"
+    IVY_CACHE_DIR: "${CI_PROJECT_DIR}/.ivy2"
+    ANT_PROPS_TEST: "-DskipBuild=true"
 
 before_script:
     - apt-get update -qq && apt-get install -y -qq ant g++-6 chrpath
 
 cache:
     paths:
-        - $HOME/.ivy2
+        - .ivy2/
         - lib/java/
 
 resolve-dependencies:
@@ -26,10 +28,15 @@ build-llvm-j:
     artifacts:
         paths:
             - bin/
+        expire_in: 3 days
+    cache:
+        policy: pull
 
 build-llvm-j-ecj:
     stage: build
     script: "ant build-project-ecj"
+    cache:
+        policy: pull
 
 download-lib:
     stage: build
@@ -37,33 +44,45 @@ download-lib:
     artifacts:
         paths:
             - lib/native
+    cache:
+        policy: pull
 
 create-javadoc:
     stage: test
-    script: "ant javadoc"
+    script: "ant $ANT_PROPS_TEST javadoc"
     dependencies:
         - build-llvm-j
+    cache:
+        policy: pull
 
 checkstyle:
     stage: test
-    script: "ant run-checkstyle -Dcheckstyle.output=plain && cat Checkstyle*.xml && test $(cat Checkstyle*xml | grep -vic audit) -eq 0"
+    script: "ant $ANT_PROPS_TEST run-checkstyle -Dcheckstyle.output=plain && cat Checkstyle*.xml && test $(cat Checkstyle*xml | grep -vic audit) -eq 0"
     dependencies:
         - build-llvm-j
+    cache:
+        policy: pull
 
 spotbugs:
     stage: test
-    script: 'ant spotbugs -Dspotbugs.output=text && cat SpotBugs.xml && test \! -s SpotBugs.xml'
+    script: 'ant $ANT_PROPS_TEST spotbugs -Dspotbugs.output=text && cat SpotBugs.xml && test \! -s SpotBugs.xml'
     dependencies:
         - build-llvm-j
+    cache:
+        policy: pull
 
 check-format:
     stage: test
-    script: "ant format-source && git diff -s --exit-code"
+    script: "ant $ANT_PROPS_TEST format-source && git diff -s --exit-code"
     dependencies:
         - build-llvm-j
+    cache:
+        policy: pull
 
 unit-tests:
     stage: test
-    script: "ant -verbose unit-tests"
+    script: "ant $ANT_PROPS_TEST -verbose unit-tests"
     dependencies:
         - build-llvm-j
+    cache:
+        policy: pull

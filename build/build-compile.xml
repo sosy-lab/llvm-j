@@ -15,12 +15,14 @@
     <property name="class.format" value="1.8"/>
     <property name="class.dir" value="bin"/>
 
+    <property name="skipBuild" value="" />
+
     <path id="errorprone">
         <pathelement location="${ivy.lib.dir}/build/error_prone_ant.jar"/>
     </path>
 
     <!-- We use error-prone as the compiler, cf. http://errorprone.info/ -->
-    <target name="build-project" depends="build-dependencies, bindings">
+    <target name="build-project" unless="skipBuild" depends="build-dependencies, bindings">
         <depend srcdir="${source.dir}" destdir="${class.dir}"/>
         <mkdir dir="${source.generated.dir}"/>
 
