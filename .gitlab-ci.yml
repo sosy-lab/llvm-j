@@ -11,7 +11,7 @@ variables:
     ANT_PROPS_TEST: "-DskipBuild=true"
 
 before_script:
-    - apt-get update -qq && apt-get install -y -qq ant g++-6 chrpath
+    - apt-get update -qq && apt-get install -y -qq ant
 
 cache:
     paths:
@@ -46,6 +46,8 @@ build-llvm-j-ecj:
 
 download-lib:
     stage: build
+    before_script:
+        - "apt-get update -qq && apt-get install -y -qq ant g++-6 chrpath"
     script: "ant -verbose download-library -Dllvm.version=$LLVM_VERSION"
     artifacts:
         paths:
