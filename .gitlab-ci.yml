@@ -30,12 +30,18 @@ build-llvm-j:
             - bin/
         expire_in: 3 days
     cache:
+        paths:
+            - .ivy2/
+            - lib/java/
         policy: pull
 
 build-llvm-j-ecj:
     stage: build
     script: "ant build-project-ecj"
     cache:
+        paths:
+            - .ivy2/
+            - lib/java/
         policy: pull
 
 download-lib:
@@ -45,6 +51,9 @@ download-lib:
         paths:
             - lib/native
     cache:
+        paths:
+            - .ivy2/
+            - lib/java/
         policy: pull
 
 create-javadoc:
@@ -53,6 +62,9 @@ create-javadoc:
     dependencies:
         - build-llvm-j
     cache:
+        paths:
+            - .ivy2/
+            - lib/java/
         policy: pull
 
 checkstyle:
@@ -61,6 +73,9 @@ checkstyle:
     dependencies:
         - build-llvm-j
     cache:
+        paths:
+            - .ivy2/
+            - lib/java/
         policy: pull
 
 spotbugs:
@@ -69,6 +84,9 @@ spotbugs:
     dependencies:
         - build-llvm-j
     cache:
+        paths:
+            - .ivy2/
+            - lib/java/
         policy: pull
 
 check-format:
@@ -77,6 +95,9 @@ check-format:
     dependencies:
         - build-llvm-j
     cache:
+        paths:
+            - .ivy2/
+            - lib/java/
         policy: pull
 
 unit-tests:
@@ -85,4 +106,7 @@ unit-tests:
     dependencies:
         - build-llvm-j
     cache:
+        paths:
+            - .ivy2/
+            - lib/java/
         policy: pull
