@@ -27,13 +27,20 @@
 
 package org.sosy_lab.llvm_j;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.testing.AbstractPackageSanityTests;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 public class PackageSanityTest extends AbstractPackageSanityTests {
 
   {
     try {
+      Path libraryPath = Paths.get("lib", "java", "runtime");
+      List<Path> relevantLibDirs = ImmutableList.of(libraryPath);
+      Module.addLibraryLookupPaths(relevantLibDirs);
       Module module = Module.parseIR("build/test.bc");
       BasicBlock b1 = module.getFirstFunction().getFirstBasicBlock();
       BasicBlock b2 = b1.getNextBasicBlock();

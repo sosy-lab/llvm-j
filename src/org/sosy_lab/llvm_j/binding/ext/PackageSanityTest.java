@@ -27,12 +27,20 @@
 
 package org.sosy_lab.llvm_j.binding.ext;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.testing.AbstractPackageSanityTests;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import org.sosy_lab.llvm_j.Module;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 public class PackageSanityTest extends AbstractPackageSanityTests {
 
   {
+    Path libraryPath = Paths.get("lib", "java", "runtime");
+    List<Path> relevantLibDirs = ImmutableList.of(libraryPath);
+    Module.addLibraryLookupPaths(relevantLibDirs);
     LLVMLibrary.instantiate();
   }
 }

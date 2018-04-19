@@ -27,10 +27,22 @@
 
 package org.sosy_lab.llvm_j;
 
+import com.google.common.collect.ImmutableList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ModuleTest {
+
+  @Before
+  public void setUp_library() {
+    Path libraryPath = Paths.get("lib", "java", "runtime");
+    List<Path> relevantLibDirs = ImmutableList.of(libraryPath);
+    Module.addLibraryLookupPaths(relevantLibDirs);
+  }
 
   @Test
   public void test_parseIR_valid() throws LLVMException {
