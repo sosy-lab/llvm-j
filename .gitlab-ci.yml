@@ -74,10 +74,17 @@ download-lib:
 create-javadoc:
     <<: *source_check
     script: "ant $ANT_PROPS_TEST javadoc"
+    artifacts:
+        paths:
+            - "Javadoc/"
 
 checkstyle:
     <<: *source_check
     script: "ant $ANT_PROPS_TEST run-checkstyle -Dcheckstyle.output=plain && cat Checkstyle*.xml && test $(cat Checkstyle*xml | grep -vic audit) -eq 0"
+    artifacts:
+        paths:
+            - "Checkstyle*html"
+        when: on_failure
 
 check-format:
     <<: *source_check
@@ -86,7 +93,18 @@ check-format:
 spotbugs:
     <<: *binary_check
     script: 'ant $ANT_PROPS_TEST spotbugs -Dspotbugs.output=text && cat SpotBugs.xml && test \! -s SpotBugs.xml'
+    artifacts:
+        paths:
+            - "SpotBugs.html"
+        when: on_failure
 
 unit-tests:
     <<: *binary_check
     script: "ant $ANT_PROPS_TEST -verbose unit-tests"
+    artifacts:
+        paths:
+            - "JUnit.html"
+            # These aren't created yet
+            #- "JUnit-coverage/"
+            #- "junit/coverage.xml"
+        when: always
