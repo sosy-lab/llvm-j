@@ -13,8 +13,7 @@ variables:
 
 
 download-lib:
-    <<: *cache_pull
-    stage: build
+    stage: dependencies
     script: "ant -verbose download-library -Dllvm.version=$LLVM_VERSION"
     artifacts:
         paths:
