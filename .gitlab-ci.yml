@@ -21,9 +21,16 @@ download-lib:
 
 
 # Run unit tests without coverage and with dependency on download-lib
+.unit-tests: &unit-tests
+  stage: checks
+  script: "ant $ANT_PROPS_TEST -verbose unit-tests"
+  artifacts:
+    paths:
+      - "JUnit.html"
+    when: always
+
 unit-tests:jdk-8:
   <<: *unit-tests
-  script: "ant $ANT_PROPS_TEST -verbose unit-tests"
   dependencies:
     - build-dependencies
     - build:jdk-8
@@ -31,7 +38,6 @@ unit-tests:jdk-8:
 
 unit-tests:jdk-9:
   <<: *unit-tests
-  script: "ant $ANT_PROPS_TEST -verbose unit-tests"
   dependencies:
     - build-dependencies
     - build:jdk-9
