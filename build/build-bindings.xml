@@ -20,11 +20,7 @@
             Please specify the path to the directory
             of LLVM that includes the headers for C-bindings,
             i.e., /path/to/llvm/include/llvm-c .
-            Use -Dllvm.home=/path/to/llvm to do that.
-            Only specify the root-directory of llvm
-            that includes the include/llvm-c directory.
-            There will be an error if you specify the
-            include/llvm-c directory.
+            Use -Dllvm.home=/path/to/llvm/include/llvm-c to do that.
             Note that shell substitutions do not work and a full
             absolute path has to be specified.
         </fail>

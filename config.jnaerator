@@ -7,14 +7,14 @@
 -mode Directory
 -package org.sosy_lab.llvm_j.binding
 -o $(DIR)/src
--I$(LLVM_HOME)/include/llvm-c/
+-I$(LLVM_HOME)
 
-$(LLVM_HOME)/include/llvm-c/Transforms/*.h
-$(LLVM_HOME)/include/llvm-c/Core.h
-$(LLVM_HOME)/include/llvm-c/Analysis.h
-$(LLVM_HOME)/include/llvm-c/BitWriter.h
-$(LLVM_HOME)/include/llvm-c/BitReader.h
-$(LLVM_HOME)/include/llvm-c/Initialization.h
-$(LLVM_HOME)/include/llvm-c/Object.h
-$(LLVM_HOME)/include/llvm-c/Target.h
+$(LLVM_HOME)/Transforms/*.h
+$(LLVM_HOME)/Core.h
+$(LLVM_HOME)/Analysis.h
+$(LLVM_HOME)/BitWriter.h
+$(LLVM_HOME)/BitReader.h
+$(LLVM_HOME)/Initialization.h
+$(LLVM_HOME)/Object.h
+$(LLVM_HOME)/Target.h
 
