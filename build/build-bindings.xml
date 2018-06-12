@@ -36,6 +36,13 @@
 
         <!-- Perform minor changes to bindings -->
 
+        <!-- Add license -->
+        <concat destfile="${llvm.bindings}-new">
+                <header file="build/license_bindings.txt" />
+                <fileset file="${llvm.bindings}" />
+        </concat>
+        <move file="${llvm.bindings}-new" tofile="${llvm.bindings}" />
+
         <!-- Set concrete LLVM version to avoid conflicts -->
         <replace file="${llvm.bindings}"
                 token="JNA_LIBRARY_NAME = &quot;LLVM&quot;;"
