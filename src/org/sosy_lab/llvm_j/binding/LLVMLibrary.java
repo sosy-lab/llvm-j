@@ -489,75 +489,20 @@ public class LLVMLibrary implements Library {
     void apply(Pointer voidPtr1);
   };
   /**
-   * See llvm::createArgumentPromotionPass function.<br>
-   * Original signature : <code>void LLVMAddArgumentPromotionPass(LLVMPassManagerRef)</code>
+   * See llvm::createBBVectorizePass function.<br>
+   * Original signature : <code>void LLVMAddBBVectorizePass(LLVMPassManagerRef)</code>
    */
-  public static native void LLVMAddArgumentPromotionPass(LLVMLibrary.LLVMPassManagerRef PM);
+  public static native void LLVMAddBBVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
-   * See llvm::createConstantMergePass function.<br>
-   * Original signature : <code>void LLVMAddConstantMergePass(LLVMPassManagerRef)</code>
+   * See llvm::createLoopVectorizePass function.<br>
+   * Original signature : <code>void LLVMAddLoopVectorizePass(LLVMPassManagerRef)</code>
    */
-  public static native void LLVMAddConstantMergePass(LLVMLibrary.LLVMPassManagerRef PM);
+  public static native void LLVMAddLoopVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
-   * See llvm::createDeadArgEliminationPass function.<br>
-   * Original signature : <code>void LLVMAddDeadArgEliminationPass(LLVMPassManagerRef)</code>
+   * See llvm::createSLPVectorizerPass function.<br>
+   * Original signature : <code>void LLVMAddSLPVectorizePass(LLVMPassManagerRef)</code>
    */
-  public static native void LLVMAddDeadArgEliminationPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createFunctionAttrsPass function.<br>
-   * Original signature : <code>void LLVMAddFunctionAttrsPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddFunctionAttrsPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createFunctionInliningPass function.<br>
-   * Original signature : <code>void LLVMAddFunctionInliningPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddFunctionInliningPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createAlwaysInlinerPass function.<br>
-   * Original signature : <code>void LLVMAddAlwaysInlinerPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddAlwaysInlinerPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createGlobalDCEPass function.<br>
-   * Original signature : <code>void LLVMAddGlobalDCEPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddGlobalDCEPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createGlobalOptimizerPass function.<br>
-   * Original signature : <code>void LLVMAddGlobalOptimizerPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddGlobalOptimizerPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createIPConstantPropagationPass function.<br>
-   * Original signature : <code>void LLVMAddIPConstantPropagationPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddIPConstantPropagationPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createPruneEHPass function.<br>
-   * Original signature : <code>void LLVMAddPruneEHPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddPruneEHPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createIPSCCPPass function.<br>
-   * Original signature : <code>void LLVMAddIPSCCPPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddIPSCCPPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createInternalizePass function.<br>
-   * Original signature : <code>void LLVMAddInternalizePass(unsigned)</code>
-   */
-  public static native void LLVMAddInternalizePass(int AllButMain);
-  /**
-   * See llvm::createStripDeadPrototypesPass function.<br>
-   * Original signature : <code>void LLVMAddStripDeadPrototypesPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddStripDeadPrototypesPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createStripSymbolsPass function.<br>
-   * Original signature : <code>void LLVMAddStripSymbolsPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddStripSymbolsPass(LLVMLibrary.LLVMPassManagerRef PM);
+  public static native void LLVMAddSLPVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
    * See llvm::PassManagerBuilder.<br>
    * Original signature : <code>LLVMPassManagerBuilderRef LLVMPassManagerBuilderCreate()</code>
@@ -976,20 +921,75 @@ public class LLVMLibrary implements Library {
    */
   public static native void LLVMAddBasicAliasAnalysisPass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
-   * See llvm::createBBVectorizePass function.<br>
-   * Original signature : <code>void LLVMAddBBVectorizePass(LLVMPassManagerRef)</code>
+   * See llvm::createArgumentPromotionPass function.<br>
+   * Original signature : <code>void LLVMAddArgumentPromotionPass(LLVMPassManagerRef)</code>
    */
-  public static native void LLVMAddBBVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
+  public static native void LLVMAddArgumentPromotionPass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
-   * See llvm::createLoopVectorizePass function.<br>
-   * Original signature : <code>void LLVMAddLoopVectorizePass(LLVMPassManagerRef)</code>
+   * See llvm::createConstantMergePass function.<br>
+   * Original signature : <code>void LLVMAddConstantMergePass(LLVMPassManagerRef)</code>
    */
-  public static native void LLVMAddLoopVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
+  public static native void LLVMAddConstantMergePass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
-   * See llvm::createSLPVectorizerPass function.<br>
-   * Original signature : <code>void LLVMAddSLPVectorizePass(LLVMPassManagerRef)</code>
+   * See llvm::createDeadArgEliminationPass function.<br>
+   * Original signature : <code>void LLVMAddDeadArgEliminationPass(LLVMPassManagerRef)</code>
    */
-  public static native void LLVMAddSLPVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
+  public static native void LLVMAddDeadArgEliminationPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createFunctionAttrsPass function.<br>
+   * Original signature : <code>void LLVMAddFunctionAttrsPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddFunctionAttrsPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createFunctionInliningPass function.<br>
+   * Original signature : <code>void LLVMAddFunctionInliningPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddFunctionInliningPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createAlwaysInlinerPass function.<br>
+   * Original signature : <code>void LLVMAddAlwaysInlinerPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddAlwaysInlinerPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createGlobalDCEPass function.<br>
+   * Original signature : <code>void LLVMAddGlobalDCEPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddGlobalDCEPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createGlobalOptimizerPass function.<br>
+   * Original signature : <code>void LLVMAddGlobalOptimizerPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddGlobalOptimizerPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createIPConstantPropagationPass function.<br>
+   * Original signature : <code>void LLVMAddIPConstantPropagationPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddIPConstantPropagationPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createPruneEHPass function.<br>
+   * Original signature : <code>void LLVMAddPruneEHPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddPruneEHPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createIPSCCPPass function.<br>
+   * Original signature : <code>void LLVMAddIPSCCPPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddIPSCCPPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createInternalizePass function.<br>
+   * Original signature : <code>void LLVMAddInternalizePass(unsigned)</code>
+   */
+  public static native void LLVMAddInternalizePass(int AllButMain);
+  /**
+   * See llvm::createStripDeadPrototypesPass function.<br>
+   * Original signature : <code>void LLVMAddStripDeadPrototypesPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddStripDeadPrototypesPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createStripSymbolsPass function.<br>
+   * Original signature : <code>void LLVMAddStripSymbolsPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddStripSymbolsPass(LLVMLibrary.LLVMPassManagerRef PM);
   /** Original signature : <code>void LLVMInitializeCore(LLVMPassRegistryRef)</code> */
   public static native void LLVMInitializeCore(LLVMLibrary.LLVMPassRegistryRef R);
   /**
@@ -1060,7 +1060,7 @@ public class LLVMLibrary implements Library {
    * Set the yield callback function for this context.<br>
    * See LLVMContext::setYieldCallback()<br>
    * Original signature : <code>
-   *     void LLVMContextSetYieldCallback(LLVMContextRef, LLVMYieldCallback, void*)</code>
+   * void LLVMContextSetYieldCallback(LLVMContextRef, LLVMYieldCallback, void*)</code>
    */
   public static native void LLVMContextSetYieldCallback(
       LLVMLibrary.LLVMContextRef C, LLVMLibrary.LLVMYieldCallback Callback, Pointer OpaqueHandle);
@@ -1082,7 +1082,7 @@ public class LLVMLibrary implements Library {
    * Return an enum LLVMDiagnosticSeverity.<br>
    * See DiagnosticInfo::getSeverity()<br>
    * Original signature : <code>
-   *     LLVMDiagnosticSeverity LLVMGetDiagInfoSeverity(LLVMDiagnosticInfoRef)</code>
+   * LLVMDiagnosticSeverity LLVMGetDiagInfoSeverity(LLVMDiagnosticInfoRef)</code>
    */
   public static native int LLVMGetDiagInfoSeverity(LLVMLibrary.LLVMDiagnosticInfoRef DI);
   /**
@@ -1396,8 +1396,8 @@ public class LLVMLibrary implements Library {
    * Print a representation of a module to a file. The ErrorMessage needs to be<br>
    * disposed with LLVMDisposeMessage. Returns 0 on success, 1 otherwise.<br>
    * See Module::print()<br>
-   * Original signature : <code>
-   *     LLVMBool LLVMPrintModuleToFile(LLVMModuleRef, const char*, char**)</code><br>
+   * Original signature : <code>LLVMBool LLVMPrintModuleToFile(LLVMModuleRef, const char*, char**)
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMPrintModuleToFile(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
@@ -1412,8 +1412,8 @@ public class LLVMLibrary implements Library {
    * Print a representation of a module to a file. The ErrorMessage needs to be<br>
    * disposed with LLVMDisposeMessage. Returns 0 on success, 1 otherwise.<br>
    * See Module::print()<br>
-   * Original signature : <code>
-   *     LLVMBool LLVMPrintModuleToFile(LLVMModuleRef, const char*, char**)</code>
+   * Original signature : <code>LLVMBool LLVMPrintModuleToFile(LLVMModuleRef, const char*, char**)
+   * </code>
    */
   public static native LLVMLibrary.LLVMBool LLVMPrintModuleToFile(
       LLVMLibrary.LLVMModuleRef M, String Filename, PointerByReference ErrorMessage);
@@ -1427,7 +1427,7 @@ public class LLVMLibrary implements Library {
   /**
    * Set inline assembly for a module.<br>
    * See Module::setModuleInlineAsm()<br>
-   * Original signature : <code>void LLVMSetModuleInlineAsm(LLVMModuleRef, const char*)</code> <br>
+   * Original signature : <code>void LLVMSetModuleInlineAsm(LLVMModuleRef, const char*)</code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMSetModuleInlineAsm(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
@@ -1472,7 +1472,7 @@ public class LLVMLibrary implements Library {
    * Obtain the number of operands for named metadata in a module.<br>
    * See llvm::Module::getNamedMetadata()<br>
    * Original signature : <code>int LLVMGetNamedMetadataNumOperands(LLVMModuleRef, const char*)
-   *     </code><br>
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMGetNamedMetadataNumOperands(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
@@ -1487,7 +1487,7 @@ public class LLVMLibrary implements Library {
    * Obtain the number of operands for named metadata in a module.<br>
    * See llvm::Module::getNamedMetadata()<br>
    * Original signature : <code>int LLVMGetNamedMetadataNumOperands(LLVMModuleRef, const char*)
-   *     </code>
+   * </code>
    */
   public static native int LLVMGetNamedMetadataNumOperands(
       LLVMLibrary.LLVMModuleRef M, String Name);
@@ -1500,7 +1500,7 @@ public class LLVMLibrary implements Library {
    * See llvm::Module::getNamedMetadata()<br>
    * See llvm::MDNode::getOperand()<br>
    * Original signature : <code>
-   *     void LLVMGetNamedMetadataOperands(LLVMModuleRef, const char*, LLVMValueRef*)</code><br>
+   * void LLVMGetNamedMetadataOperands(LLVMModuleRef, const char*, LLVMValueRef*)</code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMGetNamedMetadataOperands(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
@@ -1520,7 +1520,7 @@ public class LLVMLibrary implements Library {
    * See llvm::Module::getNamedMetadata()<br>
    * See llvm::MDNode::getOperand()<br>
    * Original signature : <code>
-   *     void LLVMGetNamedMetadataOperands(LLVMModuleRef, const char*, LLVMValueRef*)</code>
+   * void LLVMGetNamedMetadataOperands(LLVMModuleRef, const char*, LLVMValueRef*)</code>
    */
   public static native void LLVMGetNamedMetadataOperands(
       LLVMLibrary.LLVMModuleRef M, String Name, LLVMLibrary.LLVMValueRef Dest);
@@ -1529,7 +1529,7 @@ public class LLVMLibrary implements Library {
    * See llvm::Module::getNamedMetadata()<br>
    * See llvm::MDNode::addOperand()<br>
    * Original signature : <code>
-   *     void LLVMAddNamedMetadataOperand(LLVMModuleRef, const char*, LLVMValueRef)</code><br>
+   * void LLVMAddNamedMetadataOperand(LLVMModuleRef, const char*, LLVMValueRef)</code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMAddNamedMetadataOperand(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
@@ -1545,7 +1545,7 @@ public class LLVMLibrary implements Library {
    * See llvm::Module::getNamedMetadata()<br>
    * See llvm::MDNode::addOperand()<br>
    * Original signature : <code>
-   *     void LLVMAddNamedMetadataOperand(LLVMModuleRef, const char*, LLVMValueRef)</code>
+   * void LLVMAddNamedMetadataOperand(LLVMModuleRef, const char*, LLVMValueRef)</code>
    */
   public static native void LLVMAddNamedMetadataOperand(
       LLVMLibrary.LLVMModuleRef M, String Name, LLVMLibrary.LLVMValueRef Val);
@@ -1553,7 +1553,7 @@ public class LLVMLibrary implements Library {
    * Add a function to a module under a specified name.<br>
    * See llvm::Function::Create()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMAddFunction(LLVMModuleRef, const char*, LLVMTypeRef)</code><br>
+   * LLVMValueRef LLVMAddFunction(LLVMModuleRef, const char*, LLVMTypeRef)</code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMAddFunction(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef, java.lang.String,
@@ -1568,7 +1568,7 @@ public class LLVMLibrary implements Library {
    * Add a function to a module under a specified name.<br>
    * See llvm::Function::Create()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMAddFunction(LLVMModuleRef, const char*, LLVMTypeRef)</code>
+   * LLVMValueRef LLVMAddFunction(LLVMModuleRef, const char*, LLVMTypeRef)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMAddFunction(
       LLVMLibrary.LLVMModuleRef M, String Name, LLVMLibrary.LLVMTypeRef FunctionTy);
@@ -1576,8 +1576,8 @@ public class LLVMLibrary implements Library {
    * Obtain a Function value from a Module by its name.<br>
    * The returned value corresponds to a llvm::Function value.<br>
    * See llvm::Module::getFunction()<br>
-   * Original signature : <code>LLVMValueRef LLVMGetNamedFunction(LLVMModuleRef, const char*)
-   *     </code><br>
+   * Original signature : <code>LLVMValueRef LLVMGetNamedFunction(LLVMModuleRef, const char*)</code>
+   * <br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMGetNamedFunction(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
@@ -1592,8 +1592,7 @@ public class LLVMLibrary implements Library {
    * Obtain a Function value from a Module by its name.<br>
    * The returned value corresponds to a llvm::Function value.<br>
    * See llvm::Module::getFunction()<br>
-   * Original signature : <code>LLVMValueRef LLVMGetNamedFunction(LLVMModuleRef, const char*)
-   *     </code>
+   * Original signature : <code>LLVMValueRef LLVMGetNamedFunction(LLVMModuleRef, const char*)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMGetNamedFunction(
       LLVMLibrary.LLVMModuleRef M, String Name);
@@ -1795,8 +1794,7 @@ public class LLVMLibrary implements Library {
    * whether these can be packed together.<br>
    * See llvm::StructType::create()<br>
    * Original signature : <code>
-   *     LLVMTypeRef LLVMStructTypeInContext(LLVMContextRef, LLVMTypeRef*, unsigned, LLVMBool)
-   *     </code>
+   * LLVMTypeRef LLVMStructTypeInContext(LLVMContextRef, LLVMTypeRef*, unsigned, LLVMBool)</code>
    */
   public static native LLVMLibrary.LLVMTypeRef LLVMStructTypeInContext(
       LLVMLibrary.LLVMContextRef C,
@@ -1806,8 +1804,7 @@ public class LLVMLibrary implements Library {
   /**
    * Create a new structure type in the global context.<br>
    * See llvm::StructType::create()<br>
-   * Original signature : <code>LLVMTypeRef LLVMStructType(LLVMTypeRef*, unsigned, LLVMBool)
-   *     </code>
+   * Original signature : <code>LLVMTypeRef LLVMStructType(LLVMTypeRef*, unsigned, LLVMBool)</code>
    */
   public static native LLVMLibrary.LLVMTypeRef LLVMStructType(
       LLVMLibrary.LLVMTypeRef ElementTypes, int ElementCount, LLVMLibrary.LLVMBool Packed);
@@ -1815,7 +1812,7 @@ public class LLVMLibrary implements Library {
    * Create an empty structure in a context having a specified name.<br>
    * See llvm::StructType::create()<br>
    * Original signature : <code>LLVMTypeRef LLVMStructCreateNamed(LLVMContextRef, const char*)
-   *     </code><br>
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMStructCreateNamed(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMContextRef,
@@ -1830,7 +1827,7 @@ public class LLVMLibrary implements Library {
    * Create an empty structure in a context having a specified name.<br>
    * See llvm::StructType::create()<br>
    * Original signature : <code>LLVMTypeRef LLVMStructCreateNamed(LLVMContextRef, const char*)
-   *     </code>
+   * </code>
    */
   public static native LLVMLibrary.LLVMTypeRef LLVMStructCreateNamed(
       LLVMLibrary.LLVMContextRef C, String Name);
@@ -1844,7 +1841,7 @@ public class LLVMLibrary implements Library {
    * Set the contents of a structure type.<br>
    * See llvm::StructType::setBody()<br>
    * Original signature : <code>
-   *     void LLVMStructSetBody(LLVMTypeRef, LLVMTypeRef*, unsigned, LLVMBool)</code>
+   * void LLVMStructSetBody(LLVMTypeRef, LLVMTypeRef*, unsigned, LLVMBool)</code>
    */
   public static native void LLVMStructSetBody(
       LLVMLibrary.LLVMTypeRef StructTy,
@@ -1872,8 +1869,7 @@ public class LLVMLibrary implements Library {
   /**
    * Get the type of the element at a given index in the structure.<br>
    * See llvm::StructType::getTypeAtIndex()<br>
-   * Original signature : <code>LLVMTypeRef LLVMStructGetTypeAtIndex(LLVMTypeRef, unsigned)
-   *     </code>
+   * Original signature : <code>LLVMTypeRef LLVMStructGetTypeAtIndex(LLVMTypeRef, unsigned)</code>
    */
   public static native LLVMLibrary.LLVMTypeRef LLVMStructGetTypeAtIndex(
       LLVMLibrary.LLVMTypeRef StructTy, int i);
@@ -2330,8 +2326,8 @@ public class LLVMLibrary implements Library {
    * Obtain a constant value for an integer of arbitrary precision.<br>
    * See llvm::ConstantInt::get()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMConstIntOfArbitraryPrecision(LLVMTypeRef, unsigned, const uint64_t[])
-   *     </code><br>
+   * LLVMValueRef LLVMConstIntOfArbitraryPrecision(LLVMTypeRef, unsigned, const uint64_t[])</code>
+   * <br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMConstIntOfArbitraryPrecision(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMTypeRef, int,
@@ -2346,8 +2342,7 @@ public class LLVMLibrary implements Library {
    * Obtain a constant value for an integer of arbitrary precision.<br>
    * See llvm::ConstantInt::get()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMConstIntOfArbitraryPrecision(LLVMTypeRef, unsigned, const uint64_t[])
-   *     </code>
+   * LLVMValueRef LLVMConstIntOfArbitraryPrecision(LLVMTypeRef, unsigned, const uint64_t[])</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMConstIntOfArbitraryPrecision(
       LLVMLibrary.LLVMTypeRef IntTy, int NumWords, long Words[]);
@@ -2357,8 +2352,8 @@ public class LLVMLibrary implements Library {
    * string's length is available, it is preferred to call that function<br>
    * instead.<br>
    * See llvm::ConstantInt::get()<br>
-   * Original signature : <code>
-   *     LLVMValueRef LLVMConstIntOfString(LLVMTypeRef, const char*, uint8_t)</code><br>
+   * Original signature : <code>LLVMValueRef LLVMConstIntOfString(LLVMTypeRef, const char*, uint8_t)
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMConstIntOfString(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMTypeRef,
@@ -2375,8 +2370,8 @@ public class LLVMLibrary implements Library {
    * string's length is available, it is preferred to call that function<br>
    * instead.<br>
    * See llvm::ConstantInt::get()<br>
-   * Original signature : <code>
-   *     LLVMValueRef LLVMConstIntOfString(LLVMTypeRef, const char*, uint8_t)</code>
+   * Original signature : <code>LLVMValueRef LLVMConstIntOfString(LLVMTypeRef, const char*, uint8_t)
+   * </code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMConstIntOfString(
       LLVMLibrary.LLVMTypeRef IntTy, String Text, byte Radix);
@@ -2385,8 +2380,8 @@ public class LLVMLibrary implements Library {
    * specified length.<br>
    * See llvm::ConstantInt::get()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMConstIntOfStringAndSize(LLVMTypeRef, const char*, unsigned, uint8_t)
-   *     </code><br>
+   * LLVMValueRef LLVMConstIntOfStringAndSize(LLVMTypeRef, const char*, unsigned, uint8_t)</code>
+   * <br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMConstIntOfStringAndSize(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMTypeRef,
@@ -2402,8 +2397,7 @@ public class LLVMLibrary implements Library {
    * specified length.<br>
    * See llvm::ConstantInt::get()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMConstIntOfStringAndSize(LLVMTypeRef, const char*, unsigned, uint8_t)
-   *     </code>
+   * LLVMValueRef LLVMConstIntOfStringAndSize(LLVMTypeRef, const char*, unsigned, uint8_t)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMConstIntOfStringAndSize(
       LLVMLibrary.LLVMTypeRef IntTy, String Text, int SLen, byte Radix);
@@ -2482,8 +2476,8 @@ public class LLVMLibrary implements Library {
    * Create a ConstantDataSequential and initialize it with a string.<br>
    * See llvm::ConstantDataArray::getString()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMConstStringInContext(LLVMContextRef, const char*, unsigned, LLVMBool)
-   *     </code><br>
+   * LLVMValueRef LLVMConstStringInContext(LLVMContextRef, const char*, unsigned, LLVMBool)</code>
+   * <br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMConstStringInContext(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMContextRef,
@@ -2501,8 +2495,7 @@ public class LLVMLibrary implements Library {
    * Create a ConstantDataSequential and initialize it with a string.<br>
    * See llvm::ConstantDataArray::getString()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMConstStringInContext(LLVMContextRef, const char*, unsigned, LLVMBool)
-   *     </code>
+   * LLVMValueRef LLVMConstStringInContext(LLVMContextRef, const char*, unsigned, LLVMBool)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMConstStringInContext(
       LLVMLibrary.LLVMContextRef C, String Str, int Length, LLVMLibrary.LLVMBool DontNullTerminate);
@@ -2512,8 +2505,8 @@ public class LLVMLibrary implements Library {
    * global context.<br>
    * See LLVMConstStringInContext()<br>
    * See llvm::ConstantDataArray::getString()<br>
-   * Original signature : <code>LLVMValueRef LLVMConstString(const char*, unsigned, LLVMBool)
-   *     </code><br>
+   * Original signature : <code>LLVMValueRef LLVMConstString(const char*, unsigned, LLVMBool)</code>
+   * <br>
    *
    * @deprecated use the safer methods {@link #LLVMConstString(java.lang.String, int,
    *     org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMBool)} and {@link
@@ -2529,8 +2522,7 @@ public class LLVMLibrary implements Library {
    * global context.<br>
    * See LLVMConstStringInContext()<br>
    * See llvm::ConstantDataArray::getString()<br>
-   * Original signature : <code>LLVMValueRef LLVMConstString(const char*, unsigned, LLVMBool)
-   *     </code>
+   * Original signature : <code>LLVMValueRef LLVMConstString(const char*, unsigned, LLVMBool)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMConstString(
       String Str, int Length, LLVMLibrary.LLVMBool DontNullTerminate);
@@ -2551,8 +2543,7 @@ public class LLVMLibrary implements Library {
    * Create an anonymous ConstantStruct with the specified values.<br>
    * See llvm::ConstantStruct::getAnon()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMConstStructInContext(LLVMContextRef, LLVMValueRef*, unsigned, LLVMBool)
-   *     </code>
+   * LLVMValueRef LLVMConstStructInContext(LLVMContextRef, LLVMValueRef*, unsigned, LLVMBool)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMConstStructInContext(
       LLVMLibrary.LLVMContextRef C,
@@ -2565,15 +2556,15 @@ public class LLVMLibrary implements Library {
    * global Context.<br>
    * See LLVMConstStructInContext()<br>
    * Original signature : <code>LLVMValueRef LLVMConstStruct(LLVMValueRef*, unsigned, LLVMBool)
-   *     </code>
+   * </code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMConstStruct(
       LLVMLibrary.LLVMValueRef ConstantVals, int Count, LLVMLibrary.LLVMBool Packed);
   /**
    * Create a ConstantArray from values.<br>
    * See llvm::ConstantArray::get()<br>
-   * Original signature : <code>
-   *     LLVMValueRef LLVMConstArray(LLVMTypeRef, LLVMValueRef*, unsigned)</code>
+   * Original signature : <code>LLVMValueRef LLVMConstArray(LLVMTypeRef, LLVMValueRef*, unsigned)
+   * </code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMConstArray(
       LLVMLibrary.LLVMTypeRef ElementTy, LLVMLibrary.LLVMValueRef ConstantVals, int Length);
@@ -2581,15 +2572,14 @@ public class LLVMLibrary implements Library {
    * Create a non-anonymous ConstantStruct from values.<br>
    * See llvm::ConstantStruct::get()<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMConstNamedStruct(LLVMTypeRef, LLVMValueRef*, unsigned)</code>
+   * LLVMValueRef LLVMConstNamedStruct(LLVMTypeRef, LLVMValueRef*, unsigned)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMConstNamedStruct(
       LLVMLibrary.LLVMTypeRef StructTy, LLVMLibrary.LLVMValueRef ConstantVals, int Count);
   /**
    * Get an element at specified index as a constant.<br>
    * See ConstantDataSequential::getElementAsConstant()<br>
-   * Original signature : <code>LLVMValueRef LLVMGetElementAsConstant(LLVMValueRef, unsigned)
-   *     </code>
+   * Original signature : <code>LLVMValueRef LLVMGetElementAsConstant(LLVMValueRef, unsigned)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMGetElementAsConstant(
       LLVMLibrary.LLVMValueRef C, int idx);
@@ -2980,8 +2970,8 @@ public class LLVMLibrary implements Library {
   /**
    * This group contains functions that operate on global variable values.<br>
    * See llvm::GlobalVariable<br>
-   * Original signature : <code>
-   *     LLVMValueRef LLVMAddGlobal(LLVMModuleRef, LLVMTypeRef, const char*)</code><br>
+   * Original signature : <code>LLVMValueRef LLVMAddGlobal(LLVMModuleRef, LLVMTypeRef, const char*)
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMAddGlobal(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
@@ -2995,8 +2985,8 @@ public class LLVMLibrary implements Library {
   /**
    * This group contains functions that operate on global variable values.<br>
    * See llvm::GlobalVariable<br>
-   * Original signature : <code>
-   *     LLVMValueRef LLVMAddGlobal(LLVMModuleRef, LLVMTypeRef, const char*)</code>
+   * Original signature : <code>LLVMValueRef LLVMAddGlobal(LLVMModuleRef, LLVMTypeRef, const char*)
+   * </code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMAddGlobal(
       LLVMLibrary.LLVMModuleRef M, LLVMLibrary.LLVMTypeRef Ty, String Name);
@@ -3085,7 +3075,7 @@ public class LLVMLibrary implements Library {
    * This group contains function that operate on global alias values.<br>
    * See llvm::GlobalAlias<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMAddAlias(LLVMModuleRef, LLVMTypeRef, LLVMValueRef, const char*)</code><br>
+   * LLVMValueRef LLVMAddAlias(LLVMModuleRef, LLVMTypeRef, LLVMValueRef, const char*)</code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMAddAlias(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
@@ -3105,7 +3095,7 @@ public class LLVMLibrary implements Library {
    * This group contains function that operate on global alias values.<br>
    * See llvm::GlobalAlias<br>
    * Original signature : <code>
-   *     LLVMValueRef LLVMAddAlias(LLVMModuleRef, LLVMTypeRef, LLVMValueRef, const char*)</code>
+   * LLVMValueRef LLVMAddAlias(LLVMModuleRef, LLVMTypeRef, LLVMValueRef, const char*)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMAddAlias(
       LLVMLibrary.LLVMModuleRef M,
@@ -3197,6 +3187,17 @@ public class LLVMLibrary implements Library {
   public static native void LLVMAddAttributeAtIndex(
       LLVMLibrary.LLVMValueRef F, int Idx, LLVMLibrary.LLVMAttributeRef A);
   /**
+   * Original signature : <code>int LLVMGetAttributeCountAtIndex(LLVMValueRef, LLVMAttributeIndex)
+   * </code>
+   */
+  public static native int LLVMGetAttributeCountAtIndex(LLVMLibrary.LLVMValueRef F, int Idx);
+  /**
+   * Original signature : <code>
+   * void LLVMGetAttributesAtIndex(LLVMValueRef, LLVMAttributeIndex, LLVMAttributeRef*)</code>
+   */
+  public static native void LLVMGetAttributesAtIndex(
+      LLVMLibrary.LLVMValueRef F, int Idx, LLVMLibrary.LLVMAttributeRef Attrs);
+  /**
    * Original signature : <code>
    * LLVMAttributeRef LLVMGetEnumAttributeAtIndex(LLVMValueRef, LLVMAttributeIndex, unsigned)</code>
    */
@@ -3254,7 +3255,7 @@ public class LLVMLibrary implements Library {
    * Add a target-dependent attribute to a function<br>
    * See llvm::AttrBuilder::addAttribute()<br>
    * Original signature : <code>
-   *     void LLVMAddTargetDependentFunctionAttr(LLVMValueRef, const char*, const char*)</code><br>
+   * void LLVMAddTargetDependentFunctionAttr(LLVMValueRef, const char*, const char*)</code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMAddTargetDependentFunctionAttr(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef,
@@ -3269,7 +3270,7 @@ public class LLVMLibrary implements Library {
    * Add a target-dependent attribute to a function<br>
    * See llvm::AttrBuilder::addAttribute()<br>
    * Original signature : <code>
-   *     void LLVMAddTargetDependentFunctionAttr(LLVMValueRef, const char*, const char*)</code>
+   * void LLVMAddTargetDependentFunctionAttr(LLVMValueRef, const char*, const char*)</code>
    */
   public static native void LLVMAddTargetDependentFunctionAttr(
       LLVMLibrary.LLVMValueRef Fn, String A, String V);
@@ -3505,8 +3506,7 @@ public class LLVMLibrary implements Library {
    * if it doesn't), then NULL is returned.<br>
    * The returned LLVMValueRef corresponds to a llvm::TerminatorInst.<br>
    * See llvm::BasicBlock::getTerminator()<br>
-   * Original signature : <code>LLVMValueRef LLVMGetBasicBlockTerminator(LLVMBasicBlockRef)
-   *     </code>
+   * Original signature : <code>LLVMValueRef LLVMGetBasicBlockTerminator(LLVMBasicBlockRef)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMGetBasicBlockTerminator(
       LLVMLibrary.LLVMBasicBlockRef BB);
@@ -3568,8 +3568,8 @@ public class LLVMLibrary implements Library {
    * Append a basic block to the end of a function.<br>
    * See llvm::BasicBlock::Create()<br>
    * Original signature : <code>
-   *     LLVMBasicBlockRef LLVMAppendBasicBlockInContext(LLVMContextRef, LLVMValueRef, const char*)
-   *     </code><br>
+   * LLVMBasicBlockRef LLVMAppendBasicBlockInContext(LLVMContextRef, LLVMValueRef, const char*)
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMAppendBasicBlockInContext(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMContextRef,
@@ -3584,8 +3584,8 @@ public class LLVMLibrary implements Library {
    * Append a basic block to the end of a function.<br>
    * See llvm::BasicBlock::Create()<br>
    * Original signature : <code>
-   *     LLVMBasicBlockRef LLVMAppendBasicBlockInContext(LLVMContextRef, LLVMValueRef, const char*)
-   *     </code>
+   * LLVMBasicBlockRef LLVMAppendBasicBlockInContext(LLVMContextRef, LLVMValueRef, const char*)
+   * </code>
    */
   public static native LLVMLibrary.LLVMBasicBlockRef LLVMAppendBasicBlockInContext(
       LLVMLibrary.LLVMContextRef C, LLVMLibrary.LLVMValueRef Fn, String Name);
@@ -3593,8 +3593,8 @@ public class LLVMLibrary implements Library {
    * Append a basic block to the end of a function using the global<br>
    * context.<br>
    * See llvm::BasicBlock::Create()<br>
-   * Original signature : <code>
-   *     LLVMBasicBlockRef LLVMAppendBasicBlock(LLVMValueRef, const char*)</code><br>
+   * Original signature : <code>LLVMBasicBlockRef LLVMAppendBasicBlock(LLVMValueRef, const char*)
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMAppendBasicBlock(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef,
@@ -3609,8 +3609,8 @@ public class LLVMLibrary implements Library {
    * Append a basic block to the end of a function using the global<br>
    * context.<br>
    * See llvm::BasicBlock::Create()<br>
-   * Original signature : <code>
-   *     LLVMBasicBlockRef LLVMAppendBasicBlock(LLVMValueRef, const char*)</code>
+   * Original signature : <code>LLVMBasicBlockRef LLVMAppendBasicBlock(LLVMValueRef, const char*)
+   * </code>
    */
   public static native LLVMLibrary.LLVMBasicBlockRef LLVMAppendBasicBlock(
       LLVMLibrary.LLVMValueRef Fn, String Name);
@@ -3620,8 +3620,8 @@ public class LLVMLibrary implements Library {
    * passed basic block.<br>
    * See llvm::BasicBlock::Create()<br>
    * Original signature : <code>
-   *     LLVMBasicBlockRef LLVMInsertBasicBlockInContext(LLVMContextRef, LLVMBasicBlockRef, const char*)
-   *     </code><br>
+   * LLVMBasicBlockRef LLVMInsertBasicBlockInContext(LLVMContextRef, LLVMBasicBlockRef, const char*)
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMInsertBasicBlockInContext(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMContextRef,
@@ -3638,8 +3638,8 @@ public class LLVMLibrary implements Library {
    * passed basic block.<br>
    * See llvm::BasicBlock::Create()<br>
    * Original signature : <code>
-   *     LLVMBasicBlockRef LLVMInsertBasicBlockInContext(LLVMContextRef, LLVMBasicBlockRef, const char*)
-   *     </code>
+   * LLVMBasicBlockRef LLVMInsertBasicBlockInContext(LLVMContextRef, LLVMBasicBlockRef, const char*)
+   * </code>
    */
   public static native LLVMLibrary.LLVMBasicBlockRef LLVMInsertBasicBlockInContext(
       LLVMLibrary.LLVMContextRef C, LLVMLibrary.LLVMBasicBlockRef BB, String Name);
@@ -3647,7 +3647,7 @@ public class LLVMLibrary implements Library {
    * Insert a basic block in a function using the global context.<br>
    * See llvm::BasicBlock::Create()<br>
    * Original signature : <code>
-   *     LLVMBasicBlockRef LLVMInsertBasicBlock(LLVMBasicBlockRef, const char*)</code><br>
+   * LLVMBasicBlockRef LLVMInsertBasicBlock(LLVMBasicBlockRef, const char*)</code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMInsertBasicBlock(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMBasicBlockRef,
@@ -3662,7 +3662,7 @@ public class LLVMLibrary implements Library {
    * Insert a basic block in a function using the global context.<br>
    * See llvm::BasicBlock::Create()<br>
    * Original signature : <code>
-   *     LLVMBasicBlockRef LLVMInsertBasicBlock(LLVMBasicBlockRef, const char*)</code>
+   * LLVMBasicBlockRef LLVMInsertBasicBlock(LLVMBasicBlockRef, const char*)</code>
    */
   public static native LLVMLibrary.LLVMBasicBlockRef LLVMInsertBasicBlock(
       LLVMLibrary.LLVMBasicBlockRef InsertBeforeBB, String Name);
@@ -3685,16 +3685,16 @@ public class LLVMLibrary implements Library {
   /**
    * Move a basic block to before another one.<br>
    * See llvm::BasicBlock::moveBefore()<br>
-   * Original signature : <code>
-   *     void LLVMMoveBasicBlockBefore(LLVMBasicBlockRef, LLVMBasicBlockRef)</code>
+   * Original signature : <code>void LLVMMoveBasicBlockBefore(LLVMBasicBlockRef, LLVMBasicBlockRef)
+   * </code>
    */
   public static native void LLVMMoveBasicBlockBefore(
       LLVMLibrary.LLVMBasicBlockRef BB, LLVMLibrary.LLVMBasicBlockRef MovePos);
   /**
    * Move a basic block to after another one.<br>
    * See llvm::BasicBlock::moveAfter()<br>
-   * Original signature : <code>
-   *     void LLVMMoveBasicBlockAfter(LLVMBasicBlockRef, LLVMBasicBlockRef)</code>
+   * Original signature : <code>void LLVMMoveBasicBlockAfter(LLVMBasicBlockRef, LLVMBasicBlockRef)
+   * </code>
    */
   public static native void LLVMMoveBasicBlockAfter(
       LLVMLibrary.LLVMBasicBlockRef BB, LLVMLibrary.LLVMBasicBlockRef MovePos);
@@ -3852,6 +3852,17 @@ public class LLVMLibrary implements Library {
   public static native void LLVMAddCallSiteAttribute(
       LLVMLibrary.LLVMValueRef C, int Idx, LLVMLibrary.LLVMAttributeRef A);
   /**
+   * Original signature : <code>int LLVMGetCallSiteAttributeCount(LLVMValueRef, LLVMAttributeIndex)
+   * </code>
+   */
+  public static native int LLVMGetCallSiteAttributeCount(LLVMLibrary.LLVMValueRef C, int Idx);
+  /**
+   * Original signature : <code>
+   * void LLVMGetCallSiteAttributes(LLVMValueRef, LLVMAttributeIndex, LLVMAttributeRef*)</code>
+   */
+  public static native void LLVMGetCallSiteAttributes(
+      LLVMLibrary.LLVMValueRef C, int Idx, LLVMLibrary.LLVMAttributeRef Attrs);
+  /**
    * Original signature : <code>
    * LLVMAttributeRef LLVMGetCallSiteEnumAttribute(LLVMValueRef, LLVMAttributeIndex, unsigned)
    * </code>
@@ -3971,8 +3982,7 @@ public class LLVMLibrary implements Library {
   /**
    * Return the specified successor.<br>
    * See llvm::TerminatorInst::getSuccessor<br>
-   * Original signature : <code>LLVMBasicBlockRef LLVMGetSuccessor(LLVMValueRef, unsigned)
-   *     </code>
+   * Original signature : <code>LLVMBasicBlockRef LLVMGetSuccessor(LLVMValueRef, unsigned)</code>
    */
   public static native LLVMLibrary.LLVMBasicBlockRef LLVMGetSuccessor(
       LLVMLibrary.LLVMValueRef Term, int i);
@@ -3980,7 +3990,7 @@ public class LLVMLibrary implements Library {
    * Update the specified successor to point at the provided block.<br>
    * See llvm::TerminatorInst::setSuccessor<br>
    * Original signature : <code>void LLVMSetSuccessor(LLVMValueRef, unsigned, LLVMBasicBlockRef)
-   *     </code>
+   * </code>
    */
   public static native void LLVMSetSuccessor(
       LLVMLibrary.LLVMValueRef Term, int i, LLVMLibrary.LLVMBasicBlockRef block);
@@ -5877,8 +5887,8 @@ public class LLVMLibrary implements Library {
   public static native void LLVMDisposeModuleProvider(LLVMLibrary.LLVMModuleProviderRef M);
   /**
    * Original signature : <code>
-   *     LLVMBool LLVMCreateMemoryBufferWithContentsOfFile(const char*, LLVMMemoryBufferRef*, char**)
-   *     </code><br>
+   * LLVMBool LLVMCreateMemoryBufferWithContentsOfFile(const char*, LLVMMemoryBufferRef*, char**)
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMCreateMemoryBufferWithContentsOfFile(java.lang.String,
@@ -5893,8 +5903,8 @@ public class LLVMLibrary implements Library {
       Pointer Path, LLVMLibrary.LLVMMemoryBufferRef OutMemBuf, PointerByReference OutMessage);
   /**
    * Original signature : <code>
-   *     LLVMBool LLVMCreateMemoryBufferWithContentsOfFile(const char*, LLVMMemoryBufferRef*, char**)
-   *     </code>
+   * LLVMBool LLVMCreateMemoryBufferWithContentsOfFile(const char*, LLVMMemoryBufferRef*, char**)
+   * </code>
    */
   public static native LLVMLibrary.LLVMBool LLVMCreateMemoryBufferWithContentsOfFile(
       String Path, LLVMLibrary.LLVMMemoryBufferRef OutMemBuf, PointerByReference OutMessage);
@@ -5979,7 +5989,7 @@ public class LLVMLibrary implements Library {
    * pipeline is suitable for code generation and JIT compilation tasks.<br>
    * See llvm::FunctionPassManager::FunctionPassManager<br>
    * Original signature : <code>
-   *     LLVMPassManagerRef LLVMCreateFunctionPassManagerForModule(LLVMModuleRef)</code>
+   * LLVMPassManagerRef LLVMCreateFunctionPassManagerForModule(LLVMModuleRef)</code>
    */
   public static native LLVMLibrary.LLVMPassManagerRef LLVMCreateFunctionPassManagerForModule(
       LLVMLibrary.LLVMModuleRef M);
@@ -5996,7 +6006,7 @@ public class LLVMLibrary implements Library {
    * modified the module, 0 otherwise.<br>
    * See llvm::PassManager::run(Module&amp;)<br>
    * Original signature : <code>LLVMBool LLVMRunPassManager(LLVMPassManagerRef, LLVMModuleRef)
-   *     </code>
+   * </code>
    */
   public static native LLVMLibrary.LLVMBool LLVMRunPassManager(
       LLVMLibrary.LLVMPassManagerRef PM, LLVMLibrary.LLVMModuleRef M);
@@ -6005,7 +6015,7 @@ public class LLVMLibrary implements Library {
    * manager. Returns 1 if any of the passes modified the module, 0 otherwise.<br>
    * See llvm::FunctionPassManager::doInitialization<br>
    * Original signature : <code>LLVMBool LLVMInitializeFunctionPassManager(LLVMPassManagerRef)
-   *     </code>
+   * </code>
    */
   public static native LLVMLibrary.LLVMBool LLVMInitializeFunctionPassManager(
       LLVMLibrary.LLVMPassManagerRef FPM);
@@ -6015,7 +6025,7 @@ public class LLVMLibrary implements Library {
    * function, false otherwise.<br>
    * See llvm::FunctionPassManager::run(Function&amp;)<br>
    * Original signature : <code>
-   *     LLVMBool LLVMRunFunctionPassManager(LLVMPassManagerRef, LLVMValueRef)</code>
+   * LLVMBool LLVMRunFunctionPassManager(LLVMPassManagerRef, LLVMValueRef)</code>
    */
   public static native LLVMLibrary.LLVMBool LLVMRunFunctionPassManager(
       LLVMLibrary.LLVMPassManagerRef FPM, LLVMLibrary.LLVMValueRef F);
@@ -6023,8 +6033,7 @@ public class LLVMLibrary implements Library {
    * Finalizes all of the function passes scheduled in in the function pass<br>
    * manager. Returns 1 if any of the passes modified the module, 0 otherwise.<br>
    * See llvm::FunctionPassManager::doFinalization<br>
-   * Original signature : <code>LLVMBool LLVMFinalizeFunctionPassManager(LLVMPassManagerRef)
-   *     </code>
+   * Original signature : <code>LLVMBool LLVMFinalizeFunctionPassManager(LLVMPassManagerRef)</code>
    */
   public static native LLVMLibrary.LLVMBool LLVMFinalizeFunctionPassManager(
       LLVMLibrary.LLVMPassManagerRef FPM);
@@ -6612,7 +6621,7 @@ public class LLVMLibrary implements Library {
    * Set the data layout for a module.<br>
    * See Module::setDataLayout()<br>
    * Original signature : <code>void LLVMSetModuleDataLayout(LLVMModuleRef, LLVMTargetDataRef)
-   *     </code><br>
+   * </code><br>
    *
    * @deprecated use the safer methods {@link
    *     #LLVMSetModuleDataLayout(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
@@ -6626,7 +6635,7 @@ public class LLVMLibrary implements Library {
    * Set the data layout for a module.<br>
    * See Module::setDataLayout()<br>
    * Original signature : <code>void LLVMSetModuleDataLayout(LLVMModuleRef, LLVMTargetDataRef)
-   *     </code>
+   * </code>
    */
   public static native void LLVMSetModuleDataLayout(
       LLVMLibrary.LLVMModuleRef M, LLVMLibrary.LLVMTargetDataRef DL);
