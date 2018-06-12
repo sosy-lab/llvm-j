@@ -14,6 +14,7 @@ $(LLVM_HOME)/Core.h
 $(LLVM_HOME)/Analysis.h
 $(LLVM_HOME)/BitWriter.h
 $(LLVM_HOME)/BitReader.h
+$(LLVM_HOME)/IRReader.h
 $(LLVM_HOME)/Initialization.h
 $(LLVM_HOME)/Object.h
 $(LLVM_HOME)/Target.h

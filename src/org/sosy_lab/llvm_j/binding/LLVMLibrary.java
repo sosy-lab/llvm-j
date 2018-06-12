@@ -6203,6 +6203,22 @@ public class LLVMLibrary implements Library {
    */
   public static native LLVMLibrary.LLVMBool LLVMGetBitcodeModule2(
       LLVMLibrary.LLVMMemoryBufferRef MemBuf, LLVMLibrary.LLVMModuleRef OutM);
+  /**
+   * Read LLVM IR from a memory buffer and convert it into an in-memory Module<br>
+   * object. Returns 0 on success.<br>
+   * Optionally returns a human-readable description of any errors that<br>
+   * occurred during parsing IR. OutMessage must be disposed with<br>
+   * LLVMDisposeMessage.<br>
+   * See llvm::ParseIR()<br>
+   * Original signature : <code>
+   * LLVMBool LLVMParseIRInContext(LLVMContextRef, LLVMMemoryBufferRef, LLVMModuleRef*, char**)
+   * </code>
+   */
+  public static native LLVMLibrary.LLVMBool LLVMParseIRInContext(
+      LLVMLibrary.LLVMContextRef ContextRef,
+      LLVMLibrary.LLVMMemoryBufferRef MemBuf,
+      LLVMLibrary.LLVMModuleRef OutM,
+      PointerByReference OutMessage);
   /** Original signature : <code>void LLVMInitializeTransformUtils(LLVMPassRegistryRef)</code> */
   public static native void LLVMInitializeTransformUtils(LLVMLibrary.LLVMPassRegistryRef R);
   /** Original signature : <code>void LLVMInitializeScalarOpts(LLVMPassRegistryRef)</code> */
