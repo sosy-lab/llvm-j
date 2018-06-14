@@ -36,18 +36,22 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 public class PackageSanityTest extends AbstractPackageSanityTests {
 
+  private Context context;
+
   {
     try {
       Path libraryPath = Paths.get("lib", "java", "runtime");
       List<Path> relevantLibDirs = ImmutableList.of(libraryPath);
       Module.addLibraryLookupPaths(relevantLibDirs);
-      Module module = Module.parseIR("build/test.bc");
+      context = Context.create();
+      Module module = Module.parseIR("build/test.bc", context);
+
       BasicBlock b1 = module.getFirstFunction().getFirstBasicBlock();
       BasicBlock b2 = b1.getNextBasicBlock();
       Value v = b1.getFirstInstruction();
       TypeRef t = v.typeOf();
 
-      setDefault(Context.class, module.getModuleContext());
+      setDefault(Context.class, context);
 
       setDefault(TypeRef.class, t);
       setDefault(Value.class, v);
@@ -56,9 +60,17 @@ public class PackageSanityTest extends AbstractPackageSanityTests {
       setDistinctValues(BasicBlock.class, b1, b2);
       setDefault(LLVMLibrary.LLVMBasicBlockRef.class, b1.bb());
       setDistinctValues(LLVMLibrary.LLVMBasicBlockRef.class, b1.bb(), b2.bb());
-
     } catch (LLVMException e) {
       e.printStackTrace();
+    }
+  }
+
+  @Override
+  protected void finalize() throws Throwable {
+    try {
+      context.close();
+    } finally {
+      super.finalize();
     }
   }
 }

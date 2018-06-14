@@ -27,15 +27,19 @@
 
 package org.sosy_lab.llvm_j;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import com.google.common.collect.ImmutableList;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import org.junit.Assert;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ModuleTest {
+
+  private Context context;
 
   @Before
   public void setUp_library() {
@@ -44,18 +48,69 @@ public class ModuleTest {
     Module.addLibraryLookupPaths(relevantLibDirs);
   }
 
+  @Before
+  public void setUp_context() {
+    context = Context.create();
+  }
+
+  @After
+  public void tearDown_context() {
+    context.close();
+  }
+
   @Test
-  public void test_parseIR_valid() throws LLVMException {
+  @SuppressWarnings("deprecation")
+  public void test_parseBitcode_noContext_valid() throws LLVMException {
     String llvmFile = "build/test.bc";
 
     Module m = Module.parseIR(llvmFile);
-    Value firstFunction = m.getFirstFunction();
-    BasicBlock firstBlock = firstFunction.getFirstBasicBlock();
-    Value firstInstruction = firstBlock.getFirstInstruction();
 
-    Assert.assertNotNull(m);
-    Assert.assertNotNull(firstFunction);
-    Assert.assertNotNull(firstBlock);
-    Assert.assertNotNull(firstInstruction);
+    expectComponentsExist(m);
+  }
+
+  @Test
+  @SuppressWarnings("deprecation")
+  public void test_parseLl_noContext_valid() throws LLVMException {
+    String llvmFile = "build/test.ll";
+
+    Module m = Module.parseIR(llvmFile);
+
+    expectComponentsExist(m);
+  }
+
+  @Test
+  public void test_parseBitcode_withContext_valid() throws LLVMException {
+    String llvmFile = "build/test.bc";
+
+    Module m = Module.parseIR(llvmFile, context);
+
+    expectComponentsExist(m);
+  }
+
+  @Test
+  public void test_parseLl_withContext_valid() throws LLVMException {
+    String llvmFile = "build/test.ll";
+
+    Module m = Module.parseIR(llvmFile, context);
+
+    expectComponentsExist(m);
+  }
+
+  /**
+   * Check that basic components of the provided {@link Module} exist.
+   *
+   * @param pModule
+   */
+  private static void expectComponentsExist(Module pModule) {
+    assertThat(pModule).isNotNull();
+
+    Value firstFunction = pModule.getFirstFunction();
+    assertThat(firstFunction).isNotNull();
+
+    BasicBlock firstBlock = firstFunction.getFirstBasicBlock();
+    assertThat(firstBlock).isNotNull();
+
+    Value firstInstruction = firstBlock.getFirstInstruction();
+    assertThat(firstInstruction).isNotNull();
   }
 }

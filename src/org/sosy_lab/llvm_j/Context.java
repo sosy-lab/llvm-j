@@ -31,13 +31,15 @@ package org.sosy_lab.llvm_j;
 
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
+import java.io.Closeable;
+
 /**
  * The top-level container for all LLVM global data.
  *
- * <p>After use, each instance of this class should be disposed of using its {@link #dispose()}
- * method.
+ * <p>After use, each instance of this class should be disposed of using its {@link #close()}
+ * method. It is advised to use the try-with construct to do so automatically.
  */
-public final class Context {
+public final class Context implements Closeable {
 
   private LLVMLibrary.LLVMContextRef context;
 
@@ -52,17 +54,20 @@ public final class Context {
   /**
    * Creates a new context.
    *
-   * <p>Every call to this function should be paired with a call to {@link #dispose()} or the
+   * <p>Every call to this function should be paired with a call to {@link #close()} or the
    * context will leak memory.
+   *
+   * <p>It is advised to use the try-with syntax.
    */
   public static Context create() {
+    LLVMLibrary.instantiate();
     return new Context(LLVMLibrary.LLVMContextCreate());
   }
 
   /**
    * Returns the global context instance.
    *
-   * <p>Every call to this function should be paired with a call to {@link #dispose()} or the
+   * <p>Every call to this function should be paired with a call to {@link #close()} or the
    * context will leak memory.
    */
   public static Context getGlobalContext() {
@@ -72,7 +77,7 @@ public final class Context {
   /**
    * Returns the context with which a given module is associated.
    *
-   * <p>Every call to this function should be paired with a call to {@link #dispose()} or the
+   * <p>Every call to this function should be paired with a call to {@link #close()} or the
    * context will leak memory.
    */
   public static Context getModuleContext(Module m) {
@@ -82,7 +87,7 @@ public final class Context {
   /**
    * Returns the context with which a given {@link TypeRef type} is associated.
    *
-   * <p>Every call to this function should be paired with a call to {@link #dispose()} or the
+   * <p>Every call to this function should be paired with a call to {@link #close()} or the
    * context will leak memory.
    */
   public static Context getTypeContext(TypeRef pType) {
@@ -90,10 +95,22 @@ public final class Context {
   }
 
   /**
-   * Destroys this context instance. This should be called whenever a {@link Context} instance is
+   * Destroys this context instance. This should be called whenever a <code>Context</code> instance is
+   * not needed anymore, or memory will be leaked.
+   *
+   * @deprecated Use {@link #close()} instead.
+   */
+  @Deprecated
+  public void dispose() {
+    close();
+  }
+
+  /**
+   * Destroys this context instance. This should be called whenever a <code>Context</code> instance is
    * not needed anymore, or memory will be leaked.
    */
-  public void dispose() {
+  @Override
+  public void close() {
     if (context != null) {
       LLVMLibrary.LLVMContextDispose(context);
     }
