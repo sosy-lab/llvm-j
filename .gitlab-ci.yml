@@ -2,7 +2,7 @@ include: /build/gitlab-ci.yml
 
 variables:
   LLVM_VERSION: "3.9.1"
-  PROJECT_PATH: "sosy-lab/software/java-common-lib"
+  PROJECT_PATH: "sosy-lab/software/llvm-j"
   GH_REF: "github.com/sosy-lab/llvm-j"
 
 

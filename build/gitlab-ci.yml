@@ -42,6 +42,10 @@ build:jdk-9:
   <<: *build
   image: ${CI_REGISTRY_IMAGE}/test:jdk-9
 
+build:jdk-10:
+  <<: *build
+  image: ${CI_REGISTRY_IMAGE}/test:jdk-10
+
 
 # For checks that need the binaries
 .binary_check: &binary_check
@@ -83,7 +87,7 @@ spotbugs:
   <<: *binary_check
   script:
     - 'ant $ANT_PROPS_CHECKS spotbugs'
-    - 'ant $ANT_PROPS_CHECKS run-spotbugs -Dspotbugs.output=text && cat SpotBugs.xml && test \! -s SpotBugs.xml'
+    - 'test \! -f SpotBugs.html'
   dependencies:
     - build-dependencies
     - build:jdk-8
@@ -114,6 +118,13 @@ unit-tests:jdk-9:
     - build-dependencies
     - build:jdk-9
   image: ${CI_REGISTRY_IMAGE}/test:jdk-9
+
+unit-tests:jdk-10:
+  <<: *unit-tests
+  dependencies:
+    - build-dependencies
+    - build:jdk-10
+  image: ${CI_REGISTRY_IMAGE}/test:jdk-10
 
 deploy-coverage:
   stage: deploy
