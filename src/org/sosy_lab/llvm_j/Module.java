@@ -48,8 +48,8 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 /**
  * The main container class for the LLVM Intermediate Representation.
  *
- * <p>Resources of this class always have to be freed using {@link #close()} to avoid memory
- * leaks. It is advised to use the try-with construct to ensure this
+ * <p>Resources of this class always have to be freed using {@link #close()} to avoid memory leaks.
+ * It is advised to use the try-with construct to ensure this
  *
  * <p>Suppress the warning about JavaLangClash, as we really want this class to be named Module as
  * in the C++ LLVM API.

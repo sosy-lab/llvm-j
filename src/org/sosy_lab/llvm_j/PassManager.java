@@ -31,10 +31,9 @@ package org.sosy_lab.llvm_j;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.sosy_lab.llvm_j.binding.LLVMLibrary;
-
 import java.io.Closeable;
 import java.io.IOException;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** Pass manager. Always has to be disposed of with {@link #close()} to avoid memory leaks. */
 public final class PassManager implements Closeable {
