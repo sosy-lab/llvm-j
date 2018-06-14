@@ -14,10 +14,24 @@
     <property name="source.generated.dir" value=".apt-generated"/>
     <property name="class.format" value="1.8"/>
     <property name="class.dir" value="bin"/>
+    <property name="errorprone.options" value=""/>
 
     <path id="errorprone">
         <pathelement location="${ivy.lib.dir}/build/error_prone_ant.jar"/>
     </path>
+
+    <!-- Needs to include all annotation processors and error-prone -->
+    <path id="processorpath">
+        <fileset dir="${ivy.lib.dir}" includes="build/*.jar"/>
+    </path>
+
+    <property name="errorprone" value="com.google.errorprone.ErrorProneAntCompilerAdapter"/>
+    <condition property="java8">
+        <matches string="${ant.java.version}" pattern="8"/>
+    </condition>
+    <condition property="java.compiler" value="${errorprone}" else="modern">
+        <isset property="java8"/>
+    </condition>
 
     <!-- We use error-prone as the compiler, cf. http://errorprone.info/ -->
     <target name="build-project" unless="skipBuild" depends="build-dependencies, bindings">
@@ -45,38 +59,39 @@
             <compilerclasspath refid="errorprone"/>
         </javac>
 
+        <copy todir="${class.dir}">
+          <fileset dir="${source.dir}">
+            <exclude name="**/*.java" />
+            <exclude name="**/*.cup" />
+            <exclude name="**/*.jflex" />
+            <exclude name="**/*.nested" />
+            <exclude name="**/*.xml" />
+            <exclude name="**/*.dia" />
+            <exclude name="**/*.pdf" />
+          </fileset>
+        </copy>
         <javac debug="true"
                debuglevel="source,lines,vars"
                destdir="${class.dir}"
                source="${source.format}"
                target="${class.format}"
                includeAntRuntime="false"
-               compiler="com.google.errorprone.ErrorProneAntCompilerAdapter"
+               compiler="${java.compiler}"
                encoding="UTF-8">
             <src path="${source.dir}"/>
-            <exclude name="${bindings.file}" />
             <classpath refid="classpath"/>
             <compilerarg value="-Xlint"/>
+            <compilerarg value="-Xlint:-fallthrough"/> <!-- checked by error-prone, too, and javac does not recognized $FALL-THROUGH$ -->
             <compilerarg value="-Xlint:-processing"/>
+            <compilerarg value="-Xlint:-options"/> <!-- suppress warning about bootclasspath on newer JDK -->
             <compilerarg value="-Werror"/>
+            <compilerarg compiler="${errorprone}" line="-XepDisableWarningsInGeneratedCode ${errorprone.options}"/>
+            <compilerarg compiler="modern" value="-XDcompilePolicy=simple"/> <!-- necessary for error-prone -->
+            <compilerarg compiler="modern" value="-Xplugin:ErrorProne -XepDisableWarningsInGeneratedCode ${errorprone.options}"/>
             <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
-            <compilerarg value="-XepAllDisabledChecksAsWarnings"/>
-            <compilerarg value="-Xep:InconsistentOverloads:OFF"/>
-            <compilerarg value="-Xep:UngroupedOverloads:OFF"/>
-            <compilerarg value="-Xep:StaticOrDefaultInterfaceMethod:OFF"/> <!-- only relevant for Android -->
-            <compilerarg value="-Xep:TestExceptionChecker:OFF"/> <!-- TODO -->
-            <compilerarg value="-Xep:ParameterPackage:OFF"/> <!-- buggy -->
-            <compilerarg value="-Xep:ConstructorInvokesOverridable:OFF"/> <!-- buggy -->
-            <compilerarg value="-Xep:ConstructorLeaksThis:OFF"/> <!-- buggy -->
-            <compilerarg value="-Xep:FieldMissingNullable:OFF"/> <!-- buggy -->
-            <compilerarg value="-Xep:ReturnMissingNullable:OFF"/> <!-- buggy -->
-            <compilerarg value="-XepPatchLocation:${basedir}"/>
-            <compilerarg value="-XepPatchChecks:"/>
-            <compilerarg value="-XepDisableWarningsInGeneratedCode"/>
-            <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
+            <compilerarg value="-processorpath"/><compilerarg pathref="processorpath"/>
             <compilerclasspath refid="errorprone"/>
         </javac>
-
     </target>
 
     <path id="ecj">
@@ -125,10 +140,12 @@
                includeAntRuntime="false"
                encoding="UTF-8">
             <include name="**/llvm_j/*.java" />
+            <src path="${source.dir}"/>
             <classpath refid="classpath"/>
             <compilerarg value="-properties"/>
             <compilerarg value="${ivy.lib.dir}/build/org.eclipse.jdt.core.prefs"/>
             <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
+            <compilerarg value="-processorpath"/><compilerarg pathref="processorpath"/>
             <compilerclasspath refid="ecj"/>
         </javac>
     </target>
