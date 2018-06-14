@@ -1029,7 +1029,6 @@ public class Value {
       throw new IndexOutOfBoundsException(
           "Index " + index + " out of bounds for " + numArgOperands + " arg operands");
     }
-    ;
     return getOperand(index);
   }
 

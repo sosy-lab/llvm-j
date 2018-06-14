@@ -96,11 +96,7 @@ public class ModuleTest {
     expectComponentsExist(m);
   }
 
-  /**
-   * Check that basic components of the provided {@link Module} exist.
-   *
-   * @param pModule
-   */
+  /** Check that basic components of the provided {@link Module} exist. */
   private static void expectComponentsExist(Module pModule) {
     assertThat(pModule).isNotNull();
 

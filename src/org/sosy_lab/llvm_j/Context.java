@@ -29,9 +29,8 @@
 
 package org.sosy_lab.llvm_j;
 
-import org.sosy_lab.llvm_j.binding.LLVMLibrary;
-
 import java.io.Closeable;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /**
  * The top-level container for all LLVM global data.
@@ -54,8 +53,8 @@ public final class Context implements Closeable {
   /**
    * Creates a new context.
    *
-   * <p>Every call to this function should be paired with a call to {@link #close()} or the
-   * context will leak memory.
+   * <p>Every call to this function should be paired with a call to {@link #close()} or the context
+   * will leak memory.
    *
    * <p>It is advised to use the try-with syntax.
    */
@@ -67,8 +66,8 @@ public final class Context implements Closeable {
   /**
    * Returns the global context instance.
    *
-   * <p>Every call to this function should be paired with a call to {@link #close()} or the
-   * context will leak memory.
+   * <p>Every call to this function should be paired with a call to {@link #close()} or the context
+   * will leak memory.
    */
   public static Context getGlobalContext() {
     return new Context(LLVMLibrary.LLVMGetGlobalContext());
@@ -77,8 +76,8 @@ public final class Context implements Closeable {
   /**
    * Returns the context with which a given module is associated.
    *
-   * <p>Every call to this function should be paired with a call to {@link #close()} or the
-   * context will leak memory.
+   * <p>Every call to this function should be paired with a call to {@link #close()} or the context
+   * will leak memory.
    */
   public static Context getModuleContext(Module m) {
     return new Context(LLVMLibrary.LLVMGetModuleContext(m.getModule()));
@@ -87,16 +86,16 @@ public final class Context implements Closeable {
   /**
    * Returns the context with which a given {@link TypeRef type} is associated.
    *
-   * <p>Every call to this function should be paired with a call to {@link #close()} or the
-   * context will leak memory.
+   * <p>Every call to this function should be paired with a call to {@link #close()} or the context
+   * will leak memory.
    */
   public static Context getTypeContext(TypeRef pType) {
     return new Context(LLVMLibrary.LLVMGetTypeContext(pType.type()));
   }
 
   /**
-   * Destroys this context instance. This should be called whenever a <code>Context</code> instance is
-   * not needed anymore, or memory will be leaked.
+   * Destroys this context instance. This should be called whenever a <code>Context</code> instance
+   * is not needed anymore, or memory will be leaked.
    *
    * @deprecated Use {@link #close()} instead.
    */
@@ -106,8 +105,8 @@ public final class Context implements Closeable {
   }
 
   /**
-   * Destroys this context instance. This should be called whenever a <code>Context</code> instance is
-   * not needed anymore, or memory will be leaked.
+   * Destroys this context instance. This should be called whenever a <code>Context</code> instance
+   * is not needed anymore, or memory will be leaked.
    */
   @Override
   public void close() {

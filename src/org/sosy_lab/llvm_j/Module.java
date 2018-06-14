@@ -99,6 +99,7 @@ public final class Module implements Iterable<Value> {
    *     creating a memory leak.
    */
   @Deprecated
+  @SuppressWarnings("resource")
   public static Module parseIR(String path) throws LLVMException {
     Context context = Context.create();
     return parseIR(path, context);
@@ -131,23 +132,24 @@ public final class Module implements Iterable<Value> {
       /* read the module into a buffer */
       PointerByReference pointerToBuffer = new PointerByReference();
       LLVMLibrary.LLVMMemoryBufferRef pointerToBufferWrapped =
-              new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
+          new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
       PointerByReference outMsg = new PointerByReference(outMsgAddr);
       @Var
       LLVMLibrary.LLVMBool success =
-              LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(path, pointerToBufferWrapped, outMsg);
+          LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(
+              path, pointerToBufferWrapped, outMsg);
       if (Utils.llvmBoolToJavaBool(success)) {
         String errorMessage = refToString(outMsg);
         throw new LLVMException("Reading bitcode failed. " + errorMessage);
       }
       LLVMLibrary.LLVMMemoryBufferRef buffer =
-              new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getValue());
+          new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getValue());
 
       /* create a module from the memory buffer */
       long moduleRefSize = getSize(LLVMLibrary.LLVMModuleRef.class);
       PointerByReference pointerToModule = new PointerByReference(new Memory(moduleRefSize));
       LLVMLibrary.LLVMModuleRef pointerToModuleWrapped =
-              new LLVMLibrary.LLVMModuleRef(pointerToModule.getPointer());
+          new LLVMLibrary.LLVMModuleRef(pointerToModule.getPointer());
 
       if (path.endsWith(".bc")) {
         success = LLVMLibrary.LLVMParseBitcodeInContext2(context, buffer, pointerToModuleWrapped);
