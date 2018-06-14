@@ -32,6 +32,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.sun.jna.Pointer;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /**
@@ -102,19 +103,24 @@ public final class BasicBlock implements Iterable<Value> {
 
   /** Returns the first instruction in this basic block. */
   public Value getFirstInstruction() {
-    try {
-      return new Value(LLVMLibrary.LLVMGetFirstInstruction(bb));
-    } catch (java.lang.IllegalArgumentException e) {
+    LLVMLibrary.LLVMValueRef firstInstRef = LLVMLibrary.LLVMGetFirstInstruction(bb);
+    if (firstInstRef == null) {
       return null;
+    } else {
+      return new Value(firstInstRef);
     }
   }
 
-  /** Returns the last instruction in this basic block. */
+  /**
+   * Returns the last instruction in this basic block. If this block has no instructions, <code>null
+   * </code> is returned.
+   */
   public Value getLastInstruction() {
-    try {
-      return new Value(LLVMLibrary.LLVMGetLastInstruction(bb));
-    } catch (java.lang.IllegalArgumentException e) {
+    LLVMLibrary.LLVMValueRef lastInstRef = LLVMLibrary.LLVMGetLastInstruction(bb);
+    if (lastInstRef == null) {
       return null;
+    } else {
+      return new Value(lastInstRef);
     }
   }
 
@@ -150,7 +156,7 @@ public final class BasicBlock implements Iterable<Value> {
 
         return tmp;
       }
-      throw new UnsupportedOperationException();
+      throw new NoSuchElementException();
     }
 
     @Override

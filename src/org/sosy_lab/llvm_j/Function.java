@@ -30,6 +30,7 @@
 package org.sosy_lab.llvm_j;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** A wrapper around a function value in LLVM */
@@ -65,7 +66,7 @@ public final class Function extends Value implements Iterable<BasicBlock> {
 
         return tmp;
       }
-      throw new UnsupportedOperationException();
+      throw new NoSuchElementException();
     }
 
     @Override

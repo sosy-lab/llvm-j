@@ -30,6 +30,7 @@
 package org.sosy_lab.llvm_j;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.sosy_lab.llvm_j.Utils.checkLlvmState;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
@@ -334,9 +335,15 @@ public class Value {
     }
   }
 
-  /** Cast this value to a {@link Function}. */
-  public Function asFunction() {
-    assert isFunction();
+  /**
+   * Cast this value to a {@link Function} object. Only works if this value represents an LLVM
+   * function.
+   *
+   * @throws LLVMException if this value does not represent an LLVM function
+   * @see #isFunction()
+   */
+  public Function asFunction() throws LLVMException {
+    checkLlvmState(isFunction(), "Value is not a function: " + this);
     return new Function(value);
   }
 
@@ -729,8 +736,15 @@ public class Value {
     }
   }
 
-  public Value getReturnValue() {
-    assert isReturnInst();
+  /**
+   * Returns the return value of this return instruction. Only works if this value is a return
+   * instruction.
+   *
+   * @throws LLVMException if this value is not a return instruction
+   * @see #isReturnInst()
+   */
+  public Value getReturnValue() throws LLVMException {
+    checkLlvmState(isReturnInst(), "Value is not a return instruction: " + this);
 
     if (getNumOperands() > 0) {
       return getOperand(0);
@@ -939,6 +953,11 @@ public class Value {
    * @param index index of the operand to return
    */
   public Value getOperand(int index) {
+    int numOperands = getNumOperands();
+    if (numOperands <= index) {
+      throw new IndexOutOfBoundsException(
+          "Index " + index + " out of bounds for " + numOperands + " operands");
+    }
     return new Value(LLVMLibrary.LLVMGetOperand(value, index));
   }
 
@@ -953,20 +972,42 @@ public class Value {
     return LLVMLibrary.LLVMGetNumOperands(value);
   }
 
-  /** Returns the number of argument operands for this function call. */
-  public int getNumArgOperands() {
-    assert isCallInst();
+  /**
+   * Returns the number of argument operands for this function call.
+   *
+   * @throws LLVMException if this value is not a function call instruction
+   * @see #isCallInst()
+   */
+  public int getNumArgOperands() throws LLVMException {
+    checkLlvmState(isCallInst(), "Value is not a call instruction: " + this);
     return LLVMLibrary.LLVMGetNumArgOperands(value);
   }
 
-  /** Returns the number of indices given to an ExtractValue or InsertValue instruction. */
-  public int getNumIndices() {
-    assert isExtractValueInst();
+  /**
+   * Returns the number of indices given to an ExtractValue or InsertValue instruction.
+   *
+   * @throws LLVMException if this value is not an extractValue or insertValue instruction
+   * @see #isExtractValueInst()
+   * @see #isInsertValueInst()
+   */
+  public int getNumIndices() throws LLVMException {
+    checkLlvmState(
+        isExtractValueInst() || isInsertValueInst(),
+        "Value is not an extractValue or insertValue instruction: " + this);
     return LLVMLibrary.LLVMGetNumIndices(value);
   }
 
-  /** Returns the list of indices given to an ExtractValue or InsertValue instruction. */
-  public List<Integer> getIndices() {
+  /**
+   * Returns the list of indices given to an ExtractValue or InsertValue instruction.
+   *
+   * @throws LLVMException if this value is not an extractValue or insertValue instruction
+   * @see #isExtractValueInst()
+   * @see #isInsertValueInst()
+   */
+  public List<Integer> getIndices() throws LLVMException {
+    checkLlvmState(
+        isExtractValueInst() || isInsertValueInst(),
+        "Value is not an extractValue or insertValue instruction: " + this);
     int length = getNumIndices();
     Pointer arrayPointer = LLVMLibrary.LLVMGetIndices(value);
     List<Integer> indices = new ArrayList<>(length);
@@ -976,15 +1017,31 @@ public class Value {
     return indices;
   }
 
-  /** Returns the argument operand at the specified index */
-  public Value getArgOperand(int index) {
-    assert getNumArgOperands() > index;
+  /**
+   * Returns the argument operand at the specified index.
+   *
+   * @throws LLVMException if this value is not a function call instruction
+   * @see #isCallInst()
+   */
+  public Value getArgOperand(int index) throws LLVMException {
+    int numArgOperands = getNumArgOperands();
+    if (numArgOperands <= index) {
+      throw new IndexOutOfBoundsException(
+          "Index " + index + " out of bounds for " + numArgOperands + " arg operands");
+    }
+    ;
     return getOperand(index);
   }
 
-  /** Returns the function called by this call instruction */
-  public Value getCalledFunction() {
-    assert isCallInst();
+  /**
+   * Returns the function called by this call instruction. Only works if this value is a call
+   * instruction.
+   *
+   * @throws LLVMException if this value is not a function call instruction
+   * @see #isCallInst()
+   */
+  public Value getCalledFunction() throws LLVMException {
+    checkLlvmState(isCallInst(), "Value not a call instruction: " + this);
     return new Value(LLVMLibrary.LLVMGetCalledValue(value));
   }
 
@@ -1056,8 +1113,14 @@ public class Value {
     return Utils.llvmBoolToJavaBool(b);
   }
 
-  public Value getCondition() {
-    assert isConditional();
+  /**
+   * Returns the condition of this conditional. Only works if the value is a conditional.
+   *
+   * @throws LLVMException if this value is not a conditional
+   * @see #isConditional()
+   */
+  public Value getCondition() throws LLVMException {
+    checkLlvmState(isConditional(), "Value not a conditional: " + this);
     return new Value(LLVMLibrary.LLVMGetCondition(value));
   }
 
@@ -1546,9 +1609,10 @@ public class Value {
    * termination instruction.
    *
    * @see #isTerminatorInst()
+   * @throws LLVMException if this value is not a termination instruction
    */
-  public int getNumSuccessors() {
-    assert isTerminatorInst();
+  public int getNumSuccessors() throws LLVMException {
+    checkLlvmState(isTerminatorInst(), "Value not termination instruction: " + this);
     return LLVMLibrary.LLVMGetNumSuccessors(value);
   }
 
@@ -1558,9 +1622,10 @@ public class Value {
    *
    * @param i index of the successor that should be returned
    * @see #isTerminatorInst()
+   * @throws LLVMException if this value is not a termination instruction
    */
-  public BasicBlock getSuccessor(int i) {
-    assert isTerminatorInst();
+  public BasicBlock getSuccessor(int i) throws LLVMException {
+    checkLlvmState(isTerminatorInst(), "Value not termination instruction: " + this);
     return new BasicBlock(LLVMLibrary.LLVMGetSuccessor(value, i));
   }
 }

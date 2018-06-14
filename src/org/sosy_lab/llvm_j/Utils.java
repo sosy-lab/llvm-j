@@ -30,9 +30,8 @@
 package org.sosy_lab.llvm_j;
 
 import com.sun.jna.Pointer;
-import org.sosy_lab.llvm_j.binding.LLVMLibrary;
-
 import javax.annotation.Nullable;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /** Util methods for the llvm parser. */
 public final class Utils {
@@ -57,6 +56,18 @@ public final class Utils {
       long bAsInt = Pointer.nativeValue(boolAsPointer);
       assert bAsInt == 0 || bAsInt == 1;
       return bAsInt == 1;
+    }
+  }
+
+  static void checkLlvmState(boolean pState) throws LLVMException {
+    if (!pState) {
+      throw new LLVMException("Invalid state");
+    }
+  }
+
+  static void checkLlvmState(boolean pState, String pMessage) throws LLVMException {
+    if (!pState) {
+      throw new LLVMException(pMessage);
     }
   }
 }

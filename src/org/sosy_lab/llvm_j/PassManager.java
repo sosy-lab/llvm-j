@@ -71,9 +71,11 @@ public final class PassManager {
   }
 
   /**
-   * Finalizes all of the function passes scheduled in in the function pass manager. Returns 1 if
-   * any of the passes modified the module, 0 otherwise. Frees the memory of a pass pipeline. For
-   * function pipelines, does not free the module provider.
+   * Finalizes all of the function passes scheduled in in the function pass manager. Frees the
+   * memory of a pass pipeline. For function pipelines, does not free the module provider.
+   *
+   * @throws LLVMException if an error occurs in the underlying LLVM pass manager during its
+   *     finalization
    */
   public void dispose() throws LLVMException {
     LLVMLibrary.LLVMBool successB = LLVMLibrary.LLVMFinalizeFunctionPassManager(manager);
@@ -89,8 +91,10 @@ public final class PassManager {
   // public static native int LLVMRunPassManager(LLVMPassManagerRef pm, LLVMModuleRef m);
 
   /**
-   * Initializes all of the function passes scheduled in the function pass manager. Returns 1 if any
-   * of the passes modified the module, 0 otherwise.
+   * Initializes all of the function passes scheduled in the function pass manager.
+   *
+   * @throws LLVMException if an error occurs in the underlying LLVM pass manager during its
+   *     initialization
    */
   public void initialize() throws LLVMException {
     LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMInitializeFunctionPassManager(manager);
@@ -105,7 +109,7 @@ public final class PassManager {
    * pass manager.
    *
    * @param m module to run on
-   * @throws LLVMException if error occurs in underlying LLVM run pass manager.
+   * @throws LLVMException if error occurs in the underlying LLVM run pass manager.
    */
   public void runForModule(Module m) throws LLVMException {
     LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMRunPassManager(manager, m.getModule());
@@ -120,7 +124,7 @@ public final class PassManager {
    * function.
    *
    * @param f function to run on
-   * @throws LLVMException if error occurs in underlying LLVM function pass manager.
+   * @throws LLVMException if an error occurs in the underlying LLVM function pass manager.
    */
   public void runForFunction(Function f) throws LLVMException {
     LLVMLibrary.LLVMBool errB = LLVMLibrary.LLVMRunFunctionPassManager(manager, f.value());
