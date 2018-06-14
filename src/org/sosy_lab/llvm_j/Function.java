@@ -42,7 +42,7 @@ public final class Function extends Value implements Iterable<BasicBlock> {
 
   private class FunctionIterator implements Iterator<BasicBlock> {
     private BasicBlock current;
-    private BasicBlock last;
+    private final BasicBlock last;
 
     FunctionIterator() {
       current = Function.this.getFirstBasicBlock();
