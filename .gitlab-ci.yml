@@ -28,6 +28,13 @@ unit-tests:jdk-9:
     - build:jdk-9
     - download-lib
 
+unit-tests:jdk-10:
+  script: "ant $ANT_PROPS_TEST -verbose unit-tests"
+  dependencies:
+    - build-dependencies
+    - build:jdk-10
+    - download-lib
+
 bindings-build:
   # Put in stage 'checks' to make other checks not dependent on its failure
   stage: checks
