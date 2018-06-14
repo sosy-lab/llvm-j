@@ -5,7 +5,6 @@ variables:
   PROJECT_PATH: "sosy-lab/software/llvm-j"
   GH_REF: "github.com/sosy-lab/llvm-j"
 
-
 download-lib:
   stage: dependencies
   script: "ant -verbose download-library -Dllvm.version=$LLVM_VERSION"
@@ -28,3 +27,12 @@ unit-tests:jdk-9:
     - build-dependencies
     - build:jdk-9
     - download-lib
+
+bindings-build:
+  # Put in stage 'checks' to make other checks not dependent on its failure
+  stage: checks
+  dependencies:
+    - build-dependencies
+  script:
+    - "ant bindings -Dllvm.home=/usr/include/llvm-c-3.9/llvm-c"
+    - "git diff --exit-code"
