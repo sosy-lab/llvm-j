@@ -292,7 +292,7 @@ public class Value {
     }
   }
 
-  private LLVMLibrary.LLVMValueRef value;
+  private final LLVMLibrary.LLVMValueRef value;
 
   LLVMLibrary.LLVMValueRef value() {
     return value;

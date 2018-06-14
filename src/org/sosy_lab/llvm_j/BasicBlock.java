@@ -41,7 +41,7 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
  */
 public final class BasicBlock implements Iterable<Value> {
 
-  private LLVMLibrary.LLVMBasicBlockRef bb;
+  private final LLVMLibrary.LLVMBasicBlockRef bb;
 
   LLVMLibrary.LLVMBasicBlockRef bb() {
     return bb;
@@ -132,7 +132,7 @@ public final class BasicBlock implements Iterable<Value> {
 
   private class BasicBlockIterator implements Iterator<Value> {
     private Value current;
-    private Value last;
+    private final Value last;
 
     BasicBlockIterator() {
       current = BasicBlock.this.getFirstInstruction();

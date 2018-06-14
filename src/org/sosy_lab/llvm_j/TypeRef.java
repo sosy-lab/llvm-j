@@ -80,7 +80,7 @@ public class TypeRef {
     Token,
   }
 
-  private LLVMLibrary.LLVMTypeRef type;
+  private final LLVMLibrary.LLVMTypeRef type;
 
   public LLVMLibrary.LLVMTypeRef type() {
     return type;

@@ -63,9 +63,9 @@ public class ModuleTest {
   public void test_parseBitcode_noContext_valid() throws LLVMException {
     String llvmFile = "build/test.bc";
 
-    Module m = Module.parseIR(llvmFile);
-
-    expectComponentsExist(m);
+    try (Module m = Module.parseIR(llvmFile)) {
+      expectComponentsExist(m);
+    }
   }
 
   @Test
@@ -73,27 +73,27 @@ public class ModuleTest {
   public void test_parseLl_noContext_valid() throws LLVMException {
     String llvmFile = "build/test.ll";
 
-    Module m = Module.parseIR(llvmFile);
-
-    expectComponentsExist(m);
+    try (Module m = Module.parseIR(llvmFile)) {
+      expectComponentsExist(m);
+    }
   }
 
   @Test
   public void test_parseBitcode_withContext_valid() throws LLVMException {
     String llvmFile = "build/test.bc";
 
-    Module m = Module.parseIR(llvmFile, context);
-
-    expectComponentsExist(m);
+    try (Module m = Module.parseIR(llvmFile, context)) {
+      expectComponentsExist(m);
+    }
   }
 
   @Test
   public void test_parseLl_withContext_valid() throws LLVMException {
     String llvmFile = "build/test.ll";
 
-    Module m = Module.parseIR(llvmFile, context);
-
-    expectComponentsExist(m);
+    try (Module m = Module.parseIR(llvmFile, context)) {
+      expectComponentsExist(m);
+    }
   }
 
   /** Check that basic components of the provided {@link Module} exist. */

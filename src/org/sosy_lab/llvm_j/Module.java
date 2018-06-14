@@ -378,7 +378,7 @@ public final class Module implements Iterable<Value>, Closeable {
 
   private class ModuleIterator implements Iterator<Value> {
     private Value current;
-    private Value last;
+    private final Value last;
 
     ModuleIterator() {
       current = Module.this.getFirstFunction();
