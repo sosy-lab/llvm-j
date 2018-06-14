@@ -38,6 +38,9 @@ import com.sun.jna.NativeLibrary;
 import com.sun.jna.NativeMappedConverter;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
+
+import java.io.Closeable;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
@@ -47,14 +50,14 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 /**
  * The main container class for the LLVM Intermediate Representation.
  *
- * <p>Resources of this class always have to be freed using {@link #dispose()} to avoid memory
- * leaks.
+ * <p>Resources of this class always have to be freed using {@link #close()} to avoid memory
+ * leaks. It is advised to use the try-with construct to ensure this
  *
  * <p>Suppress the warning about JavaLangClash, as we really want this class to be named Module as
  * in the C++ LLVM API.
  */
 @SuppressWarnings("JavaLangClash")
-public final class Module implements Iterable<Value> {
+public final class Module implements Iterable<Value>, Closeable {
 
   private LLVMLibrary.LLVMModuleRef module;
   private String fileName;
@@ -187,9 +190,9 @@ public final class Module implements Iterable<Value> {
 
   /**
    * Creates a new, empty module in the global context.<br>
-   * Every invocation should be paired with {link #dispose()} or memory will be leaked.
+   * Every invocation should be paired with {link #close()} or memory will be leaked.
    *
-   * <p>To avoid memory leaks, a model always has to be disposed of using {@link #dispose()} after
+   * <p>To avoid memory leaks, a model always has to be disposed of using {@link #close()} after
    * use.
    *
    * @param moduleID the name of the new module
@@ -201,9 +204,9 @@ public final class Module implements Iterable<Value> {
 
   /**
    * Creates a new, empty module in a specific context.<br>
-   * Every invocation should be paired with {@link #dispose()} or memory will be leaked.
+   * Every invocation should be paired with {@link #close()} or memory will be leaked.
    *
-   * <p>To avoid memory leaks, a model always has to be disposed of using {@link #dispose()} after
+   * <p>To avoid memory leaks, a model always has to be disposed of using {@link #close()} after
    * use.
    *
    * @param moduleID the name of the new module
@@ -218,7 +221,7 @@ public final class Module implements Iterable<Value> {
   /**
    * Creates a module representing the global parent of the given {@link Value}.
    *
-   * <p>To avoid memory leaks, a model always has to be disposed of using {@link #dispose()} after
+   * <p>To avoid memory leaks, a model always has to be disposed of using {@link #close()} after
    * use.
    */
   public static Module createGlobalParentOf(Value pValue) {
@@ -228,10 +231,12 @@ public final class Module implements Iterable<Value> {
   /**
    * Destroys this module instance.<br>
    * This must be called for every created module or memory will be leaked.
+   *
+   * @deprecated Use {@link #close()} instead
    */
+  @Deprecated
   public void dispose() {
-    LLVMLibrary.LLVMDisposeModule(module);
-    module = null;
+    close();
   }
 
   /** Returns the origin of this module, i.e., its source file name. */
@@ -361,6 +366,16 @@ public final class Module implements Iterable<Value> {
     } catch (java.lang.IllegalArgumentException e) {
       return null;
     }
+  }
+
+  /**
+   * Destroys this module instance.<br>
+   * This must be called for every created module or memory will be leaked.
+   */
+  @Override
+  public void close() {
+    LLVMLibrary.LLVMDisposeModule(module);
+    module = null;
   }
 
   private class ModuleIterator implements Iterator<Value> {

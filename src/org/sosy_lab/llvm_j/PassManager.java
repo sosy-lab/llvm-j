@@ -33,8 +33,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
-/** Pass manager. Always has to be disposed of with {@link #dispose()} to avoid memory leaks. */
-public final class PassManager {
+import java.io.Closeable;
+import java.io.IOException;
+
+/** Pass manager. Always has to be disposed of with {@link #close()} to avoid memory leaks. */
+public final class PassManager implements Closeable {
 
   private LLVMLibrary.LLVMPassManagerRef manager;
 
@@ -74,17 +77,13 @@ public final class PassManager {
    * Finalizes all of the function passes scheduled in in the function pass manager. Frees the
    * memory of a pass pipeline. For function pipelines, does not free the module provider.
    *
-   * @throws LLVMException if an error occurs in the underlying LLVM pass manager during its
+   * @throws IOException if an error occurs in the underlying LLVM pass manager during its
    *     finalization
+   * @deprecated use {@link #close()} instead
    */
-  public void dispose() throws LLVMException {
-    LLVMLibrary.LLVMBool successB = LLVMLibrary.LLVMFinalizeFunctionPassManager(manager);
-    boolean success = Utils.llvmBoolToJavaBool(successB);
-    LLVMLibrary.LLVMDisposePassManager(manager);
-    manager = null;
-    if (success) {
-      throw new LLVMException("error in LLVMFinalizeFunctionPassManager");
-    }
+  @Deprecated
+  public void dispose() throws IOException {
+    close();
   }
 
   /* PassManager */
@@ -289,5 +288,16 @@ public final class PassManager {
 
   public void addVerifierPass() {
     LLVMLibrary.LLVMAddVerifierPass(manager);
+  }
+
+  @Override
+  public void close() throws IOException {
+    LLVMLibrary.LLVMBool successB = LLVMLibrary.LLVMFinalizeFunctionPassManager(manager);
+    boolean success = Utils.llvmBoolToJavaBool(successB);
+    LLVMLibrary.LLVMDisposePassManager(manager);
+    manager = null;
+    if (success) {
+      throw new IOException(new LLVMException("error in LLVMFinalizeFunctionPassManager"));
+    }
   }
 }
