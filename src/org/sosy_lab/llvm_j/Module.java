@@ -38,9 +38,7 @@ import com.sun.jna.NativeLibrary;
 import com.sun.jna.NativeMappedConverter;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
-
 import java.io.Closeable;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
