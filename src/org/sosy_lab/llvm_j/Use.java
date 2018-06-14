@@ -33,7 +33,7 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 public class Use {
 
-  private LLVMLibrary.LLVMUseRef useRef;
+  private final LLVMLibrary.LLVMUseRef useRef;
 
   Use(LLVMLibrary.LLVMUseRef use) {
     checkNotNull(use);
