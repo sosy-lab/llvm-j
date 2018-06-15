@@ -59,15 +59,15 @@ public final class Utils {
     }
   }
 
-  static void checkLlvmState(boolean pState) throws LLVMException {
+  static void checkLlvmState(boolean pState) {
     if (!pState) {
-      throw new LLVMException("Invalid state");
+      throw new IllegalStateException("Invalid state");
     }
   }
 
-  static void checkLlvmState(boolean pState, String pMessage) throws LLVMException {
+  static void checkLlvmState(boolean pState, String pMessage) {
     if (!pState) {
-      throw new LLVMException(pMessage);
+      throw new IllegalStateException(pMessage);
     }
   }
 }

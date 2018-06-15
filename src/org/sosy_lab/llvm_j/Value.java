@@ -336,10 +336,10 @@ public class Value {
    * Cast this value to a {@link Function} object. Only works if this value represents an LLVM
    * function.
    *
-   * @throws LLVMException if this value does not represent an LLVM function
+   * @throws IllegalStateException if this value does not represent an LLVM function
    * @see #isFunction()
    */
-  public Function asFunction() throws LLVMException {
+  public Function asFunction() {
     checkLlvmState(isFunction(), "Value is not a function: " + this);
     return new Function(value);
   }
@@ -737,10 +737,10 @@ public class Value {
    * Returns the return value of this return instruction. Only works if this value is a return
    * instruction.
    *
-   * @throws LLVMException if this value is not a return instruction
+   * @throws IllegalStateException if this value is not a return instruction
    * @see #isReturnInst()
    */
-  public Value getReturnValue() throws LLVMException {
+  public Value getReturnValue() {
     checkLlvmState(isReturnInst(), "Value is not a return instruction: " + this);
 
     if (getNumOperands() > 0) {
@@ -972,10 +972,10 @@ public class Value {
   /**
    * Returns the number of argument operands for this function call.
    *
-   * @throws LLVMException if this value is not a function call instruction
+   * @throws IllegalStateException if this value is not a function call instruction
    * @see #isCallInst()
    */
-  public int getNumArgOperands() throws LLVMException {
+  public int getNumArgOperands() {
     checkLlvmState(isCallInst(), "Value is not a call instruction: " + this);
     return LLVMLibrary.LLVMGetNumArgOperands(value);
   }
@@ -983,11 +983,11 @@ public class Value {
   /**
    * Returns the number of indices given to an ExtractValue or InsertValue instruction.
    *
-   * @throws LLVMException if this value is not an extractValue or insertValue instruction
+   * @throws IllegalStateException if this value is not an extractValue or insertValue instruction
    * @see #isExtractValueInst()
    * @see #isInsertValueInst()
    */
-  public int getNumIndices() throws LLVMException {
+  public int getNumIndices() {
     checkLlvmState(
         isExtractValueInst() || isInsertValueInst(),
         "Value is not an extractValue or insertValue instruction: " + this);
@@ -997,11 +997,11 @@ public class Value {
   /**
    * Returns the list of indices given to an ExtractValue or InsertValue instruction.
    *
-   * @throws LLVMException if this value is not an extractValue or insertValue instruction
+   * @throws IllegalStateException if this value is not an extractValue or insertValue instruction
    * @see #isExtractValueInst()
    * @see #isInsertValueInst()
    */
-  public List<Integer> getIndices() throws LLVMException {
+  public List<Integer> getIndices() {
     checkLlvmState(
         isExtractValueInst() || isInsertValueInst(),
         "Value is not an extractValue or insertValue instruction: " + this);
@@ -1033,10 +1033,10 @@ public class Value {
    * Returns the function called by this call instruction. Only works if this value is a call
    * instruction.
    *
-   * @throws LLVMException if this value is not a function call instruction
+   * @throws IllegalStateException if this value is not a function call instruction
    * @see #isCallInst()
    */
-  public Value getCalledFunction() throws LLVMException {
+  public Value getCalledFunction() {
     checkLlvmState(isCallInst(), "Value not a call instruction: " + this);
     return new Value(LLVMLibrary.LLVMGetCalledValue(value));
   }
@@ -1112,10 +1112,10 @@ public class Value {
   /**
    * Returns the condition of this conditional. Only works if the value is a conditional.
    *
-   * @throws LLVMException if this value is not a conditional
+   * @throws IllegalStateException if this value is not a conditional
    * @see #isConditional()
    */
-  public Value getCondition() throws LLVMException {
+  public Value getCondition() {
     checkLlvmState(isConditional(), "Value not a conditional: " + this);
     return new Value(LLVMLibrary.LLVMGetCondition(value));
   }
@@ -1605,9 +1605,9 @@ public class Value {
    * termination instruction.
    *
    * @see #isTerminatorInst()
-   * @throws LLVMException if this value is not a termination instruction
+   * @throws IllegalStateException if this value is not a termination instruction
    */
-  public int getNumSuccessors() throws LLVMException {
+  public int getNumSuccessors() {
     checkLlvmState(isTerminatorInst(), "Value not termination instruction: " + this);
     return LLVMLibrary.LLVMGetNumSuccessors(value);
   }
@@ -1618,9 +1618,9 @@ public class Value {
    *
    * @param i index of the successor that should be returned
    * @see #isTerminatorInst()
-   * @throws LLVMException if this value is not a termination instruction
+   * @throws IllegalStateException if this value is not a termination instruction
    */
-  public BasicBlock getSuccessor(int i) throws LLVMException {
+  public BasicBlock getSuccessor(int i) {
     checkLlvmState(isTerminatorInst(), "Value not termination instruction: " + this);
     return new BasicBlock(LLVMLibrary.LLVMGetSuccessor(value, i));
   }

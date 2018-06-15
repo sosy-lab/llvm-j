@@ -140,9 +140,10 @@ public class TypeRef {
    * @param idx the index of the element to return the offset for
    * @param td the data layout to assume
    * @return the offset of the given element index from the address of this struct
-   * @throws LLVMException if this type is not a struct
+   * @throws IllegalStateException if this type is not a struct
+   * @see #getTypeKind()
    */
-  public long getOffsetOfElement(int idx, LLVMLibrary.LLVMTargetDataRef td) throws LLVMException {
+  public long getOffsetOfElement(int idx, LLVMLibrary.LLVMTargetDataRef td) {
     checkNotNull(td);
     checkLlvmState(getTypeKind().equals(TypeKind.Struct), "Type is not a struct");
     return LLVMLibrary.LLVMOffsetOfElement(td, type, idx);
@@ -157,23 +158,38 @@ public class TypeRef {
     return Context.getTypeContext(this);
   }
 
-  /** Get width of this type. This type has to be an integer type. */
-  public int getIntTypeWidth() throws LLVMException {
+  /**
+   * Get width of this type. This type has to be an integer type.
+   *
+   * @throws IllegalStateException if this type is not an integer type
+   * @see #getTypeKind()
+   */
+  public int getIntTypeWidth() {
     checkLlvmState(getTypeKind().equals(TypeKind.Integer), "Type is not an integer");
 
     return LLVMLibrary.LLVMGetIntTypeWidth(type);
   }
 
-  /** Returns whether this is a function type. */
-  public boolean isFunctionVarArg() throws LLVMException {
+  /**
+   * Returns whether this is a function with var args.
+   *
+   * @throws IllegalStateException if this type is not a function type
+   * @see #getTypeKind()
+   */
+  public boolean isFunctionVarArg() {
     checkLlvmState(getTypeKind().equals(TypeKind.Function), "Type is not a function");
 
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsFunctionVarArg(type);
     return Utils.llvmBoolToJavaBool(b);
   }
 
-  /** Returns the type this function type returns. Only works if this is a function type. */
-  public TypeRef getReturnType() throws LLVMException {
+  /**
+   * Returns the type this function type returns. Only works if this is a function type.
+   *
+   * @throws IllegalStateException if this type is not a function type
+   * @see #getTypeKind()
+   */
+  public TypeRef getReturnType() {
     checkLlvmState(getTypeKind().equals(TypeKind.Function), "Type is not a function");
 
     return new TypeRef(LLVMLibrary.LLVMGetReturnType(type));
@@ -182,16 +198,23 @@ public class TypeRef {
   /**
    * Returns the number of parameters this function type accepts. Only works if this is a function
    * type.
+   *
+   * @throws IllegalStateException if this type is not a function type s@see #getTypeKind()
    */
-  public int countParamTypes() throws LLVMException {
+  public int countParamTypes() {
     checkLlvmState(
         getTypeKind().equals(TypeKind.Function), "Type is not a function: " + getTypeKind());
 
     return LLVMLibrary.LLVMCountParamTypes(type);
   }
 
-  /** Returns the types of a function's parameters. Only works if this is a function type. */
-  public List<TypeRef> getParamTypes() throws LLVMException {
+  /**
+   * Returns the types of a function's parameters. Only works if this is a function type.
+   *
+   * @throws IllegalStateException if this type is not a function type
+   * @see #getTypeKind()
+   */
+  public List<TypeRef> getParamTypes() {
     checkLlvmState(getTypeKind().equals(TypeKind.Function), "Type is not a function");
 
     int paramCount = countParamTypes();
@@ -217,14 +240,22 @@ public class TypeRef {
   /**
    * Get the number of elements defined inside this structure type. Only works if this is a
    * structure type.
+   *
+   * @throws IllegalStateException if this type is not a struct type
+   * @see #getTypeKind()
    */
-  public int countStructElementTypes() throws LLVMException {
+  public int countStructElementTypes() {
     checkLlvmState(getTypeKind().equals(TypeKind.Struct), "Type is not a struct");
     return LLVMLibrary.LLVMCountStructElementTypes(type);
   }
 
-  /** Get the elements within this structure. Only works if this is a structure type. */
-  public List<TypeRef> getStructElementTypes() throws LLVMException {
+  /**
+   * Get the elements within this structure. Only works if this is a structure type.
+   *
+   * @throws IllegalStateException if this type is not a struct type
+   * @see #getTypeKind()
+   */
+  public List<TypeRef> getStructElementTypes() {
     checkLlvmState(getTypeKind().equals(TypeKind.Struct), "Type is not a struct");
 
     int memberCount = countStructElementTypes();
@@ -258,24 +289,34 @@ public class TypeRef {
    * Return the name of this type. This type has to be a named struct.
    *
    * @return the name of this type, if it is a named struct
-   * @throws LLVMException if this type is not a named struct
+   * @throws IllegalStateException if this type is not a named struct
    * @see #isStructNamed()
    */
-  public String getStructName() throws LLVMException {
+  public String getStructName() {
     checkLlvmState(isStructNamed(), "Type is not named struct");
 
     return LLVMLibrary.LLVMGetStructName(type);
   }
 
-  /** Determines whether this structure is packed. Only works if this is a structure type. */
-  public boolean isPackedStruct() throws LLVMException {
+  /**
+   * Determines whether this structure is packed. Only works if this is a structure type.
+   *
+   * @throws IllegalStateException if this type is not a struct type
+   * @see #getTypeKind()
+   */
+  public boolean isPackedStruct() {
     checkLlvmState(getTypeKind().equals(TypeKind.Struct), "Type is not a struct");
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsPackedStruct(type);
     return Utils.llvmBoolToJavaBool(b);
   }
 
-  /** Determines whether this structure is opaque. Only works if this is a structure type. */
-  public boolean isOpaqueStruct() throws LLVMException {
+  /**
+   * Determines whether this structure is opaque. Only works if this is a structure type.
+   *
+   * @throws IllegalStateException if this type is not a struct type
+   * @see #getTypeKind()
+   */
+  public boolean isOpaqueStruct() {
     checkLlvmState(getTypeKind().equals(TypeKind.Struct), "Type is not a struct");
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsOpaqueStruct(type);
     return Utils.llvmBoolToJavaBool(b);
@@ -284,8 +325,11 @@ public class TypeRef {
   /**
    * Returns the type of elements within this sequential type. This only works on array, vector, and
    * pointer types.
+   *
+   * @throws IllegalStateException if this type is not an array, vector or pointer type
+   * @see #getTypeKind()
    */
-  public TypeRef getElementType() throws LLVMException {
+  public TypeRef getElementType() {
     TypeKind typeKind = getTypeKind();
     checkLlvmState(
         typeKind.equals(TypeKind.Array)
@@ -299,27 +343,43 @@ public class TypeRef {
   /**
    * Returns the type of element at index idx.
    *
-   * <p>This must be a struct type.
+   * @throws IllegalStateException if this type is not a struct type
+   * @see #getTypeKind()
    */
-  public TypeRef getTypeAtIndex(int idx) throws LLVMException {
+  public TypeRef getTypeAtIndex(int idx) {
     checkLlvmState(getTypeKind().equals(TypeKind.Struct), "Type is not a struct");
     return new TypeRef(LLVMLibrary.LLVMStructGetTypeAtIndex(type, idx));
   }
 
-  /** Returns the length of this array type. This only works on array types. */
-  public int getArrayLength() throws LLVMException {
+  /**
+   * Returns the length of this array type. This only works on array types.
+   *
+   * @throws IllegalStateException if this type is not an array type
+   * @see #getTypeKind()
+   */
+  public int getArrayLength() {
     checkLlvmState(getTypeKind().equals(TypeKind.Array), "Type is not an array");
     return LLVMLibrary.LLVMGetArrayLength(type);
   }
 
-  /** Returns the address space of this pointer type. This only works on pointer types. */
-  public int getPointerAddressSpace() throws LLVMException {
+  /**
+   * Returns the address space of this pointer type. This only works on pointer types.
+   *
+   * @throws IllegalStateException if this type is not a pointer type
+   * @see #getTypeKind()
+   */
+  public int getPointerAddressSpace() {
     checkLlvmState(getTypeKind().equals(TypeKind.Pointer), "Type is not a pointer");
     return LLVMLibrary.LLVMGetPointerAddressSpace(type);
   }
 
-  /** Returns the number of elements in this vector type. This only works on vector types. */
-  public int getVectorSize() throws LLVMException {
+  /**
+   * Returns the number of elements in this vector type. This only works on vector types.
+   *
+   * @throws IllegalStateException if this type is not a vector type
+   * @see #getTypeKind()
+   */
+  public int getVectorSize() {
     checkLlvmState(getTypeKind().equals(TypeKind.Vector), "Type is not a vector");
     return LLVMLibrary.LLVMGetVectorSize(type);
   }
