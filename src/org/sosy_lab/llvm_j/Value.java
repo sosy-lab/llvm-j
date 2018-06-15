@@ -43,7 +43,7 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 /** Represents an individual value in LLVM IR. */
 public class Value {
 
-  /** LLVM IR operations */
+  /** LLVM IR operations. */
   public enum OpCode {
     Ret(1),
     Br(2),
@@ -121,7 +121,7 @@ public class Value {
     }
   }
 
-  /** Calling conventions of a function */
+  /** Calling conventions of a function. */
   public enum CallConv {
     CCallConv(0),
     FastCallConv(8),
@@ -142,27 +142,27 @@ public class Value {
     }
   }
 
-  /** Predicates for integer comparison */
+  /** Predicates for integer comparison. */
   public enum IntPredicate {
-    /** equal */
+    /** Predicate representing equal. */
     IntEQ(32),
-    /** not equal */
+    /** Predicate representing not equal. */
     IntNE(33),
-    /** unsigned greater than */
+    /** Predicate representing unsigned greater than. */
     IntUGT(34),
-    /** unsigned greater or equal */
+    /** Predicate representing unsigned greater or equal. */
     IntUGE(35),
-    /** unsigned less than */
+    /** Predicate representing unsigned less than. */
     IntULT(36),
-    /** unsigned less or equal */
+    /** Predicate representing unsigned less or equal. */
     IntULE(37),
-    /** signed greater than */
+    /** Predicate representing signed greater than. */
     IntSGT(38),
-    /** signed greater or equal */
+    /** Predicate representing signed greater or equal. */
     IntSGE(39),
-    /** signed less than */
+    /** Predicate representing signed less than. */
     IntSLT(40),
-    /** signed less or equal */
+    /** Predicate representing signed less or equal. */
     IntSLE(41);
 
     private final int value;
@@ -176,45 +176,42 @@ public class Value {
     }
   }
 
-  /** Possible types of linkage */
+  // FIXME: Some of below javadocs are referring to the ones above, which shouldn't be (e.g., "Same,
+  // but...")
+  /** Possible types of linkage. */
   public enum Linkage {
-    /** Externally visible function */
+    /** Externally visible function. */
     ExternalLinkage(0),
     AvailableExternallyLinkage(1),
-    /** Keep one copy of function when linking (inline) */
+    /** Keep one copy of function when linking (inline). */
     LinkOnceAnyLinkage(2),
-    /**
-     * Same, but only replaced by something<br>
-     * equivalent.
-     */
+    /** Same, but only replaced by something equivalent. */
     LinkOnceODRLinkage(3),
-    /** Obsolete */
+    /** Obsolete linkage. */
+    @Deprecated
     LinkOnceODRAutoHideLinkage(4),
-    /** Keep one copy of function when linking (weak) */
+    /** Keep one copy of function when linking (weak). */
     WeakAnyLinkage(5),
-    /**
-     * Same, but only replaced by something<br>
-     * equivalent.
-     */
+    /** Same, but only replaced by something equivalent. */
     WeakODRLinkage(6),
-    /** Special purpose, only applies to global arrays */
+    /** Special purpose, only applies to global arrays. */
     AppendingLinkage(7),
-    /**
-     * Rename collisions when linking (static<br>
-     * functions)
-     */
+    /** Rename collisions when linking (static functions). */
     InternalLinkage(8),
-    /** Like Internal, but omit from symbol table */
+    /** Like Internal, but omit from symbol table. */
     PrivateLinkage(9),
-    /** Obsolete */
+    /** Obsolete linkage. */
+    @Deprecated
     DLLImportLinkage(10),
-    /** Obsolete */
+    /** Obsolete linkage. */
+    @Deprecated
     DLLExportLinkage(11),
-    /** ExternalWeak linkage description */
+    /** ExternalWeak linkage description. */
     ExternalWeakLinkage(12),
-    /** Obsolete */
+    /** Obsolete linkage. */
+    @Deprecated
     GhostLinkage(13),
-    /** Tentative definitions */
+    /** Tentative definitions. */
     CommonLinkage(14),
     /** Like Private, but linker removes. */
     LinkerPrivateLinkage(15),
@@ -232,13 +229,13 @@ public class Value {
     }
   }
 
-  /** Visibility of functions and global variables */
+  /** Visibility of functions and global variables. */
   public enum Visibility {
-    /** The value is visible */
+    /** The value is visible. */
     Default(0),
-    /** The value is hidden */
+    /** The value is hidden. */
     Hidden(1),
-    /** The value is protected */
+    /** The value is protected. */
     Protected(2);
 
     private final int value;
@@ -252,7 +249,7 @@ public class Value {
     }
   }
 
-  /** Attributes that a function parameter may have */
+  /** Attributes that a function parameter may have. */
   public enum Attribute {
     ZExtAttribute(1),
     SExtAttribute(1 << 1),
@@ -1171,7 +1168,7 @@ public class Value {
     throw new AssertionError("Unhandled code id " + code);
   }
 
-  /** Returns the alignment of this value */
+  /** Returns the alignment of this value. */
   public int getAlignment() {
     return LLVMLibrary.LLVMGetAlignment(value);
   }
@@ -1191,7 +1188,7 @@ public class Value {
     return new Value(LLVMLibrary.LLVMGetInitializer(value));
   }
 
-  /** Returns whether this value is externally initialized */
+  /** Returns whether this value is externally initialized. */
   public boolean isExternallyInitialized() {
     LLVMLibrary.LLVMBool b = LLVMLibrary.LLVMIsExternallyInitialized(value);
     return Utils.llvmBoolToJavaBool(b);

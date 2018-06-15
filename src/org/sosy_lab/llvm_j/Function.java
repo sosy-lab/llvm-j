@@ -33,7 +33,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
-/** A wrapper around a function value in LLVM */
+/**
+ * A function in LLVM IR. Note that each function in LLVM is also a {@link Value}.
+ *
+ * @see Value#asFunction()
+ */
 public final class Function extends Value implements Iterable<BasicBlock> {
 
   Function(LLVMLibrary.LLVMValueRef value) {

@@ -39,44 +39,44 @@ import java.util.ArrayList;
 import java.util.List;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
-/** Each value in the LLVM IR has a type, an LLVMTypeRef. */
+/** Type of a value in the LLVM IR. */
 public class TypeRef {
 
-  /** Types in LLVM IR */
+  /** Types in LLVM IR. */
   public enum TypeKind {
-    /** Void, i.e., no type */
+    /** Void type, i.e., no type. */
     Void,
-    /** 16 bit floating point type */
+    /** 16 bit floating point type. */
     Half,
-    /** 32 bit floating point type */
+    /** 32 bit floating point type. */
     Float,
-    /** 64 bit floating point type */
+    /** 64 bit floating point type. */
     Double,
-    /** 80 bit floating point type (X87) */
+    /** 80 bit floating point type (X87). */
     X86_FP80,
-    /** 128 bit floating point type (112-bit mantissa) */
+    /** 128 bit floating point type (112-bit mantissa). */
     FP128,
-    /** 128 bit floating point type (two 64-bits) */
+    /** 128 bit floating point type (two 64-bits). */
     PPC_FP128,
-    /** Labels */
+    /** Label type. */
     Label,
-    /** Arbitrary bit width integers */
+    /** Type of arbitrary bit width integers. */
     Integer,
-    /** Functions */
+    /** Function type. */
     Function,
-    /** Structures */
+    /** Structure type. */
     Struct,
-    /** Arrays */
+    /** Array type. */
     Array,
-    /** Pointers */
+    /** Pointer type. */
     Pointer,
-    /** SIMD 'packed' format, or other vector type */
+    /** SIMD 'packed' format, or other vector type. */
     Vector,
-    /** Metadata */
+    /** Type of LLVM metadata. */
     Metadata,
-    /** X86 MMX */
+    /** X86 MMX type. */
     X86_MMX,
-    /** Tokens */
+    /** Type of tokens. */
     Token,
   }
 

@@ -49,7 +49,7 @@ import org.sosy_lab.llvm_j.binding.LLVMLibrary;
  * The main container class for the LLVM Intermediate Representation.
  *
  * <p>Resources of this class always have to be freed using {@link #close()} to avoid memory leaks.
- * It is advised to use the try-with construct to ensure this
+ * It is advised to use the try-with construct to ensure this.
  *
  * <p>Suppress the warning about JavaLangClash, as we really want this class to be named Module as
  * in the C++ LLVM API.
@@ -293,18 +293,18 @@ public final class Module implements Iterable<Value>, Closeable {
     return LLVMLibrary.LLVMWriteBitcodeToFile(module, path);
   }
 
-  /** Returns the module context */
+  /** Returns the module context. */
   public Context getModuleContext() {
     return Context.getModuleContext(this);
   }
 
-  /** Returns the named global in this module with the given name */
+  /** Returns the named global in this module with the given name. */
   public Value getNamedGlobal(String name) {
     checkNotNull(name);
     return new Value(LLVMLibrary.LLVMGetNamedGlobal(getModule(), name));
   }
 
-  /** Returns the first global value in this module */
+  /** Returns the first global value in this module. */
   public Value getFirstGlobal() {
     try {
       LLVMLibrary.LLVMValueRef ref = LLVMLibrary.LLVMGetFirstGlobal(getModule());
@@ -318,7 +318,7 @@ public final class Module implements Iterable<Value>, Closeable {
     }
   }
 
-  /** Returns the last global value in this module */
+  /** Returns the last global value in this module. */
   public Value getLastGlobal() {
     try {
       return new Value(LLVMLibrary.LLVMGetLastGlobal(getModule()));

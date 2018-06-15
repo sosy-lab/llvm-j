@@ -34,9 +34,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
-@SuppressWarnings(
-    "deprecation") // we want to close the context after all tests are run, and use #finalize() to
-// do so
+@SuppressWarnings({"deprecation", "FinalizeDeclaration"})
+// we want to close the context after all tests are run, and use #finalize() to do so
 public class PackageSanityTest extends AbstractPackageSanityTests {
 
   private final Context context;
