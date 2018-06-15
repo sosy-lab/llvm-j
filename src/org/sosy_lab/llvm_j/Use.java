@@ -2,7 +2,7 @@
  * llvm-j  is a library for parsing and modification of LLVM IR in Java.
  * This file is part of llvm-j.
  *
- * Copyright (C) 2017 Marek Chalupa, Dirk Beyer
+ * Copyright (C) 2017-2018 Marek Chalupa, Dirk Beyer
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining

@@ -4,7 +4,7 @@
  *
  * Copyright (C) 2012 Kevin Kelly
  * Copyright (C) 2013 Richard Lincoln
- * Copyright (C) 2017 Marek Chalupa, Dirk Beyer
+ * Copyright (C) 2017-2018 Marek Chalupa, Dirk Beyer
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
