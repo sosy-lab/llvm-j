@@ -30,5 +30,14 @@
 /**
  * Java bindings for LLVM library. The classes of this package provide proxy and util methods to the
  * original bindings contained in {@link org.sosy_lab.llvm_j.binding.LLVMLibrary}.
+ *
+ * <p>
+ * Before this library can be used, {@link org.sosy_lab.llvm_j.binding.LLVMLibrary#instantiate()} must be called.
+ * If you don't have LLVM-3.9 installed in one of the default lookup locations of {@link com.sun.jna.NativeLibrary},
+ * use {@link org.sosy_lab.llvm_j.Module#addLibraryLookupPaths(java.util.List)} to add additional candidate locations.
+ *
+ * <p>
+ * The method {@link org.sosy_lab.llvm_j.Context#create()} is usually the first method you will use. It automatically
+ * instantiates the library.
  */
 package org.sosy_lab.llvm_j;

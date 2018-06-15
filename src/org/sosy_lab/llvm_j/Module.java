@@ -46,14 +46,13 @@ import javax.annotation.Nullable;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /**
- * The main container class for the LLVM Intermediate Representation.
+ * A compilation unit of the LLVM Intermediate Representation (LLVM IR).
  *
  * <p>Resources of this class always have to be freed using {@link #close()} to avoid memory leaks.
  * It is advised to use the try-with construct to ensure this.
- *
- * <p>Suppress the warning about JavaLangClash, as we really want this class to be named Module as
- * in the C++ LLVM API.
  */
+// Suppress the warning about JavaLangClash, as we really want this class to be named Module as
+// in the C++ LLVM API.
 @SuppressWarnings("JavaLangClash")
 public final class Module implements Iterable<Value>, Closeable {
 
@@ -78,6 +77,7 @@ public final class Module implements Iterable<Value>, Closeable {
    *
    * @param pDirectories list of directories that may contain the LLVM library
    */
+  // FIXME: Is this really the right location for this method?
   public static void addLibraryLookupPaths(List<Path> pDirectories) {
     checkNotNull(pDirectories);
     for (Path p : pDirectories) {
