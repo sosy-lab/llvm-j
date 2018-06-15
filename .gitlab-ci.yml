@@ -12,9 +12,6 @@ download-lib:
     paths:
       - lib/native
 
-build:jdk-10:
-    allow_failure: true
-
 # Run unit tests without coverage and with dependency on download-lib
 unit-tests:jdk-8:
   script: "ant $ANT_PROPS_TEST -verbose unit-tests"
@@ -32,7 +29,6 @@ unit-tests:jdk-9:
 
 unit-tests:jdk-10:
   script: "ant $ANT_PROPS_TEST -verbose unit-tests"
-  allow_failure: true
   dependencies:
     - build-dependencies
     - build:jdk-10
