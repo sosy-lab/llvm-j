@@ -14,20 +14,20 @@
         </path>
         <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" uri="antlib:com.puppycrawl.tools.checkstyle.ant" classpathref="checkstyle.lib.path"/>
 
-        <cs:checkstyle config=".settings/checkstyle.xml">
+        <cs:checkstyle config="build/checkstyle.xml" classpathref="checkstyle.lib.path">
             <fileset dir="${source.dir}" includes="**/*.java" excludes="**/*Test.java **/*Test0.java **/*TestSuite.java **/LLVMLibrary.java"/>
             <formatter type="${checkstyle.output}" toFile="Checkstyle.xml"/>
         </cs:checkstyle>
 
-        <!--<cs:checkstyle config=".settings/checkstyle.test.xml">
+        <cs:checkstyle config="build/checkstyle.test.xml" classpathref="checkstyle.lib.path">
             <fileset dir="${source.dir}" includes="**/*Test.java **/*Test0.java **/*TestSuite.java"/>
             <formatter type="${checkstyle.output}" toFile="Checkstyle.Test.xml"/>
-        </cs:checkstyle>-->
+        </cs:checkstyle>
     </target>
 
     <target name="checkstyle-report">
         <xslt in="Checkstyle.xml" out="Checkstyle.html" style="build/checkstyle.xsl"/>
-        <!--<xslt in="Checkstyle.Test.xml" out="Checkstyle.Test.html" style="build/checkstyle.xsl"/>-->
+        <xslt in="Checkstyle.Test.xml" out="Checkstyle.Test.html" style="build/checkstyle.xsl"/>
     </target>
 
     <target name="checkstyle" depends="run-checkstyle, checkstyle-report" description="Run CheckStyle on source code" />
