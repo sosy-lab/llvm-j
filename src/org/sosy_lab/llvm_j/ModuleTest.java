@@ -46,10 +46,6 @@ public class ModuleTest {
     Path libraryPath = Paths.get("lib", "java", "runtime");
     List<Path> relevantLibDirs = ImmutableList.of(libraryPath);
     Module.addLibraryLookupPaths(relevantLibDirs);
-  }
-
-  @Before
-  public void setUp_context() {
     context = Context.create();
   }
 
