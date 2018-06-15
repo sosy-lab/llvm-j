@@ -127,54 +127,49 @@ public final class Module implements Iterable<Value>, Closeable {
     @Var LLVMLibrary.LLVMContextRef context = null;
     long messageBufferLength = 1000 * 1000; // bytes
     Pointer outMsgAddr = new Memory(messageBufferLength);
-    try {
-      context = pContext.context();
+    context = pContext.context();
 
-      /* read the module into a buffer */
-      PointerByReference pointerToBuffer = new PointerByReference();
-      LLVMLibrary.LLVMMemoryBufferRef pointerToBufferWrapped =
-          new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
-      PointerByReference outMsg = new PointerByReference(outMsgAddr);
-      @Var
-      LLVMLibrary.LLVMBool success =
-          LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(
-              path, pointerToBufferWrapped, outMsg);
-      if (Utils.llvmBoolToJavaBool(success)) {
-        String errorMessage = refToString(outMsg);
-        throw new LLVMException("Reading bitcode failed. " + errorMessage);
-      }
-      LLVMLibrary.LLVMMemoryBufferRef buffer =
-          new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getValue());
-
-      /* create a module from the memory buffer */
-      long moduleRefSize = getSize(LLVMLibrary.LLVMModuleRef.class);
-      PointerByReference pointerToModule = new PointerByReference(new Memory(moduleRefSize));
-      LLVMLibrary.LLVMModuleRef pointerToModuleWrapped =
-          new LLVMLibrary.LLVMModuleRef(pointerToModule.getPointer());
-
-      if (path.endsWith(".bc")) {
-        success = LLVMLibrary.LLVMParseBitcodeInContext2(context, buffer, pointerToModuleWrapped);
-        if (Utils.llvmBoolToJavaBool(success)) {
-          throw new LLVMException("Parsing bitcode failed");
-        }
-
-        /* free the buffer allocated by readFileToBuffer */
-        // FIXME: This returns a segfault when done for LLVMParseIRInContext. Why?
-        LLVMLibrary.LLVMDisposeMemoryBuffer(buffer);
-      } else {
-        success = LLVMLibrary.LLVMParseIRInContext(context, buffer, pointerToModuleWrapped, outMsg);
-        if (Utils.llvmBoolToJavaBool(success)) {
-          throw new LLVMException(
-              "Parsing bitcode (human-readable format) failed. " + refToString(outMsg));
-        }
-      }
-
-      LLVMLibrary.LLVMModuleRef module = new LLVMLibrary.LLVMModuleRef(pointerToModule.getValue());
-
-      return new Module(module, path);
-    } finally {
-      LLVMLibrary.LLVMDisposeMessage(outMsgAddr);
+    /* read the module into a buffer */
+    PointerByReference pointerToBuffer = new PointerByReference();
+    LLVMLibrary.LLVMMemoryBufferRef pointerToBufferWrapped =
+        new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
+    PointerByReference outMsg = new PointerByReference(outMsgAddr);
+    @Var
+    LLVMLibrary.LLVMBool success =
+        LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(path, pointerToBufferWrapped, outMsg);
+    if (Utils.llvmBoolToJavaBool(success)) {
+      String errorMessage = refToString(outMsg);
+      throw new LLVMException("Reading bitcode failed. " + errorMessage);
     }
+    LLVMLibrary.LLVMMemoryBufferRef buffer =
+        new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getValue());
+
+    /* create a module from the memory buffer */
+    long moduleRefSize = getSize(LLVMLibrary.LLVMModuleRef.class);
+    PointerByReference pointerToModule = new PointerByReference(new Memory(moduleRefSize));
+    LLVMLibrary.LLVMModuleRef pointerToModuleWrapped =
+        new LLVMLibrary.LLVMModuleRef(pointerToModule.getPointer());
+
+    if (path.endsWith(".bc")) {
+      success = LLVMLibrary.LLVMParseBitcodeInContext2(context, buffer, pointerToModuleWrapped);
+      if (Utils.llvmBoolToJavaBool(success)) {
+        throw new LLVMException("Parsing bitcode failed");
+      }
+
+      /* free the buffer allocated by readFileToBuffer */
+      // FIXME: This returns a segfault when done for LLVMParseIRInContext. Why?
+      LLVMLibrary.LLVMDisposeMemoryBuffer(buffer);
+    } else {
+      success = LLVMLibrary.LLVMParseIRInContext(context, buffer, pointerToModuleWrapped, outMsg);
+      if (Utils.llvmBoolToJavaBool(success)) {
+        throw new LLVMException(
+            "Parsing bitcode (human-readable format) failed. " + refToString(outMsg));
+      }
+    }
+
+    LLVMLibrary.LLVMModuleRef module = new LLVMLibrary.LLVMModuleRef(pointerToModule.getValue());
+
+    return new Module(module, path);
   }
 
   private static String refToString(PointerByReference pRef) {
