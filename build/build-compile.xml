@@ -38,27 +38,6 @@
         <depend srcdir="${source.dir}" destdir="${class.dir}"/>
         <mkdir dir="${source.generated.dir}"/>
 
-        <!-- Compile 'dirty', auto-generated LLVMLibrary.java with
-             less strict checks first, other code after that with strict
-             checks -->
-        <javac debug="true"
-               debuglevel="source,lines,vars"
-               srcdir="${source.dir}"
-               destdir="${class.dir}"
-               source="${source.format}"
-               target="${class.format}"
-               includeAntRuntime="false"
-               compiler="com.google.errorprone.ErrorProneAntCompilerAdapter"
-               encoding="UTF-8">
-            <include name="${bindings.file}" />
-            <classpath refid="classpath"/>
-            <compilerarg value="-Xlint"/>
-            <compilerarg value="-Xlint:-processing"/>
-            <compilerarg value="-Werror"/>
-            <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
-            <compilerclasspath refid="errorprone"/>
-        </javac>
-
         <copy todir="${class.dir}">
           <fileset dir="${source.dir}">
             <exclude name="**/*.java" />

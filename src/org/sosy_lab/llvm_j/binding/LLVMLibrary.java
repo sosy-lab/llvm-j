@@ -39,6 +39,7 @@ import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+import javax.annotation.Generated;
 import org.sosy_lab.llvm_j.binding.ext.NativeSize;
 import org.sosy_lab.llvm_j.binding.ext.NativeSizeByReference;
 
@@ -51,6 +52,7 @@ import org.sosy_lab.llvm_j.binding.ext.NativeSizeByReference;
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a
  * href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
+@Generated("JNAerator")
 public class LLVMLibrary implements Library {
   public static final String JNA_LIBRARY_NAME = "LLVM-3.9.1";
   public static final NativeLibrary JNA_NATIVE_LIB =

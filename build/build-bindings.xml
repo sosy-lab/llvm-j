@@ -43,6 +43,18 @@
         </concat>
         <move file="${llvm.bindings}-new" tofile="${llvm.bindings}" />
 
+        <!-- Add @Generated annotation -->
+        <replaceregexp file="${llvm.bindings}"
+            match="import (.*?);(.*?)/\*\*"
+            replace="import \1;${line.separator}import javax.annotation.Generated;${line.separator}\2/\*\*"
+            flags="gs"
+            byline="false" />
+
+        <replace file="${llvm.bindings}"
+                token="public class LLVMLibrary"
+                value="@Generated(&quot;JNAerator&quot;)${line.separator}public class LLVMLibrary" />
+
+
         <!-- Set concrete LLVM version to avoid conflicts -->
         <replace file="${llvm.bindings}"
                 token="JNA_LIBRARY_NAME = &quot;LLVM&quot;;"
@@ -65,7 +77,7 @@
                   */
                  public static void instantiate() {" />
 
-        <!-- Format and adjust invalid Javadoc -->
+        <!-- Adjust and format invalid Javadoc -->
         <antcall target="adjust-bindings-javadoc" />
 
         <!-- Format bindings to adhere to our styleguide as far as possible -->
