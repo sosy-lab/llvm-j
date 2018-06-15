@@ -125,7 +125,9 @@
     <module name="InnerAssignment"/>
     <module name="MultipleVariableDeclarations"/>
     <module name="NoClone"/>
-    <module name="NoFinalizer"/>
+    <module name="NoFinalizer">
+        <property name="severity" value="ignore"/>
+    </module>
     <module name="PackageDeclaration"/>
     <module name="SimplifyBooleanExpression"/>
     <module name="StringLiteralEquality"/>
