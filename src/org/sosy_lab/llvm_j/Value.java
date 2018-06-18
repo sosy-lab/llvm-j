@@ -1017,10 +1017,11 @@ public class Value {
   /**
    * Returns the argument operand at the specified index.
    *
-   * @throws LLVMException if this value is not a function call instruction
+   * @throws IllegalStateException if this value is not a function call instruction
    * @see #isCallInst()
    */
-  public Value getArgOperand(int index) throws LLVMException {
+  public Value getArgOperand(int index) {
+    checkLlvmState(isCallInst(), "Value is not a call instruction: " + this);
     int numArgOperands = getNumArgOperands();
     if (numArgOperands <= index) {
       throw new IndexOutOfBoundsException(
