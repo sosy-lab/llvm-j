@@ -132,11 +132,11 @@ deploy-coverage:
   dependencies:
     - unit-tests:jdk-8
   only:
+    refs:
+      - master
     variables:
       - $CI_PROJECT_PATH == $PROJECT_PATH # not on forks
   except:
-    refs:
-      - branches
     variables:
       - $CODACY_PROJECT_TOKEN == '' # required for job
       - $GH_TOKEN == '' # required for job
@@ -151,12 +151,12 @@ deploy-gh-pages:
     - build:jdk-8
     - javadoc
   only:
+    refs:
+      - master
     variables:
       - $CI_PROJECT_PATH == $PROJECT_PATH # not on forks
   # only: variables: elements form a disjunction, not a conjunction.
   # use except clause as a workaround.
   except:
-    refs:
-      - branches
     variables:
       - $GH_TOKEN == '' # required for job
