@@ -155,8 +155,6 @@ deploy-gh-pages:
       - master
     variables:
       - $CI_PROJECT_PATH == $PROJECT_PATH # not on forks
-  # only: variables: elements form a disjunction, not a conjunction.
-  # use except clause as a workaround.
   except:
     variables:
       - $GH_TOKEN == '' # required for job
