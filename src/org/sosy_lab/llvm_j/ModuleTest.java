@@ -57,7 +57,7 @@ public class ModuleTest {
   @Test
   @SuppressWarnings("deprecation")
   public void test_parseBitcode_noContext_valid() throws LLVMException {
-    String llvmFile = "build/test.bc";
+    Path llvmFile = Paths.get("build", "test.bc");
 
     try (Module m = Module.parseIR(llvmFile)) {
       expectComponentsExist(m);
@@ -67,7 +67,7 @@ public class ModuleTest {
   @Test
   @SuppressWarnings("deprecation")
   public void test_parseLl_noContext_valid() throws LLVMException {
-    String llvmFile = "build/test.ll";
+    Path llvmFile = Paths.get("build", "test.ll");
 
     try (Module m = Module.parseIR(llvmFile)) {
       expectComponentsExist(m);
@@ -76,7 +76,7 @@ public class ModuleTest {
 
   @Test
   public void test_parseBitcode_withContext_valid() throws LLVMException {
-    String llvmFile = "build/test.bc";
+    Path llvmFile = Paths.get("build", "test.bc");
 
     try (Module m = Module.parseIR(llvmFile, context)) {
       expectComponentsExist(m);
@@ -85,9 +85,51 @@ public class ModuleTest {
 
   @Test
   public void test_parseLl_withContext_valid() throws LLVMException {
-    String llvmFile = "build/test.ll";
+    Path llvmFile = Paths.get("build", "test.ll");
 
     try (Module m = Module.parseIR(llvmFile, context)) {
+      expectComponentsExist(m);
+    }
+  }
+
+  @Test
+  public void test_parseString_valid() throws LLVMException {
+     /*String llvmCode = "; ModuleID = 'test.bc'\n" +
+        "source_filename = \"test.c\"\n" +
+        "target datalayout = \"e-m:e-i64:64-f80:128-n8:16:32:64-S128\"\n" +
+        "target triple = \"x86_64-unknown-linux-gnu\"\n" +
+        "\n" +
+        "; Function Attrs: nounwind uwtable\n" +
+        "define i32 @main() #0 {\n" +
+        "  %1 = alloca i32, align 4\n" +
+        "  %2 = alloca i32, align 4\n" +
+        "  store i32 0, i32* %1, align 4\n" +
+        "  store i32 0, i32* %2, align 4\n" +
+        "  %3 = load i32, i32* %2, align 4\n" +
+        "  %4 = icmp sgt i32 %3, 0\n" +
+        "  br i1 %4, label %5, label %6\n" +
+        "\n" +
+        "; <label>:5:                                      ; preds = %0\n" +
+        "  store i32 -1, i32* %1, align 4\n" +
+        "  br label %7\n" +
+        "\n" +
+        "; <label>:6:                                      ; preds = %0\n" +
+        "  store i32 0, i32* %1, align 4\n" +
+        "  br label %7\n" +
+        "\n" +
+        "; <label>:7:                                      ; preds = %6, %5\n" +
+        "  %8 = load i32, i32* %1, align 4\n" +
+        "  ret i32 %8\n" +
+        "}\n" +
+        "\n" +
+        "attributes #0 = { nounwind uwtable \"disable-tail-calls\"=\"false\" \"less-precise-fpmad\"=\"false\" \"no-frame-pointer-elim\"=\"true\" \"no-frame-pointer-elim-non-leaf\" \"no-infs-fp-math\"=\"false\" \"no-jump-tables\"=\"false\" \"no-nans-fp-math\"=\"false\" \"no-signed-zeros-fp-math\"=\"false\" \"stack-protector-buffer-size\"=\"8\" \"target-cpu\"=\"x86-64\" \"target-features\"=\"+fxsr,+mmx,+sse,+sse2,+x87\" \"unsafe-fp-math\"=\"false\" \"use-soft-float\"=\"false\" }\n" +
+        "\n" +
+        "!llvm.ident = !{!0}\n" +
+        "\n" +
+        "!0 = !{!\"clang version 3.9.1 (tags/RELEASE_391/final)\"}\n";*/
+    String llvmCode = "define i32 main() #0 { %0 = alloca i32, align4\n ret i32 %0\n}\n";
+
+    try (Module m = Module.parseIRString(llvmCode, context)) {
       expectComponentsExist(m);
     }
   }

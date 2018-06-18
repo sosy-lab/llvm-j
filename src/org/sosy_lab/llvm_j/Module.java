@@ -29,21 +29,23 @@
 
 package org.sosy_lab.llvm_j;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.errorprone.annotations.Var;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;
 import com.sun.jna.NativeMappedConverter;
-import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
+import org.sosy_lab.llvm_j.binding.ext.NativeSize;
+
+import javax.annotation.Nullable;
 import java.io.Closeable;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
-import javax.annotation.Nullable;
-import org.sosy_lab.llvm_j.binding.LLVMLibrary;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A compilation unit of the LLVM Intermediate Representation (LLVM IR).
@@ -101,7 +103,7 @@ public final class Module implements Iterable<Value>, Closeable {
    */
   @Deprecated
   @SuppressWarnings("resource")
-  public static Module parseIR(String path) throws LLVMException {
+  public static Module parseIR(Path path) throws LLVMException {
     Context context = Context.create();
     return parseIR(path, context);
   }
@@ -119,24 +121,17 @@ public final class Module implements Iterable<Value>, Closeable {
    * @param pContext {@link Context} to use for parsing
    * @return the parsed LLVM module structure
    */
-  @SuppressWarnings("deprecation")
-  public static Module parseIR(String path, Context pContext) throws LLVMException {
+  public static Module parseIR(Path path, Context pContext) throws LLVMException {
     checkNotNull(path);
     checkNotNull(pContext);
 
-    @Var LLVMLibrary.LLVMContextRef context = null;
-    long messageBufferLength = 1000 * 1000; // bytes
-    Pointer outMsgAddr = new Memory(messageBufferLength);
-    context = pContext.context();
-
+    PointerByReference outMsg = getMessageBuffer();
     /* read the module into a buffer */
     PointerByReference pointerToBuffer = new PointerByReference();
     LLVMLibrary.LLVMMemoryBufferRef pointerToBufferWrapped =
         new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getPointer());
-    PointerByReference outMsg = new PointerByReference(outMsgAddr);
-    @Var
-    LLVMLibrary.LLVMBool success =
-        LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(path, pointerToBufferWrapped, outMsg);
+    @Var LLVMLibrary.LLVMBool success =
+        LLVMLibrary.LLVMCreateMemoryBufferWithContentsOfFile(path.toString(), pointerToBufferWrapped, outMsg);
     if (Utils.llvmBoolToJavaBool(success)) {
       String errorMessage = refToString(outMsg);
       throw new LLVMException("Reading bitcode failed. " + errorMessage);
@@ -144,32 +139,54 @@ public final class Module implements Iterable<Value>, Closeable {
     LLVMLibrary.LLVMMemoryBufferRef buffer =
         new LLVMLibrary.LLVMMemoryBufferRef(pointerToBuffer.getValue());
 
+    return parseContent(buffer, path.toString(), pContext);
+  }
+
+  public static Module parseIRString(String pCode, Context pContext) throws LLVMException {
+    checkNotNull(pCode);
+    checkNotNull(pContext);
+    checkArgument(!pCode.isEmpty());
+
+    long stringLength = ((long) pCode.length()) * Native.WCHAR_SIZE;
+    LLVMLibrary.LLVMBool trueValue = Utils.getLlvmTrue();
+    LLVMLibrary.LLVMMemoryBufferRef buffer =
+        LLVMLibrary.LLVMCreateMemoryBufferWithMemoryRange(pCode, new NativeSize(stringLength), "Input", trueValue);
+
+    return parseContent(buffer, "", pContext);
+  }
+
+  private static Module parseContent(LLVMLibrary.LLVMMemoryBufferRef pContent, String pFileName, Context pContext) throws LLVMException {
+    PointerByReference outMsg = getMessageBuffer();
+    LLVMLibrary.LLVMContextRef context = pContext.context();
+
     /* create a module from the memory buffer */
     long moduleRefSize = getSize(LLVMLibrary.LLVMModuleRef.class);
     PointerByReference pointerToModule = new PointerByReference(new Memory(moduleRefSize));
     LLVMLibrary.LLVMModuleRef pointerToModuleWrapped =
         new LLVMLibrary.LLVMModuleRef(pointerToModule.getPointer());
 
-    if (path.endsWith(".bc")) {
-      success = LLVMLibrary.LLVMParseBitcodeInContext2(context, buffer, pointerToModuleWrapped);
+    if (pFileName.endsWith(".bc")) {
+      LLVMLibrary.LLVMBool success = LLVMLibrary.LLVMParseBitcodeInContext2(context, pContent, pointerToModuleWrapped);
       if (Utils.llvmBoolToJavaBool(success)) {
         throw new LLVMException("Parsing bitcode failed");
       }
 
       /* free the buffer allocated by readFileToBuffer */
       // FIXME: This returns a segfault when done for LLVMParseIRInContext. Why?
-      LLVMLibrary.LLVMDisposeMemoryBuffer(buffer);
+      LLVMLibrary.LLVMDisposeMemoryBuffer(pContent);
     } else {
-      success = LLVMLibrary.LLVMParseIRInContext(context, buffer, pointerToModuleWrapped, outMsg);
+      LLVMLibrary.LLVMBool success = LLVMLibrary.LLVMParseIRInContext(context, pContent, pointerToModuleWrapped, outMsg);
       if (Utils.llvmBoolToJavaBool(success)) {
         throw new LLVMException(
             "Parsing bitcode (human-readable format) failed. " + refToString(outMsg));
       }
     }
 
-    LLVMLibrary.LLVMModuleRef module = new LLVMLibrary.LLVMModuleRef(pointerToModule.getValue());
+    return new Module(new LLVMLibrary.LLVMModuleRef(pointerToModule.getValue()), pFileName);
+  }
 
-    return new Module(module, path);
+  private static PointerByReference getMessageBuffer() {
+    return new PointerByReference();
   }
 
   private static String refToString(PointerByReference pRef) {

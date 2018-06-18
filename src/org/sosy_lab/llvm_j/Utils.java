@@ -30,8 +30,9 @@
 package org.sosy_lab.llvm_j;
 
 import com.sun.jna.Pointer;
-import javax.annotation.Nullable;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
+
+import javax.annotation.Nullable;
 
 /** Util methods for the llvm parser. */
 public final class Utils {
@@ -57,6 +58,12 @@ public final class Utils {
       assert bAsInt == 0 || bAsInt == 1;
       return bAsInt == 1;
     }
+  }
+
+  static LLVMLibrary.LLVMBool getLlvmTrue() {
+    // LLVMBool does actually read this as a constant, not as a pointer
+    Pointer pointerToTrue = Pointer.createConstant(1);
+    return new LLVMLibrary.LLVMBool(pointerToTrue);
   }
 
   static void checkLlvmState(boolean pState) {

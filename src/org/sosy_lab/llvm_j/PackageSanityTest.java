@@ -45,7 +45,7 @@ public class PackageSanityTest extends AbstractPackageSanityTests {
       List<Path> relevantLibDirs = ImmutableList.of(libraryPath);
       Module.addLibraryLookupPaths(relevantLibDirs);
       context = Context.create();
-      module = Module.parseIR("build/test.bc", context);
+      module = Module.parseIR(Paths.get("build", "test.bc"), context);
 
       BasicBlock b1 = module.getFirstFunction().getFirstBasicBlock();
       BasicBlock b2 = b1.getNextBasicBlock();
