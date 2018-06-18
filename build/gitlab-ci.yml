@@ -139,7 +139,9 @@ deploy-coverage:
   except:
     variables:
       - $CODACY_PROJECT_TOKEN == '' # required for job
+      - $CODACY_PROJECT_TOKEN == null
       - $GH_TOKEN == '' # required for job
+      - $GH_TOKEN == null
   cache:
     paths:
       - "codacy-coverage-reporter-assembly*.jar"
@@ -158,3 +160,4 @@ deploy-gh-pages:
   except:
     variables:
       - $GH_TOKEN == '' # required for job
+      - $GH_TOKEN == null
