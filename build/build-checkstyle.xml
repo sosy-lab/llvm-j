@@ -15,7 +15,7 @@
         <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" uri="antlib:com.puppycrawl.tools.checkstyle.ant" classpathref="checkstyle.lib.path"/>
 
         <cs:checkstyle config="build/checkstyle.xml" classpathref="checkstyle.lib.path">
-            <fileset dir="${source.dir}" includes="**/*.java" excludes="**/*Test.java **/*Test0.java **/*TestSuite.java **/LLVMLibrary.java"/>
+            <fileset dir="${source.dir}" includes="**/*.java" excludes="**/*Test.java **/*Test0.java **/*TestSuite.java"/>
             <formatter type="${checkstyle.output}" toFile="Checkstyle.xml"/>
         </cs:checkstyle>
 

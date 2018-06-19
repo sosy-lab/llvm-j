@@ -11,7 +11,6 @@
     <file-match-pattern match-pattern=".java$" include-pattern="true"/>
     <file-match-pattern match-pattern="Test(Suite|0)?.java$" include-pattern="false"/>
     <file-match-pattern match-pattern=".apt-generated" include-pattern="false"/>
-    <file-match-pattern match-pattern="LLVMLibrary.java" include-pattern="false"/>
   </fileset>
   <fileset name="Test classes" enabled="true" check-config-name="Test-Code Configuration" local="true">
     <file-match-pattern match-pattern="Test(Suite|0)?.java$" include-pattern="true"/>

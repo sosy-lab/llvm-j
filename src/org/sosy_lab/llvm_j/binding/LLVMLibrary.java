@@ -4,7 +4,7 @@
  *
  * Copyright (C) 2012 Kevin Kelly
  * Copyright (C) 2013 Richard Lincoln
- * Copyright (C) 2017 Marek Chalupa, Dirk Beyer
+ * Copyright (C) 2017-2018 Marek Chalupa, Dirk Beyer
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -39,7 +39,6 @@ import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
-import javax.annotation.Generated;
 import org.sosy_lab.llvm_j.binding.ext.NativeSize;
 import org.sosy_lab.llvm_j.binding.ext.NativeSizeByReference;
 
@@ -52,7 +51,8 @@ import org.sosy_lab.llvm_j.binding.ext.NativeSizeByReference;
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a
  * href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-@Generated("JNAerator")
+@javax.annotation.Generated("JNAerator")
+@SuppressWarnings("all")
 public class LLVMLibrary implements Library {
   public static final String JNA_LIBRARY_NAME = "LLVM-3.9.1";
   public static final NativeLibrary JNA_NATIVE_LIB =

@@ -43,16 +43,10 @@
         </concat>
         <move file="${llvm.bindings}-new" tofile="${llvm.bindings}" />
 
-        <!-- Add @Generated annotation -->
-        <replaceregexp file="${llvm.bindings}"
-            match="import (.*?);(.*?)/\*\*"
-            replace="import \1;${line.separator}import javax.annotation.Generated;${line.separator}\2/\*\*"
-            flags="gs"
-            byline="false" />
-
+        <!-- Add @Generated and @SuppressWarnings annotation -->
         <replace file="${llvm.bindings}"
                 token="public class LLVMLibrary"
-                value="@Generated(&quot;JNAerator&quot;)${line.separator}public class LLVMLibrary" />
+                value="@javax.annotation.Generated(&quot;JNAerator&quot;)${line.separator}@SuppressWarnings(&quot;all&quot;)${line.separator}public class LLVMLibrary" />
 
 
         <!-- Set concrete LLVM version to avoid conflicts -->
