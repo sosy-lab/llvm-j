@@ -58,8 +58,8 @@
              We want to provide our own util classes to be independent of jnaerator -->
         <replaceregexp file="${llvm.bindings}"
                        flags="g"
-                       match="import com\.ochafik\.lang\.jnaerator.*\.([a-zA-Z]*;)"
-                       replace="import org.sosy_lab.llvm_j.binding.ext.\1" />
+                       match="com\.ochafik\.lang\.jnaerator\.runtime\.([a-zA-Z]*)"
+                       replace="org.sosy_lab.llvm_j.binding.ext.\1" />
         <!-- Replace static initializer with static method for initialization     -->
         <replace file="${llvm.bindings}"
                  token="static {"

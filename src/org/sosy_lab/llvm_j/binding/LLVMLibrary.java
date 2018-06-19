@@ -1127,9 +1127,9 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>int LLVMGetEnumAttributeKindForName(const char*, size_t)</code><br>
    *
    * @deprecated use the safer methods {@link #LLVMGetEnumAttributeKindForName(java.lang.String,
-   *     com.ochafik.lang.jnaerator.runtime.NativeSize)} and {@link
+   *     org.sosy_lab.llvm_j.binding.ext.NativeSize)} and {@link
    *     #LLVMGetEnumAttributeKindForName(com.sun.jna.Pointer,
-   *     com.ochafik.lang.jnaerator.runtime.NativeSize)} instead
+   *     org.sosy_lab.llvm_j.binding.ext.NativeSize)} instead
    */
   @Deprecated
   public static native int LLVMGetEnumAttributeKindForName(Pointer Name, NativeSize SLen);
@@ -1315,9 +1315,9 @@ public class LLVMLibrary implements Library {
    *     </code><br>
    * @deprecated use the safer methods {@link
    *     #LLVMSetModuleIdentifier(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
-   *     java.lang.String, com.ochafik.lang.jnaerator.runtime.NativeSize)} and {@link
+   *     java.lang.String, org.sosy_lab.llvm_j.binding.ext.NativeSize)} and {@link
    *     #LLVMSetModuleIdentifier(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMModuleRef,
-   *     com.sun.jna.Pointer, com.ochafik.lang.jnaerator.runtime.NativeSize)} instead
+   *     com.sun.jna.Pointer, org.sosy_lab.llvm_j.binding.ext.NativeSize)} instead
    */
   @Deprecated
   public static native void LLVMSetModuleIdentifier(
@@ -5923,10 +5923,10 @@ public class LLVMLibrary implements Library {
    *
    * @deprecated use the safer methods {@link
    *     #LLVMCreateMemoryBufferWithMemoryRange(java.lang.String,
-   *     com.ochafik.lang.jnaerator.runtime.NativeSize, java.lang.String,
+   *     org.sosy_lab.llvm_j.binding.ext.NativeSize, java.lang.String,
    *     org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMBool)} and {@link
    *     #LLVMCreateMemoryBufferWithMemoryRange(com.sun.jna.Pointer,
-   *     com.ochafik.lang.jnaerator.runtime.NativeSize, com.sun.jna.Pointer,
+   *     org.sosy_lab.llvm_j.binding.ext.NativeSize, com.sun.jna.Pointer,
    *     org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMBool)} instead
    */
   @Deprecated
@@ -5952,9 +5952,9 @@ public class LLVMLibrary implements Library {
    *
    * @deprecated use the safer methods {@link
    *     #LLVMCreateMemoryBufferWithMemoryRangeCopy(java.lang.String,
-   *     com.ochafik.lang.jnaerator.runtime.NativeSize, java.lang.String)} and {@link
+   *     org.sosy_lab.llvm_j.binding.ext.NativeSize, java.lang.String)} and {@link
    *     #LLVMCreateMemoryBufferWithMemoryRangeCopy(com.sun.jna.Pointer,
-   *     com.ochafik.lang.jnaerator.runtime.NativeSize, com.sun.jna.Pointer)} instead
+   *     org.sosy_lab.llvm_j.binding.ext.NativeSize, com.sun.jna.Pointer)} instead
    */
   @Deprecated
   public static native LLVMLibrary.LLVMMemoryBufferRef LLVMCreateMemoryBufferWithMemoryRangeCopy(
