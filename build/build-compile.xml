@@ -8,9 +8,7 @@
 
     <!-- These properties can be overridden from including file. -->
     <property name="source.format" value="1.8"/>
-    <property name="source.dir" value="src/"/>
-    <property name="bindings.pkg" value="org/sosy_lab/llvm_j/binding" />
-    <property name="bindings.file" value="${bindings.pkg}/LLVMLibrary.java" />
+    <property name="source.dir" value="src"/>
     <property name="source.generated.dir" value=".apt-generated"/>
     <property name="class.format" value="1.8"/>
     <property name="class.dir" value="bin"/>
@@ -34,10 +32,9 @@
     </condition>
 
     <!-- We use error-prone as the compiler, cf. http://errorprone.info/ -->
-    <target name="build-project" unless="skipBuild" depends="build-dependencies, bindings">
+    <target name="build-project" unless="skipBuild" depends="build-dependencies">
         <depend srcdir="${source.dir}" destdir="${class.dir}"/>
         <mkdir dir="${source.generated.dir}"/>
-
         <copy todir="${class.dir}">
           <fileset dir="${source.dir}">
             <exclude name="**/*.java" />
@@ -90,35 +87,14 @@
             </filterchain>
         </copy>
 
-        <!-- Compile 'dirty', auto-generated LLVMLibrary.java with
-             less strict checks first, other code after that with strict
-             checks -->
         <javac debug="true"
                debuglevel="source,lines,vars"
-               srcdir="${source.dir}"
                destdir="${class.dir}"
                source="${source.format}"
                target="${class.format}"
                compiler="org.eclipse.jdt.core.JDTCompilerAdapter"
                includeAntRuntime="false"
                encoding="UTF-8">
-            <include name="${bindings.file}"/>
-            <classpath refid="classpath"/>
-            <compilerarg value="-s"/><compilerarg value="${source.generated.dir}"/>
-            <compilerclasspath refid="ecj"/>
-        </javac>
-
-        <javac debug="true"
-               debuglevel="source,lines,vars"
-               srcdir="${source.dir}"
-               sourcepath=""
-               destdir="${class.dir}"
-               source="${source.format}"
-               target="${class.format}"
-               compiler="org.eclipse.jdt.core.JDTCompilerAdapter"
-               includeAntRuntime="false"
-               encoding="UTF-8">
-            <include name="**/llvm_j/*.java" />
             <src path="${source.dir}"/>
             <classpath refid="classpath"/>
             <compilerarg value="-properties"/>
