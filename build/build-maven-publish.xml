@@ -1,6 +1,6 @@
 <project name="maven" basedir="."
-    xmlns:ivy="antlib:org.apache.ivy.ant"
-    xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+         xmlns:ivy="antlib:org.apache.ivy.ant"
+         xmlns:artifact="antlib:org.apache.maven.artifact.ant">
 
     <!-- Defined maven snapshots and staging repository id and url -->
     <property name="ossrh-snapshots-repository-url"
