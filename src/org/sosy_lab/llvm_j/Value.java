@@ -29,18 +29,17 @@
 
 package org.sosy_lab.llvm_j;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.sosy_lab.llvm_j.Utils.checkLlvmState;
+
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
-import org.sosy_lab.llvm_j.binding.LLVMLibrary;
-import org.sosy_lab.llvm_j.binding.ext.NativeSizeByReference;
-
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.sosy_lab.llvm_j.Utils.checkLlvmState;
+import org.sosy_lab.llvm_j.binding.LLVMLibrary;
+import org.sosy_lab.llvm_j.binding.ext.NativeSizeByReference;
 
 /** Represents an individual value in LLVM IR. */
 public class Value {
@@ -1405,28 +1404,29 @@ public class Value {
   }
 
   /**
-   * Transforms this value to a string constant,
-   * if it is a <code>getelementptr</code> instruction that
-   * directly maps to a string constant.
-   * Otherwise, an {@link IllegalStateException} will be thrown.
+   * Transforms this value to a string constant, if it is a <code>getelementptr</code> instruction
+   * that directly maps to a string constant. Otherwise, an {@link IllegalStateException} will be
+   * thrown.
    *
    * @throws IllegalStateException if this value is not a <code>getelementptr</code> instruction
-   *                               that points to index [0, 0] of a global string constant.
+   *     that points to index [0, 0] of a global string constant.
    */
   public String getGetElementPtrAsString() {
-    checkLlvmState(canBeTransformedFromGetElementPtrToString(),
+    checkLlvmState(
+        canBeTransformedFromGetElementPtrToString(),
         "Not a fitting getelementptr instruction: " + this);
 
     Value startPointer = getOperand(0);
     Value initializer = startPointer.getInitializer();
     long stringLength = initializer.typeOf().getArrayLength();
 
-    return LLVMLibrary.LLVMGetAsString(initializer.value(), new NativeSizeByReference(stringLength));
+    return LLVMLibrary.LLVMGetAsString(
+        initializer.value(), new NativeSizeByReference(stringLength));
   }
 
   /**
-   * Returns whether this <code>getelementptr</code> instruction can be transformed
-   * to a String constant.
+   * Returns whether this <code>getelementptr</code> instruction can be transformed to a String
+   * constant.
    *
    * @throws IllegalStateException if this value is not a <code>getelementptr</code> instruction
    */

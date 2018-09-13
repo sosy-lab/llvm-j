@@ -21,9 +21,9 @@
 
 package org.sosy_lab.llvm_j.binding.ext;
 
-import com.sun.jna.ptr.ByReference;
-
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.sun.jna.ptr.ByReference;
 
 public class NativeSizeByReference extends ByReference {
 
