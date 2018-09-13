@@ -359,7 +359,7 @@ public class Value {
   @Override
   public String toString() {
     Pointer ret = LLVMLibrary.LLVMPrintValueToString(value);
-    return ret.getString(Native.getNativeSize(String.class));
+    return ret.getString(0);
   }
 
   /** Determine whether an instruction has any metadata attached. */
