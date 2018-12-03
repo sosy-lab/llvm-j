@@ -51,7 +51,7 @@
             <compilerarg value="-J-Xbootclasspath/p:${ivy.lib.dir}/build/javac.jar" if:set="java8"/>
             <compilerarg line="-source ${source.format}" if:set="java8"/>
             <compilerarg line="-target ${class.format}" if:set="java8"/>
-            <compilerarg line="-release ${source.release}" unless:set="java8"/>
+            <compilerarg line="--release ${source.release}" unless:set="java8"/>
             <src path="${source.dir}"/>
             <classpath refid="classpath"/>
             <compilerarg value="-Xlint"/>
