@@ -42,7 +42,7 @@ import java.io.Closeable;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
-import javax.annotation.Nullable;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.sosy_lab.llvm_j.binding.LLVMLibrary;
 
 /**
