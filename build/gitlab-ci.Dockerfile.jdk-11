@@ -1,0 +1,19 @@
+# This is a Docker image for running the tests.
+# It should be pushed to registry.gitlab.com/sosy-lab/software/llvm-j/test
+# and will be used by CI as declared in .gitlab-ci.yml.
+#
+# Commands for updating the image:
+# docker build -t registry.gitlab.com/sosy-lab/software/llvm-j/test:jdk-11 - < build/gitlab-ci.Dockerfile.jdk-11
+# docker push registry.gitlab.com/sosy-lab/software/llvm-j/test
+
+FROM registry.gitlab.com/sosy-lab/software/java-project-template/test:jdk-11
+
+RUN apt-get update && apt-get install -y gnupg1 \
+    && wget http://apt.llvm.org/llvm-snapshot.gpg.key \
+    && apt-key add llvm-snapshot.gpg.key \
+    && rm llvm-snapshot.gpg.key \
+    && echo "deb http://apt.llvm.org/unstable/ llvm-toolchain-3.9 main" >> /etc/apt/sources.list \
+    && apt-get update && apt-get install -y \
+      chrpath \
+      g++-6 \
+      llvm-3.9
