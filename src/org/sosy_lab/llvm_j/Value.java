@@ -1409,6 +1409,18 @@ public class Value {
     return LLVMLibrary.LLVMConstIntGetSExtValue(value);
   }
 
+  /** Returns the zero extended value for an integer constant value. */
+  public double constRealGetDouble() {
+    LLVMLibrary.LLVMBool precisionLoss = new LLVMLibrary.LLVMBool();
+    double ret =
+        LLVMLibrary.LLVMConstRealGetDouble(value, precisionLoss);
+
+    if (Utils.llvmBoolToJavaBool(precisionLoss))
+        throw new AssertionError("Lost precision while convering float: " + value);
+
+    return ret;
+  }
+
   /**
    * Transforms this value to a string constant, if it is a <code>getelementptr</code> instruction
    * that directly maps to a string constant. Otherwise, an {@link IllegalStateException} will be
