@@ -1186,9 +1186,15 @@ public class Value {
     return new Value(LLVMLibrary.LLVMGetPreviousGlobal(value));
   }
 
-  /** Returns the initializer of this value. */
+  /** Returns the initializer of this value or null if the value
+   *  has no initializer. */
   public Value getInitializer() {
-    return new Value(LLVMLibrary.LLVMGetInitializer(value));
+    LLVMLibrary.LLVMValueRef init = LLVMLibrary.LLVMGetInitializer(value);
+    if (init != null) {
+        return new Value(init);
+    } else {
+        return null;
+    }
   }
 
   /** Returns whether this value is externally initialized. */
