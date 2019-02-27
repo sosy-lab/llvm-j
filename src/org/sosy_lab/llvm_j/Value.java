@@ -1453,6 +1453,10 @@ public class Value {
     Value startPointer = getOperand(0);
     Value initializer = startPointer.getInitializer();
 
+    if (initializer == null) {
+        return false;
+    }
+
     return startPointer.isGlobalConstant()
         && initializer.isConstant()
         && initializer.typeOf().getTypeKind().equals(TypeRef.TypeKind.Array)
