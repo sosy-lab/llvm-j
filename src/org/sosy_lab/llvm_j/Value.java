@@ -1189,6 +1189,7 @@ public class Value {
   /** Returns the initializer of this value or null if the value
    *  has no initializer. */
   public Value getInitializer() {
+    assert isGlobalValue() : "Only global values have initializer: " + this;
     LLVMLibrary.LLVMValueRef init = LLVMLibrary.LLVMGetInitializer(value);
     if (init != null) {
         return new Value(init);
@@ -1451,8 +1452,11 @@ public class Value {
   public boolean canBeTransformedFromGetElementPtrToString() {
     checkLlvmState(isGetElementPtrInst(), "Not a getelementptr instruction: " + this);
     Value startPointer = getOperand(0);
-    Value initializer = startPointer.getInitializer();
+    if (!startPointer.isGlobalValue()) {
+        return false;
+    }
 
+    Value initializer = startPointer.getInitializer();
     if (initializer == null) {
         return false;
     }
