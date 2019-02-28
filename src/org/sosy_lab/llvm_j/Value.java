@@ -1416,8 +1416,9 @@ public class Value {
     double ret =
         LLVMLibrary.LLVMConstRealGetDouble(value, precisionLoss);
 
-    if (Utils.llvmBoolToJavaBool(precisionLoss))
+    if (Utils.llvmBoolToJavaBool(precisionLoss)) {
         throw new AssertionError("Lost precision while convering float: " + value);
+    }
 
     return ret;
   }
