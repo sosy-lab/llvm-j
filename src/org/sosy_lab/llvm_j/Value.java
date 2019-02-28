@@ -1186,15 +1186,14 @@ public class Value {
     return new Value(LLVMLibrary.LLVMGetPreviousGlobal(value));
   }
 
-  /** Returns the initializer of this value or null if the value
-   *  has no initializer. */
+  /** Returns the initializer of this value or null if the value has no initializer. */
   public Value getInitializer() {
     assert isGlobalValue() : "Only global values have initializer: " + this;
     LLVMLibrary.LLVMValueRef init = LLVMLibrary.LLVMGetInitializer(value);
     if (init != null) {
-        return new Value(init);
+      return new Value(init);
     } else {
-        return null;
+      return null;
     }
   }
 
@@ -1413,11 +1412,10 @@ public class Value {
   /** Returns the zero extended value for an integer constant value. */
   public double constRealGetDouble() {
     LLVMLibrary.LLVMBool precisionLoss = new LLVMLibrary.LLVMBool();
-    double ret =
-        LLVMLibrary.LLVMConstRealGetDouble(value, precisionLoss);
+    double ret = LLVMLibrary.LLVMConstRealGetDouble(value, precisionLoss);
 
     if (Utils.llvmBoolToJavaBool(precisionLoss)) {
-        throw new AssertionError("Lost precision while convering float: " + value);
+      throw new AssertionError("Lost precision while convering float: " + value);
     }
 
     return ret;
@@ -1454,12 +1452,12 @@ public class Value {
     checkLlvmState(isGetElementPtrInst(), "Not a getelementptr instruction: " + this);
     Value startPointer = getOperand(0);
     if (!startPointer.isGlobalValue()) {
-        return false;
+      return false;
     }
 
     Value initializer = startPointer.getInitializer();
     if (initializer == null) {
-        return false;
+      return false;
     }
 
     return startPointer.isGlobalConstant()
