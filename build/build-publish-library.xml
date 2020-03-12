@@ -54,7 +54,7 @@
             Cannot publish without 'repository' dir, please run 'svn co https://svn.sosy-lab.org/software/ivy/repository/${ivy.organisation}/${ivy.module} repository/${ivy.organisation}/${ivy.module}'.
         </fail>
 
-        <property name="pubrevision" value="${llvm.version}-${version}" />
+        <property name="pubrevision" value="${llvm.version}-sosy${version}" />
         <ivy:publish
                 pubrevision="${pubrevision}"
                 resolver="Sosy-Lab-Publish"
