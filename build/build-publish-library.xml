@@ -15,12 +15,6 @@
         </fail>
     </target>
 
-    <target name="-check-sosy-version-set">
-        <fail unless="llvm.sosy-version">
-            Please specify the custom libLLVM version with the flag -Dllvm.sosy-version=... .
-        </fail>
-    </target>
-
     <target name="-check-llvm-lib-exists">
         <available file="${llvm.library}" property="library.exist" />
     </target>
@@ -48,7 +42,7 @@
 
     </target>
 
-    <target name="publish-lib" depends="-check-llvm-version-set, -check-sosy-version-set, download-library, load-ivy"
+    <target name="publish-lib" depends="-check-llvm-version-set, download-library, load-ivy"
         description="Publish LLVM library to Ivy repo.">
 
         <fail unless="version.publishable"
@@ -60,7 +54,7 @@
             Cannot publish without 'repository' dir, please run 'svn co https://svn.sosy-lab.org/software/ivy/repository/${ivy.organisation}/${ivy.module} repository/${ivy.organisation}/${ivy.module}'.
         </fail>
 
-        <property name="pubrevision" value="${llvm.version}-sosy${llvm.sosy-version}" />
+        <property name="pubrevision" value="${llvm.version}-${version}" />
         <ivy:publish
                 pubrevision="${pubrevision}"
                 resolver="Sosy-Lab-Publish"
