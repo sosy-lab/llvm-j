@@ -46,7 +46,7 @@
         <!-- Add @Generated and @SuppressWarnings annotation -->
         <replace file="${llvm.bindings}"
                 token="public class LLVMLibrary"
-                value="@javax.annotation.Generated(&quot;JNAerator&quot;)${line.separator}@SuppressWarnings(&quot;all&quot;)${line.separator}public class LLVMLibrary" />
+                value="@javax.annotation.processing.Generated(&quot;JNAerator&quot;)${line.separator}@SuppressWarnings(&quot;all&quot;)${line.separator}public class LLVMLibrary" />
 
 
         <!-- Set concrete LLVM version to avoid conflicts -->

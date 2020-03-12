@@ -51,7 +51,7 @@ import org.sosy_lab.llvm_j.binding.ext.NativeSizeByReference;
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a
  * href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-@javax.annotation.Generated("JNAerator")
+@javax.annotation.processing.Generated("JNAerator")
 @SuppressWarnings("all")
 public class LLVMLibrary implements Library {
   public static final String JNA_LIBRARY_NAME = "LLVM-3.9.1";
@@ -506,6 +506,76 @@ public class LLVMLibrary implements Library {
    */
   public static native void LLVMAddSLPVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
+   * See llvm::createArgumentPromotionPass function.<br>
+   * Original signature : <code>void LLVMAddArgumentPromotionPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddArgumentPromotionPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createConstantMergePass function.<br>
+   * Original signature : <code>void LLVMAddConstantMergePass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddConstantMergePass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createDeadArgEliminationPass function.<br>
+   * Original signature : <code>void LLVMAddDeadArgEliminationPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddDeadArgEliminationPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createFunctionAttrsPass function.<br>
+   * Original signature : <code>void LLVMAddFunctionAttrsPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddFunctionAttrsPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createFunctionInliningPass function.<br>
+   * Original signature : <code>void LLVMAddFunctionInliningPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddFunctionInliningPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createAlwaysInlinerPass function.<br>
+   * Original signature : <code>void LLVMAddAlwaysInlinerPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddAlwaysInlinerPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createGlobalDCEPass function.<br>
+   * Original signature : <code>void LLVMAddGlobalDCEPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddGlobalDCEPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createGlobalOptimizerPass function.<br>
+   * Original signature : <code>void LLVMAddGlobalOptimizerPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddGlobalOptimizerPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createIPConstantPropagationPass function.<br>
+   * Original signature : <code>void LLVMAddIPConstantPropagationPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddIPConstantPropagationPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createPruneEHPass function.<br>
+   * Original signature : <code>void LLVMAddPruneEHPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddPruneEHPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createIPSCCPPass function.<br>
+   * Original signature : <code>void LLVMAddIPSCCPPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddIPSCCPPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createInternalizePass function.<br>
+   * Original signature : <code>void LLVMAddInternalizePass(unsigned)</code>
+   */
+  public static native void LLVMAddInternalizePass(int AllButMain);
+  /**
+   * See llvm::createStripDeadPrototypesPass function.<br>
+   * Original signature : <code>void LLVMAddStripDeadPrototypesPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddStripDeadPrototypesPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createStripSymbolsPass function.<br>
+   * Original signature : <code>void LLVMAddStripSymbolsPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddStripSymbolsPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
    * See llvm::PassManagerBuilder.<br>
    * Original signature : <code>LLVMPassManagerBuilderRef LLVMPassManagerBuilderCreate()</code>
    */
@@ -922,76 +992,6 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>void LLVMAddBasicAliasAnalysisPass(LLVMPassManagerRef)</code>
    */
   public static native void LLVMAddBasicAliasAnalysisPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createArgumentPromotionPass function.<br>
-   * Original signature : <code>void LLVMAddArgumentPromotionPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddArgumentPromotionPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createConstantMergePass function.<br>
-   * Original signature : <code>void LLVMAddConstantMergePass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddConstantMergePass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createDeadArgEliminationPass function.<br>
-   * Original signature : <code>void LLVMAddDeadArgEliminationPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddDeadArgEliminationPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createFunctionAttrsPass function.<br>
-   * Original signature : <code>void LLVMAddFunctionAttrsPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddFunctionAttrsPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createFunctionInliningPass function.<br>
-   * Original signature : <code>void LLVMAddFunctionInliningPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddFunctionInliningPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createAlwaysInlinerPass function.<br>
-   * Original signature : <code>void LLVMAddAlwaysInlinerPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddAlwaysInlinerPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createGlobalDCEPass function.<br>
-   * Original signature : <code>void LLVMAddGlobalDCEPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddGlobalDCEPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createGlobalOptimizerPass function.<br>
-   * Original signature : <code>void LLVMAddGlobalOptimizerPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddGlobalOptimizerPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createIPConstantPropagationPass function.<br>
-   * Original signature : <code>void LLVMAddIPConstantPropagationPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddIPConstantPropagationPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createPruneEHPass function.<br>
-   * Original signature : <code>void LLVMAddPruneEHPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddPruneEHPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createIPSCCPPass function.<br>
-   * Original signature : <code>void LLVMAddIPSCCPPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddIPSCCPPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createInternalizePass function.<br>
-   * Original signature : <code>void LLVMAddInternalizePass(unsigned)</code>
-   */
-  public static native void LLVMAddInternalizePass(int AllButMain);
-  /**
-   * See llvm::createStripDeadPrototypesPass function.<br>
-   * Original signature : <code>void LLVMAddStripDeadPrototypesPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddStripDeadPrototypesPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createStripSymbolsPass function.<br>
-   * Original signature : <code>void LLVMAddStripSymbolsPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddStripSymbolsPass(LLVMLibrary.LLVMPassManagerRef PM);
   /** Original signature : <code>void LLVMInitializeCore(LLVMPassRegistryRef)</code> */
   public static native void LLVMInitializeCore(LLVMLibrary.LLVMPassRegistryRef R);
   /**

@@ -109,5 +109,8 @@
 
         <!-- Guava has a dependency on error_prone_annotations without a revision number, need an override. -->
         <override org="com.google.errorprone" module="error_prone_annotations" rev="2.3.2"/>
+
+        <!-- Guava has a dependency on error_prone_annotations without a revision number, need an override. -->
+        <override org="com.google.errorprone" module="error_prone_annotations" rev="2.3.2"/>
     </dependencies>
 </ivy-module>
