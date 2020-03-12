@@ -89,18 +89,18 @@ fi
 # Cut minor revisions
 LLVM_VERSION=`echo $LLVM_FULL_VERSION | cut -d'.' -f1,2`
 
+if ! hash chrpath 2> /dev/null; then
+    >&2 echo "Application chrpath required but not installed."
+    exit 6
+fi
+
 (cd $TMP && download_and_extract "$@")
 
 LIB_FILE=`find "$TMP_LLVM_FOLDER" -maxdepth 1 -name 'libLLVM*.so*' -type f`
 
 # change rpath of libLLVM to take our libtinfo and libedit without
 # the need to set LD_LIBRARY_PATH whenever libLLVM should be used
-if ! hash chrpath 2> /dev/null; then
-    >&2 echo "Application chrpath required but not installed."
-    exit 6
-else
-    chrpath -r '$ORIGIN' "$LIB_FILE"
-fi
+chrpath -r '$ORIGIN' "$LIB_FILE"
 
 EXPECTED_LIB="libLLVM-${LLVM_FULL_VERSION}.so"
 if [[ -e $EXPECTED_LIB ]]; then
