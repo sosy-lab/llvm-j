@@ -42,30 +42,10 @@ function download_and_extract {
       >&2 echo $LIB_FILE
       exit 3
     fi
-
-    ## Get dependencies of libLLVM
-    extract_library "http://mirrors.edge.kernel.org/ubuntu/pool/main/n/ncurses/libtinfo5_6.1-1ubuntu1_amd64.deb" "libtinfo"
-    extract_library "http://mirrors.kernel.org/ubuntu/pool/main/libe/libedit/libedit2_3.1-20170329-1_amd64.deb" "libedit"
-}
-
-function extract_library() {
-    URL=$1
-    NAME=$2
-
-    TMP_FOLDER="$TMP_DEPS_FOLDER/$NAME"
-    mkdir -p "$TMP_FOLDER"
-    DEB=$TMP_FOLDER/libedit2.deb
-    wget "$URL" -O "$DEB"
-    (cd "$TMP_FOLDER"; ar x "$DEB" data.tar.xz)
-    # extract all shared libraries of libedit because of symlinks
-    tar xf "$TMP_FOLDER/data.tar.xz" -C "$TMP_FOLDER" --wildcards '*'"$NAME"'*.so*' --transform='s/.*\///'
 }
 
 # Download the LLVM shared library of the version number
 # given on the command line.
-# We use packages prepared for Ubuntu 12.04 to ensure compatibility
-# with older systems.
-UBUNTU_VERSION=trusty
 
 set -e
 
@@ -76,21 +56,23 @@ fi
 
 TMP_LLVM_FOLDER="$TMP"
 TMP_DEPS_FOLDER=$TMP/deps
-TMP_TINFO_FOLDER=$TMP_DEPS_FOLDER/libtinfo
-TMP_EDIT_FOLDER=$TMP_DEPS_FOLDER/libedit
-TMP_LIBBSD_FOLDER=$TMP_DEPS_FOLDER/libedit
 
 LLVM_FULL_VERSION=$1
-if [[ -z $LLVM_FULL_VERSION ]]; then
-  >&2 echo "Usage: ./download_lib.sh LLVM_VERSION"
-  exit 10
+if [[ -z "$LLVM_FULL_VERSION" ]]; then
+  >&2 echo "Usage: ./download_lib.sh LLVM_VERSION UBUNTU_VERSION"
+  exit 2
+fi
+UBUNTU_VERSION=$2
+if [[ -z "$UBUNTU_VERSION" ]]; then
+  >&2 echo "Usage: ./download_lib.sh LLVM_VERSION UBUNTU_VERSION"
+  exit 2
 fi
 
 # Cut minor revisions
 LLVM_VERSION=`echo $LLVM_FULL_VERSION | cut -d'.' -f1,2`
 
-if ! hash chrpath 2> /dev/null; then
-    >&2 echo "Application chrpath required but not installed."
+if ! hash patchelf 2> /dev/null; then
+    >&2 echo "Application patchelf required but not installed."
     exit 6
 fi
 
@@ -100,20 +82,10 @@ LIB_FILE=`find "$TMP_LLVM_FOLDER" -maxdepth 1 -name 'libLLVM*.so*' -type f`
 
 # change rpath of libLLVM to take our libtinfo and libedit without
 # the need to set LD_LIBRARY_PATH whenever libLLVM should be used
-chrpath -r '$ORIGIN' "$LIB_FILE"
+patchelf --set-rpath '$ORIGIN' "$LIB_FILE"
+
 
 EXPECTED_LIB="libLLVM-${LLVM_FULL_VERSION}.so"
-if [[ -e $EXPECTED_LIB ]]; then
-  >&2 echo "$EXPECTED_LIB already exists. That shouldn't be possible."
-  exit 5
-fi
-
-EXPECTED_FOLDER_DEPS="./"
-
-CMD="cp -L $TMP_TINFO_FOLDER/libtinfo.so.5 $TMP_EDIT_FOLDER/libedit.so.2 $EXPECTED_FOLDER_DEPS"
-echo $CMD
-$CMD
-
 CMD="cp ${LIB_FILE} ${EXPECTED_LIB}"
 echo $CMD
 $CMD

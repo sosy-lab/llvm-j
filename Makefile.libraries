@@ -1,0 +1,52 @@
+LLVM_VERSION ?= 3.9.1
+UBUNTU_VERSION ?= trusty
+
+BUILD_DIR=build-lib
+TARGET=lib/native
+
+_LLVM_PACKAGES := Packages.gz
+
+${TARGET}/libLLVM-$(LLVM_VERSION).so: ${TARGET}/libbsd.so.0 ${TARGET}/libedit.so.2 ${TARGET}/libtinfo.so.5
+		build/download_lib.sh ${LLVM_VERSION} ${UBUNTU_VERSION}
+		mv $(@F) ${TARGET}/
+
+clean:
+	rm -rf ${BUILD_DIR}
+	rm -f ${TARGET}/libLLVM-$(LLVM_VERSION).so
+	rm -f ${TARGET}/libbsd.so.0
+	rm -f ${TARGET}/libedit.so.2
+	rm -f ${TARGET}/libtinfo.so.5
+
+${BUILD_DIR}:
+	mkdir -p ${BUILD_DIR}
+
+extract_library = ar x $(1).deb data.tar.xz && \
+		tar xf data.tar.xz --wildcards '*$(1).so*' --transform='s/.*\///'
+
+${TARGET}/%.so.0: ${BUILD_DIR} ${BUILD_DIR}/%.deb
+	cd ${BUILD_DIR} && \
+		$(call extract_library,$*)
+	patchelf --set-rpath '$$ORIGIN' ${BUILD_DIR}/$(@F)
+	cp -L ${BUILD_DIR}/$(@F) ${TARGET}
+
+${TARGET}/%.so.2: ${BUILD_DIR} ${BUILD_DIR}/%.deb
+	cd ${BUILD_DIR} && \
+		$(call extract_library,$*)
+	patchelf --set-rpath '$$ORIGIN' ${BUILD_DIR}/$(@F)
+	cp -L ${BUILD_DIR}/$(@F) ${TARGET}
+
+${TARGET}/%.so.5: ${BUILD_DIR} ${BUILD_DIR}/%.deb
+	cd ${BUILD_DIR} && \
+		$(call extract_library,$*)
+	patchelf --set-rpath '$$ORIGIN' ${BUILD_DIR}/$(@F)
+	cp -L ${BUILD_DIR}/$(@F) ${TARGET}
+
+${BUILD_DIR}/libbsd.deb:
+	wget "http://security.ubuntu.com/ubuntu/pool/main/libb/libbsd/libbsd0_0.8.2-1ubuntu0.1_amd64.deb" -O $@
+
+${BUILD_DIR}/libedit.deb:
+	wget "http://mirrors.kernel.org/ubuntu/pool/main/libe/libedit/libedit2_3.1-20170329-1_amd64.deb" -O $@
+
+${BUILD_DIR}/libtinfo.deb:
+	wget "http://mirrors.edge.kernel.org/ubuntu/pool/main/n/ncurses/libtinfo5_6.1-1ubuntu1_amd64.deb" -O $@
+

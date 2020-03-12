@@ -27,14 +27,15 @@
 
     <target name="clean-library" depends="init, -check-llvm-version-set">
         <delete includeEmptyDirs="true">
-            <fileset dir="${lib.native}" includes="libLLVM*${llvm.version}* libllvm*${llvm.version}* libtinfo.so.5 libedit.so.2 data.tar.gz Packages Packages.gz" />
+            <fileset dir="${lib.native}" includes="libLLVM*${llvm.version}* libllvm*${llvm.version}* libtinfo.so.5 libedit.so.2 libbsd.so.0 data.tar.gz Packages Packages.gz" />
         </delete>
     </target>
 
     <target name="download-library" depends="init, -check-llvm-version-set, -check-llvm-lib-exists" unless="${library.exist}">
         <mkdir dir="${lib.native}"/>
-        <exec executable="../../build/download_lib.sh" dir="${lib.native}">
-            <arg value="${llvm.version}" />
+        <exec executable="make">
+            <arg value="-f" />
+            <arg value="Makefile.libraries" />
         </exec>
         <available file="${llvm.library}" property="library.exist" />
         <fail unless="library.exist"
