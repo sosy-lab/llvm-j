@@ -44,19 +44,21 @@ function download_and_extract {
     fi
 
     ## Get dependencies of libLLVM
-    mkdir -p $TMP_TINFO_FOLDER
-    TINFO=$TMP_TINFO_FOLDER/libtinfo5.deb
-    wget http://mirrors.kernel.org/ubuntu/pool/main/n/ncurses/libtinfo5_6.0+20160625-1ubuntu1_amd64.deb -O $TINFO
-    (cd $TMP_TINFO_FOLDER; ar x $TINFO data.tar.xz)
-    # extract all shared libraries of libtinfo because of symlinks
-    tar xf $TMP_TINFO_FOLDER/data.tar.xz -C "$TMP_TINFO_FOLDER" --wildcards '*libtinfo*.so*' --transform='s/.*\///'
+    extract_library "http://mirrors.edge.kernel.org/ubuntu/pool/main/n/ncurses/libtinfo5_6.1-1ubuntu1_amd64.deb" "libtinfo"
+    extract_library "http://mirrors.kernel.org/ubuntu/pool/main/libe/libedit/libedit2_3.1-20170329-1_amd64.deb" "libedit"
+}
 
-    mkdir -p $TMP_EDIT_FOLDER
-    EDIT=$TMP_EDIT_FOLDER/libedit2.deb
-    wget http://mirrors.kernel.org/ubuntu/pool/main/libe/libedit/libedit2_3.1-20170329-1_amd64.deb -O $EDIT
-    (cd $TMP_EDIT_FOLDER; ar x $EDIT data.tar.xz)
+function extract_library() {
+    URL=$1
+    NAME=$2
+
+    TMP_FOLDER="$TMP_DEPS_FOLDER/$NAME"
+    mkdir -p "$TMP_FOLDER"
+    DEB=$TMP_FOLDER/libedit2.deb
+    wget "$URL" -O "$DEB"
+    (cd "$TMP_FOLDER"; ar x "$DEB" data.tar.xz)
     # extract all shared libraries of libedit because of symlinks
-    tar xf $TMP_EDIT_FOLDER/data.tar.xz -C "$TMP_EDIT_FOLDER" --wildcards '*libedit*.so*' --transform='s/.*\///'
+    tar xf "$TMP_FOLDER/data.tar.xz" -C "$TMP_FOLDER" --wildcards '*'"$NAME"'*.so*' --transform='s/.*\///'
 }
 
 # Download the LLVM shared library of the version number
@@ -73,8 +75,10 @@ if [[ ! -d "$TMP" ]]; then
 fi
 
 TMP_LLVM_FOLDER="$TMP"
-TMP_TINFO_FOLDER=$TMP/deps/libtinfo
-TMP_EDIT_FOLDER=$TMP/deps/libedit
+TMP_DEPS_FOLDER=$TMP/deps
+TMP_TINFO_FOLDER=$TMP_DEPS_FOLDER/libtinfo
+TMP_EDIT_FOLDER=$TMP_DEPS_FOLDER/libedit
+TMP_LIBBSD_FOLDER=$TMP_DEPS_FOLDER/libedit
 
 LLVM_FULL_VERSION=$1
 if [[ -z $LLVM_FULL_VERSION ]]; then
