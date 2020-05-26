@@ -5,7 +5,7 @@
         xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
     <info organisation="org.sosy_lab" module="llvm-j">
       <license name="MIT license"/>
-      <description homepage="https://github.com/sohttps://github.com/sosy-lab/llvm-j">
+      <description homepage="https://github.com/sosy-lab/llvm-j">
         Java bindings for LLVM C parser
       </description>
     </info>
