@@ -18,6 +18,10 @@ unit-tests:jdk-11:
     - build-dependencies
     - build:jdk-11
     - download-lib
+  needs:
+    - build-dependencies
+    - build:jdk-11
+    - download-lib
 
 bindings-build:
   # Put in stage 'checks' to make other checks not dependent on its failure
