@@ -13,22 +13,10 @@ download-lib:
       - lib/native
 
 # Run unit tests with dependency on download-lib
-unit-tests:jdk-8:
+unit-tests:jdk-11:
   dependencies:
     - build-dependencies
-    - build:jdk-8
-    - download-lib
-
-unit-tests:jdk-9:
-  dependencies:
-    - build-dependencies
-    - build:jdk-9
-    - download-lib
-
-unit-tests:jdk-10:
-  dependencies:
-    - build-dependencies
-    - build:jdk-10
+    - build:jdk-11
     - download-lib
 
 bindings-build:
@@ -39,3 +27,27 @@ bindings-build:
   script:
     - "ant bindings -Dllvm.home=/usr/include/llvm-c-3.9/llvm-c"
     - "git diff --exit-code"
+
+
+## Currently disabled runs ##
+
+# We currently don't have a JDK-14 image with LLVM 3.9 installed
+build:jdk-14:
+  only:
+    - web
+
+build-project-ecj:jdk-14:
+  only:
+    - web
+
+unit-tests:jdk-14:
+  dependencies:
+    - build-dependencies
+    - build:jdk-14
+    - download-lib
+  only:
+    - web
+
+reuse:
+  only:
+    - web
