@@ -123,19 +123,7 @@
         <condition property="java8">
             <equals arg1="${ant.java.version}" arg2="1.8"/>
         </condition>
-        <replace
-            dir="${source.dir}" includes="**/LLVMLibrary.java"
-            preserveLastModified="true"
-            token="@javax.annotation.Generated"
-            value="@javax.annotation.processing.Generated"
-            unless:set="java8"/>
         <antcall target="compile.build-project-ecj"/>
-        <replace
-            dir="${source.dir}" includes="**/LLVMLibrary.java"
-            preserveLastModified="true"
-            token="@javax.annotation.processing.Generated"
-            value="@javax.annotation.Generated"
-            unless:set="java8"/>
     </target>
 
     <!-- Auxiliary targets -->
