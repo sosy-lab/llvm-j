@@ -49,6 +49,10 @@ unit-tests:jdk-14:
     - build-dependencies
     - build:jdk-14
     - download-lib
+  needs:
+    - build-dependencies
+    - build:jdk-14
+    - download-lib
   only:
     - web
 
