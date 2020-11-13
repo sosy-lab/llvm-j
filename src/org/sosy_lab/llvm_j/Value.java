@@ -1284,13 +1284,7 @@ public class Value {
    * @see #isFunction()
    */
   public Attribute getFunctionAttr() {
-    int code = LLVMLibrary.LLVMGetFunctionAttr(value);
-    for (Attribute a : Attribute.values()) {
-      if (a.getValue() == code) {
-        return a;
-      }
-    }
-    throw new AssertionError("Unknown attribute code " + code);
+    throw new UnsupportedOperationException();
   }
 
   /**
@@ -1390,13 +1384,7 @@ public class Value {
 
   /** Get an attribute from this value. The value has to be a function argument. */
   public Attribute getAttribute() {
-    int code = LLVMLibrary.LLVMGetAttribute(value);
-    for (Attribute a : Attribute.values()) {
-      if (a.getValue() == code) {
-        return a;
-      }
-    }
-    throw new AssertionError("Unhandled attribute code " + code);
+    throw new UnsupportedOperationException();
   }
 
   /** Returns the zero extended value for an integer constant value. */

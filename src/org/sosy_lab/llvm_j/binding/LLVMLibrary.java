@@ -54,7 +54,7 @@ import org.sosy_lab.llvm_j.binding.ext.NativeSizeByReference;
 @javax.annotation.processing.Generated("JNAerator")
 @SuppressWarnings("all")
 public class LLVMLibrary implements Library {
-  public static final String JNA_LIBRARY_NAME = "LLVM-3.9.1";
+  public static final String JNA_LIBRARY_NAME = "LLVM-6.0";
   public static final NativeLibrary JNA_NATIVE_LIB =
       NativeLibrary.getInstance(LLVMLibrary.JNA_LIBRARY_NAME);
   /**
@@ -64,35 +64,6 @@ public class LLVMLibrary implements Library {
   public static void instantiate() {
     Native.register(LLVMLibrary.class, LLVMLibrary.JNA_NATIVE_LIB);
   }
-  /** enum values */
-  public static interface LLVMAttribute {
-    public static final int LLVMZExtAttribute = 1 << 0;
-    public static final int LLVMSExtAttribute = 1 << 1;
-    public static final int LLVMNoReturnAttribute = 1 << 2;
-    public static final int LLVMInRegAttribute = 1 << 3;
-    public static final int LLVMStructRetAttribute = 1 << 4;
-    public static final int LLVMNoUnwindAttribute = 1 << 5;
-    public static final int LLVMNoAliasAttribute = 1 << 6;
-    public static final int LLVMByValAttribute = 1 << 7;
-    public static final int LLVMNestAttribute = 1 << 8;
-    public static final int LLVMReadNoneAttribute = 1 << 9;
-    public static final int LLVMReadOnlyAttribute = 1 << 10;
-    public static final int LLVMNoInlineAttribute = 1 << 11;
-    public static final int LLVMAlwaysInlineAttribute = 1 << 12;
-    public static final int LLVMOptimizeForSizeAttribute = 1 << 13;
-    public static final int LLVMStackProtectAttribute = 1 << 14;
-    public static final int LLVMStackProtectReqAttribute = 1 << 15;
-    public static final int LLVMAlignment = 31 << 16;
-    public static final int LLVMNoCaptureAttribute = 1 << 21;
-    public static final int LLVMNoRedZoneAttribute = 1 << 22;
-    public static final int LLVMNoImplicitFloatAttribute = 1 << 23;
-    public static final int LLVMNakedAttribute = 1 << 24;
-    public static final int LLVMInlineHintAttribute = 1 << 25;
-    public static final int LLVMStackAlignment = 7 << 26;
-    public static final int LLVMReturnsTwice = 1 << 29;
-    public static final int LLVMUWTable = 1 << 30;
-    public static final int LLVMNonLazyBind = 1 << 31;
-  };
   /** enum values */
   public static interface LLVMOpcode {
     public static final int LLVMRet = 1;
@@ -491,7 +462,7 @@ public class LLVMLibrary implements Library {
     void apply(Pointer voidPtr1);
   };
   /**
-   * See llvm::createBBVectorizePass function.<br>
+   * DEPRECATED - Use LLVMAddSLPVectorizePass<br>
    * Original signature : <code>void LLVMAddBBVectorizePass(LLVMPassManagerRef)</code>
    */
   public static native void LLVMAddBBVectorizePass(LLVMLibrary.LLVMPassManagerRef PM);
@@ -515,6 +486,11 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>void LLVMAddConstantMergePass(LLVMPassManagerRef)</code>
    */
   public static native void LLVMAddConstantMergePass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createCalledValuePropagationPass function.<br>
+   * Original signature : <code>void LLVMAddCalledValuePropagationPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddCalledValuePropagationPass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
    * See llvm::createDeadArgEliminationPass function.<br>
    * Original signature : <code>void LLVMAddDeadArgEliminationPass(LLVMPassManagerRef)</code>
@@ -575,6 +551,210 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>void LLVMAddStripSymbolsPass(LLVMPassManagerRef)</code>
    */
   public static native void LLVMAddStripSymbolsPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createAggressiveDCEPass function.<br>
+   * Original signature : <code>void LLVMAddAggressiveDCEPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddAggressiveDCEPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createBitTrackingDCEPass function.<br>
+   * Original signature : <code>void LLVMAddBitTrackingDCEPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddBitTrackingDCEPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createAlignmentFromAssumptionsPass function.<br>
+   * Original signature : <code>void LLVMAddAlignmentFromAssumptionsPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddAlignmentFromAssumptionsPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createCFGSimplificationPass function.<br>
+   * Original signature : <code>void LLVMAddCFGSimplificationPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddCFGSimplificationPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createDeadStoreEliminationPass function.<br>
+   * Original signature : <code>void LLVMAddDeadStoreEliminationPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddDeadStoreEliminationPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createScalarizerPass function.<br>
+   * Original signature : <code>void LLVMAddScalarizerPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddScalarizerPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createMergedLoadStoreMotionPass function.<br>
+   * Original signature : <code>void LLVMAddMergedLoadStoreMotionPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddMergedLoadStoreMotionPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createGVNPass function.<br>
+   * Original signature : <code>void LLVMAddGVNPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddGVNPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createGVNPass function.<br>
+   * Original signature : <code>void LLVMAddNewGVNPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddNewGVNPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createIndVarSimplifyPass function.<br>
+   * Original signature : <code>void LLVMAddIndVarSimplifyPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddIndVarSimplifyPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createInstructionCombiningPass function.<br>
+   * Original signature : <code>void LLVMAddInstructionCombiningPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddInstructionCombiningPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createJumpThreadingPass function.<br>
+   * Original signature : <code>void LLVMAddJumpThreadingPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddJumpThreadingPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLICMPass function.<br>
+   * Original signature : <code>void LLVMAddLICMPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLICMPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLoopDeletionPass function.<br>
+   * Original signature : <code>void LLVMAddLoopDeletionPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLoopDeletionPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLoopIdiomPass function<br>
+   * Original signature : <code>void LLVMAddLoopIdiomPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLoopIdiomPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLoopRotatePass function.<br>
+   * Original signature : <code>void LLVMAddLoopRotatePass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLoopRotatePass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLoopRerollPass function.<br>
+   * Original signature : <code>void LLVMAddLoopRerollPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLoopRerollPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLoopUnrollPass function.<br>
+   * Original signature : <code>void LLVMAddLoopUnrollPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLoopUnrollPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLoopUnswitchPass function.<br>
+   * Original signature : <code>void LLVMAddLoopUnswitchPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLoopUnswitchPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createMemCpyOptPass function.<br>
+   * Original signature : <code>void LLVMAddMemCpyOptPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddMemCpyOptPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createPartiallyInlineLibCallsPass function.<br>
+   * Original signature : <code>void LLVMAddPartiallyInlineLibCallsPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddPartiallyInlineLibCallsPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLowerSwitchPass function.<br>
+   * Original signature : <code>void LLVMAddLowerSwitchPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLowerSwitchPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createPromoteMemoryToRegisterPass function.<br>
+   * Original signature : <code>void LLVMAddPromoteMemoryToRegisterPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddPromoteMemoryToRegisterPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createReassociatePass function.<br>
+   * Original signature : <code>void LLVMAddReassociatePass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddReassociatePass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createSCCPPass function.<br>
+   * Original signature : <code>void LLVMAddSCCPPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddSCCPPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createSROAPass function.<br>
+   * Original signature : <code>void LLVMAddScalarReplAggregatesPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddScalarReplAggregatesPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createSROAPass function.<br>
+   * Original signature : <code>void LLVMAddScalarReplAggregatesPassSSA(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddScalarReplAggregatesPassSSA(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createSROAPass function.<br>
+   * Original signature : <code>
+   * void LLVMAddScalarReplAggregatesPassWithThreshold(LLVMPassManagerRef, int)</code>
+   */
+  public static native void LLVMAddScalarReplAggregatesPassWithThreshold(
+      LLVMLibrary.LLVMPassManagerRef PM, int Threshold);
+  /**
+   * See llvm::createSimplifyLibCallsPass function.<br>
+   * Original signature : <code>void LLVMAddSimplifyLibCallsPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddSimplifyLibCallsPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createTailCallEliminationPass function.<br>
+   * Original signature : <code>void LLVMAddTailCallEliminationPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddTailCallEliminationPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createConstantPropagationPass function.<br>
+   * Original signature : <code>void LLVMAddConstantPropagationPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddConstantPropagationPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::demotePromoteMemoryToRegisterPass function.<br>
+   * Original signature : <code>void LLVMAddDemoteMemoryToRegisterPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddDemoteMemoryToRegisterPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createVerifierPass function.<br>
+   * Original signature : <code>void LLVMAddVerifierPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddVerifierPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createCorrelatedValuePropagationPass function<br>
+   * Original signature : <code>void LLVMAddCorrelatedValuePropagationPass(LLVMPassManagerRef)
+   * </code>
+   */
+  public static native void LLVMAddCorrelatedValuePropagationPass(
+      LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createEarlyCSEPass function<br>
+   * Original signature : <code>void LLVMAddEarlyCSEPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddEarlyCSEPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createEarlyCSEPass function<br>
+   * Original signature : <code>void LLVMAddEarlyCSEMemSSAPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddEarlyCSEMemSSAPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createLowerExpectIntrinsicPass function<br>
+   * Original signature : <code>void LLVMAddLowerExpectIntrinsicPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddLowerExpectIntrinsicPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createTypeBasedAliasAnalysisPass function<br>
+   * Original signature : <code>void LLVMAddTypeBasedAliasAnalysisPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddTypeBasedAliasAnalysisPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createScopedNoAliasAAPass function<br>
+   * Original signature : <code>void LLVMAddScopedNoAliasAAPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddScopedNoAliasAAPass(LLVMLibrary.LLVMPassManagerRef PM);
+  /**
+   * See llvm::createBasicAliasAnalysisPass function<br>
+   * Original signature : <code>void LLVMAddBasicAliasAnalysisPass(LLVMPassManagerRef)</code>
+   */
+  public static native void LLVMAddBasicAliasAnalysisPass(LLVMLibrary.LLVMPassManagerRef PM);
   /**
    * See llvm::PassManagerBuilder.<br>
    * Original signature : <code>LLVMPassManagerBuilderRef LLVMPassManagerBuilderCreate()</code>
@@ -798,200 +978,6 @@ public class LLVMLibrary implements Library {
       LLVMLibrary.LLVMPassManagerRef PM,
       LLVMLibrary.LLVMBool Internalize,
       LLVMLibrary.LLVMBool RunInliner);
-  /**
-   * See llvm::createAggressiveDCEPass function.<br>
-   * Original signature : <code>void LLVMAddAggressiveDCEPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddAggressiveDCEPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createBitTrackingDCEPass function.<br>
-   * Original signature : <code>void LLVMAddBitTrackingDCEPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddBitTrackingDCEPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createAlignmentFromAssumptionsPass function.<br>
-   * Original signature : <code>void LLVMAddAlignmentFromAssumptionsPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddAlignmentFromAssumptionsPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createCFGSimplificationPass function.<br>
-   * Original signature : <code>void LLVMAddCFGSimplificationPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddCFGSimplificationPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createDeadStoreEliminationPass function.<br>
-   * Original signature : <code>void LLVMAddDeadStoreEliminationPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddDeadStoreEliminationPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createScalarizerPass function.<br>
-   * Original signature : <code>void LLVMAddScalarizerPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddScalarizerPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createMergedLoadStoreMotionPass function.<br>
-   * Original signature : <code>void LLVMAddMergedLoadStoreMotionPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddMergedLoadStoreMotionPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createGVNPass function.<br>
-   * Original signature : <code>void LLVMAddGVNPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddGVNPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createIndVarSimplifyPass function.<br>
-   * Original signature : <code>void LLVMAddIndVarSimplifyPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddIndVarSimplifyPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createInstructionCombiningPass function.<br>
-   * Original signature : <code>void LLVMAddInstructionCombiningPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddInstructionCombiningPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createJumpThreadingPass function.<br>
-   * Original signature : <code>void LLVMAddJumpThreadingPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddJumpThreadingPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLICMPass function.<br>
-   * Original signature : <code>void LLVMAddLICMPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLICMPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLoopDeletionPass function.<br>
-   * Original signature : <code>void LLVMAddLoopDeletionPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLoopDeletionPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLoopIdiomPass function<br>
-   * Original signature : <code>void LLVMAddLoopIdiomPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLoopIdiomPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLoopRotatePass function.<br>
-   * Original signature : <code>void LLVMAddLoopRotatePass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLoopRotatePass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLoopRerollPass function.<br>
-   * Original signature : <code>void LLVMAddLoopRerollPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLoopRerollPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLoopUnrollPass function.<br>
-   * Original signature : <code>void LLVMAddLoopUnrollPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLoopUnrollPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLoopUnswitchPass function.<br>
-   * Original signature : <code>void LLVMAddLoopUnswitchPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLoopUnswitchPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createMemCpyOptPass function.<br>
-   * Original signature : <code>void LLVMAddMemCpyOptPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddMemCpyOptPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createPartiallyInlineLibCallsPass function.<br>
-   * Original signature : <code>void LLVMAddPartiallyInlineLibCallsPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddPartiallyInlineLibCallsPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLowerSwitchPass function.<br>
-   * Original signature : <code>void LLVMAddLowerSwitchPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLowerSwitchPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createPromoteMemoryToRegisterPass function.<br>
-   * Original signature : <code>void LLVMAddPromoteMemoryToRegisterPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddPromoteMemoryToRegisterPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createReassociatePass function.<br>
-   * Original signature : <code>void LLVMAddReassociatePass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddReassociatePass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createSCCPPass function.<br>
-   * Original signature : <code>void LLVMAddSCCPPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddSCCPPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createSROAPass function.<br>
-   * Original signature : <code>void LLVMAddScalarReplAggregatesPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddScalarReplAggregatesPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createSROAPass function.<br>
-   * Original signature : <code>void LLVMAddScalarReplAggregatesPassSSA(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddScalarReplAggregatesPassSSA(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createSROAPass function.<br>
-   * Original signature : <code>
-   * void LLVMAddScalarReplAggregatesPassWithThreshold(LLVMPassManagerRef, int)</code>
-   */
-  public static native void LLVMAddScalarReplAggregatesPassWithThreshold(
-      LLVMLibrary.LLVMPassManagerRef PM, int Threshold);
-  /**
-   * See llvm::createSimplifyLibCallsPass function.<br>
-   * Original signature : <code>void LLVMAddSimplifyLibCallsPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddSimplifyLibCallsPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createTailCallEliminationPass function.<br>
-   * Original signature : <code>void LLVMAddTailCallEliminationPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddTailCallEliminationPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createConstantPropagationPass function.<br>
-   * Original signature : <code>void LLVMAddConstantPropagationPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddConstantPropagationPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::demotePromoteMemoryToRegisterPass function.<br>
-   * Original signature : <code>void LLVMAddDemoteMemoryToRegisterPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddDemoteMemoryToRegisterPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createVerifierPass function.<br>
-   * Original signature : <code>void LLVMAddVerifierPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddVerifierPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createCorrelatedValuePropagationPass function<br>
-   * Original signature : <code>void LLVMAddCorrelatedValuePropagationPass(LLVMPassManagerRef)
-   * </code>
-   */
-  public static native void LLVMAddCorrelatedValuePropagationPass(
-      LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createEarlyCSEPass function<br>
-   * Original signature : <code>void LLVMAddEarlyCSEPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddEarlyCSEPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createLowerExpectIntrinsicPass function<br>
-   * Original signature : <code>void LLVMAddLowerExpectIntrinsicPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddLowerExpectIntrinsicPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createTypeBasedAliasAnalysisPass function<br>
-   * Original signature : <code>void LLVMAddTypeBasedAliasAnalysisPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddTypeBasedAliasAnalysisPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createScopedNoAliasAAPass function<br>
-   * Original signature : <code>void LLVMAddScopedNoAliasAAPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddScopedNoAliasAAPass(LLVMLibrary.LLVMPassManagerRef PM);
-  /**
-   * See llvm::createBasicAliasAnalysisPass function<br>
-   * Original signature : <code>void LLVMAddBasicAliasAnalysisPass(LLVMPassManagerRef)</code>
-   */
-  public static native void LLVMAddBasicAliasAnalysisPass(LLVMLibrary.LLVMPassManagerRef PM);
   /** Original signature : <code>void LLVMInitializeCore(LLVMPassRegistryRef)</code> */
   public static native void LLVMInitializeCore(LLVMLibrary.LLVMPassRegistryRef R);
   /**
@@ -1895,6 +1881,19 @@ public class LLVMLibrary implements Library {
    */
   public static native LLVMLibrary.LLVMTypeRef LLVMGetElementType(LLVMLibrary.LLVMTypeRef Ty);
   /**
+   * Returns type's subtypes<br>
+   * See llvm::Type::subtypes()<br>
+   * Original signature : <code>void LLVMGetSubtypes(LLVMTypeRef, LLVMTypeRef*)</code>
+   */
+  public static native void LLVMGetSubtypes(
+      LLVMLibrary.LLVMTypeRef Tp, LLVMLibrary.LLVMTypeRef Arr);
+  /**
+   * Return the number of types in the derived type.<br>
+   * See llvm::Type::getNumContainedTypes()<br>
+   * Original signature : <code>int LLVMGetNumContainedTypes(LLVMTypeRef)</code>
+   */
+  public static native int LLVMGetNumContainedTypes(LLVMLibrary.LLVMTypeRef Tp);
+  /**
    * Create a fixed size array type that refers to a specific type.<br>
    * The created type will exist in the context that its element type<br>
    * exists in.<br>
@@ -1958,6 +1957,17 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>LLVMTypeRef LLVMX86MMXTypeInContext(LLVMContextRef)</code>
    */
   public static native LLVMLibrary.LLVMTypeRef LLVMX86MMXTypeInContext(
+      LLVMLibrary.LLVMContextRef C);
+  /**
+   * Create a token type in a context.<br>
+   * Original signature : <code>LLVMTypeRef LLVMTokenTypeInContext(LLVMContextRef)</code>
+   */
+  public static native LLVMLibrary.LLVMTypeRef LLVMTokenTypeInContext(LLVMLibrary.LLVMContextRef C);
+  /**
+   * Create a metadata type in a context.<br>
+   * Original signature : <code>LLVMTypeRef LLVMMetadataTypeInContext(LLVMContextRef)</code>
+   */
+  public static native LLVMLibrary.LLVMTypeRef LLVMMetadataTypeInContext(
       LLVMLibrary.LLVMContextRef C);
   /**
    * These are similar to the above functions except they operate on the<br>
@@ -2653,6 +2663,11 @@ public class LLVMLibrary implements Library {
   /** Original signature : <code>LLVMValueRef LLVMConstUDiv(LLVMValueRef, LLVMValueRef)</code> */
   public static native LLVMLibrary.LLVMValueRef LLVMConstUDiv(
       LLVMLibrary.LLVMValueRef LHSConstant, LLVMLibrary.LLVMValueRef RHSConstant);
+  /**
+   * Original signature : <code>LLVMValueRef LLVMConstExactUDiv(LLVMValueRef, LLVMValueRef)</code>
+   */
+  public static native LLVMLibrary.LLVMValueRef LLVMConstExactUDiv(
+      LLVMLibrary.LLVMValueRef LHSConstant, LLVMLibrary.LLVMValueRef RHSConstant);
   /** Original signature : <code>LLVMValueRef LLVMConstSDiv(LLVMValueRef, LLVMValueRef)</code> */
   public static native LLVMLibrary.LLVMValueRef LLVMConstSDiv(
       LLVMLibrary.LLVMValueRef LHSConstant, LLVMLibrary.LLVMValueRef RHSConstant);
@@ -3179,10 +3194,6 @@ public class LLVMLibrary implements Library {
   /**
    * Add an attribute to a function.<br>
    * See llvm::Function::addAttribute()<br>
-   * Original signature : <code>void LLVMAddFunctionAttr(LLVMValueRef, LLVMAttribute)</code>
-   */
-  public static native void LLVMAddFunctionAttr(LLVMLibrary.LLVMValueRef Fn, int PA);
-  /**
    * Original signature : <code>
    * void LLVMAddAttributeAtIndex(LLVMValueRef, LLVMAttributeIndex, LLVMAttributeRef)</code>
    */
@@ -3277,17 +3288,6 @@ public class LLVMLibrary implements Library {
   public static native void LLVMAddTargetDependentFunctionAttr(
       LLVMLibrary.LLVMValueRef Fn, String A, String V);
   /**
-   * Obtain an attribute from a function.<br>
-   * See llvm::Function::getAttributes()<br>
-   * Original signature : <code>LLVMAttribute LLVMGetFunctionAttr(LLVMValueRef)</code>
-   */
-  public static native int LLVMGetFunctionAttr(LLVMLibrary.LLVMValueRef Fn);
-  /**
-   * Remove an attribute from a function.<br>
-   * Original signature : <code>void LLVMRemoveFunctionAttr(LLVMValueRef, LLVMAttribute)</code>
-   */
-  public static native void LLVMRemoveFunctionAttr(LLVMLibrary.LLVMValueRef Fn, int PA);
-  /**
    * Obtain the number of parameters in a function.<br>
    * See llvm::Function::arg_size()<br>
    * Original signature : <code>int LLVMCountParams(LLVMValueRef)</code>
@@ -3348,23 +3348,6 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>LLVMValueRef LLVMGetPreviousParam(LLVMValueRef)</code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMGetPreviousParam(LLVMLibrary.LLVMValueRef Arg);
-  /**
-   * Add an attribute to a function argument.<br>
-   * See llvm::Argument::addAttr()<br>
-   * Original signature : <code>void LLVMAddAttribute(LLVMValueRef, LLVMAttribute)</code>
-   */
-  public static native void LLVMAddAttribute(LLVMLibrary.LLVMValueRef Arg, int PA);
-  /**
-   * Remove an attribute from a function argument.<br>
-   * See llvm::Argument::removeAttr()<br>
-   * Original signature : <code>void LLVMRemoveAttribute(LLVMValueRef, LLVMAttribute)</code>
-   */
-  public static native void LLVMRemoveAttribute(LLVMLibrary.LLVMValueRef Arg, int PA);
-  /**
-   * Get an attribute from a function argument.<br>
-   * Original signature : <code>LLVMAttribute LLVMGetAttribute(LLVMValueRef)</code>
-   */
-  public static native int LLVMGetAttribute(LLVMLibrary.LLVMValueRef Arg);
   /**
    * Set the alignment for a function parameter.<br>
    * See llvm::Argument::addAttr()<br>
@@ -3429,6 +3412,19 @@ public class LLVMLibrary implements Library {
    */
   public static native LLVMLibrary.LLVMValueRef LLVMMDNode(
       LLVMLibrary.LLVMValueRef Vals, int Count);
+  /**
+   * Obtain a Metadata as a Value.<br>
+   * Original signature : <code>LLVMValueRef LLVMMetadataAsValue(LLVMContextRef, LLVMMetadataRef)
+   * </code>
+   */
+  public static native LLVMLibrary.LLVMValueRef LLVMMetadataAsValue(
+      LLVMLibrary.LLVMContextRef C, LLVMLibrary.LLVMMetadataRef MD);
+  /**
+   * Obtain a Value as a Metadata.<br>
+   * Original signature : <code>LLVMMetadataRef LLVMValueAsMetadata(LLVMValueRef)</code>
+   */
+  public static native LLVMLibrary.LLVMMetadataRef LLVMValueAsMetadata(
+      LLVMLibrary.LLVMValueRef Val);
   /**
    * Obtain the underlying string from a MDString value.<br>
    *
@@ -3829,18 +3825,6 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>int LLVMGetInstructionCallConv(LLVMValueRef)</code>
    */
   public static native int LLVMGetInstructionCallConv(LLVMLibrary.LLVMValueRef Instr);
-  /**
-   * Original signature : <code>void LLVMAddInstrAttribute(LLVMValueRef, unsigned, LLVMAttribute)
-   * </code>
-   */
-  public static native void LLVMAddInstrAttribute(
-      LLVMLibrary.LLVMValueRef Instr, int index, int LLVMAttribute1);
-  /**
-   * Original signature : <code>void LLVMRemoveInstrAttribute(LLVMValueRef, unsigned, LLVMAttribute)
-   * </code>
-   */
-  public static native void LLVMRemoveInstrAttribute(
-      LLVMLibrary.LLVMValueRef Instr, int index, int LLVMAttribute1);
   /**
    * Original signature : <code>void LLVMSetInstrParamAlignment(LLVMValueRef, unsigned, unsigned)
    * </code>
@@ -4552,6 +4536,25 @@ public class LLVMLibrary implements Library {
    * </code>
    */
   public static native LLVMLibrary.LLVMValueRef LLVMBuildUDiv(
+      LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
+  /**
+   * Original signature : <code>
+   * LLVMValueRef LLVMBuildExactUDiv(LLVMValueRef, LLVMValueRef, const char*)</code><br>
+   *
+   * @deprecated use the safer methods {@link
+   *     #LLVMBuildExactUDiv(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef,
+   *     org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef, java.lang.String)} and {@link
+   *     #LLVMBuildExactUDiv(org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef,
+   *     org.sosy_lab.llvm_j.binding.LLVMLibrary.LLVMValueRef, com.sun.jna.Pointer)} instead
+   */
+  @Deprecated
+  public static native LLVMLibrary.LLVMValueRef LLVMBuildExactUDiv(
+      LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, Pointer Name);
+  /**
+   * Original signature : <code>
+   * LLVMValueRef LLVMBuildExactUDiv(LLVMValueRef, LLVMValueRef, const char*)</code>
+   */
+  public static native LLVMLibrary.LLVMValueRef LLVMBuildExactUDiv(
       LLVMLibrary.LLVMValueRef LHS, LLVMLibrary.LLVMValueRef RHS, String Name);
   /**
    * Original signature : <code>LLVMValueRef LLVMBuildSDiv(LLVMValueRef, LLVMValueRef, const char*)
@@ -7101,6 +7104,16 @@ public class LLVMLibrary implements Library {
     }
 
     public LLVMObjectFileRef() {
+      super();
+    }
+  };
+
+  public static class LLVMMetadataRef extends PointerType {
+    public LLVMMetadataRef(Pointer address) {
+      super(address);
+    }
+
+    public LLVMMetadataRef() {
       super();
     }
   };
