@@ -9,7 +9,7 @@
     <property file="build.properties"/>
     <property environment="env"/>
 
-    <property name="llvm.version" value="3.9.1" />
+    <property name="llvm.version" value="6.0" />
 
     <property name="ivy.configurations" value="build, runtime, test, format-source, checkstyle, spotbugs"/>
     <property name="package" value="llvm_j"/>
