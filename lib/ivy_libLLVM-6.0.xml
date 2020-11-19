@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0"
+    xmlns:e="http://ant.apache.org/ivy/extra"
+    xmlns:xsi="hhtp://www.w3.org/2001/XMLSchema-instance"
+    >
+
+  <info organisation="org.sosy_lab" module="llvm-lib-6.0">
+    <license name="LLVM Release License" url="http://releases.llvm.org/6.0.0/LICENSE.TXT" />
+    <description homepage="http://llvm.org/">
+      Shared library of LLVM project, version 6.0
+    </description>
+  </info>
+
+  <configurations>
+    <conf name="full" description="llvm shared C library with the subset of required shared libraries that are not available on most distributions"/>
+    <conf name="single" description="llvm shared C library without dependencies included"/>
+  </configurations>
+  
+  <publications>
+    <artifact name="libLLVM-6.0" type="shared-object" ext="so" />
+    <artifact name="libedit" conf="full" type="shared-object" ext="so.2" />
+    <artifact name="libtinfo" conf="full" type="shared-object" ext="so.5" />
+  </publications>
+</ivy-module>
