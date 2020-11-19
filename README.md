@@ -23,14 +23,14 @@ Through this, it is easy to update the bindings to new versions of LLVM,
 and the user doesn't have to change any code since the llvm-j API stays
 the same.
 
-Currently, we use LLVM **3.9.1**.
+Currently, we use LLVM **6.0**.
 
 ## Use
 
 The proxy classes are provided in Java package [`org.sosy_lab.llvm_j`](ADDLINK) for easy use.
 The original bindings are located in [`org.sosy_lab.llvm_j.binding`](ADDLINK).
 
-If you didn't put the LLVM 3.9.1 shared library in one of your system directories
+If you didn't put the LLVM 6.0 shared library in one of your system directories
 for library lookup,
 you can tell llvm-j in which directory the library is in in two ways:
 
@@ -121,7 +121,7 @@ or
 For both options, make sure that you use the correct version of LLVM.
 
 [1]: http://releases.llvm.org/download.html
-[2]: https://releases.llvm.org/3.9.1/docs/CMake.html
+[2]: https://releases.llvm.org/6.0.0/docs/CMake.html
 
 ### Creating JavaDoc
 
