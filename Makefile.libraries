@@ -1,5 +1,5 @@
-LLVM_VERSION ?= 3.9.1
-UBUNTU_VERSION ?= trusty
+LLVM_VERSION ?= 6.0
+UBUNTU_VERSION ?= focal
 
 BUILD_DIR=build-lib
 TARGET=lib/native
