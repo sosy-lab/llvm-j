@@ -37,7 +37,7 @@ bindings-build:llvm-6.0:
 
 bindings-build:llvm-3.9.1:
   stage: build-bindings
-  image: "${CI_REGISTRY}/test:jdk-11"
+  image: "${CI_REGISTRY_IMAGE}/test:jdk-11"
   dependencies:
     - build-dependencies
   needs:
