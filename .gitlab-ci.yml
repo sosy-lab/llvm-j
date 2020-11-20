@@ -29,7 +29,7 @@ download-lib:llvm-3.9.1:
 bindings-build:llvm-6.0:
   # Do this in the check stage because we want to use the modified bindings
   # in the repository for everything else
-  stage: check
+  stage: checks
   dependencies:
     - build-dependencies
   script:
@@ -62,6 +62,9 @@ build-project-ecj:llvm-3.9.1:
   <<: *build-project-ecj
   image: ${CI_REGISTRY_IMAGE}/test:jdk-11
   dependencies:
+    - build-dependencies
+    - bindings-build:llvm-3.9.1
+  needs:
     - build-dependencies
     - bindings-build:llvm-3.9.1
 
