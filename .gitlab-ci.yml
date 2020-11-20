@@ -1,49 +1,103 @@
 include: /build/gitlab-ci.yml
 
 variables:
-  LLVM_VERSION: "6.0"
   PROJECT_PATH: "sosy-lab/software/llvm-j"
   GH_REF: "github.com/sosy-lab/llvm-j"
 
-download-lib:
+stages:
+  - images
+  - dependencies
+  - build-bindings
+  - build
+  - checks
+  - deploy
+
+download-lib:llvm-6.0:
   stage: dependencies
-  script: "ant -verbose download-library -Dllvm.version=$LLVM_VERSION"
+  script: "ant -verbose download-library -Dllvm.version=6.0"
   artifacts:
     paths:
       - lib/native
+
+download-lib:llvm-3.9.1:
+  stage: dependencies
+  script: "ant -verbose download-library -Dllvm.version=3.9.1"
+  artifacts:
+    paths:
+      - lib/native
+
+bindings-build:llvm-6.0:
+  # Do this in the check stage because we want to use the modified bindings
+  # in the repository for everything else
+  stage: check
+  dependencies:
+    - build-dependencies
+  script:
+    - "ant clean-bindings bindings -Dllvm.version=6.0 -Dllvm.home=/usr/include/llvm-c-6.0/llvm-c"
+
+bindings-build:llvm-3.9.1:
+  stage: build-bindings
+  image: "${CI_REGISTRY}/test:jdk-11"
+  dependencies:
+    - build-dependencies
+  needs:
+    - build-dependencies
+  script:
+    - "ant clean-bindings bindings -Dllvm.version=3.9.1 -Dllvm.home=/usr/include/llvm-c-3.9.1/llvm-c"
+  artifacts:
+    paths:
+      - src/org/sosy_lab/llvm_j/binding/
+
+build:llvm-3.9.1:
+  <<: *build
+  image: ${CI_REGISTRY_IMAGE}/test:jdk-11
+  dependencies:
+    - build-dependencies
+    - bindings-build:llvm-3.9.1
+  needs:
+    - build-dependencies
+    - bindings-build:llvm-3.9.1
+
+build-project-ecj:llvm-3.9.1:
+  <<: *build-project-ecj
+  image: ${CI_REGISTRY_IMAGE}/test:jdk-11
+  dependencies:
+    - build-dependencies
+    - bindings-build:llvm-3.9.1
+
 
 # Run unit tests with dependency on download-lib
 unit-tests:jdk-11:
   dependencies:
     - build-dependencies
     - build:jdk-11
-    - download-lib
+    - download-lib:llvm-6.0
   needs:
     - build-dependencies
     - build:jdk-11
-    - download-lib
-
-bindings-build:
-  # Put in stage 'checks' to make other checks not dependent on its failure
-  stage: checks
-  dependencies:
-    - build-dependencies
-  script:
-    - "ant bindings -Dllvm.home=/usr/include/llvm-c-6.0/llvm-c"
-    - "git diff --exit-code"
-
-
-## Currently disabled runs ##
+    - download-lib:llvm-6.0
 
 unit-tests:jdk-14:
   dependencies:
     - build-dependencies
     - build:jdk-14
-    - download-lib
+    - download-lib:llvm-6.0
   needs:
     - build-dependencies
     - build:jdk-14
-    - download-lib
+    - download-lib:llvm-6.0
+
+unit-tests:llvm-3.9.1:
+  <<: *unit-tests
+  image: "${CI_REGISTRY}/test:jdk-11"
+  dependencies:
+    - build-dependencies
+    - build:llvm-3.9.1
+    - download-lib:llvm-3.9.1
+  needs:
+    - build-dependencies
+    - build:llvm-3.9.1
+    - download-lib:llvm-3.9.1
 
 reuse:
   only:
