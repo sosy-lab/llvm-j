@@ -30,6 +30,7 @@
         <exec executable="make">
             <arg value="-f" />
             <arg value="Makefile.libraries" />
+            <arg value="LLVM_VERSION=${llvm.version}" />
         </exec>
         <available file="${llvm.library}" property="library.exist" />
         <fail unless="library.exist"
