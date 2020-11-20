@@ -29,8 +29,10 @@ download-lib:llvm-3.9.1:
 bindings-build:llvm-6.0:
   # Do this in the check stage because we want to use the modified bindings
   # in the repository for everything else
-  stage: checks
+  stage: build-bindings
   dependencies:
+    - build-dependencies
+  needs:
     - build-dependencies
   script:
     - "ant clean-bindings bindings -Dllvm.version=6.0 -Dllvm.home=/usr/include/llvm-c-6.0/llvm-c"
