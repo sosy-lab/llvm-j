@@ -50,6 +50,18 @@ bindings-build:llvm-3.9.1:
     paths:
       - src/org/sosy_lab/llvm_j/binding/
 
+build:jdk-11:
+  dependencies:
+    - build-dependencies
+  needs:
+    - build-dependencies
+
+build:jdk-14:
+  dependencies:
+    - build-dependencies
+  needs:
+    - build-dependencies
+
 build:llvm-3.9.1:
   stage: build
   script: "ant $ANT_PROPS_BUILD jar"
