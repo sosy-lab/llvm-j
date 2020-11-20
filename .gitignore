@@ -40,3 +40,4 @@ build.properties
 /repository
 
 pom.xml
+build-lib/
