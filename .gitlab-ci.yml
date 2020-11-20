@@ -45,7 +45,7 @@ bindings-build:llvm-3.9.1:
   needs:
     - build-dependencies
   script:
-    - "ant clean-bindings bindings -Dllvm.version=3.9.1 -Dllvm.home=/usr/include/llvm-c-3.9.1/llvm-c"
+    - "ant clean-bindings bindings -Dllvm.version=3.9.1 -Dllvm.home=/usr/include/llvm-c-3.9/llvm-c"
   artifacts:
     paths:
       - src/org/sosy_lab/llvm_j/binding/
