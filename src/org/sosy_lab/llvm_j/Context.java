@@ -96,17 +96,6 @@ public final class Context implements Closeable {
   /**
    * Destroys this context instance. This should be called whenever a <code>Context</code> instance
    * is not needed anymore, or memory will be leaked.
-   *
-   * @deprecated Use {@link #close()} instead.
-   */
-  @Deprecated
-  public void dispose() {
-    close();
-  }
-
-  /**
-   * Destroys this context instance. This should be called whenever a <code>Context</code> instance
-   * is not needed anymore, or memory will be leaked.
    */
   @Override
   public void close() {

@@ -72,19 +72,6 @@ public final class PassManager implements Closeable {
     return new PassManager(LLVMLibrary.LLVMCreateFunctionPassManager(mp));
   }
 
-  /**
-   * Finalizes all of the function passes scheduled in in the function pass manager. Frees the
-   * memory of a pass pipeline. For function pipelines, does not free the module provider.
-   *
-   * @throws IOException if an error occurs in the underlying LLVM pass manager during its
-   *     finalization
-   * @deprecated use {@link #close()} instead
-   */
-  @Deprecated
-  public void dispose() throws IOException {
-    close();
-  }
-
   /* PassManager */
   // public static native int LLVMRunPassManager(LLVMPassManagerRef pm, LLVMModuleRef m);
 

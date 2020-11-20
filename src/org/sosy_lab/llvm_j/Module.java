@@ -220,17 +220,6 @@ public final class Module implements Iterable<Value>, Closeable {
     return new Module(LLVMLibrary.LLVMGetGlobalParent(pValue.value()));
   }
 
-  /**
-   * Destroys this module instance.<br>
-   * This must be called for every created module or memory will be leaked.
-   *
-   * @deprecated Use {@link #close()} instead
-   */
-  @Deprecated
-  public void dispose() {
-    close();
-  }
-
   /** Returns the origin of this module, i.e., its source file name. */
   public @Nullable String getOriginFileName() {
     return fileName;
