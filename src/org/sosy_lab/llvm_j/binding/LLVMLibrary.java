@@ -130,7 +130,8 @@ public class LLVMLibrary implements Library {
     public static final int LLVMCatchPad = 63;
     public static final int LLVMCleanupPad = 64;
     public static final int LLVMCatchSwitch = 65;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMTypeKind {
     /** type with no size */
@@ -167,7 +168,8 @@ public class LLVMLibrary implements Library {
     public static final int LLVMX86_MMXTypeKind = 15;
     /** Tokens */
     public static final int LLVMTokenTypeKind = 16;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMLinkage {
     /** Externally visible function */
@@ -213,7 +215,8 @@ public class LLVMLibrary implements Library {
     public static final int LLVMLinkerPrivateLinkage = 15;
     /** Like LinkerPrivate, but is weak. */
     public static final int LLVMLinkerPrivateWeakLinkage = 16;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMVisibility {
     /** The GV is visible */
@@ -222,7 +225,8 @@ public class LLVMLibrary implements Library {
     public static final int LLVMHiddenVisibility = 1;
     /** The GV is protected */
     public static final int LLVMProtectedVisibility = 2;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMDLLStorageClass {
     public static final int LLVMDefaultStorageClass = 0;
@@ -230,7 +234,8 @@ public class LLVMLibrary implements Library {
     public static final int LLVMDLLImportStorageClass = 1;
     /** Function to be accessible from DLL. */
     public static final int LLVMDLLExportStorageClass = 2;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMCallConv {
     public static final int LLVMCCallConv = 0;
@@ -240,7 +245,8 @@ public class LLVMLibrary implements Library {
     public static final int LLVMAnyRegCallConv = 13;
     public static final int LLVMX86StdcallCallConv = 64;
     public static final int LLVMX86FastcallCallConv = 65;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMValueKind {
     public static final int LLVMArgumentValueKind = 0;
@@ -268,7 +274,8 @@ public class LLVMLibrary implements Library {
     public static final int LLVMMetadataAsValueValueKind = 22;
     public static final int LLVMInlineAsmValueKind = 23;
     public static final int LLVMInstructionValueKind = 24;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMIntPredicate {
     /** equal */
@@ -291,7 +298,8 @@ public class LLVMLibrary implements Library {
     public static final int LLVMIntSLT = 40;
     /** signed less or equal */
     public static final int LLVMIntSLE = 41;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMRealPredicate {
     /** Always false (always folded) */
@@ -326,14 +334,16 @@ public class LLVMLibrary implements Library {
     public static final int LLVMRealUNE = 14;
     /** Always true (always folded) */
     public static final int LLVMRealPredicateTrue = 15;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMLandingPadClauseTy {
     /** A catch clause */
     public static final int LLVMLandingPadCatch = 0;
     /** A filter clause */
     public static final int LLVMLandingPadFilter = 1;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMThreadLocalMode {
     public static final int LLVMNotThreadLocal = 0;
@@ -341,7 +351,8 @@ public class LLVMLibrary implements Library {
     public static final int LLVMLocalDynamicTLSModel = 2;
     public static final int LLVMInitialExecTLSModel = 3;
     public static final int LLVMLocalExecTLSModel = 4;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMAtomicOrdering {
     /** A load or store which is not atomic */
@@ -387,7 +398,8 @@ public class LLVMLibrary implements Library {
      * operations.
      */
     public static final int LLVMAtomicOrderingSequentiallyConsistent = 7;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMAtomicRMWBinOp {
     /** Set the new value and return the one old */
@@ -428,14 +440,16 @@ public class LLVMLibrary implements Library {
      * the old one
      */
     public static final int LLVMAtomicRMWBinOpUMin = 10;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMDiagnosticSeverity {
     public static final int LLVMDSError = 0;
     public static final int LLVMDSWarning = 1;
     public static final int LLVMDSRemark = 2;
     public static final int LLVMDSNote = 3;
-  };
+  }
+  ;
 
   public static final int LLVMAttributeReturnIndex = 0;
   public static final int LLVMAttributeFunctionIndex = -1;
@@ -447,20 +461,24 @@ public class LLVMLibrary implements Library {
     public static final int LLVMPrintMessageAction = 1;
     /** verifier will just return 1 */
     public static final int LLVMReturnStatusAction = 2;
-  };
+  }
+  ;
   /** enum values */
   public static interface LLVMByteOrdering {
     public static final int LLVMBigEndian = 0;
     public static final int LLVMLittleEndian = 1;
-  };
+  }
+  ;
 
   public interface LLVMDiagnosticHandler extends Callback {
     void apply(Pointer voidPtr1);
-  };
+  }
+  ;
 
   public interface LLVMYieldCallback extends Callback {
     void apply(Pointer voidPtr1);
-  };
+  }
+  ;
   /**
    * DEPRECATED - Use LLVMAddSLPVectorizePass<br>
    * Original signature : <code>void LLVMAddBBVectorizePass(LLVMPassManagerRef)</code>
@@ -7066,7 +7084,8 @@ public class LLVMLibrary implements Library {
     public LLVMAttributeRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMContextRef extends PointerType {
     public LLVMContextRef(Pointer address) {
@@ -7076,7 +7095,8 @@ public class LLVMLibrary implements Library {
     public LLVMContextRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMObjectFileRef extends PointerType {
     public LLVMObjectFileRef(Pointer address) {
@@ -7086,7 +7106,8 @@ public class LLVMLibrary implements Library {
     public LLVMObjectFileRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMMetadataRef extends PointerType {
     public LLVMMetadataRef(Pointer address) {
@@ -7096,7 +7117,8 @@ public class LLVMLibrary implements Library {
     public LLVMMetadataRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMSymbolIteratorRef extends PointerType {
     public LLVMSymbolIteratorRef(Pointer address) {
@@ -7106,7 +7128,8 @@ public class LLVMLibrary implements Library {
     public LLVMSymbolIteratorRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMDiagnosticInfoRef extends PointerType {
     public LLVMDiagnosticInfoRef(Pointer address) {
@@ -7116,7 +7139,8 @@ public class LLVMLibrary implements Library {
     public LLVMDiagnosticInfoRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMValueRef extends PointerType {
     public LLVMValueRef(Pointer address) {
@@ -7126,7 +7150,8 @@ public class LLVMLibrary implements Library {
     public LLVMValueRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMPassManagerRef extends PointerType {
     public LLVMPassManagerRef(Pointer address) {
@@ -7136,7 +7161,8 @@ public class LLVMLibrary implements Library {
     public LLVMPassManagerRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMRelocationIteratorRef extends PointerType {
     public LLVMRelocationIteratorRef(Pointer address) {
@@ -7146,7 +7172,8 @@ public class LLVMLibrary implements Library {
     public LLVMRelocationIteratorRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMTypeRef extends PointerType {
     public LLVMTypeRef(Pointer address) {
@@ -7156,7 +7183,8 @@ public class LLVMLibrary implements Library {
     public LLVMTypeRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMModuleProviderRef extends PointerType {
     public LLVMModuleProviderRef(Pointer address) {
@@ -7166,7 +7194,8 @@ public class LLVMLibrary implements Library {
     public LLVMModuleProviderRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMModuleRef extends PointerType {
     public LLVMModuleRef(Pointer address) {
@@ -7176,7 +7205,8 @@ public class LLVMLibrary implements Library {
     public LLVMModuleRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMUseRef extends PointerType {
     public LLVMUseRef(Pointer address) {
@@ -7186,7 +7216,8 @@ public class LLVMLibrary implements Library {
     public LLVMUseRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMBool extends PointerType {
     public LLVMBool(Pointer address) {
@@ -7196,7 +7227,8 @@ public class LLVMLibrary implements Library {
     public LLVMBool() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMPassManagerBuilderRef extends PointerType {
     public LLVMPassManagerBuilderRef(Pointer address) {
@@ -7206,7 +7238,8 @@ public class LLVMLibrary implements Library {
     public LLVMPassManagerBuilderRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMBasicBlockRef extends PointerType {
     public LLVMBasicBlockRef(Pointer address) {
@@ -7216,7 +7249,8 @@ public class LLVMLibrary implements Library {
     public LLVMBasicBlockRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMTargetLibraryInfoRef extends PointerType {
     public LLVMTargetLibraryInfoRef(Pointer address) {
@@ -7226,7 +7260,8 @@ public class LLVMLibrary implements Library {
     public LLVMTargetLibraryInfoRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMMemoryBufferRef extends PointerType {
     public LLVMMemoryBufferRef(Pointer address) {
@@ -7236,7 +7271,8 @@ public class LLVMLibrary implements Library {
     public LLVMMemoryBufferRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMSectionIteratorRef extends PointerType {
     public LLVMSectionIteratorRef(Pointer address) {
@@ -7246,7 +7282,8 @@ public class LLVMLibrary implements Library {
     public LLVMSectionIteratorRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMPassRegistryRef extends PointerType {
     public LLVMPassRegistryRef(Pointer address) {
@@ -7256,7 +7293,8 @@ public class LLVMLibrary implements Library {
     public LLVMPassRegistryRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMBuilderRef extends PointerType {
     public LLVMBuilderRef(Pointer address) {
@@ -7266,7 +7304,8 @@ public class LLVMLibrary implements Library {
     public LLVMBuilderRef() {
       super();
     }
-  };
+  }
+  ;
 
   public static class LLVMTargetDataRef extends PointerType {
     public LLVMTargetDataRef(Pointer address) {
@@ -7276,5 +7315,6 @@ public class LLVMLibrary implements Library {
     public LLVMTargetDataRef() {
       super();
     }
-  };
+  }
+  ;
 }
