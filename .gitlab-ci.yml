@@ -49,7 +49,8 @@ bindings-build:llvm-3.9.1:
       - src/org/sosy_lab/llvm_j/binding/
 
 build:llvm-3.9.1:
-  <<: *build
+  stage: build
+  script: "ant $ANT_PROPS_BUILD jar"
   image: ${CI_REGISTRY_IMAGE}/test:jdk-11
   dependencies:
     - build-dependencies
@@ -57,9 +58,16 @@ build:llvm-3.9.1:
   needs:
     - build-dependencies
     - bindings-build:llvm-3.9.1
+  interruptible: true
+  artifacts:
+    paths:
+      - "bin/"
+      - "*.jar"
 
 build-project-ecj:llvm-3.9.1:
-  <<: *build-project-ecj
+  stage: checks
+  script: "ant $ANT_PROPS_BUILD build-project-ecj"
+  interruptible: true
   image: ${CI_REGISTRY_IMAGE}/test:jdk-11
   dependencies:
     - build-dependencies
@@ -91,7 +99,9 @@ unit-tests:jdk-14:
     - download-lib:llvm-6.0
 
 unit-tests:llvm-3.9.1:
-  <<: *unit-tests
+  stage: checks
+  script: "ant $ANT_PROPS_CHECKS unit-tests-coverage"
+  interruptible: true
   image: "${CI_REGISTRY}/test:jdk-11"
   dependencies:
     - build-dependencies
@@ -101,6 +111,14 @@ unit-tests:llvm-3.9.1:
     - build-dependencies
     - build:llvm-3.9.1
     - download-lib:llvm-3.9.1
+  artifacts:
+    paths:
+      - "JUnit.html"
+      - "JUnit-coverage/"
+      - "junit/coverage.xml"
+    when: always
+    reports:
+      junit: "junit/TESTS-TestSuites.xml"
 
 reuse:
   only:
