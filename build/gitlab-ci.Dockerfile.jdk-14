@@ -16,6 +16,11 @@
 FROM ubuntu:20.04
 
 RUN apt-get update && apt-get install -y \
+  ant \
+  git \
+  openjdk-14-jre-headless \
+  openjdk-14-jdk-headless \
+  wget \
   g++ \
   build-essential \
   llvm-6.0 \
