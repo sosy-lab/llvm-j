@@ -149,10 +149,6 @@ public class TypeRef {
     return LLVMLibrary.LLVMOffsetOfElement(td, type, idx);
   }
 
-  void dump() {
-    LLVMLibrary.LLVMDumpType(type);
-  }
-
   /** Returns the {@link Context} with which this type instance is associated. */
   public Context getTypeContext() {
     return Context.getTypeContext(this);

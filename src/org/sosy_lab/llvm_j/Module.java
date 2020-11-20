@@ -272,11 +272,6 @@ public final class Module implements Iterable<Value>, Closeable {
       return cstr.getCString();
   }*/
 
-  /** Dumps a representation of this module to stderr. */
-  public void dump() {
-    LLVMLibrary.LLVMDumpModule(module);
-  }
-
   /**
    * Writes this module to the specified path.
    *

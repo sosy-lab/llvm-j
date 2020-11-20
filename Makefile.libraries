@@ -1,5 +1,5 @@
 LLVM_VERSION ?= 6.0
-UBUNTU_VERSION ?= focal
+UBUNTU_VERSION ?= trusty
 
 BUILD_DIR=build-lib
 TARGET=lib/native
@@ -17,36 +17,27 @@ clean:
 	rm -f ${TARGET}/libedit.so.2
 	rm -f ${TARGET}/libtinfo.so.5
 
-${BUILD_DIR}:
+
+${TARGET}/libbsd.so.0: ${BUILD_DIR}/libbsd0.deb
+${TARGET}/libedit.so.2: ${BUILD_DIR}/libedit2.deb
+${TARGET}/libtinfo.so.5: ${BUILD_DIR}/libtinfo5.deb
+
+${TARGET}/%:
 	mkdir -p ${BUILD_DIR}
-
-extract_library = ar x $(1).deb data.tar.xz && \
-		tar xf data.tar.xz --wildcards '*$(1).so*' --transform='s/.*\///'
-
-${TARGET}/%.so.0: ${BUILD_DIR} ${BUILD_DIR}/%.deb
-	cd ${BUILD_DIR} && \
-		$(call extract_library,$*)
+	cd $(BUILD_DIR) && \
+		ar x $(<F) data.tar.xz && \
+		tar xf data.tar.xz --wildcards '*$(@F)*' --transform='s/.*\///'
 	patchelf --set-rpath '$$ORIGIN' ${BUILD_DIR}/$(@F)
 	cp -L ${BUILD_DIR}/$(@F) ${TARGET}
 
-${TARGET}/%.so.2: ${BUILD_DIR} ${BUILD_DIR}/%.deb
-	cd ${BUILD_DIR} && \
-		$(call extract_library,$*)
-	patchelf --set-rpath '$$ORIGIN' ${BUILD_DIR}/$(@F)
-	cp -L ${BUILD_DIR}/$(@F) ${TARGET}
+${BUILD_DIR}/libbsd0.deb:
+	mkdir -p ${BUILD_DIR}
+	wget "http://archive.ubuntu.com/ubuntu/pool/main/libb/libbsd/libbsd0_0.8.7-1ubuntu0.1_amd64.deb" -O $@
 
-${TARGET}/%.so.5: ${BUILD_DIR} ${BUILD_DIR}/%.deb
-	cd ${BUILD_DIR} && \
-		$(call extract_library,$*)
-	patchelf --set-rpath '$$ORIGIN' ${BUILD_DIR}/$(@F)
-	cp -L ${BUILD_DIR}/$(@F) ${TARGET}
+${BUILD_DIR}/libedit2.deb:
+	mkdir -p ${BUILD_DIR}
+	wget "http://archive.ubuntu.com/ubuntu/pool/main/libe/libedit/libedit2_3.1-20170329-1_amd64.deb" -O $@
 
-${BUILD_DIR}/libbsd.deb:
-	wget "http://security.ubuntu.com/ubuntu/pool/main/libb/libbsd/libbsd0_0.8.2-1ubuntu0.1_amd64.deb" -O $@
-
-${BUILD_DIR}/libedit.deb:
-	wget "http://mirrors.kernel.org/ubuntu/pool/main/libe/libedit/libedit2_3.1-20170329-1_amd64.deb" -O $@
-
-${BUILD_DIR}/libtinfo.deb:
-	wget "http://mirrors.edge.kernel.org/ubuntu/pool/main/n/ncurses/libtinfo5_6.1-1ubuntu1_amd64.deb" -O $@
-
+${BUILD_DIR}/libtinfo5.deb:
+	mkdir -p ${BUILD_DIR}
+	wget "http://archive.ubuntu.com/ubuntu/pool/main/n/ncurses/libtinfo5_6.1-1ubuntu1.18.04_amd64.deb" -O $@

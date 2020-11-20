@@ -1375,12 +1375,6 @@ public class LLVMLibrary implements Library {
    */
   public static native void LLVMSetTarget(LLVMLibrary.LLVMModuleRef M, String Triple);
   /**
-   * Dump a representation of a module to stderr.<br>
-   * See Module::dump()<br>
-   * Original signature : <code>void LLVMDumpModule(LLVMModuleRef)</code>
-   */
-  public static native void LLVMDumpModule(LLVMLibrary.LLVMModuleRef M);
-  /**
    * Print a representation of a module to a file. The ErrorMessage needs to be<br>
    * disposed with LLVMDisposeMessage. Returns 0 on success, 1 otherwise.<br>
    * See Module::print()<br>
@@ -1630,12 +1624,6 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>LLVMContextRef LLVMGetTypeContext(LLVMTypeRef)</code>
    */
   public static native LLVMLibrary.LLVMContextRef LLVMGetTypeContext(LLVMLibrary.LLVMTypeRef Ty);
-  /**
-   * Dump a representation of a type to stderr.<br>
-   * See llvm::Type::dump()<br>
-   * Original signature : <code>void LLVMDumpType(LLVMTypeRef)</code>
-   */
-  public static native void LLVMDumpType(LLVMLibrary.LLVMTypeRef Val);
   /**
    * Return a string representation of the type. Use<br>
    * LLVMDisposeMessage to free the string.<br>
@@ -2015,12 +2003,6 @@ public class LLVMLibrary implements Library {
    * Original signature : <code>void LLVMSetValueName(LLVMValueRef, const char*)</code>
    */
   public static native void LLVMSetValueName(LLVMLibrary.LLVMValueRef Val, String Name);
-  /**
-   * Dump a representation of a value to stderr.<br>
-   * See llvm::Value::dump()<br>
-   * Original signature : <code>void LLVMDumpValue(LLVMValueRef)</code>
-   */
-  public static native void LLVMDumpValue(LLVMLibrary.LLVMValueRef Val);
   /**
    * Return a string representation of the value. Use<br>
    * LLVMDisposeMessage to free the string.<br>
@@ -6232,8 +6214,6 @@ public class LLVMLibrary implements Library {
   public static native void LLVMInitializeObjCARCOpts(LLVMLibrary.LLVMPassRegistryRef R);
   /** Original signature : <code>void LLVMInitializeVectorization(LLVMPassRegistryRef)</code> */
   public static native void LLVMInitializeVectorization(LLVMLibrary.LLVMPassRegistryRef R);
-  /** Original signature : <code>void LLVMInitializeInstCombine(LLVMPassRegistryRef)</code> */
-  public static native void LLVMInitializeInstCombine(LLVMLibrary.LLVMPassRegistryRef R);
   /** Original signature : <code>void LLVMInitializeIPO(LLVMPassRegistryRef)</code> */
   public static native void LLVMInitializeIPO(LLVMLibrary.LLVMPassRegistryRef R);
   /** Original signature : <code>void LLVMInitializeInstrumentation(LLVMPassRegistryRef)</code> */

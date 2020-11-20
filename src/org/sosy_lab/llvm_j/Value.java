@@ -350,11 +350,6 @@ public class Value {
     return LLVMLibrary.LLVMGetValueName(value);
   }
 
-  /** Dump a representation of this value to stderr. */
-  public void dump() {
-    LLVMLibrary.LLVMDumpValue(value);
-  }
-
   @Override
   public String toString() {
     Pointer ret = LLVMLibrary.LLVMPrintValueToString(value);
