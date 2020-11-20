@@ -27,7 +27,7 @@
 
 package org.sosy_lab.llvm_j;
 
-import org.junit.Assert;
+import com.google.common.truth.Truth;
 import org.junit.Test;
 
 public class UtilsTest {
@@ -36,6 +36,6 @@ public class UtilsTest {
   public void testNulls() {
     boolean actualValue = Utils.llvmBoolToJavaBool(null);
 
-    Assert.assertFalse(actualValue);
+    Truth.assertThat(actualValue).isFalse();
   }
 }
