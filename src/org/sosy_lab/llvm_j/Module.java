@@ -124,10 +124,9 @@ public final class Module implements Iterable<Value>, Closeable {
     checkNotNull(path);
     checkNotNull(pContext);
 
-    @Var LLVMLibrary.LLVMContextRef context = null;
+    @Var LLVMLibrary.LLVMContextRef context = pContext.context();
     long messageBufferLength = 1000 * 1000; // bytes
     Pointer outMsgAddr = new Memory(messageBufferLength);
-    context = pContext.context();
 
     /* read the module into a buffer */
     PointerByReference pointerToBuffer = new PointerByReference();
