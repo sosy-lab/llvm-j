@@ -122,7 +122,9 @@ public final class Module implements Iterable<Value>, Closeable {
   @SuppressWarnings("deprecation")
   public static Module parseIR(String path, Context pContext) throws LLVMException {
     checkNotNull(path);
-    checkNotNull(pContext);
+    if (pContext == null) {
+      throw new NullPointerException();
+    }
 
     @Var LLVMLibrary.LLVMContextRef context = pContext.context();
     long messageBufferLength = 1000 * 1000; // bytes
@@ -206,7 +208,9 @@ public final class Module implements Iterable<Value>, Closeable {
    */
   public static Module createWithNameInContext(String moduleID, Context c) {
     checkNotNull(moduleID);
-    checkNotNull(c);
+    if (c == null) {
+      throw new NullPointerException();
+    }
     return new Module(LLVMLibrary.LLVMModuleCreateWithNameInContext(moduleID, c.context()));
   }
 

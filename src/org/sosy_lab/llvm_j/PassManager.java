@@ -62,7 +62,9 @@ public final class PassManager implements Closeable {
    * compilation tasks.
    */
   public static PassManager createForModule(Module m) {
-    checkNotNull(m);
+    if (m == null) {
+      throw new NullPointerException();
+    }
     return new PassManager(LLVMLibrary.LLVMCreateFunctionPassManagerForModule(m.getModule()));
   }
 
